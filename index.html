@@ -14,8 +14,7 @@
             --text-main: #0f172a;
             --text-muted: #64748b;
             --primary: #2563eb; 
-            --primary-hover: #1d4ed8;
-            --header-bg: #0f172a; /* El azul oscuro profesional de tu otra página */
+            --header-bg: #0f172a; 
             --border: #e2e8f0; 
         }
 
@@ -29,7 +28,7 @@
             min-height: 100vh;
         }
 
-        /* --- CABECERA OSCURA PROFESIONAL --- */
+        /* --- CABECERA --- */
         header {
             background-color: var(--header-bg);
             padding: 1rem 2rem;
@@ -55,9 +54,7 @@
             gap: 10px;
         }
 
-        .logo span {
-            color: #3b82f6; /* Toque azul claro en el texto "Calc" */
-        }
+        .logo span { color: #3b82f6; }
 
         /* --- CONTENIDO PRINCIPAL --- */
         main {
@@ -69,24 +66,9 @@
             box-sizing: border-box;
         }
 
-        .hero-text {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .hero-text h1 {
-            font-size: 2.2rem;
-            color: var(--text-main);
-            margin-bottom: 0.5rem;
-            margin-top: 0;
-        }
-
-        .hero-text p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
+        .hero-text { text-align: center; margin-bottom: 3rem; }
+        .hero-text h1 { font-size: 2.2rem; margin-bottom: 0.5rem; margin-top: 0; }
+        .hero-text p { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
 
         /* --- GRID DE HERRAMIENTAS --- */
         .card-grid {
@@ -128,38 +110,16 @@
             margin-bottom: 1.25rem;
         }
 
-        .card h2 {
-            margin: 0 0 0.75rem 0;
-            font-size: 1.25rem;
-            color: var(--text-main);
-        }
+        .card h2 { margin: 0 0 0.75rem 0; font-size: 1.25rem; }
+        .card p { margin: 0; color: var(--text-muted); line-height: 1.5; font-size: 0.95rem; }
 
-        .card p {
-            margin: 0;
-            color: var(--text-muted);
-            line-height: 1.5;
-            font-size: 0.95rem;
-        }
-
-        /* --- PIE DE PÁGINA (LEGAL) --- */
+        /* --- PIE DE PÁGINA --- */
         footer {
-            text-align: center;
-            padding: 2rem;
-            background-color: var(--surface);
-            border-top: 1px solid var(--border);
-            margin-top: auto;
+            text-align: center; padding: 2rem; background-color: var(--surface);
+            border-top: 1px solid var(--border); margin-top: auto;
         }
-
-        footer a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.85rem;
-        }
-
-        footer a:hover {
-            color: var(--primary);
-            text-decoration: underline;
-        }
+        footer a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; }
+        footer a:hover { color: var(--primary); text-decoration: underline; }
     </style>
 </head>
 <body>
@@ -190,6 +150,12 @@
                 <div class="card-icon"><i class="fas fa-pump-soap"></i></div>
                 <h2>Potencia de Bombeo</h2>
                 <p>Calcula la potencia necesaria para una bomba hidráulica según su caudal, altura y rendimiento.</p>
+            </a>
+
+            <a href="calculadora-presion.html" class="card">
+                <div class="card-icon"><i class="fas fa-water"></i></div>
+                <h2>Caída de Presión</h2>
+                <p>Calcula la pérdida de carga por fricción en tuberías mediante la ecuación de Hazen-Williams.</p>
             </a>
 
         </div>
