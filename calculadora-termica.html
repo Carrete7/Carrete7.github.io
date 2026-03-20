@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transmitancia Térmica (Valor U) | IndustrialCalc Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --bg: #f8fafc; --surface: #ffffff; --text: #1e293b; --primary: #0ea5e9; --border: #e2e8f0; --header-bg: #0f172a; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 0; display: flex; flex-direction: column; min-height: 100vh; align-items: center; }
+        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; width: 100%; box-sizing: border-box; }
+        .header-content { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        main { width: 100%; max-width: 800px; padding: 2rem 1rem; box-sizing: border-box; }
+        .back-link { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 1.5rem; color: #64748b; text-decoration: none; font-weight: 500; }
+        .card { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 2rem; }
+        h1 { color: var(--primary); text-align: center; margin-bottom: 1.5rem; }
+        .layer-row { display: grid; grid-template-columns: 2fr 1fr 1fr 40px; gap: 10px; margin-bottom: 10px; align-items: end; }
+        label { font-size: 0.85rem; font-weight: 600; color: #475569; }
+        input { width: 100%; padding: 0.7rem; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box; }
+        button { cursor: pointer; border-radius: 6px; font-weight: 600; transition: 0.2s; }
+        .btn-add { background: #f1f5f9; color: #475569; border: 1px solid var(--border); padding: 0.5rem 1rem; margin-bottom: 1.5rem; }
+        .btn-calc { background: var(--primary); color: white; border: none; padding: 1rem; width: 100%; font-size: 1.1rem; }
+        .btn-remove { background: #fee2e2; color: #ef4444; border: none; padding: 0.7rem; }
+        .result { margin-top: 1.5rem; padding: 1.5rem; background: #f0f9ff; border-radius: 8px; display: none; border: 2px solid #bae6fd; text-align: center; }
+        .result-value { font-size: 2.5rem; font-weight: 800; color: var(--primary); }
+        .article-content { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); }
+        footer { text-align: center; padding: 2rem; width: 100%; margin-top: auto; border-top: 1px solid var(--border); }
+    </style>
+</head>
+<body>
+    <header><div class="header-content"><a href="index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span> Pro</a></div></header>
+    <main>
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+        <div class="card">
+            <h1><i class="fas fa-temperature-high"></i> Transmitancia Térmica (U)</h1>
+            <p style="text-align: center; color: #64748b; margin-bottom: 2rem;">Calcula el coeficiente U de un cerramiento sumando las resistencias térmicas de cada capa.</p>
+            
+            <div id="layers-container">
+                <div class="layer-row">
+                    <div><label>Material (Capa 1)</label><input type="text" value="Enlucido Yeso"></div>
+                    <div><label>Espesor (m)</label><input type="number" class="esp" value="0.015" step="0.001"></div>
+                    <div><label>Cond. λ (W/mK)</label><input type="number" class="cond" value="0.30" step="0.01"></div>
+                    <div></div>
+                </div>
+                <div class="layer-row">
+                    <div><label>Material (Capa 2)</label><input type="text" value="Ladrillo Hueco"></div>
+                    <div><label>Espesor (m)</label><input type="number" class="esp" value="0.07" step="0.001"></div>
+                    <div><label>Cond. λ (W/mK)</label><input type="number" class="cond" value="0.32" step="0.01"></div>
+                    <div></div>
+                </div>
+            </div>
+
+            <button class="btn-add" onclick="addLayer()"><i class="fas fa-plus"></i> Añadir Capa</button>
+            <button class="btn-calc" onclick="calcularU()">Calcular Transmitancia U</button>
+
+            <div id="res_u" class="result"></div>
+        </div>
+
+        <div class="article-content">
+            <h2>¿Qué es el Valor U?</h2>
+            <p>La transmitancia térmica (U) mide la cantidad de calor que se pierde a través de un elemento constructivo por unidad de tiempo y superficie. Cuanto menor sea el valor U, mejor aislado estará el edificio.</p>
+            <p style="font-size: 1.2rem; text-align: center; padding: 10px 0;">
+                $$U = \frac{1}{R_{si} + \sum \frac{e_i}{\lambda_i} + R_{se}}$$
+            </p>
+        </div>
+    </main>
+    <footer><a href="legales.html" style="color:#64748b; text-decoration:none;">Aviso Legal y Privacidad</a></footer>
+
+    <script>
+        function addLayer() {
+            const container = document.getElementById('layers-container');
+            const div = document.createElement('div');
+            div.className = 'layer-row';
+            div.innerHTML = `
+                <div><input type="text" placeholder="Nuevo material"></div>
+                <div><input type="number" class="esp" placeholder="0.05" step="0.001"></div>
+                <div><input type="number" class="cond" placeholder="0.04" step="0.01"></div>
+                <button class="btn-remove" onclick="this.parentElement.remove()"><i class="fas fa-trash"></i></button>
+            `;
+            container.appendChild(div);
+        }
+
+        function calcularU() {
+            const espesores = document.querySelectorAll('.esp');
+            const conductividades = document.querySelectorAll('.cond');
+            let r_total = 0.13 + 0.04; 
+
+            for (let i = 0; i < espesores.length; i++) {
+                const e = parseFloat(espesores[i].value);
+                const l = parseFloat(conductividades[i].value);
+                if (e > 0 && l > 0) r_total += (e / l);
+            }
+
+            const u = 1 / r_total;
+            const resDiv = document.getElementById('res_u');
+            resDiv.style.display = 'block';
+            resDiv.innerHTML = `
+                <div style="color: #0369a1; font-weight: 600;">Transmitancia Térmica Total</div>
+                <div class="result-value">${u.toFixed(3)} W/m²K</div>
+            `;
+        }
+    </script>
+</body>
+</html>
