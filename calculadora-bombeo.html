@@ -18,23 +18,61 @@
             --primary: #2563eb; 
             --border: #e2e8f0; 
             --text-muted: #64748b;
+            --header-bg: #0f172a; /* Azul oscuro profesional de la portada */
         }
 
-        /* --- CONTENEDOR FLUIDO (Universal) --- */
         body { 
             font-family: 'Inter', system-ui, -apple-system, sans-serif; 
             background: var(--bg); 
             color: var(--text); 
             margin: 0; 
-            padding: 1rem; /* Padding base para móviles */
+            padding: 0; 
             line-height: 1.6; 
             display: flex;
-            justify-content: center; /* Centra el bloque maestro en la pantalla */
+            flex-direction: column;
+            min-height: 100vh;
+            align-items: center; 
         }
 
-        .wrapper {
+        /* --- CABECERA OSCURA --- */
+        header {
+            background-color: var(--header-bg);
+            padding: 1rem 2rem;
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
             width: 100%;
-            max-width: 800px; /* Ancho máximo para monitores grandes */
+            box-sizing: border-box;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: #3b82f6;
+        }
+
+        /* --- CONTENEDOR PRINCIPAL --- */
+        main {
+            width: 100%;
+            max-width: 800px;
+            padding: 2rem 1rem;
+            box-sizing: border-box;
+            flex: 1; 
         }
 
         .back-link { 
@@ -43,7 +81,7 @@
         }
         .back-link:hover { color: var(--primary); }
 
-        /* --- CALCULADORA (Compacta y centrada) --- */
+        /* --- CALCULADORA --- */
         .card { 
             background: var(--surface); 
             padding: 1.5rem; 
@@ -52,7 +90,7 @@
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); 
             margin: 0 auto 2rem auto; 
             width: 100%; 
-            max-width: 450px; /* Bloquea el ancho en PC para que no parezca deforme */
+            max-width: 450px; 
             box-sizing: border-box;
             display: flex; 
             flex-direction: column;
@@ -62,57 +100,30 @@
         h1 { font-size: 1.5rem; margin-top: 0; margin-bottom: 1.5rem; color: var(--primary); text-align: center; }
         
         .input-group { margin-bottom: 1.25rem; width: 100%; }
-        
         label { display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.95rem; text-align: center; }
         
         input { 
-            width: 100%; 
-            padding: 0.85rem; 
-            border: 2px solid var(--border); 
-            border-radius: 8px; 
-            box-sizing: border-box; 
-            font-size: 1rem;
-            text-align: center; 
-            transition: border-color 0.2s;
+            width: 100%; padding: 0.85rem; border: 2px solid var(--border); border-radius: 8px; 
+            box-sizing: border-box; font-size: 1rem; text-align: center; transition: border-color 0.2s;
         }
-        
         input:focus { outline: none; border-color: var(--primary); }
 
         button { 
-            width: 100%; 
-            padding: 1rem; 
-            background: var(--primary); 
-            color: white; 
-            border: none; 
-            border-radius: 8px; 
-            font-weight: 700; 
-            cursor: pointer; 
-            margin-top: 0.5rem; 
-            font-size: 1.1rem; 
-            transition: background 0.2s;
+            width: 100%; padding: 1rem; background: var(--primary); color: white; border: none; 
+            border-radius: 8px; font-weight: 700; cursor: pointer; margin-top: 0.5rem; 
+            font-size: 1.1rem; transition: background 0.2s;
         }
         button:hover { background: #1d4ed8; }
 
         .result { 
-            margin-top: 1.5rem; 
-            padding: 1.5rem; 
-            background: #eff6ff; 
-            border-radius: 8px; 
-            display: none; 
-            border: 2px solid #bfdbfe; 
-            width: 100%;
-            box-sizing: border-box;
-            text-align: center;
+            margin-top: 1.5rem; padding: 1.5rem; background: #eff6ff; border-radius: 8px; display: none; 
+            border: 2px solid #bfdbfe; width: 100%; box-sizing: border-box; text-align: center;
         }
 
-        /* --- ARTÍCULO TÉCNICO (Ancho para lectura) --- */
+        /* --- ARTÍCULO TÉCNICO --- */
         .article-content { 
-            background: var(--surface); 
-            padding: 1.5rem; 
-            border-radius: 12px; 
-            border: 1px solid var(--border); 
-            width: 100%;
-            box-sizing: border-box;
+            background: var(--surface); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border); 
+            width: 100%; box-sizing: border-box;
         }
         
         h2 { color: var(--primary); margin-top: 0; margin-bottom: 1rem; font-size: 1.4rem; }
@@ -121,16 +132,33 @@
         li { margin-bottom: 0.75rem; }
         p { color: var(--text-muted); }
 
-        /* --- MEDIA QUERIES (Magia para PC y Tablet) --- */
+        /* --- PIE DE PÁGINA (LEGAL) --- */
+        footer {
+            text-align: center; padding: 2rem; background-color: var(--surface);
+            border-top: 1px solid var(--border); width: 100%; box-sizing: border-box; margin-top: auto;
+        }
+        footer a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; }
+        footer a:hover { color: var(--primary); text-decoration: underline; }
+
+        /* --- MEDIA QUERIES --- */
         @media (min-width: 768px) {
-            body { padding: 3rem 1rem; }
+            main { padding: 3rem 1rem; }
             .card { padding: 2.5rem 2rem; }
             .article-content { padding: 2.5rem; }
         }
     </style>
 </head>
 <body>
-    <div class="wrapper">
+
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <i class="fas fa-industry"></i> Industrial<span>Calc</span> Pro
+            </a>
+        </div>
+    </header>
+
+    <main>
         <a href="index.html" class="back-link">
             <i class="fas fa-arrow-left"></i> Volver al inicio
         </a>
@@ -179,7 +207,11 @@
                 <li><strong>\(\eta\) (Rendimiento):</strong> Eficiencia de la bomba (valor entre 0 y 1).</li>
             </ul>
         </div>
-    </div>
+    </main>
+
+    <footer>
+        <a href="legales.html">Aviso Legal, Privacidad y Política de Cookies</a>
+    </footer>
 
     <script>
         function calcular() {
