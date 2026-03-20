@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volumen de Depósitos | IndustrialCalc Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --bg: #f8fafc; --surface: #ffffff; --text: #1e293b; --primary: #4f46e5; --border: #e2e8f0; --header-bg: #0f172a; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0; display: flex; flex-direction: column; min-height: 100vh; align-items: center; }
+        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; width: 100%; box-sizing: border-box; }
+        .header-content { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        main { width: 100%; max-width: 800px; padding: 2rem 1rem; box-sizing: border-box; }
+        .back-link { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 1.5rem; color: #64748b; text-decoration: none; font-weight: 500; }
+        .card { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 2rem; }
+        h1 { color: var(--primary); text-align: center; margin-bottom: 1.5rem; }
+        label { font-size: 0.85rem; font-weight: 600; color: #475569; display: block; margin-top: 1rem; }
+        input { width: 100%; padding: 0.8rem; margin-top: 5px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box; }
+        button { width: 100%; padding: 1rem; background: var(--primary); color: white; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 1.5rem; transition: 0.2s; }
+        button:hover { background: #3730a3; }
+        .result { margin-top: 1.5rem; padding: 1.5rem; background: #eef2ff; border-radius: 8px; display: none; text-align: center; border: 2px solid #c7d2fe; }
+        .info-box { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); }
+        footer { text-align: center; padding: 2rem; width: 100%; margin-top: auto; border-top: 1px solid var(--border); }
+    </style>
+</head>
+<body>
+    <header><div class="header-content"><a href="index.html" style="color:white; text-decoration:none; font-weight:800;"><i class="fas fa-industry"></i> IndustrialCalc Pro</a></div></header>
+    <main>
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+        <div class="card">
+            <h1><i class="fas fa-database"></i> Volumen de Silos y Depósitos</h1>
+            <label>Diámetro del depósito cilíndrico (metros)</label>
+            <input type="number" id="diam_dep" placeholder="Ej: 3.5">
+            <label>Altura útil del material (metros)</label>
+            <input type="number" id="alt_dep" placeholder="Ej: 6">
+            <button onclick="calcVolumen()">Calcular Capacidad</button>
+            <div id="res_vol" class="result"></div>
+        </div>
+
+        <div class="info-box" style="background: #eef2ff;">
+            <h2 style="font-size: 1.2rem; color: #4f46e5;">Capacidad Volumétrica</h2>
+            <p style="font-size: 0.95rem; line-height: 1.6; color: #3730a3;">
+                Conocer la capacidad exacta de un depósito vertical o silo es vital para el control de inventario en plantas de procesos, almazaras o industria petroquímica.
+            </p>
+            <p style="font-size: 1.2rem; text-align: center; padding: 10px 0;">
+                $$V = \pi \cdot r^2 \cdot h$$
+            </p>
+        </div>
+    </main>
+    <footer><a href="legales.html" style="color:#64748b; text-decoration:none;">Aviso Legal y Privacidad</a></footer>
+    <script>
+        function calcVolumen() {
+            const D = parseFloat(document.getElementById('diam_dep').value);
+            const H = parseFloat(document.getElementById('alt_dep').value);
+            if(D>0 && H>0) {
+                const r = D / 2;
+                const vol = Math.PI * Math.pow(r, 2) * H;
+                const litros = vol * 1000;
+                const resDiv = document.getElementById('res_vol');
+                resDiv.style.display = 'block';
+                resDiv.innerHTML = `<strong>Volumen de llenado:</strong><br><span style="font-size:2.5rem; color:#4f46e5;">${vol.toFixed(2)} m³</span><br><small style="color:#3730a3;">(${litros.toFixed(0)} Litros)</small>`;
+            }
+        }
+    </script>
+</body>
+</html>
