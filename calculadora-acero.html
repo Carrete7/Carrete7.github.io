@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peso de Perfiles de Acero | IndustrialCalc Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --bg: #f8fafc; --surface: #ffffff; --text: #1e293b; --primary: #475569; --border: #e2e8f0; --header-bg: #0f172a; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0; display: flex; flex-direction: column; min-height: 100vh; align-items: center; }
+        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; width: 100%; box-sizing: border-box; }
+        .header-content { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        main { width: 100%; max-width: 800px; padding: 2rem 1rem; box-sizing: border-box; }
+        .back-link { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 1.5rem; color: #64748b; text-decoration: none; font-weight: 500; }
+        .card { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 2rem; }
+        h1 { color: var(--primary); text-align: center; margin-bottom: 1.5rem; }
+        label { font-size: 0.85rem; font-weight: 600; color: #475569; display: block; margin-top: 1rem; }
+        select, input { width: 100%; padding: 0.8rem; margin-top: 5px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box; }
+        button { width: 100%; padding: 1rem; background: var(--primary); color: white; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 1.5rem; transition: 0.2s; }
+        button:hover { background: #334155; }
+        .result { margin-top: 1.5rem; padding: 1.5rem; background: #f1f5f9; border-radius: 8px; display: none; text-align: center; border: 2px solid #cbd5e1; }
+        .info-box { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); }
+        footer { text-align: center; padding: 2rem; width: 100%; margin-top: auto; border-top: 1px solid var(--border); }
+    </style>
+</head>
+<body>
+    <header><div class="header-content"><a href="index.html" style="color:white; text-decoration:none; font-weight:800;"><i class="fas fa-industry"></i> IndustrialCalc Pro</a></div></header>
+    <main>
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+        <div class="card">
+            <h1><i class="fas fa-cubes"></i> Peso de Perfiles de Acero</h1>
+            <label>Tipo de Perfil</label>
+            <select id="tipo_perfil">
+                <option value="10.4">IPE 100 (10.4 kg/m)</option>
+                <option value="22.4">IPE 200 (22.4 kg/m)</option>
+                <option value="42.2">IPE 300 (42.2 kg/m)</option>
+                <option value="26.7">HEB 100 (26.7 kg/m)</option>
+                <option value="61.3">HEB 200 (61.3 kg/m)</option>
+                <option value="117.0">HEB 300 (117.0 kg/m)</option>
+            </select>
+            <label>Longitud Total (metros)</label>
+            <input type="number" id="long_acero" placeholder="Ej: 12">
+            <label>Cantidad de vigas</label>
+            <input type="number" id="cant_acero" placeholder="Ej: 5" value="1">
+            <button onclick="calcAcero()">Calcular Peso Total</button>
+            <div id="res_acero" class="result"></div>
+        </div>
+
+        <div class="info-box" style="background: #f8fafc;">
+            <h2 style="font-size: 1.2rem; color: #334155;">Cálculo de Estructuras Metálicas</h2>
+            <p style="font-size: 0.95rem; line-height: 1.6; color: #475569;">
+                Conocer el peso exacto del acero es fundamental para calcular los costes logísticos, el dimensionamiento de grúas y el presupuesto de materiales. El peso se obtiene multiplicando el peso lineal del perfil tabulado por la longitud total.
+            </p>
+            <p style="font-size: 1.2rem; text-align: center; padding: 10px 0;">
+                $$P_{total} = p_l \cdot L \cdot N$$
+            </p>
+            <ul style="font-size: 0.9rem; color: #475569;">
+                <li><strong>\(P_{total}\):</strong> Peso total en kilogramos (kg).</li>
+                <li><strong>\(p_l\):</strong> Peso lineal del perfil (kg/m) según normativa.</li>
+                <li><strong>\(L\):</strong> Longitud de cada viga (m).</li>
+                <li><strong>\(N\):</strong> Número de unidades.</li>
+            </ul>
+        </div>
+    </main>
+    <footer><a href="legales.html" style="color:#64748b; text-decoration:none;">Aviso Legal y Privacidad</a></footer>
+    <script>
+        function calcAcero() {
+            const pl = parseFloat(document.getElementById('tipo_perfil').value);
+            const L = parseFloat(document.getElementById('long_acero').value);
+            const N = parseFloat(document.getElementById('cant_acero').value);
+            if(L>0 && N>0) {
+                const total = pl * L * N;
+                const resDiv = document.getElementById('res_acero');
+                resDiv.style.display = 'block';
+                resDiv.innerHTML = `<strong>Peso Estructural Total:</strong><br><span style="font-size:2.5rem; color:#334155;">${total.toFixed(2)} kg</span><br><small style="color:#64748b;">(${ (total/1000).toFixed(2) } Toneladas)</small>`;
+            }
+        }
+    </script>
+</body>
+</html>
