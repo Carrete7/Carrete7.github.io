@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROI y Amortización Solar | IndustrialCalc Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --bg: #f8fafc; --surface: #ffffff; --text: #1e293b; --primary: #eab308; --border: #e2e8f0; --header-bg: #0f172a; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0; display: flex; flex-direction: column; min-height: 100vh; align-items: center; }
+        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; width: 100%; box-sizing: border-box; }
+        .header-content { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        main { width: 100%; max-width: 800px; padding: 2rem 1rem; box-sizing: border-box; }
+        .back-link { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 1.5rem; color: #64748b; text-decoration: none; font-weight: 500; }
+        .card { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 2rem; }
+        h1 { color: var(--primary); text-align: center; margin-bottom: 1.5rem; }
+        label { font-size: 0.85rem; font-weight: 600; color: #475569; display: block; margin-top: 1rem; }
+        input { width: 100%; padding: 0.8rem; margin-top: 5px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box; }
+        button { width: 100%; padding: 1rem; background: var(--primary); color: white; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 1.5rem; transition: 0.2s; }
+        button:hover { background: #ca8a04; }
+        .result { margin-top: 1.5rem; padding: 1.5rem; background: #fefce8; border-radius: 8px; display: none; text-align: center; border: 2px solid #fef08a; }
+        .info-box { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); }
+        footer { text-align: center; padding: 2rem; width: 100%; margin-top: auto; border-top: 1px solid var(--border); }
+    </style>
+</head>
+<body>
+    <header><div class="header-content"><a href="index.html" style="color:white; text-decoration:none; font-weight:800;"><i class="fas fa-industry"></i> IndustrialCalc Pro</a></div></header>
+    <main>
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+        <div class="card">
+            <h1><i class="fas fa-hand-holding-dollar"></i> Amortización Fotovoltaica</h1>
+            <label>Coste total de la instalación (€)</label>
+            <input type="number" id="coste_solar" placeholder="Ej: 5000">
+            <label>Ahorro estimado en factura mensual (€/mes)</label>
+            <input type="number" id="ahorro_mes" placeholder="Ej: 80">
+            <label>Subvenciones o deducciones aplicadas (€)</label>
+            <input type="number" id="ayudas_solar" placeholder="Ej: 0" value="0">
+            <button onclick="calcROI()">Calcular Retorno (ROI)</button>
+            <div id="res_roi" class="result"></div>
+        </div>
+
+        <div class="info-box" style="background: #fefce8;">
+            <h2 style="font-size: 1.2rem; color: #ca8a04;">Retorno de Inversión (ROI)</h2>
+            <p style="font-size: 0.95rem; line-height: 1.6; color: #854d0e;">
+                El Payback o periodo de recuperación es el tiempo que se tarda en recuperar el dinero desembolsado gracias a los ahorros en la factura eléctrica.
+            </p>
+            <p style="font-size: 1.2rem; text-align: center; padding: 10px 0;">
+                $$ROI_{a\tilde{n}os} = \frac{Coste_{Total} - Ayudas}{Ahorro_{Anual}}$$
+            </p>
+            <ul style="font-size: 0.9rem; color: #854d0e; padding-left: 20px;">
+                <li><strong>\(ROI\) (Return on Investment):</strong> Tiempo en años para amortizar la compra.</li>
+                <li><strong>\(Coste_{Total}\):</strong> Precio final de la instalación con IVA.</li>
+                <li><strong>\(Ayudas\):</strong> Subvenciones, rebajas de IBI o bonificaciones.</li>
+                <li><strong>\(Ahorro_{Anual}\):</strong> Ahorro mensual multiplicado por 12 meses.</li>
+            </ul>
+        </div>
+    </main>
+    <footer><a href="legales.html" style="color:#64748b; text-decoration:none;">Aviso Legal y Privacidad</a></footer>
+    <script>
+        function calcROI() {
+            const coste = parseFloat(document.getElementById('coste_solar').value);
+            const ahorro = parseFloat(document.getElementById('ahorro_mes').value);
+            const ayudas = parseFloat(document.getElementById('ayudas_solar').value);
+            if(coste>0 && ahorro>0) {
+                const costeNeto = coste - (isNaN(ayudas) ? 0 : ayudas);
+                const ahorroAnual = ahorro * 12;
+                const roi = costeNeto / ahorroAnual;
+                const mesesExtras = Math.round((roi - Math.floor(roi)) * 12);
+                
+                const resDiv = document.getElementById('res_roi');
+                resDiv.style.display = 'block';
+                resDiv.innerHTML = `<strong>Periodo de Amortización:</strong><br><span style="font-size:2.5rem; color:#ca8a04;">${Math.floor(roi)} años, ${mesesExtras} meses</span>`;
+            }
+        }
+    </script>
+</body>
+</html>
