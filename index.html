@@ -15,7 +15,6 @@
         .logo { font-size: 1.5rem; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; }
         .logo span { color: #3b82f6; }
         
-        /* Menú Desplegable */
         .dropdown { position: relative; display: inline-block; }
         .dropbtn { background-color: rgba(255,255,255,0.1); color: white; padding: 0.8rem 1.2rem; font-size: 1rem; border: none; border-radius: 8px; cursor: pointer; font-family: inherit; font-weight: 600; display: flex; align-items: center; gap: 8px; transition: 0.2s;}
         .dropdown:hover .dropbtn { background-color: rgba(255,255,255,0.2); }
@@ -29,7 +28,6 @@
         .hero-text h1 { font-size: 2.5rem; margin-bottom: 0.5rem; margin-top: 0; color: var(--header-bg); }
         .hero-text p { color: var(--text-muted); font-size: 1.1rem; max-width: 700px; margin: 0 auto; }
         
-        /* Buscador en vivo */
         .search-hero { position: relative; max-width: 600px; margin: 2rem auto 0; }
         .search-hero input { width: 100%; padding: 1.2rem 1.2rem 1.2rem 3rem; font-size: 1.1rem; border: 2px solid var(--border); border-radius: 50px; box-sizing: border-box; outline: none; transition: 0.2s; font-family: inherit;}
         .search-hero input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(37,99,235,0.1); }
@@ -52,23 +50,29 @@
             <a href="index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span> Pro</a>
             
             <div class="dropdown">
-                <button class="dropbtn">Calculadoras <i class="fas fa-chevron-down"></i></button>
+                <button class="dropbtn">21 Calculadoras <i class="fas fa-chevron-down"></i></button>
                 <div class="dropdown-content">
                     <a href="herramientas-basicas.html">⚡ Cálculos y Finanzas</a>
                     <a href="calculadora-bombeo.html">🌊 Potencia de Bombeo</a>
                     <a href="calculadora-presion.html">💧 Caída de Presión</a>
-                    <a href="calculadora-solar.html">☀️ Energía Solar</a>
-                    <a href="calculadora-eficiencia.html">⚙️ Eficiencia Industrial</a>
+                    <a href="calculadora-solar.html">☀️ Energía Fotovoltaica</a>
+                    <a href="calculadora-roi-solar.html">💰 Amortización Solar</a>
+                    <a href="calculadora-eficiencia.html">⚙️ Eficiencia Motores</a>
                     <a href="calculadora-instalaciones.html">💡 Instalaciones y LED</a>
                     <a href="calculadora-termica.html">🌡️ Aislamiento Térmico</a>
                     <a href="calculadora-aire.html">💨 Aire Comprimido</a>
+                    <a href="calculadora-ventilacion.html">🌬️ Renovaciones de Aire</a>
                     <a href="calculadora-psicrometria.html">💦 Punto de Rocío</a>
                     <a href="calculadora-acero.html">🏗️ Estructuras de Acero</a>
+                    <a href="calculadora-hormigon.html">🧱 Volumen de Hormigón</a>
                     <a href="calculadora-climatizacion.html">❄️ Carga Térmica HVAC</a>
                     <a href="calculadora-dilatacion.html">🔥 Dilatación de Tuberías</a>
                     <a href="calculadora-depositos.html">🛢️ Volumen de Depósitos</a>
                     <a href="calculadora-acustica.html">🔊 Atenuación Acústica</a>
                     <a href="calculadora-cintas.html">📦 Cintas Transportadoras</a>
+                    <a href="calculadora-poleas.html">🔄 Transmisión Poleas</a>
+                    <a href="calculadora-baterias.html">🔋 Autonomía Baterías</a>
+                    <a href="calculadora-transformador.html">🔌 Transformadores</a>
                 </div>
             </div>
         </div>
@@ -77,11 +81,11 @@
     <main>
         <div class="hero-text">
             <h1>Suite de Ingeniería Industrial</h1>
-            <p>15 herramientas profesionales para automatizar cálculos en oficina técnica y trabajo de campo.</p>
+            <p>21 herramientas profesionales para automatizar cálculos en oficina técnica y trabajo de campo.</p>
             
             <div class="search-hero">
                 <i class="fas fa-search"></i>
-                <input type="text" id="buscadorHome" placeholder="Buscar calculadora (ej: acero, solar, agua...)" onkeyup="filtrarTarjetas()">
+                <input type="text" id="buscadorHome" placeholder="Buscar calculadora (ej: hormigón, solar, poleas...)" onkeyup="filtrarTarjetas()">
             </div>
         </div>
 
@@ -90,40 +94,16 @@
             <a href="calculadora-bombeo.html" class="card"><div class="card-icon" style="background: #f0fdf4; color: #16a34a;"><i class="fas fa-pump-soap"></i></div><h2>Potencia de Bombeo</h2><p>Cálculo de potencia hidráulica y rendimiento.</p></a>
             <a href="calculadora-presion.html" class="card"><div class="card-icon" style="background: #ecfeff; color: #0891b2;"><i class="fas fa-water"></i></div><h2>Caída de Presión</h2><p>Pérdida de carga en tuberías de agua.</p></a>
             <a href="calculadora-solar.html" class="card"><div class="card-icon" style="background: #fffbeb; color: #d97706;"><i class="fas fa-solar-panel"></i></div><h2>Energía Solar</h2><p>Dimensionamiento fotovoltaico y cableado.</p></a>
+            <a href="calculadora-roi-solar.html" class="card"><div class="card-icon" style="background: #fefce8; color: #ca8a04;"><i class="fas fa-hand-holding-dollar"></i></div><h2>Amortización Solar</h2><p>Cálculo de Payback y ROI de placas solares.</p></a>
+            <a href="calculadora-baterias.html" class="card"><div class="card-icon" style="background: #d1fae5; color: #10b981;"><i class="fas fa-car-battery"></i></div><h2>Autonomía Baterías</h2><p>Respaldo en tiempo para sistemas SAI/UPS.</p></a>
             <a href="calculadora-eficiencia.html" class="card"><div class="card-icon" style="background: #f0fdfa; color: #0d9488;"><i class="fas fa-cogs"></i></div><h2>Eficiencia y Motores</h2><p>Condensadores y par motor industrial.</p></a>
+            <a href="calculadora-transformador.html" class="card"><div class="card-icon" style="background: #e0e7ff; color: #6366f1;"><i class="fas fa-charging-station"></i></div><h2>Transformadores</h2><p>Corriente nominal en baja tensión.</p></a>
             <a href="calculadora-instalaciones.html" class="card"><div class="card-icon" style="background: #f5f3ff; color: #7c3aed;"><i class="fas fa-bolt"></i></div><h2>Instalaciones</h2><p>Alumbrado LED y sección de cables.</p></a>
             <a href="calculadora-termica.html" class="card"><div class="card-icon" style="background: #fff1f2; color: #e11d48;"><i class="fas fa-temperature-high"></i></div><h2>Aislamiento Térmico</h2><p>Transmitancia térmica (Valor U) de muros.</p></a>
             <a href="calculadora-aire.html" class="card"><div class="card-icon" style="background: #f8fafc; color: #475569;"><i class="fas fa-wind"></i></div><h2>Aire Comprimido</h2><p>Diámetros de redes neumáticas.</p></a>
+            <a href="calculadora-ventilacion.html" class="card"><div class="card-icon" style="background: #ecfeff; color: #06b6d4;"><i class="fas fa-fan"></i></div><h2>Renovaciones Aire</h2><p>Caudal de ventilación según normativa.</p></a>
             <a href="calculadora-psicrometria.html" class="card"><div class="card-icon" style="background: #fff7ed; color: #ea580c;"><i class="fas fa-droplet"></i></div><h2>Punto de Rocío</h2><p>Temperatura de condensación en procesos.</p></a>
-            <a href="calculadora-acero.html" class="card"><div class="card-icon" style="background: #f1f5f9; color: #475569;"><i class="fas fa-cubes"></i></div><h2>Estructuras de Acero</h2><p>Cálculo de peso para perfiles IPE y HEB.</p></a>
+            <a href="calculadora-acero.html" class="card"><div class="card-icon" style="background: #f1f5f9; color: #475569;"><i class="fas fa-cubes"></i></div><h2>Estructuras Acero</h2><p>Cálculo de peso para perfiles IPE y HEB.</p></a>
+            <a href="calculadora-hormigon.html" class="card"><div class="card-icon" style="background: #f4f4f5; color: #52525b;"><i class="fas fa-hard-hat"></i></div><h2>Volumen Hormigón</h2><p>Cubicaje de losas y zapatas (m³).</p></a>
             <a href="calculadora-climatizacion.html" class="card"><div class="card-icon" style="background: #e0f2fe; color: #0284c7;"><i class="fas fa-snowflake"></i></div><h2>Carga Térmica HVAC</h2><p>Estimación de frigorías y potencia de equipos.</p></a>
-            <a href="calculadora-dilatacion.html" class="card"><div class="card-icon" style="background: #fee2e2; color: #dc2626;"><i class="fas fa-arrows-left-right"></i></div><h2>Dilatación de Tuberías</h2><p>Expansión térmica en acero, cobre y PVC.</p></a>
-            <a href="calculadora-depositos.html" class="card"><div class="card-icon" style="background: #e0e7ff; color: #4f46e5;"><i class="fas fa-database"></i></div><h2>Volumen de Depósitos</h2><p>Capacidad y cubicaje de silos cilíndricos.</p></a>
-            <a href="calculadora-acustica.html" class="card"><div class="card-icon" style="background: #f3e8ff; color: #9333ea;"><i class="fas fa-volume-high"></i></div><h2>Atenuación Acústica</h2><p>Propagación de ruido en campo libre.</p></a>
-            <a href="calculadora-cintas.html" class="card"><div class="card-icon" style="background: #d1fae5; color: #059669;"><i class="fas fa-boxes"></i></div><h2>Cintas Transportadoras</h2><p>Producción másica para graneles y minería.</p></a>
-        </div>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 IndustrialCalc Pro - Herramientas Técnicas Gratuitas</p>
-        <a href="legales.html">Aviso Legal y Privacidad</a>
-    </footer>
-
-    <script>
-        function filtrarTarjetas() {
-            const input = document.getElementById('buscadorHome').value.toLowerCase();
-            const tarjetas = document.querySelectorAll('#gridHerramientas .card');
-            
-            tarjetas.forEach(tarjeta => {
-                // Busca tanto en el título como en la descripción de la tarjeta
-                const textoTarjeta = tarjeta.innerText.toLowerCase();
-                if (textoTarjeta.includes(input)) {
-                    tarjeta.style.display = 'flex'; // La muestra
-                } else {
-                    tarjeta.style.display = 'none'; // La oculta
-                }
-            });
-        }
-    </script>
-</body>
-</html>
+            <a href="calculadora-dilatacion.html"
