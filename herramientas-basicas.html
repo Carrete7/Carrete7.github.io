@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IndustrialCalc Pro | Herramientas y Finanzas</title>
+    <style>
+        /* Paleta de Colores y Variables */
+        :root {
+            --bg-body: #f1f5f9; --bg-card: #ffffff; --text-main: #1e293b;
+            --text-muted: #64748b; --primary: #2563eb; --primary-hover: #1d4ed8;
+            --border: #e2e8f0; --success-bg: #d1fae5; --success-text: #047857;
+            --header-bg: #0f172a; --ad-bg: #e2e8f0; --excel-bg: #10b981;
+        }
+
+        [data-theme="dark"] {
+            --bg-body: #0f172a; --bg-card: #1e293b; --text-main: #f8fafc;
+            --text-muted: #94a3b8; --primary: #3b82f6; --primary-hover: #60a5fa;
+            --border: #334155; --success-bg: #064e3b; --success-text: #34d399;
+            --header-bg: #020617; --ad-bg: #334155; --excel-bg: #059669;
+        }
+
+        body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg-body); color: var(--text-main); margin: 0; transition: 0.3s; }
+        
+        header { background: var(--header-bg); color: white; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 800; } .logo span { color: #3b82f6; }
+        .theme-toggle { background: transparent; border: 1px solid #475569; color: white; padding: 8px 12px; border-radius: 6px; cursor: pointer; }
+        
+        /* Navegación fluida */
+        .nav-tabs { background: var(--bg-card); padding: 0 5%; border-bottom: 1px solid var(--border); display: flex; gap: 10px; overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
+        .nav-tabs::-webkit-scrollbar { display: none; }
+        .nav-tabs button { background: none; border: none; padding: 15px 10px; color: var(--text-muted); font-weight: 600; cursor: pointer; border-bottom: 3px solid transparent; font-size: 0.95rem;}
+        .nav-tabs button:hover { color: var(--primary); }
+        .nav-tabs button.active { color: var(--primary); border-bottom-color: var(--primary); }
+
+        .layout { max-width: 1200px; margin: 30px auto; padding: 0 5%; display: grid; grid-template-columns: 1fr 300px; gap: 30px; }
+        .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 30px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        
+        .calc-section { display: none; animation: fadeIn 0.3s ease; }
+        .calc-section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        h2 { margin-top: 0; font-size: 1.5rem; margin-bottom: 5px; }
+        .subtitle { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 25px; display: block; }
+
+        /* Formularios y Agrupaciones de Unidades */
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .full-width { grid-column: 1 / -1; }
+        label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 8px; text-transform: uppercase; }
+        
+        .input-group { display: flex; gap: 5px; }
+        .input-group input { flex: 2; border-radius: 8px 0 0 8px; }
+        .input-group select { flex: 1; border-radius: 0 8px 8px 0; background: var(--border); border-left: none; font-weight: bold;}
+
+        input, select { width: 100%; padding: 12px; background: var(--bg-body); border: 1px solid var(--border); color: var(--text-main); border-radius: 8px; box-sizing: border-box; }
+        input:focus, select:focus { outline: none; border-color: var(--primary); }
+
+        .btn-primary { width: 100%; background: var(--primary); color: white; border: none; padding: 14px; font-size: 1.1rem; font-weight: 600; border-radius: 8px; margin-top: 25px; cursor: pointer; }
+        .btn-primary:hover { background: var(--primary-hover); }
+
+        /* Caja de Resultados */
+        .result-container { margin-top: 30px; background: var(--success-bg); border: 1px solid var(--border); padding: 25px; border-radius: 8px; text-align: center; display: none; }
+        .result-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 10px; }
+        .result-value { font-size: 2.5rem; font-weight: 800; color: var(--success-text); }
+        
+        .result-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 15px; }
+        .btn-sec { background: transparent; border: 2px solid var(--success-text); color: var(--success-text); padding: 8px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; flex: 1; min-width: 120px;}
+        .btn-excel { border-color: var(--excel-bg); color: var(--excel-bg); }
+        .btn-excel:hover { background: var(--excel-bg); color: white; }
+        .btn-sec:hover { background: var(--success-text); color: white; }
+
+        .sidebar { display: flex; flex-direction: column; gap: 20px; }
+        .ad-box { background: var(--ad-bg); border: 1px dashed var(--text-muted); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); text-align: center; }
+        .ad-square { height: 250px; } .ad-tall { height: 600px; }
+        
+        footer { text-align: center; padding: 40px 5%; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 40px; }
+        
+        @media print { body { background: white; color: black; } header, .nav-tabs, .sidebar, .btn-primary, .result-actions, footer { display: none !important; } .layout { display: block; } .card { border: none; box-shadow: none; padding: 0; } .result-container { border: 2px solid black; background: white; color: black; } .result-value { color: black; } input, select { border: 1px solid #000; color: #000; } }
+        @media (max-width: 850px) { .layout { grid-template-columns: 1fr; } .ad-tall { display: none; } }
+        @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } .input-group { flex-direction: column; } .input-group input, .input-group select { border-radius: 8px; border: 1px solid var(--border); } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Industrial<span>Calc</span> Pro</div>
+        <button class="theme-toggle" onclick="toggleTheme()">🌓 Tema</button>
+    </header>
+
+    <div class="nav-tabs">
+        <button class="active" onclick="switchTab('electrotecnia', this)">⚡ Cables</button>
+        <button onclick="switchTab('finanzas', this)">💰 Préstamos/Hipoteca</button>
+        <button onclick="switchTab('termodinamica', this)">🔥 Térmica (Unidades)</button>
+        <button onclick="switchTab('fluidos', this)">💧 Bombas</button>
+        <button onclick="switchTab('geometria', this)">🛢️ Depósitos</button>
+        <button onclick="switchTab('energia', this)">💶 ROI</button>
+    </div>
+
+    <div class="layout">
+        <main class="card">
+            
+            <div id="electrotecnia" class="calc-section active">
+                <h2>Sección de Conductor</h2>
+                <span class="subtitle">Justificación REBT por caída de tensión.</span>
+                <div class="form-grid">
+                    <div><label>Sistema</label><select id="el-sis"><option value="2">Monofásico (230V)</option><option value="1.732">Trifásico (400V)</option></select></div>
+                    <div><label>Material</label><select id="el-mat"><option value="56">Cobre</option><option value="35">Aluminio</option></select></div>
+                    <div><label>Longitud</label>
+                        <div class="input-group">
+                            <input type="number" id="el-long" placeholder="Ej: 85">
+                            <select id="el-uni-l"><option value="1">m</option><option value="1000">km</option></select>
+                        </div>
+                    </div>
+                    <div><label>Intensidad (A)</label><input type="number" id="el-int" placeholder="Ej: 25"></div>
+                    <div class="full-width"><label>Caída Tensión Admisible (V)</label><input type="number" id="el-volt" placeholder="Ej: 5.75"></div>
+                </div>
+                <button class="btn-primary" onclick="calcularE()">Calcular Sección</button>
+                <div class="result-container" id="res-e-box">
+                    <div class="result-title">Sección Mínima Teórica</div>
+                    <div><span class="result-value" id="res-e-val">0</span> <span style="font-weight:bold;">mm²</span></div>
+                    <div class="result-actions">
+                        <button class="btn-sec btn-excel" onclick="exportarExcel('Seccion_Cable', ['Sistema', 'Material', 'Longitud (m)', 'Intensidad (A)', 'Caída (V)', 'Sección (mm2)'], [document.getElementById('el-sis').options[document.getElementById('el-sis').selectedIndex].text, document.getElementById('el-mat').options[document.getElementById('el-mat').selectedIndex].text, document.getElementById('el-long').value * document.getElementById('el-uni-l').value, document.getElementById('el-int').value, document.getElementById('el-volt').value, document.getElementById('res-e-val').innerText])">📊 Guardar en Excel</button>
+                        <button class="btn-sec" onclick="window.print()">🖨️ PDF</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="finanzas" class="calc-section">
+                <h2>Simulador de Préstamos e Hipotecas</h2>
+                <span class="subtitle">Calcula la cuota mensual y el cuadro de amortización base.</span>
+                <div class="form-grid">
+                    <div><label>Capital Solicitado</label>
+                        <div class="input-group">
+                            <input type="number" id="fin-cap" placeholder="Ej: 150000">
+                            <select id="fin-moneda"><option value="€">€</option><option value="$">$</option></select>
+                        </div>
+                    </div>
+                    <div><label>Tasa de Interés Anual (TIN)</label>
+                        <div class="input-group">
+                            <input type="number" id="fin-int" placeholder="Ej: 3.5" step="0.1">
+                            <select disabled><option>%</option></select>
+                        </div>
+                    </div>
+                    <div><label>Plazo de Devolución</label>
+                        <div class="input-group">
+                            <input type="number" id="fin-plazo" placeholder="Ej: 25">
+                            <select id="fin-tipo-plazo"><option value="12">Años</option><option value="1">Meses</option></select>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-primary" onclick="calcularHipoteca()">Calcular Cuota Mensual</button>
+                <div class="result-container" id="res-fin-box" style="background: #eff6ff; border-color: #bfdbfe;">
+                    <div class="result-title" style="color: #1e3a8a;">Cuota Mensual a Pagar</div>
+                    <div><span class="result-value" id="res-fin-val" style="color: #2563eb;">0</span> <span style="font-weight:bold; color: #1e3a8a;" id="lbl-moneda">€</span></div>
+                    <div style="margin-top:10px; font-size: 0.9rem; color: #475569;">Total Intereses a pagar: <strong id="res-fin-int">0</strong></div>
+                    <div class="result-actions">
+                        <button class="btn-sec btn-excel" onclick="exportarExcel('Simulacion_Prestamo', ['Capital', 'Interes (%)', 'Meses Totales', 'Cuota Mensual', 'Total Intereses'], [document.getElementById('fin-cap').value, document.getElementById('fin-int').value, document.getElementById('fin-plazo').value * document.getElementById('fin-tipo-plazo').value, document.getElementById('res-fin-val').innerText, document.getElementById('res-fin-int').innerText])">📊 Guardar Estudio en Excel</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="termodinamica" class="calc-section">
+                <h2>Potencia Térmica Avanzada</h2>
+                <span class="subtitle">Con selector de escalas de temperatura (Celsius / Fahrenheit).</span>
+                <div class="form-grid">
+                    <div><label>Volumen (Litros)</label><input type="number" id="ter-v" placeholder="Ej: 1000"></div>
+                    <div><label>Tiempo de calentamiento (Horas)</label><input type="number" id="ter-t" placeholder="Ej: 2"></div>
+                    <div class="full-width"><label>Salto Térmico (ΔT)</label>
+                        <div class="input-group">
+                            <input type="number" id="ter-dt" placeholder="Ej: 40">
+                            <select id="ter-escala">
+                                <option value="C">Grados Celsius (°C) / Kelvin</option>
+                                <option value="F">Grados Fahrenheit (°F)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-primary" onclick="calcularTer()">Calcular Potencia Térmica</button>
+                <div class="result-container" id="res-ter-box">
+                    <div class="result-title">Potencia Útil Necesaria</div>
+                    <div><span class="result-value" id="res-ter-val">0</span> <span style="font-weight:bold;">kW</span></div>
+                    <div class="result-actions">
+                        <button class="btn-sec btn-excel" onclick="exportarExcel('Termodinamica', ['Volumen (L)', 'Horas', 'Salto Termico', 'Escala', 'Potencia (kW)'], [document.getElementById('ter-v').value, document.getElementById('ter-t').value, document.getElementById('ter-dt').value, document.getElementById('ter-escala').value, document.getElementById('res-ter-val').innerText])">📊 Exportar a Excel</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="fluidos" class="calc-section">
+                <h2>Potencia de Bombeo</h2>
+                <div class="form-grid">
+                    <div><label>Densidad (kg/m³)</label><input type="number" id="fl-den" value="1000"></div>
+                    <div><label>Caudal (m³/s)</label><input type="number" id="fl-cau" placeholder="Ej: 0.15"></div>
+                    <div><label>Altura (m)</label><input type="number" id="fl-alt" placeholder="Ej: 45"></div>
+                    <div><label>Rendimiento (0 a 1)</label><input type="number" id="fl-ren" placeholder="Ej: 0.82"></div>
+                </div>
+                <button class="btn-primary" onclick="calcularF()">Calcular Potencia</button>
+                <div class="result-container" id="res-f-box">
+                    <div class="result-title">Potencia Absorbida</div>
+                    <div><span class="result-value" id="res-f-val">0</span> 
+                        <select id="fl-out-unit" onchange="convertirPotencia()" style="width: auto; display: inline-block; padding: 5px; font-size: 1.2rem; background: transparent; border: 1px solid var(--success-text); color: var(--success-text); font-weight: bold; margin-left: 10px;">
+                            <option value="kW">kW</option>
+                            <option value="CV">CV (Caballos Vapor)</option>
+                            <option value="HP">HP</option>
+                        </select>
+                    </div>
+                    <div class="result-actions">
+                        <button class="btn-sec btn-excel" onclick="exportarExcel('Bomba_Hidraulica', ['Densidad', 'Caudal', 'Altura', 'Rendimiento', 'Potencia Final'], [document.getElementById('fl-den').value, document.getElementById('fl-cau').value, document.getElementById('fl-alt').value, document.getElementById('fl-ren').value, document.getElementById('res-f-val').innerText + ' ' + document.getElementById('fl-out-unit').value])">📊 Exportar a Excel</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="geometria" class="calc-section">
+                <h2>Volumen de Depósitos (Cilíndricos)</h2>
+                <span class="subtitle">Calcula la capacidad en litros y metros cúbicos.</span>
+                <div class="form-grid">
+                    <div><label>Diámetro Base</label>
+                        <div class="input-group">
+                            <input type="number" id="geo-d" placeholder="Ej: 2.5">
+                            <select id="geo-ud"><option value="1">Metros</option><option value="0.01">Centímetros</option><option value="0.0254">Pulgadas</option></select>
+                        </div>
+                    </div>
+                    <div><label>Altura / Longitud</label>
+                        <div class="input-group">
+                            <input type="number" id="geo-h" placeholder="Ej: 5">
+                            <select id="geo-uh"><option value="1">Metros</option><option value="0.01">Centímetros</option></select>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-primary" onclick="calcularGeo()">Calcular Capacidad</button>
+                <div class="result-container" id="res-geo-box">
+                    <div class="result-title">Capacidad Total</div>
+                    <div><span class="result-value" id="res-geo-l">0</span> <span style="font-weight:bold;">Litros</span></div>
+                    <div style="margin-top:10px; color: var(--success-text);">Volumen: <strong id="res-geo-m3">0</strong> m³</div>
+                    <div class="result-actions">
+                        <button class="btn-sec btn-excel" onclick="exportarExcel('Volumen_Deposito', ['Diametro', 'Altura', 'Volumen (m3)', 'Litros Totales'], [document.getElementById('geo-d').value, document.getElementById('geo-h').value, document.getElementById('res-geo-m3').innerText, document.getElementById('res-geo-l').innerText])">📊 Guardar Datos</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="energia" class="calc-section">
+                <h2>Estudio de Amortización (ROI)</h2>
+                <div class="form-grid">
+                    <div><label>Inversión Nuevo Equipo (€)</label><input type="number" id="en-inv" placeholder="Ej: 4500"></div>
+                    <div><label>Precio Energía (€/kWh)</label><input type="number" id="en-precio" value="0.15"></div>
+                    <div><label>Consumo Actual (kWh)</label><input type="number" id="en-c1" placeholder="Ej: 12000"></div>
+                    <div><label>Consumo Nuevo (kWh)</label><input type="number" id="en-c2" placeholder="Ej: 4000"></div>
+                </div>
+                <button class="btn-primary" style="background:#047857;" onclick="calcularEn()">Calcular Ahorro y ROI</button>
+                <div class="result-container" id="res-en-box" style="background:#f0fdf4;">
+                    <div class="result-title">Período de Retorno (Payback)</div>
+                    <div><span class="result-value" id="res-en-val">0</span> <span style="font-weight:bold;">Años</span></div>
+                    <div class="result-actions">
+                        <button class="btn-sec btn-excel" onclick="exportarExcel('Estudio_Ahorro', ['Inversion', 'Precio Energia', 'Consumo Antiguo', 'Consumo Nuevo', 'Retorno (Años)'], [document.getElementById('en-inv').value, document.getElementById('en-precio').value, document.getElementById('en-c1').value, document.getElementById('en-c2').value, document.getElementById('res-en-val').innerText])">📊 Generar Excel ROI</button>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <aside class="sidebar">
+            <div class="ad-box ad-square">AdSense<br>Cuadrado Alto CPC<br>(Ideal Bancos/Seguros)</div>
+            <div class="ad-box ad-tall">AdSense<br>Skyscraper Vertical</div>
+        </aside>
+    </div>
+
+    <script>
+        // Navegación y Tema
+        function switchTab(tabId, btn) {
+            document.querySelectorAll('.calc-section').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.nav-tabs button').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            btn.classList.add('active');
+            document.querySelectorAll('.result-container').forEach(el => el.style.display = 'none');
+        }
+
+        function toggleTheme() {
+            const body = document.documentElement;
+            body.setAttribute('data-theme', body.getAttribute('data-theme') === 'dark' ? '' : 'dark');
+        }
+
+        // --- MOTOR DE EXPORTACIÓN A EXCEL (CSV) ---
+        function exportarExcel(nombreArchivo, cabeceras, datos) {
+            // Se utiliza punto y coma para que el Excel europeo separe las columnas correctamente
+            let contenidoCSV = "\uFEFF"; // BOM para asegurar codificación UTF-8 en Excel
+            contenidoCSV += cabeceras.join(";") + "\n";
+            
+            // Limpiar datos (cambiar puntos por comas si es necesario, o mantener estándar)
+            let datosLimpios = datos.map(dato => String(dato).replace('.', ','));
+            contenidoCSV += datosLimpios.join(";") + "\n";
+
+            let blob = new Blob([contenidoCSV], { type: 'text/csv;charset=utf-8;' });
+            let url = URL.createObjectURL(blob);
+            let link = document.createElement("a");
+            link.setAttribute("href", url);
+            link.setAttribute("download", nombreArchivo + "_" + new Date().getTime() + ".csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // --- LÓGICA DE LAS CALCULADORAS ---
+
+        function calcularE() {
+            let s = parseFloat(document.getElementById('el-sis').value); 
+            let m = parseFloat(document.getElementById('el-mat').value);
+            let factorLongitud = parseFloat(document.getElementById('el-uni-l').value); // Selector de medidas
+            let l = parseFloat(document.getElementById('el-long').value) * factorLongitud; 
+            let i = parseFloat(document.getElementById('el-int').value);
+            let v = parseFloat(document.getElementById('el-volt').value);
+            if(isNaN(l) || isNaN(i) || isNaN(v)) return alert("Revisa los datos");
+            document.getElementById('res-e-val').innerText = ((s * l * i) / (m * v)).toFixed(2);
+            document.getElementById('res-e-box').style.display = 'block';
+        }
+
+        // Nueva: Hipotecas y Préstamos
+        function calcularHipoteca() {
+            let cap = parseFloat(document.getElementById('fin-cap').value);
+            let interesAnual = parseFloat(document.getElementById('fin-int').value);
+            let multiplicadorMeses = parseFloat(document.getElementById('fin-tipo-plazo').value);
+            let totalMeses = parseFloat(document.getElementById('fin-plazo').value) * multiplicadorMeses;
+            
+            if(isNaN(cap) || isNaN(interesAnual) || isNaN(totalMeses)) return alert("Revisa los datos del préstamo.");
+
+            document.getElementById('lbl-moneda').innerText = document.getElementById('fin-moneda').value;
+
+            // Fórmula de cuota constante (Sistema Francés)
+            let interesMensual = (interesAnual / 100) / 12;
+            let cuota = cap * (interesMensual * Math.pow(1 + interesMensual, totalMeses)) / (Math.pow(1 + interesMensual, totalMeses) - 1);
+            
+            if(interesAnual === 0) cuota = cap / totalMeses;
+
+            let totalPagar = cuota * totalMeses;
+            let soloIntereses = totalPagar - cap;
+
+            document.getElementById('res-fin-val').innerText = cuota.toFixed(2);
+            document.getElementById('res-fin-int').innerText = soloIntereses.toFixed(2) + " " + document.getElementById('fin-moneda').value;
+            document.getElementById('res-fin-box').style.display = 'block';
+        }
+
+        // Termodinámica con cambio de unidades
+        function calcularTer() {
+            let v = parseFloat(document.getElementById('ter-v').value);
+            let t_horas = parseFloat(document.getElementById('ter-t').value);
+            let dt = parseFloat(document.getElementById('ter-dt').value);
+            let escala = document.getElementById('ter-escala').value;
+            
+            if(isNaN(v) || isNaN(t_horas) || isNaN(dt)) return alert("Revisa los datos.");
+            
+            // Si insertan el salto en Fahrenheit, convertir el salto a Celsius/Kelvin. 
+            // Salto de 1°F equivale a un salto de 5/9 °C.
+            if(escala === 'F') dt = dt * (5/9);
+            
+            let t_segundos = t_horas * 3600;
+            let q_kj = v * 4.18 * dt; // Asumiendo agua
+            let p_kw = q_kj / t_segundos;
+            
+            document.getElementById('res-ter-val').innerText = p_kw.toFixed(2);
+            document.getElementById('res-ter-box').style.display = 'block';
+        }
+
+        // Fluidos con selector de salida en vivo
+        let potenciaKwBase = 0; // Guardamos el valor en kW para convertirlo en vivo
+        function calcularF() {
+            let d = parseFloat(document.getElementById('fl-den').value); let c = parseFloat(document.getElementById('fl-cau').value);
+            let a = parseFloat(document.getElementById('fl-alt').value); let r = parseFloat(document.getElementById('fl-ren').value);
+            if(isNaN(d) || isNaN(c) || isNaN(a) || isNaN(r)) return;
+            
+            potenciaKwBase = (((d * 9.81 * c * a) / r) / 1000);
+            convertirPotencia(); // Aplica la unidad seleccionada
+            document.getElementById('res-f-box').style.display = 'block';
+        }
+
+        function convertirPotencia() {
+            if(potenciaKwBase === 0) return;
+            let unidad = document.getElementById('fl-out-unit').value;
+            let final = potenciaKwBase;
+            if(unidad === 'CV') final = potenciaKwBase * 1.35962;
+            if(unidad === 'HP') final = potenciaKwBase * 1.34102;
+            document.getElementById('res-f-val').innerText = final.toFixed(2);
+        }
+
+        // Nueva: Geometría de depósitos
+        function calcularGeo() {
+            let factorD = parseFloat(document.getElementById('geo-ud').value);
+            let factorH = parseFloat(document.getElementById('geo-uh').value);
+            let dMetros = parseFloat(document.getElementById('geo-d').value) * factorD;
+            let hMetros = parseFloat(document.getElementById('geo-h').value) * factorH;
+            
+            if(isNaN(dMetros) || isNaN(hMetros)) return alert("Faltan medidas");
+
+            let radio = dMetros / 2;
+            let volumenM3 = Math.PI * Math.pow(radio, 2) * hMetros;
+            let litros = volumenM3 * 1000;
+
+            document.getElementById('res-geo-m3').innerText = volumenM3.toFixed(3);
+            document.getElementById('res-geo-l').innerText = litros.toFixed(1);
+            document.getElementById('res-geo-box').style.display = 'block';
+        }
+
+        function calcularEn() {
+            let inv = parseFloat(document.getElementById('en-inv').value); let precio = parseFloat(document.getElementById('en-precio').value);
+            let c1 = parseFloat(document.getElementById('en-c1').value); let c2 = parseFloat(document.getElementById('en-c2').value);
+            if(isNaN(inv) || isNaN(precio) || isNaN(c1) || isNaN(c2)) return;
+            let ahorro = (c1 - c2) * precio;
+            if (ahorro <= 0) return alert("El nuevo equipo debe consumir menos.");
+            document.getElementById('res-en-val').innerText = (inv / ahorro).toFixed(1);
+            document.getElementById('res-en-box').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
