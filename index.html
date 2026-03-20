@@ -6,45 +6,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IndustrialCalc Pro | Portal de Herramientas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --bg: #f8fafc; 
+            --bg-body: #f1f5f9; 
             --surface: #ffffff; 
-            --text: #1e293b;
-            --primary: #2563eb; 
-            --border: #e2e8f0; 
-            --hover: #eff6ff;
+            --text-main: #0f172a;
             --text-muted: #64748b;
+            --primary: #2563eb; 
+            --primary-hover: #1d4ed8;
+            --header-bg: #0f172a; /* El azul oscuro profesional de tu otra página */
+            --border: #e2e8f0; 
         }
 
         body {
-            font-family: 'Inter', system-ui, sans-serif;
-            background: var(--bg);
-            color: var(--text);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
             margin: 0;
             display: flex;
             flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- CABECERA OSCURA PROFESIONAL --- */
+        header {
+            background-color: var(--header-bg);
+            padding: 1rem 2rem;
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
             align-items: center;
-            padding: 2rem;
+            justify-content: space-between;
         }
 
-        .container {
-            max-width: 800px;
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: #3b82f6; /* Toque azul claro en el texto "Calc" */
+        }
+
+        /* --- CONTENIDO PRINCIPAL --- */
+        main {
+            flex: 1;
+            padding: 3rem 1rem;
+            max-width: 1000px;
+            margin: 0 auto;
             width: 100%;
+            box-sizing: border-box;
         }
 
-        h1 {
-            color: var(--primary);
+        .hero-text {
             text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero-text h1 {
+            font-size: 2.2rem;
+            color: var(--text-main);
             margin-bottom: 0.5rem;
+            margin-top: 0;
         }
 
-        .subtitle {
-            text-align: center;
+        .hero-text p {
             color: var(--text-muted);
-            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
+        /* --- GRID DE HERRAMIENTAS --- */
         .card-grid {
             display: grid;
             gap: 1.5rem;
@@ -54,52 +98,106 @@
         .card {
             background: var(--surface);
             border: 1px solid var(--border);
-            padding: 1.5rem;
-            border-radius: 8px;
+            padding: 2rem;
+            border-radius: 12px;
             text-decoration: none;
             color: inherit;
-            transition: background 0.2s, transform 0.2s;
-            display: block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
         .card:hover {
-            background: var(--hover);
-            transform: translateY(-2px);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            border-color: #bfdbfe;
+        }
+
+        .card-icon {
+            background: #eff6ff;
+            color: var(--primary);
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.25rem;
         }
 
         .card h2 {
-            color: var(--primary);
-            margin-top: 0;
+            margin: 0 0 0.75rem 0;
             font-size: 1.25rem;
+            color: var(--text-main);
         }
 
         .card p {
+            margin: 0;
             color: var(--text-muted);
-            margin-bottom: 0;
             line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        /* --- PIE DE PÁGINA (LEGAL) --- */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--surface);
+            border-top: 1px solid var(--border);
+            margin-top: auto;
+        }
+
+        footer a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+
+        footer a:hover {
+            color: var(--primary);
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>IndustrialCalc Pro</h1>
-        <p class="subtitle">Herramientas profesionales para optimizar tus cálculos</p>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <i class="fas fa-industry"></i> Industrial<span>Calc</span> Pro
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <div class="hero-text">
+            <h1>Selecciona una herramienta</h1>
+            <p>Utilidades profesionales diseñadas para optimizar cálculos técnicos y financieros.</p>
+        </div>
 
         <div class="card-grid">
             
             <a href="herramientas-basicas.html" class="card">
+                <div class="card-icon"><i class="fas fa-calculator"></i></div>
                 <h2>Cálculos y Finanzas</h2>
-                <p>Accede a las herramientas básicas y financieras para la gestión del día a día.</p>
+                <p>Accede a herramientas eléctricas, térmicas y calculadoras de préstamos para la gestión diaria.</p>
             </a>
 
             <a href="calculadora-bombeo.html" class="card">
+                <div class="card-icon"><i class="fas fa-pump-soap"></i></div>
                 <h2>Potencia de Bombeo</h2>
-                <p>Calcula la potencia necesaria para una bomba hidráulica en función del caudal, la altura y el rendimiento.</p>
+                <p>Calcula la potencia necesaria para una bomba hidráulica según su caudal, altura y rendimiento.</p>
             </a>
 
         </div>
-    </div>
+    </main>
+
+    <footer>
+        <a href="legales.html">Aviso Legal, Privacidad y Política de Cookies</a>
+    </footer>
 
 </body>
 </html>
