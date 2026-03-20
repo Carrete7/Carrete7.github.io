@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculos Fotovoltaicos | IndustrialCalc Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #f8fafc; --surface: #ffffff; --text: #1e293b; 
+            --primary: #2563eb; --border: #e2e8f0; --text-muted: #64748b;
+            --header-bg: #0f172a; --solar-accent: #eab308;
+        }
+
+        body { 
+            font-family: 'Inter', system-ui, -apple-system, sans-serif; 
+            background: var(--bg); color: var(--text); margin: 0; padding: 0; 
+            line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh;
+            align-items: center; 
+        }
+
+        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); width: 100%; box-sizing: border-box; }
+        .header-content { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .logo span { color: #3b82f6; }
+
+        main { width: 100%; max-width: 800px; padding: 2rem 1rem; box-sizing: border-box; flex: 1; }
+        .back-link { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 1.5rem; color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; }
+        .back-link:hover { color: var(--primary); }
+
+        .card { 
+            background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); 
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); margin-bottom: 2rem; width: 100%; box-sizing: border-box; 
+        }
+        h1 { font-size: 1.5rem; margin-top: 0; margin-bottom: 1.5rem; color: var(--primary); text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        h1 i { color: var(--solar-accent); }
+        
+        .form-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+        
+        label { display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.95rem; color: var(--text); }
+        input, select { 
+            width: 100%; padding: 0.85rem; border: 2px solid var(--border); border-radius: 8px; 
+            box-sizing: border-box; font-size: 1rem; transition: border-color 0.2s; font-family: inherit;
+        }
+        input:focus, select:focus { outline: none; border-color: var(--primary); }
+
+        button { 
+            width: 100%; padding: 1rem; background: var(--primary); color: white; border: none; 
+            border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 1.1rem; transition: background 0.2s;
+        }
+        button:hover { background: #1d4ed8; }
+
+        .result { margin-top: 1.5rem; padding: 1.5rem; background: #eff6ff; border-radius: 8px; display: none; border: 2px solid #bfdbfe; text-align: center; }
+        .result-value { font-size: 2.2rem; font-weight: 800; color: var(--primary); margin: 0.5rem 0; }
+
+        .article-content { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); width: 100%; box-sizing: border-box; }
+        h2 { color: var(--primary); margin-top: 0; margin-bottom: 1rem; font-size: 1.4rem; }
+        h3 { margin-top: 1.5rem; font-size: 1.1rem; }
+        ul { padding-left: 1.5rem; color: var(--text-muted); }
+        li { margin-bottom: 0.75rem; }
+        p { color: var(--text-muted); }
+
+        footer { text-align: center; padding: 2rem; background-color: var(--surface); border-top: 1px solid var(--border); width: 100%; box-sizing: border-box; margin-top: auto; }
+        footer a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; }
+        footer a:hover { color: var(--primary); text-decoration: underline; }
+
+        @media (min-width: 600px) {
+            .form-grid { grid-template-columns: 1fr 1fr; }
+            .full-width { grid-column: 1 / -1; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <i class="fas fa-industry"></i> Industrial<span>Calc</span> Pro
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <a href="index.html" class="back-link">
+            <i class="fas fa-arrow-left"></i> Volver al inicio
+        </a>
+        
+        <div class="card">
+            <h1><i class="fas fa-solar-panel"></i> Estimador de Placas Solares</h1>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 1.5rem;">Calcula cuántos paneles necesitas para cubrir tu consumo eléctrico.</p>
+            
+            <div class="form-grid">
+                <div>
+                    <label>Consumo Mensual (kWh)</label>
+                    <input type="number" id="consumo" placeholder="Ej: 350">
+                </div>
+                <div>
+                    <label>Horas de Sol Pico al día (HSP)</label>
+                    <input type="number" id="hsp" placeholder="Ej: 4.5" step="0.1">
+                </div>
+                <div>
+                    <label>Potencia del Panel (W)</label>
+                    <input type="number" id="potencia_panel" value="450">
+                </div>
+                <div>
+                    <label>Rendimiento del Sistema (%)</label>
+                    <input type="number" id="rendimiento_solar" value="80">
+                </div>
+            </div>
+            
+            <button onclick="calcularPlacas()">Calcular Paneles Necesarios</button>
+            
+            <div id="res_placas" class="result"></div>
+        </div>
+
+        <div class="card">
+            <h1><i class="fas fa-bolt"></i> Sección de Cable Solar (Corriente Continua)</h1>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 1.5rem;">Dimensiona el cableado entre las placas y el inversor/regulador.</p>
+            
+            <div class="form-grid">
+                <div>
+                    <label>Intensidad Máxima (A)</label>
+                    <input type="number" id="intensidad_dc" placeholder="Ej: 15">
+                </div>
+                <div>
+                    <label>Longitud del cable (m)</label>
+                    <input type="number" id="longitud_dc" placeholder="Ej: 20">
+                </div>
+                <div>
+                    <label>Voltaje del Sistema (V)</label>
+                    <input type="number" id="voltaje_dc" placeholder="Ej: 48">
+                </div>
+                <div>
+                    <label>Caída de Tensión Admisible (%)</label>
+                    <input type="number" id="caida_dc" value="1.5" step="0.1">
+                </div>
+            </div>
+            
+            <button onclick="calcularCableDC()" style="background: #eab308; color: #1e293b;">Calcular Sección de Cable</button>
+            
+            <div id="res_cable" class="result"></div>
+        </div>
+
+        <div class="article-content">
+            <h2>Guía de Dimensionamiento Fotovoltaico</h2>
+            <p>El diseño de instalaciones de energía solar requiere precisión para garantizar la rentabilidad de la inversión y la seguridad del sistema eléctrico. Aquí desglosamos las fórmulas utilizadas en nuestras herramientas.</p>
+            
+            <h3>1. Cálculo del número de paneles solares</h3>
+            <p>Para determinar la cantidad de módulos fotovoltaicos, nos basamos en el consumo diario y la radiación solar disponible en la ubicación (Horas de Sol Pico).</p>
+            
+            <p style="font-size: 1.2rem; text-align: center; overflow-x: auto; padding: 10px 0; color: #1e293b;">
+                $$N = \frac{E_d}{HSP \cdot P_p \cdot \eta}$$
+            </p>
+
+            <ul>
+                <li><strong>\(N\):</strong> Número total de paneles solares.</li>
+                <li><strong>\(E_d\):</strong> Energía diaria requerida en Wh (Consumo mensual / 30 días).</li>
+                <li><strong>\(HSP\):</strong> Horas de Sol Pico. Es la energía solar equivalente a una irradiancia de 1000 W/m² recibida en un día.</li>
+                <li><strong>\(P_p\):</strong> Potencia pico del panel seleccionado (en W).</li>
+                <li><strong>\(\eta\):</strong> Rendimiento global (pérdidas por cableado, polvo, inversor, temperatura). Suele rondar el 75%-80%.</li>
+            </ul>
+
+            <h3>2. Cálculo de la sección de cable (Corriente Continua)</h3>
+            <p>El cableado solar (habitualmente de cobre estañado) une los paneles con el inversor. Trabaja en corriente continua (DC), por lo que la fórmula de caída de tensión varía ligeramente respecto a la alterna monofásica.</p>
+            
+            <p style="font-size: 1.2rem; text-align: center; overflow-x: auto; padding: 10px 0; color: #1e293b;">
+                $$S = \frac{2 \cdot L \cdot I}{c \cdot \Delta V}$$
+            </p>
+
+            <ul>
+                <li><strong>\(S\) (Sección):</strong> Área transversal del cable en \(\text{mm}^2\).</li>
+                <li><strong>\(L\) (Longitud):</strong> Distancia total del tramo en metros (\(\text{m}\)). Al ser corriente continua, el factor "2" ya cuenta el recorrido de ida (positivo) y vuelta (negativo).</li>
+                <li><strong>\(I\) (Intensidad):</strong> Corriente máxima que circulará por el string (\(\text{A}\)).</li>
+                <li><strong>\(c\) (Conductividad):</strong> Para el cobre se utiliza un valor de \(56 \text{ m/}(\Omega\cdot\text{mm}^2)\) (o 44 a temperatura máxima de trabajo).</li>
+                <li><strong>\(\Delta V\):</strong> Caída de tensión máxima permitida en voltios (suele fijarse legalmente en \(\le 1.5\%\) del voltaje total del sistema).</li>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <a href="legales.html">Aviso Legal, Privacidad y Política de Cookies</a>
+    </footer>
+
+    <script>
+        function calcularPlacas() {
+            const consumo_mensual = parseFloat(document.getElementById('consumo').value);
+            const hsp = parseFloat(document.getElementById('hsp').value);
+            const potencia = parseFloat(document.getElementById('potencia_panel').value);
+            const rendimiento = parseFloat(document.getElementById('rendimiento_solar').value) / 100;
+
+            if(!isNaN(consumo_mensual) && !isNaN(hsp) && !isNaN(potencia) && hsp > 0) {
+                const consumo_diario_wh = (consumo_mensual * 1000) / 30;
+                const energia_panel_dia = hsp * potencia * rendimiento;
+                const placas_exactas = consumo_diario_wh / energia_panel_dia;
+                const placas_redondeadas = Math.ceil(placas_exactas);
+
+                const resDiv = document.getElementById('res_placas');
+                resDiv.style.display = 'block';
+                resDiv.innerHTML = `
+                    <div style="font-size: 0.9rem; color: #64748b;">Paneles Mínimos Recomendados</div>
+                    <div class="result-value">${placas_redondeadas} Placas</div>
+                    <div style="font-size: 0.95rem; color: #64748b;">Producción estimada: ${((placas_redondeadas * energia_panel_dia)/1000 * 30).toFixed(0)} kWh/mes</div>
+                `;
+            } else {
+                alert("Por favor, introduce valores numéricos válidos en el Estimador Solar.");
+            }
+        }
+
+        function calcularCableDC() {
+            const I = parseFloat(document.getElementById('intensidad_dc').value);
+            const L = parseFloat(document.getElementById('longitud_dc').value);
+            const V = parseFloat(document.getElementById('voltaje_dc').value);
+            const porcentaje_caida = parseFloat(document.getElementById('caida_dc').value);
+            const c_cobre = 56; // Conductividad del cobre
+
+            if(!isNaN(I) && !isNaN(L) && !isNaN(V) && !isNaN(porcentaje_caida) && porcentaje_caida > 0) {
+                const caida_voltios = (porcentaje_caida / 100) * V;
+                const seccion = (2 * L * I) / (c_cobre * caida_voltios);
+
+                const resDiv = document.getElementById('res_cable');
+                resDiv.style.display = 'block';
+                resDiv.innerHTML = `
+                    <div style="font-size: 0.9rem; color: #64748b;">Sección Teórica Mínima (Cobre)</div>
+                    <div class="result-value" style="color: #eab308;">${seccion.toFixed(2)} mm²</div>
+                    <div style="font-size: 0.95rem; color: #64748b;">Caída permitida: ${caida_voltios.toFixed(2)} V</div>
+                `;
+            } else {
+                alert("Por favor, introduce valores numéricos válidos en el Cálculo de Cableado.");
+            }
+        }
+    </script>
+</body>
+</html>
