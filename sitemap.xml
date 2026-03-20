@@ -30,6 +30,9 @@
     <loc>https://industrialcalc.es/calculadora-instalaciones.html</loc>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://industrialcalc.es/calculadora-termica.html</loc> <priority>0.8</priority>
+  </url>
   
   <url>
     <loc>https://industrialcalc.es/legales.html</loc>
