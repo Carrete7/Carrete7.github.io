@@ -12,73 +12,74 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --bg: #f1f5f9; /* fondo un poco más oscuro */
+            --bg: #f8fafc; 
             --surface: #ffffff; 
-            --text: #0f172a; /* texto principal más oscuro */
-            --primary: #1e40af; /* azul un poco más oscuro, más profesional */
+            --text: #1e293b; 
+            --primary: #2563eb; 
             --border: #e2e8f0; 
             --text-muted: #64748b;
         }
 
+        /* --- CONTENEDOR FLUIDO (Universal) --- */
         body { 
             font-family: 'Inter', system-ui, -apple-system, sans-serif; 
             background: var(--bg); 
             color: var(--text); 
             margin: 0; 
-            padding: 10px; /* Reducido para móvil */
+            padding: 1rem; /* Padding base para móviles */
             line-height: 1.6; 
+            display: flex;
+            justify-content: center; /* Centra el bloque maestro en la pantalla */
         }
 
-        .container { 
-            max-width: 800px; 
-            margin: auto; 
+        .wrapper {
             width: 100%;
+            max-width: 800px; /* Ancho máximo para monitores grandes */
         }
 
-        /* --- Estilo de Tarjeta Simétrico (SIFN Fix) --- */
+        .back-link { 
+            display: inline-flex; align-items: center; gap: 5px; margin-bottom: 1.5rem; 
+            color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; 
+        }
+        .back-link:hover { color: var(--primary); }
+
+        /* --- CALCULADORA (Compacta y centrada) --- */
         .card { 
             background: var(--surface); 
-            padding: 1.5rem; /* Ajuste para simetría en móvil */
-            border-radius: 16px; /* Más moderno y suave */
+            padding: 1.5rem; 
+            border-radius: 12px; 
             border: 1px solid var(--border); 
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); /* Sombra profesional */
-            margin-bottom: 2rem; 
-            display: flex; /* Flexbox para centrado */
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); 
+            margin: 0 auto 2rem auto; 
+            width: 100%; 
+            max-width: 450px; /* Bloquea el ancho en PC para que no parezca deforme */
+            box-sizing: border-box;
+            display: flex; 
             flex-direction: column;
-            align-items: center; /* Centrado horizontal de hijos */
-            text-align: center; /* Centrado de textos */
+            align-items: center; 
         }
 
-        /* Títulos centrados automáticamente */
-        h1 { font-size: 1.6rem; margin-top: 0; margin-bottom: 1.5rem; color: var(--primary); display: flex; align-items: center; gap: 10px; justify-content: center; }
-        h2 { color: var(--primary); margin-top: 0; margin-bottom: 1rem; font-size: 1.4rem; }
-        h3 { color: var(--text); margin-top: 1.5rem; font-size: 1.1rem; }
-
-        /* --- Inputs Simétricos (SIFN Fix) --- */
-        .input-group { margin-bottom: 1.25rem; width: 100%; max-width: 400px; /* Limite en desktop */ }
+        h1 { font-size: 1.5rem; margin-top: 0; margin-bottom: 1.5rem; color: var(--primary); text-align: center; }
         
-        /* Labels centradas */
-        label { display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.95rem; color: var(--text); }
+        .input-group { margin-bottom: 1.25rem; width: 100%; }
+        
+        label { display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.95rem; text-align: center; }
         
         input { 
             width: 100%; 
             padding: 0.85rem; 
-            border: 2px solid var(--border); /* Un poco más industrial */
+            border: 2px solid var(--border); 
             border-radius: 8px; 
             box-sizing: border-box; 
-            font-family: inherit; 
             font-size: 1rem;
-            text-align: center; /* TEXTO CENTRADO EN EL INPUT (Clave) */
+            text-align: center; 
             transition: border-color 0.2s;
         }
         
-        input::placeholder { text-align: center; color: #cbd5e1; } /* Placeholder simétrico */
         input:focus { outline: none; border-color: var(--primary); }
 
-        /* --- Botón Simétrico --- */
         button { 
             width: 100%; 
-            max-width: 400px;
             padding: 1rem; 
             background: var(--primary); 
             color: white; 
@@ -86,48 +87,50 @@
             border-radius: 8px; 
             font-weight: 700; 
             cursor: pointer; 
-            margin-top: 1rem; 
+            margin-top: 0.5rem; 
             font-size: 1.1rem; 
             transition: background 0.2s;
         }
         button:hover { background: #1d4ed8; }
 
-        /* --- Resultado Simétrico --- */
         .result { 
-            margin-top: 2rem; 
+            margin-top: 1.5rem; 
             padding: 1.5rem; 
             background: #eff6ff; 
             border-radius: 8px; 
             display: none; 
             border: 2px solid #bfdbfe; 
-            font-size: 1.1rem; 
             width: 100%;
-            max-width: 400px;
             box-sizing: border-box;
+            text-align: center;
         }
 
-        /* --- Contenido Simétrico de Artículo --- */
-        .article-content { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 2rem; }
-        ul { color: var(--text-muted); padding-left: 1.5rem; }
+        /* --- ARTÍCULO TÉCNICO (Ancho para lectura) --- */
+        .article-content { 
+            background: var(--surface); 
+            padding: 1.5rem; 
+            border-radius: 12px; 
+            border: 1px solid var(--border); 
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        h2 { color: var(--primary); margin-top: 0; margin-bottom: 1rem; font-size: 1.4rem; }
+        h3 { margin-top: 1.5rem; font-size: 1.1rem; }
+        ul { padding-left: 1.5rem; color: var(--text-muted); }
         li { margin-bottom: 0.75rem; }
+        p { color: var(--text-muted); }
 
-        .back-link { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 1rem; color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; }
-        .back-link:hover { color: var(--primary); }
-
-        /* --- Media Query para Desktop --- */
+        /* --- MEDIA QUERIES (Magia para PC y Tablet) --- */
         @media (min-width: 768px) {
-            body { padding: 40px; }
-            .card { padding: 2.5rem; align-items: normal; text-align: left; }
-            h1 { font-size: 1.8rem; justify-content: flex-start; }
-            .input-group, button, .result { max-width: none; }
-            label { text-align: left; }
-            input { text-align: left; }
-            input::placeholder { text-align: left; }
+            body { padding: 3rem 1rem; }
+            .card { padding: 2.5rem 2rem; }
+            .article-content { padding: 2.5rem; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="wrapper">
         <a href="index.html" class="back-link">
             <i class="fas fa-arrow-left"></i> Volver al inicio
         </a>
@@ -150,19 +153,19 @@
                 <input type="number" id="rendimiento" step="0.05" value="0.75">
             </div>
             
-            <button onclick="calcular()">Calcular Potencia (W)</button>
+            <button onclick="calcular()">Calcular Potencia</button>
             
             <div id="resultado" class="result"></div>
         </div>
 
         <div class="article-content">
             <h2>¿Cómo calcular la potencia de una bomba?</h2>
-            <p>El cálculo de la potencia de bombeo es fundamental para el diseño de instalaciones hidráulicas, dimensionamiento de tuberías y auditorías de eficiencia energética.</p>
+            <p>El cálculo de la potencia de bombeo es fundamental para el dimensionamiento de instalaciones y las auditorías de eficiencia operativa. Una correcta estimación permite optimizar costes energéticos y seleccionar el equipo adecuado.</p>
             
             <h3>Fórmula fundamental</h3>
             <p>La ecuación teórica para determinar la potencia necesaria consumida por la bomba es la siguiente:</p>
             
-            <p style="font-size: 1.3rem; text-align: center; overflow-x: auto; padding: 10px 0;">
+            <p style="font-size: 1.3rem; text-align: center; overflow-x: auto; padding: 10px 0; color: #1e293b;">
                 $$P=\frac{\rho\cdot g\cdot Q\cdot H}{\eta}$$
             </p>
 
@@ -173,12 +176,8 @@
                 <li><strong>\(g\) (Gravedad):</strong> Aceleración estándar (\(9.81 \text{ m/s}^2\)).</li>
                 <li><strong>\(Q\) (Caudal):</strong> Volumen de fluido desplazado por segundo (\(\text{m}^3/\text{s}\)).</li>
                 <li><strong>\(H\) (Altura Manométrica):</strong> Energía neta que la bomba transmite al fluido (\(\text{m}\)).</li>
-                <li><strong>\(\eta\) (Rendimiento):</strong> Eficiencia de la bomba (valor adimensional entre 0 y 1).</li>
+                <li><strong>\(\eta\) (Rendimiento):</strong> Eficiencia de la bomba (valor entre 0 y 1).</li>
             </ul>
-
-            <p style="color: var(--text-muted); border-top: 1px solid var(--border); padding-top: 1rem; margin-top: 2rem; font-size: 0.9rem;">
-                <strong>Nota:</strong> Esta herramienta proporciona un cálculo teórico inicial. Consulta siempre las especificaciones técnicas del fabricante antes de seleccionar una bomba para una instalación real.
-            </p>
         </div>
     </div>
 
@@ -187,7 +186,7 @@
             const Q = parseFloat(document.getElementById('caudal').value);
             const H = parseFloat(document.getElementById('altura').value);
             const n = parseFloat(document.getElementById('rendimiento').value);
-            const rho = 1000; // Densidad del agua en kg/m3
+            const rho = 1000;
             const g = 9.81;
 
             if(!isNaN(Q) && !isNaN(H) && !isNaN(n) && n > 0 && n <= 1) {
@@ -196,8 +195,8 @@
                 const resDiv = document.getElementById('resultado');
                 resDiv.style.display = 'block';
                 resDiv.innerHTML = `
-                    <div style="font-size: 0.9rem; color: #64748b;">Potencia Teórica Necesaria</div>
-                    <div style="font-size: 2.2rem; font-weight: 800; color: #1e40af; margin: 0.5rem 0;">${P_kW.toFixed(2)} kW</div>
+                    <div style="font-size: 0.9rem; color: #64748b;">Potencia Necesaria</div>
+                    <div style="font-size: 2.2rem; font-weight: 800; color: #2563eb; margin: 0.5rem 0;">${P_kW.toFixed(2)} kW</div>
                     <div style="font-size: 1rem; color: #64748b;">(${P.toFixed(0)} W)</div>
                 `;
             } else {
