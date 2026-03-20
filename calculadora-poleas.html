@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transmisión por Poleas | IndustrialCalc Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --bg: #f8fafc; --surface: #ffffff; --text: #1e293b; --primary: #c2410c; --border: #e2e8f0; --header-bg: #0f172a; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0; display: flex; flex-direction: column; min-height: 100vh; align-items: center; }
+        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; width: 100%; box-sizing: border-box; }
+        .header-content { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        main { width: 100%; max-width: 800px; padding: 2rem 1rem; box-sizing: border-box; }
+        .back-link { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 1.5rem; color: #64748b; text-decoration: none; font-weight: 500; }
+        .card { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 2rem; }
+        h1 { color: var(--primary); text-align: center; margin-bottom: 1.5rem; }
+        label { font-size: 0.85rem; font-weight: 600; color: #475569; display: block; margin-top: 1rem; }
+        input { width: 100%; padding: 0.8rem; margin-top: 5px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box; }
+        button { width: 100%; padding: 1rem; background: var(--primary); color: white; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 1.5rem; transition: 0.2s; }
+        button:hover { background: #9a3412; }
+        .result { margin-top: 1.5rem; padding: 1.5rem; background: #fff7ed; border-radius: 8px; display: none; text-align: center; border: 2px solid #ffedd5; }
+        .info-box { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); }
+        footer { text-align: center; padding: 2rem; width: 100%; margin-top: auto; border-top: 1px solid var(--border); }
+    </style>
+</head>
+<body>
+    <header><div class="header-content"><a href="index.html" style="color:white; text-decoration:none; font-weight:800;"><i class="fas fa-industry"></i> IndustrialCalc Pro</a></div></header>
+    <main>
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+        <div class="card">
+            <h1><i class="fas fa-cogs"></i> Transmisión por Poleas</h1>
+            <label>Revoluciones del motor (RPM iniciales)</label>
+            <input type="number" id="rpm_motor" placeholder="Ej: 1500">
+            <label>Diámetro de la polea motriz (mm)</label>
+            <input type="number" id="d_motriz" placeholder="Ej: 100">
+            <label>Diámetro de la polea conducida (mm)</label>
+            <input type="number" id="d_conducida" placeholder="Ej: 300">
+            <button onclick="calcPoleas()">Calcular RPM Finales</button>
+            <div id="res_poleas" class="result"></div>
+        </div>
+
+        <div class="info-box" style="background: #fff7ed;">
+            <h2 style="font-size: 1.2rem; color: #c2410c;">Relación de Transmisión</h2>
+            <p style="font-size: 0.95rem; line-height: 1.6; color: #9a3412;">
+                En sistemas de transmisión mecánica mediante correas, la velocidad de giro resultante es inversamente proporcional a los diámetros de las poleas utilizadas.
+            </p>
+            <p style="font-size: 1.2rem; text-align: center; padding: 10px 0;">
+                $$N_2 = \frac{N_1 \cdot D_1}{D_2}$$
+            </p>
+            <ul style="font-size: 0.9rem; color: #9a3412; padding-left: 20px;">
+                <li><strong>\(N_2\) (RPM Finales):</strong> Velocidad de giro de la máquina o eje conducido.</li>
+                <li><strong>\(N_1\) (RPM Motor):</strong> Velocidad de giro del motor o eje conductor.</li>
+                <li><strong>\(D_1\) (Diámetro 1):</strong> Diámetro de la polea acoplada al motor.</li>
+                <li><strong>\(D_2\) (Diámetro 2):</strong> Diámetro de la polea conducida.</li>
+            </ul>
+        </div>
+    </main>
+    <footer><a href="legales.html" style="color:#64748b; text-decoration:none;">Aviso Legal y Privacidad</a></footer>
+    <script>
+        function calcPoleas() {
+            const n1 = parseFloat(document.getElementById('rpm_motor').value);
+            const d1 = parseFloat(document.getElementById('d_motriz').value);
+            const d2 = parseFloat(document.getElementById('d_conducida').value);
+            if(n1>0 && d1>0 && d2>0) {
+                const n2 = (n1 * d1) / d2;
+                const ratio = d2 / d1;
+                const resDiv = document.getElementById('res_poleas');
+                resDiv.style.display = 'block';
+                resDiv.innerHTML = `<strong>Velocidad del Eje Conducido:</strong><br><span style="font-size:2.5rem; color:#c2410c;">${n2.toFixed(0)} RPM</span><br><small style="color:#9a3412;">Relación de reducción: 1 : ${ratio.toFixed(2)}</small>`;
+            }
+        }
+    </script>
+</body>
+</html>
