@@ -9,14 +9,32 @@
     <style>
         :root { --bg-body: #f1f5f9; --surface: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --primary: #2563eb; --header-bg: #0f172a; --border: #e2e8f0; }
         body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
-        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        
+        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
         .header-content { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
         .logo { font-size: 1.5rem; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; }
         .logo span { color: #3b82f6; }
+        
+        /* Menú Desplegable */
+        .dropdown { position: relative; display: inline-block; }
+        .dropbtn { background-color: rgba(255,255,255,0.1); color: white; padding: 0.8rem 1.2rem; font-size: 1rem; border: none; border-radius: 8px; cursor: pointer; font-family: inherit; font-weight: 600; display: flex; align-items: center; gap: 8px; transition: 0.2s;}
+        .dropdown:hover .dropbtn { background-color: rgba(255,255,255,0.2); }
+        .dropdown-content { display: none; position: absolute; right: 0; top: 110%; background-color: var(--surface); min-width: 260px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); z-index: 10; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); max-height: 400px; overflow-y: auto;}
+        .dropdown-content a { color: var(--text-main); padding: 12px 16px; text-decoration: none; display: block; font-size: 0.9rem; border-bottom: 1px solid var(--border); }
+        .dropdown-content a:hover { background-color: var(--bg-body); color: var(--primary); }
+        .dropdown:hover .dropdown-content { display: block; }
+
         main { flex: 1; padding: 3rem 1rem; max-width: 1200px; margin: 0 auto; width: 100%; box-sizing: border-box; }
         .hero-text { text-align: center; margin-bottom: 3rem; }
         .hero-text h1 { font-size: 2.5rem; margin-bottom: 0.5rem; margin-top: 0; color: var(--header-bg); }
         .hero-text p { color: var(--text-muted); font-size: 1.1rem; max-width: 700px; margin: 0 auto; }
+        
+        /* Buscador en vivo */
+        .search-hero { position: relative; max-width: 600px; margin: 2rem auto 0; }
+        .search-hero input { width: 100%; padding: 1.2rem 1.2rem 1.2rem 3rem; font-size: 1.1rem; border: 2px solid var(--border); border-radius: 50px; box-sizing: border-box; outline: none; transition: 0.2s; font-family: inherit;}
+        .search-hero input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(37,99,235,0.1); }
+        .search-hero i { position: absolute; left: 1.2rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 1.2rem; }
+
         .card-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
         .card { background: var(--surface); border: 1px solid var(--border); padding: 1.8rem; border-radius: 12px; text-decoration: none; color: inherit; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: flex-start; height: 100%; box-sizing: border-box; }
         .card:hover { transform: translateY(-5px); box-shadow: 0 12px 20px -5px rgba(0,0,0,0.1); border-color: var(--primary); }
@@ -30,14 +48,44 @@
 </head>
 <body>
     <header>
-        <div class="header-content"><a href="index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span> Pro</a></div>
+        <div class="header-content">
+            <a href="index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span> Pro</a>
+            
+            <div class="dropdown">
+                <button class="dropbtn">Calculadoras <i class="fas fa-chevron-down"></i></button>
+                <div class="dropdown-content">
+                    <a href="herramientas-basicas.html">⚡ Cálculos y Finanzas</a>
+                    <a href="calculadora-bombeo.html">🌊 Potencia de Bombeo</a>
+                    <a href="calculadora-presion.html">💧 Caída de Presión</a>
+                    <a href="calculadora-solar.html">☀️ Energía Solar</a>
+                    <a href="calculadora-eficiencia.html">⚙️ Eficiencia Industrial</a>
+                    <a href="calculadora-instalaciones.html">💡 Instalaciones y LED</a>
+                    <a href="calculadora-termica.html">🌡️ Aislamiento Térmico</a>
+                    <a href="calculadora-aire.html">💨 Aire Comprimido</a>
+                    <a href="calculadora-psicrometria.html">💦 Punto de Rocío</a>
+                    <a href="calculadora-acero.html">🏗️ Estructuras de Acero</a>
+                    <a href="calculadora-climatizacion.html">❄️ Carga Térmica HVAC</a>
+                    <a href="calculadora-dilatacion.html">🔥 Dilatación de Tuberías</a>
+                    <a href="calculadora-depositos.html">🛢️ Volumen de Depósitos</a>
+                    <a href="calculadora-acustica.html">🔊 Atenuación Acústica</a>
+                    <a href="calculadora-cintas.html">📦 Cintas Transportadoras</a>
+                </div>
+            </div>
+        </div>
     </header>
+
     <main>
         <div class="hero-text">
             <h1>Suite de Ingeniería Industrial</h1>
             <p>15 herramientas profesionales para automatizar cálculos en oficina técnica y trabajo de campo.</p>
+            
+            <div class="search-hero">
+                <i class="fas fa-search"></i>
+                <input type="text" id="buscadorHome" placeholder="Buscar calculadora (ej: acero, solar, agua...)" onkeyup="filtrarTarjetas()">
+            </div>
         </div>
-        <div class="card-grid">
+
+        <div class="card-grid" id="gridHerramientas">
             <a href="herramientas-basicas.html" class="card"><div class="card-icon" style="background: #eff6ff; color: #2563eb;"><i class="fas fa-calculator"></i></div><h2>Cálculos y Finanzas</h2><p>Herramientas eléctricas básicas y préstamos.</p></a>
             <a href="calculadora-bombeo.html" class="card"><div class="card-icon" style="background: #f0fdf4; color: #16a34a;"><i class="fas fa-pump-soap"></i></div><h2>Potencia de Bombeo</h2><p>Cálculo de potencia hidráulica y rendimiento.</p></a>
             <a href="calculadora-presion.html" class="card"><div class="card-icon" style="background: #ecfeff; color: #0891b2;"><i class="fas fa-water"></i></div><h2>Caída de Presión</h2><p>Pérdida de carga en tuberías de agua.</p></a>
@@ -55,9 +103,27 @@
             <a href="calculadora-cintas.html" class="card"><div class="card-icon" style="background: #d1fae5; color: #059669;"><i class="fas fa-boxes"></i></div><h2>Cintas Transportadoras</h2><p>Producción másica para graneles y minería.</p></a>
         </div>
     </main>
+
     <footer>
         <p>&copy; 2026 IndustrialCalc Pro - Herramientas Técnicas Gratuitas</p>
         <a href="legales.html">Aviso Legal y Privacidad</a>
     </footer>
+
+    <script>
+        function filtrarTarjetas() {
+            const input = document.getElementById('buscadorHome').value.toLowerCase();
+            const tarjetas = document.querySelectorAll('#gridHerramientas .card');
+            
+            tarjetas.forEach(tarjeta => {
+                // Busca tanto en el título como en la descripción de la tarjeta
+                const textoTarjeta = tarjeta.innerText.toLowerCase();
+                if (textoTarjeta.includes(input)) {
+                    tarjeta.style.display = 'flex'; // La muestra
+                } else {
+                    tarjeta.style.display = 'none'; // La oculta
+                }
+            });
+        }
+    </script>
 </body>
 </html>
