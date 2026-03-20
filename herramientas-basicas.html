@@ -81,6 +81,11 @@
         
         footer { text-align: center; padding: 40px 5%; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 40px; background: var(--bg-card);}
         
+        .article-content { background: var(--bg-body); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border); width: 100%; box-sizing: border-box; margin-top: 3rem; }
+        .article-content h3 { margin-top: 1.5rem; font-size: 1.1rem; color: var(--text-main); }
+        .article-content p, .article-content ul { color: var(--text-muted); }
+        .article-formula { font-size: 1.3rem; text-align: center; overflow-x: auto; padding: 10px 0; color: var(--text-main); }
+        
         @media print { body { background: white; color: black; } header, .nav-tabs, .sidebar, .btn-primary, .result-actions, footer { display: none !important; } .layout { display: block; } .card { border: none; box-shadow: none; padding: 0; } .result-container { border: 2px solid black; background: white; color: black; } .result-value { color: black; } input, select { border: 1px solid #000; color: #000; } }
         @media (max-width: 850px) { .layout { grid-template-columns: 1fr; } .ad-tall { display: none; } }
         @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } .input-group { flex-direction: column; } .input-group input, .input-group select { border-radius: 8px; border: 1px solid var(--border); } }
@@ -129,6 +134,19 @@
                         <button class="btn-sec" onclick="window.print()">🖨️ PDF</button>
                     </div>
                 </div>
+                <div class="article-content">
+                    <h2 style="color: var(--primary); font-size: 1.4rem;">¿Cómo se calcula la sección de un cable eléctrico?</h2>
+                    <p>El cálculo de la sección por caída de tensión es fundamental para garantizar que la energía llegue a los equipos con el voltaje adecuado, previniendo calentamientos y cumpliendo normativas técnicas (como el REBT en España).</p>
+                    <h3>Fórmula Monofásica</h3>
+                    <p class="article-formula">$$S=\frac{2\cdot L\cdot I}{c\cdot e}$$</p>
+                    <ul style="padding-left: 1.5rem;">
+                        <li><strong>\(S\) (Sección):</strong> Área transversal en \(\text{mm}^2\).</li>
+                        <li><strong>\(L\) (Longitud):</strong> Distancia de la línea en metros (\(\text{m}\)).</li>
+                        <li><strong>\(I\) (Intensidad):</strong> Corriente del circuito en amperios (\(\text{A}\)).</li>
+                        <li><strong>\(c\) (Conductividad):</strong> Para cobre \(56\), para aluminio \(35 \text{ m/}(\Omega\cdot\text{mm}^2)\).</li>
+                        <li><strong>\(e\) (Caída de tensión):</strong> Pérdida de voltaje máxima permitida (\(\text{V}\)).</li>
+                    </ul>
+                </div>
             </div>
 
             <div id="finanzas" class="calc-section">
@@ -160,8 +178,20 @@
                     <div><span class="result-value" id="res-fin-val" style="color: #2563eb;">0</span> <span style="font-weight:bold; color: #1e3a8a;" id="lbl-moneda">€</span></div>
                     <div style="margin-top:10px; font-size: 0.9rem; color: #475569;">Total Intereses a pagar: <strong id="res-fin-int">0</strong></div>
                     <div class="result-actions">
-                        <button class="btn-sec btn-excel" onclick="exportarExcel('Simulacion_Prestamo', ['Capital', 'Interes (%)', 'Meses Totales', 'Cuota Mensual', 'Total Intereses'], [document.getElementById('fin-cap').value, document.getElementById('fin-int').value, document.getElementById('fin-plazo').value * document.getElementById('fin-tipo-plazo').value, document.getElementById('res-fin-val').innerText, document.getElementById('res-fin-int').innerText])">📊 Guardar Estudio en Excel</button>
+                        <button class="btn-sec btn-excel" onclick="exportarExcel('Simulacion_Prestamo', ['Capital', 'Interes (%)', 'Meses Totales', 'Cuota Mensual', 'Total Intereses'], [document.getElementById('fin-cap').value, document.getElementById('fin-int').value, document.getElementById('fin-plazo').value * document.getElementById('fin-tipo-plazo').value, document.getElementById('res-fin-val').innerText, document.getElementById('res-fin-int').innerText])">📊 Guardar Estudio</button>
                     </div>
+                </div>
+                <div class="article-content">
+                    <h2 style="color: var(--primary); font-size: 1.4rem;">Cálculo de cuotas con el Sistema Francés</h2>
+                    <p>El sistema de amortización francés es el método más utilizado por bancos para préstamos e hipotecas. Se caracteriza por mantener una cuota constante durante toda la vida del préstamo, donde al principio se pagan más intereses y menos capital.</p>
+                    <h3>Fórmula de Cuota Constante</h3>
+                    <p class="article-formula">$$C = \frac{V \cdot i}{1 - (1+i)^{-n}}$$</p>
+                    <ul style="padding-left: 1.5rem;">
+                        <li><strong>\(C\) (Cuota):</strong> Pago mensual constante.</li>
+                        <li><strong>\(V\) (Capital):</strong> Importe total prestado.</li>
+                        <li><strong>\(i\) (Interés):</strong> Tasa de interés mensual (TIN anual dividido entre 12 y 100).</li>
+                        <li><strong>\(n\) (Plazos):</strong> Número total de meses para devolver el préstamo.</li>
+                    </ul>
                 </div>
             </div>
 
@@ -189,6 +219,19 @@
                         <button class="btn-sec btn-excel" onclick="exportarExcel('Termodinamica', ['Volumen (L)', 'Horas', 'Salto Termico', 'Escala', 'Potencia (kW)'], [document.getElementById('ter-v').value, document.getElementById('ter-t').value, document.getElementById('ter-dt').value, document.getElementById('ter-escala').value, document.getElementById('res-ter-val').innerText])">📊 Exportar a Excel</button>
                     </div>
                 </div>
+                <div class="article-content">
+                    <h2 style="color: var(--primary); font-size: 1.4rem;">Cálculo de Potencia Térmica</h2>
+                    <p>Dimensionar la potencia necesaria de un equipo térmico (como calderas, resistencias o intercambiadores) requiere conocer cuánta energía se necesita para elevar la temperatura de un volumen de agua en un tiempo determinado.</p>
+                    <h3>Ecuación del Calor Sensible</h3>
+                    <p class="article-formula">$$P = \frac{m \cdot C_e \cdot \Delta T}{t}$$</p>
+                    <ul style="padding-left: 1.5rem;">
+                        <li><strong>\(P\) (Potencia):</strong> Energía transferida por unidad de tiempo (\(\text{kW}\)).</li>
+                        <li><strong>\(m\) (Masa):</strong> Masa del fluido. En el agua, 1 litro equivale a 1 kg.</li>
+                        <li><strong>\(C_e\) (Calor Específico):</strong> Para el agua es aprox. \(4.18 \text{ kJ/kg}\cdot\text{°C}\).</li>
+                        <li><strong>\(\Delta T\):</strong> Diferencia de temperatura (Salto térmico).</li>
+                        <li><strong>\(t\) (Tiempo):</strong> Segundos necesarios para alcanzar la temperatura objetivo.</li>
+                    </ul>
+                </div>
             </div>
 
             <div id="fluidos" class="calc-section">
@@ -205,13 +248,27 @@
                     <div><span class="result-value" id="res-f-val">0</span> 
                         <select id="fl-out-unit" onchange="convertirPotencia()" style="width: auto; display: inline-block; padding: 5px; font-size: 1.2rem; background: transparent; border: 1px solid var(--success-text); color: var(--success-text); font-weight: bold; margin-left: 10px;">
                             <option value="kW">kW</option>
-                            <option value="CV">CV (Caballos Vapor)</option>
+                            <option value="CV">CV</option>
                             <option value="HP">HP</option>
                         </select>
                     </div>
                     <div class="result-actions">
                         <button class="btn-sec btn-excel" onclick="exportarExcel('Bomba_Hidraulica', ['Densidad', 'Caudal', 'Altura', 'Rendimiento', 'Potencia Final'], [document.getElementById('fl-den').value, document.getElementById('fl-cau').value, document.getElementById('fl-alt').value, document.getElementById('fl-ren').value, document.getElementById('res-f-val').innerText + ' ' + document.getElementById('fl-out-unit').value])">📊 Exportar a Excel</button>
                     </div>
+                </div>
+                <div class="article-content">
+                    <h2 style="color: var(--primary); font-size: 1.4rem;">Evaluación de Grupos de Bombeo</h2>
+                    <p>Para seleccionar el motor eléctrico correcto de una bomba centrífuga, es imprescindible determinar la potencia en el eje. Un cálculo correcto previene problemas operativos y reduce la factura eléctrica de las plantas industriales.</p>
+                    <h3>Ecuación General de Bombeo</h3>
+                    <p class="article-formula">$$P=\frac{\rho\cdot g\cdot Q\cdot H}{\eta}$$</p>
+                    <ul style="padding-left: 1.5rem;">
+                        <li><strong>\(P\) (Potencia):</strong> Resultado de consumo eléctrico total.</li>
+                        <li><strong>\(\rho\) (Densidad):</strong> Masa por volumen del líquido (\(\text{kg/m}^3\)).</li>
+                        <li><strong>\(g\):</strong> Gravedad estándar (\(9.81 \text{ m/s}^2\)).</li>
+                        <li><strong>\(Q\) (Caudal):</strong> Caudal volumétrico de impulsión (\(\text{m}^3/\text{s}\)).</li>
+                        <li><strong>\(H\) (Altura):</strong> Altura manométrica total (\(\text{mca}\)).</li>
+                        <li><strong>\(\eta\) (Rendimiento):</strong> Eficiencia de la bomba hidráulica.</li>
+                    </ul>
                 </div>
             </div>
 
@@ -241,6 +298,18 @@
                         <button class="btn-sec btn-excel" onclick="exportarExcel('Volumen_Deposito', ['Diametro', 'Altura', 'Volumen (m3)', 'Litros Totales'], [document.getElementById('geo-d').value, document.getElementById('geo-h').value, document.getElementById('res-geo-m3').innerText, document.getElementById('res-geo-l').innerText])">📊 Guardar Datos</button>
                     </div>
                 </div>
+                <div class="article-content">
+                    <h2 style="color: var(--primary); font-size: 1.4rem;">Cálculo de Volúmenes en Depósitos</h2>
+                    <p>Conocer la capacidad de almacenamiento de tanques y depósitos es esencial para la gestión de inventarios (agua, combustible, químicos). El formato cilíndrico es el estándar en depósitos a presión y silos de almacenamiento.</p>
+                    <h3>Fórmula del Volumen Cilíndrico</h3>
+                    <p class="article-formula">$$V = \pi \cdot r^2 \cdot h$$</p>
+                    <ul style="padding-left: 1.5rem;">
+                        <li><strong>\(V\) (Volumen):</strong> Capacidad geométrica expresada en metros cúbicos (\(\text{m}^3\)).</li>
+                        <li><strong>\(r\) (Radio):</strong> Mitad del diámetro del tanque.</li>
+                        <li><strong>\(h\) (Altura):</strong> Altura geométrica de la pared del cilindro.</li>
+                        <li><em>Conversión:</em> Multiplicando el resultado en \(\text{m}^3\) por 1000, obtenemos la capacidad total equivalente en litros.</li>
+                    </ul>
+                </div>
             </div>
 
             <div id="energia" class="calc-section">
@@ -259,27 +328,18 @@
                         <button class="btn-sec btn-excel" onclick="exportarExcel('Estudio_Ahorro', ['Inversion', 'Precio Energia', 'Consumo Antiguo', 'Consumo Nuevo', 'Retorno (Años)'], [document.getElementById('en-inv').value, document.getElementById('en-precio').value, document.getElementById('en-c1').value, document.getElementById('en-c2').value, document.getElementById('res-en-val').innerText])">📊 Generar Excel ROI</button>
                     </div>
                 </div>
-            </div>
-
-            <div class="article-content" style="background: var(--bg-body); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border); width: 100%; box-sizing: border-box; margin-top: 3rem;">
-                <h2 style="color: var(--primary); margin-top: 0; margin-bottom: 1rem; font-size: 1.4rem;">¿Cómo se calcula la sección de un conductor eléctrico?</h2>
-                <p style="color: var(--text-muted);">El cálculo de la sección de un cable por caída de tensión es un paso crítico en el diseño de instalaciones eléctricas. Garantiza que la energía llegue a los receptores con el voltaje adecuado, previniendo sobrecalentamientos y asegurando el cumplimiento de normativas como el REBT.</p>
-                
-                <h3 style="margin-top: 1.5rem; font-size: 1.1rem; color: var(--text-main);">Fórmula por Caída de Tensión (Monofásica)</h3>
-                <p style="color: var(--text-muted);">Para líneas monofásicas, la ecuación fundamental para determinar la sección mínima transversal teórica del cable es:</p>
-                
-                <p style="font-size: 1.3rem; text-align: center; overflow-x: auto; padding: 10px 0; color: var(--text-main);">
-                    $$S=\frac{2\cdot L\cdot I}{c\cdot e}$$
-                </p>
-
-                <h3 style="margin-top: 1.5rem; font-size: 1.1rem; color: var(--text-main);">Explicación de variables</h3>
-                <ul style="padding-left: 1.5rem; color: var(--text-muted);">
-                    <li style="margin-bottom: 0.75rem;"><strong>\(S\) (Sección):</strong> Área transversal mínima del cable en milímetros cuadrados (\(\text{mm}^2\)).</li>
-                    <li style="margin-bottom: 0.75rem;"><strong>\(L\) (Longitud):</strong> Distancia del tramo de la línea eléctrica en metros (\(\text{m}\)).</li>
-                    <li style="margin-bottom: 0.75rem;"><strong>\(I\) (Intensidad):</strong> Corriente que circula por el circuito en amperios (\(\text{A}\)).</li>
-                    <li style="margin-bottom: 0.75rem;"><strong>\(c\) (Conductividad):</strong> Depende del material del conductor. Para el cobre suele tomarse \(56 \text{ m/}(\Omega\cdot\text{mm}^2)\) y para el aluminio \(35 \text{ m/}(\Omega\cdot\text{mm}^2)\).</li>
-                    <li style="margin-bottom: 0.75rem;"><strong>\(e\) (Caída de tensión):</strong> Pérdida de voltaje máxima permitida en voltios (\(\text{V}\)), que suele ser un porcentaje legal del voltaje total.</li>
-                </ul>
+                <div class="article-content">
+                    <h2 style="color: var(--primary); font-size: 1.4rem;">El Período de Recuperación (Payback)</h2>
+                    <p>En proyectos de eficiencia energética (cambios de luminarias LED, motores eficientes o calderas), el ROI (Retorno de Inversión) determina cuánto tiempo tardará el ahorro generado en cubrir el coste inicial del nuevo equipo.</p>
+                    <h3>Fórmula de Retorno de Inversión</h3>
+                    <p class="article-formula">$$PRI = \frac{I_0}{\Delta C \cdot P_e}$$</p>
+                    <ul style="padding-left: 1.5rem;">
+                        <li><strong>\(PRI\):</strong> Período de Retorno de Inversión (en Años).</li>
+                        <li><strong>\(I_0\):</strong> Inversión de capital inicial (CAPEX).</li>
+                        <li><strong>\(\Delta C\):</strong> Diferencia de consumo en kWh (Ahorro energético).</li>
+                        <li><strong>\(P_e\):</strong> Precio del coste de la energía eléctrica (\(\text{€/kWh}\)).</li>
+                    </ul>
+                </div>
             </div>
 
         </main>
@@ -302,6 +362,8 @@
             document.querySelectorAll('.nav-tabs button').forEach(el => el.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
             btn.classList.add('active');
+            
+            // Ocultar resultados al cambiar de pestaña para limpiar la vista
             document.querySelectorAll('.result-container').forEach(el => el.style.display = 'none');
         }
 
