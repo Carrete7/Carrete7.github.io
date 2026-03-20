@@ -1,59 +1,101 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Potencia de Bombeo | IndustrialCalc Pro</title>
+    <title>Calculadora de Potencia de Bombeo | IndustrialCalc Pro</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --bg: #f8fafc; --surface: #ffffff; --text: #1e293b;
-            --primary: #2563eb; --border: #e2e8f0;
+            --primary: #2563eb; --border: #e2e8f0; --text-muted: #64748b;
         }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 20px; }
-        .card { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); max-width: 500px; margin: auto; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
-        h1 { font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--primary); }
+        body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 20px; line-height: 1.6; }
+        .container { max-width: 800px; margin: auto; }
+        .card { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); margin-bottom: 2rem; }
+        h1 { font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--primary); text-align: center; }
+        h2 { color: var(--primary); margin-top: 2rem; }
         .input-group { margin-bottom: 1rem; }
         label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
-        input { width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box; }
-        button { width: 100%; padding: 1rem; background: var(--primary); color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; margin-top: 1rem; }
-        .result { margin-top: 1.5rem; padding: 1rem; background: #eff6ff; border-radius: 6px; display: none; border: 1px solid #bfdbfe; }
+        input { width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box; font-family: inherit; }
+        button { width: 100%; padding: 1rem; background: var(--primary); color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; margin-top: 1rem; font-size: 1rem; }
+        button:hover { background: #1d4ed8; }
+        .result { margin-top: 1.5rem; padding: 1.5rem; background: #eff6ff; border-radius: 6px; display: none; border: 1px solid #bfdbfe; font-size: 1.1rem; text-align: center; }
+        .article-content { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); }
+        ul { color: var(--text-muted); }
+        li { margin-bottom: 0.5rem; }
+        .back-link { display: inline-block; margin-bottom: 1rem; color: var(--text-muted); text-decoration: none; }
+        .back-link:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1><i class="fas fa-pump-soap"></i> Potencia de Bombeo</h1>
-        <div class="input-group">
-            <label>Caudal (m³/s)</label>
-            <input type="number" id="caudal" step="0.001" placeholder="Ej: 0.05">
+    <div class="container">
+        <a href="index.html" class="back-link">← Volver al inicio</a>
+        
+        <div class="card">
+            <h1><i class="fas fa-pump-soap"></i> Calculadora de Potencia de Bombeo</h1>
+            <div class="input-group">
+                <label>Caudal (m³/s)</label>
+                <input type="number" id="caudal" step="0.001" placeholder="Ej: 0.05">
+            </div>
+            <div class="input-group">
+                <label>Altura Manométrica (m)</label>
+                <input type="number" id="altura" placeholder="Ej: 30">
+            </div>
+            <div class="input-group">
+                <label>Rendimiento de la bomba (0.1 - 1.0)</label>
+                <input type="number" id="rendimiento" step="0.05" value="0.75">
+            </div>
+            <button onclick="calcular()">Calcular Potencia (W)</button>
+            <div id="resultado" class="result"></div>
         </div>
-        <div class="input-group">
-            <label>Altura Manométrica (m)</label>
-            <input type="number" id="altura" placeholder="Ej: 30">
+
+        <div class="article-content">
+            <h2>¿Cómo calcular la potencia de una bomba hidráulica?</h2>
+            <p>El cálculo de la potencia de bombeo es fundamental en el diseño de instalaciones hidráulicas, dimensionamiento de tuberías y auditorías de eficiencia energética. Esta herramienta te permite obtener rápidamente la potencia teórica necesaria para desplazar un fluido incompresible (como el agua).</p>
+            
+            <h3>La fórmula de la potencia</h3>
+            <p>Para determinar la potencia consumida por la bomba, aplicamos la siguiente ecuación fundamental de la mecánica de fluidos:</p>
+            
+            <p style="font-size: 1.2rem; text-align: center; overflow-x: auto;">
+                $$P=\frac{\rho\cdot g\cdot Q\cdot H}{\eta}$$
+            </p>
+
+            <h3>Variables de la ecuación</h3>
+            <ul>
+                <li><strong>\(P\) (Potencia):</strong> Es el resultado final en vatios (W). Dividiendo entre 1000 obtenemos kilovatios (kW).</li>
+                <li><strong>\(\rho\) (Densidad del fluido):</strong> En esta calculadora asumimos agua estándar a \(1000 \text{ kg/m}^3\).</li>
+                <li><strong>\(g\) (Gravedad):</strong> Aceleración estándar de la gravedad (\(9.81 \text{ m/s}^2\)).</li>
+                <li><strong>\(Q\) (Caudal):</strong> Volumen de fluido desplazado por unidad de tiempo, expresado en metros cúbicos por segundo (\(\text{m}^3/\text{s}\)).</li>
+                <li><strong>\(H\) (Altura Manométrica):</strong> La energía por unidad de peso que la bomba transmite al fluido, expresada en metros (\(\text{m}\)). Incluye el desnivel geométrico y las pérdidas de carga de la instalación.</li>
+                <li><strong>\(\eta\) (Rendimiento):</strong> Eficiencia global de la bomba, un valor adimensional entre 0 y 1.</li>
+            </ul>
+
+            <h3>Importancia en la industria</h3>
+            <p>Conocer este dato es el primer paso para seleccionar el motor eléctrico adecuado, evaluar los costes operativos de una planta o plantear mejoras de eficiencia energética que reduzcan la factura eléctrica. Herramientas precisas reducen el riesgo de sobredimensionar equipos, lo que supone un ahorro directo de capital.</p>
         </div>
-        <div class="input-group">
-            <label>Rendimiento (0.1 - 1.0)</label>
-            <input type="number" id="rendimiento" step="0.1" value="0.75">
-        </div>
-        <button onclick="calcular()">Calcular Potencia (W)</button>
-        <div id="resultado" class="result"></div>
-        <br>
-        <a href="index.html" style="text-decoration: none; color: #64748b; font-size: 0.9rem;">← Volver al inicio</a>
     </div>
 
     <script>
         function calcular() {
-            const Q = document.getElementById('caudal').value;
-            const H = document.getElementById('altura').value;
-            const n = document.getElementById('rendimiento').value;
-            const rho = 1000; // Densidad agua
+            const Q = parseFloat(document.getElementById('caudal').value);
+            const H = parseFloat(document.getElementById('altura').value);
+            const n = parseFloat(document.getElementById('rendimiento').value);
+            const rho = 1000; // Densidad del agua en kg/m3
             const g = 9.81;
 
-            if(Q && H && n) {
+            if(!isNaN(Q) && !isNaN(H) && !isNaN(n) && n > 0) {
                 const P = (rho * g * Q * H) / n;
                 const resDiv = document.getElementById('resultado');
                 resDiv.style.display = 'block';
-                resDiv.innerHTML = `<strong>Potencia necesaria:</strong> ${(P/1000).toFixed(2)} kW (${P.toFixed(0)} W)`;
+                resDiv.innerHTML = `<strong>Potencia necesaria:</strong><br><span style="font-size: 1.5rem; color: #2563eb;">${(P/1000).toFixed(2)} kW</span><br><span style="font-size: 0.9rem; color: #64748b;">(${P.toFixed(0)} W)</span>`;
+            } else {
+                alert("Por favor, introduce valores numéricos válidos. El rendimiento debe ser mayor a 0.");
             }
         }
     </script>
