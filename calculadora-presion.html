@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pérdida de Carga en Tuberías | IndustrialCalc Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #f8fafc; --surface: #ffffff; --text: #1e293b; 
+            --primary: #2563eb; --border: #e2e8f0; --text-muted: #64748b;
+            --header-bg: #0f172a;
+        }
+
+        body { 
+            font-family: 'Inter', system-ui, -apple-system, sans-serif; 
+            background: var(--bg); color: var(--text); margin: 0; padding: 0; 
+            line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh;
+            align-items: center; 
+        }
+
+        /* --- CABECERA OSCURA --- */
+        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); width: 100%; box-sizing: border-box; }
+        .header-content { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .logo span { color: #3b82f6; }
+
+        /* --- CONTENEDOR PRINCIPAL --- */
+        main { width: 100%; max-width: 800px; padding: 2rem 1rem; box-sizing: border-box; flex: 1; }
+        .back-link { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 1.5rem; color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; }
+        .back-link:hover { color: var(--primary); }
+
+        /* --- CALCULADORA --- */
+        .card { 
+            background: var(--surface); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border); 
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); margin: 0 auto 2rem auto; width: 100%; max-width: 500px; 
+            box-sizing: border-box; display: flex; flex-direction: column; align-items: center; 
+        }
+        h1 { font-size: 1.4rem; margin-top: 0; margin-bottom: 1.5rem; color: var(--primary); text-align: center; }
+        
+        .input-group { margin-bottom: 1.25rem; width: 100%; }
+        label { display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.95rem; text-align: center; }
+        input, select { 
+            width: 100%; padding: 0.85rem; border: 2px solid var(--border); border-radius: 8px; 
+            box-sizing: border-box; font-size: 1rem; text-align: center; transition: border-color 0.2s; font-family: inherit;
+        }
+        input:focus, select:focus { outline: none; border-color: var(--primary); }
+
+        button { 
+            width: 100%; padding: 1rem; background: var(--primary); color: white; border: none; 
+            border-radius: 8px; font-weight: 700; cursor: pointer; margin-top: 0.5rem; font-size: 1.1rem; transition: background 0.2s;
+        }
+        button:hover { background: #1d4ed8; }
+
+        .result { 
+            margin-top: 1.5rem; padding: 1.5rem; background: #eff6ff; border-radius: 8px; display: none; 
+            border: 2px solid #bfdbfe; width: 100%; box-sizing: border-box; text-align: center;
+        }
+
+        /* --- ARTÍCULO TÉCNICO --- */
+        .article-content { background: var(--surface); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border); width: 100%; box-sizing: border-box; }
+        h2 { color: var(--primary); margin-top: 0; margin-bottom: 1rem; font-size: 1.4rem; }
+        h3 { margin-top: 1.5rem; font-size: 1.1rem; }
+        ul { padding-left: 1.5rem; color: var(--text-muted); }
+        li { margin-bottom: 0.75rem; }
+        p { color: var(--text-muted); }
+
+        /* --- PIE DE PÁGINA --- */
+        footer { text-align: center; padding: 2rem; background-color: var(--surface); border-top: 1px solid var(--border); width: 100%; box-sizing: border-box; margin-top: auto; }
+        footer a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; }
+        footer a:hover { color: var(--primary); text-decoration: underline; }
+
+        @media (min-width: 768px) {
+            main { padding: 3rem 1rem; }
+            .card { padding: 2.5rem; }
+            .article-content { padding: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <i class="fas fa-industry"></i> Industrial<span>Calc</span> Pro
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <a href="index.html" class="back-link">
+            <i class="fas fa-arrow-left"></i> Volver al inicio
+        </a>
+        
+        <div class="card">
+            <h1><i class="fas fa-water"></i> Pérdida de Carga (Hazen-Williams)</h1>
+            
+            <div class="input-group">
+                <label>Caudal (m³/h)</label>
+                <input type="number" id="caudal" placeholder="Ej: 50">
+            </div>
+            
+            <div class="input-group">
+                <label>Diámetro Interior de la tubería (mm)</label>
+                <input type="number" id="diametro" placeholder="Ej: 100">
+            </div>
+            
+            <div class="input-group">
+                <label>Longitud del tramo (m)</label>
+                <input type="number" id="longitud" placeholder="Ej: 200">
+            </div>
+
+            <div class="input-group">
+                <label>Material (Coef. Rugosidad C)</label>
+                <select id="material">
+                    <option value="150">PVC / Plástico liso (C=150)</option>
+                    <option value="140">Acero Inoxidable / Cobre (C=140)</option>
+                    <option value="130">Acero Comercial Nuevo (C=130)</option>
+                    <option value="100">Hierro Fundido Viejo (C=100)</option>
+                </select>
+            </div>
+            
+            <button onclick="calcularPresion()">Calcular Caída de Presión</button>
+            
+            <div id="resultado" class="result"></div>
+        </div>
+
+        <div class="article-content">
+            <h2>Cálculo de Pérdida de Carga en Tuberías</h2>
+            <p>El cálculo de la caída de presión por fricción es uno de los pilares del diseño de redes de fluidos y sistemas de bombeo industrial. Un dimensionamiento incorrecto provoca que el fluido no llegue con la presión necesaria a los equipos finales, obligando a sobredimensionar bombas y disparando los costes energéticos.</p>
+            
+            <h3>La Ecuación de Hazen-Williams</h3>
+            <p>Para el flujo de agua a temperaturas ordinarias, la fórmula empírica de Hazen-Williams es el estándar en la industria de conducciones debido a su precisión y facilidad de uso en comparación con la ecuación de Darcy-Weisbach.</p>
+            
+            <p style="font-size: 1.3rem; text-align: center; overflow-x: auto; padding: 10px 0; color: #1e293b;">
+                $$h_f = 10.67 \cdot \frac{L \cdot Q^{1.852}}{C^{1.852} \cdot d^{4.87}}$$
+            </p>
+
+            <h3>Explicación de las variables</h3>
+            <ul>
+                <li><strong>\(h_f\) (Pérdida de carga):</strong> Representa la energía perdida por fricción, expresada en metros de columna de agua (\(\text{m.c.a.}\)). Dividiendo entre 10 obtenemos el valor aproximado en bares (\(\text{bar}\)).</li>
+                <li><strong>\(L\) (Longitud):</strong> Longitud total del tramo de tubería recta en metros (\(\text{m}\)).</li>
+                <li><strong>\(Q\) (Caudal):</strong> Volumen de fluido transportado por unidad de tiempo, expresado en \(\text{m}^3/\text{s}\) para la ecuación métrica estándar.</li>
+                <li><strong>\(C\) (Coeficiente de rugosidad):</strong> Un valor empírico adimensional que depende del material y la edad de la tubería. Un tubo liso de PVC tiene un \(C=150\), mientras que un tubo de acero viejo puede bajar a \(C=100\), generando mucha más resistencia.</li>
+                <li><strong>\(d\) (Diámetro interior):</strong> Diámetro libre por donde circula el fluido, en metros (\(\text{m}\)). Fíjate que al estar elevado a 4.87, un pequeño cambio en el diámetro afecta masivamente a la presión final.</li>
+            </ul>
+
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1rem;">
+                <strong>Importante:</strong> Este cálculo determina las pérdidas primarias (fricción en tubería recta). En una instalación real deben sumarse las pérdidas secundarias provocadas por válvulas, codos y accesorios.
+            </p>
+        </div>
+    </main>
+
+    <footer>
+        <a href="legales.html">Aviso Legal, Privacidad y Política de Cookies</a>
+    </footer>
+
+    <script>
+        function calcularPresion() {
+            const Q_m3h = parseFloat(document.getElementById('caudal').value);
+            const d_mm = parseFloat(document.getElementById('diametro').value);
+            const L = parseFloat(document.getElementById('longitud').value);
+            const C = parseFloat(document.getElementById('material').value);
+
+            if(!isNaN(Q_m3h) && !isNaN(d_mm) && !isNaN(L) && d_mm > 0 && Q_m3h > 0) {
+                // Conversiones para la fórmula métrica
+                const Q_m3s = Q_m3h / 3600;
+                const d_m = d_mm / 1000;
+
+                // Fórmula Hazen-Williams
+                const numerador = 10.67 * L * Math.pow(Q_m3s, 1.852);
+                const denominador = Math.pow(C, 1.852) * Math.pow(d_m, 4.87);
+                const hf_mca = numerador / denominador;
+                const hf_bar = hf_mca / 10.197; // Conversión a bar
+
+                const resDiv = document.getElementById('resultado');
+                resDiv.style.display = 'block';
+                resDiv.innerHTML = `
+                    <div style="font-size: 0.9rem; color: #64748b;">Caída de Presión</div>
+                    <div style="font-size: 2.2rem; font-weight: 800; color: #2563eb; margin: 0.5rem 0;">${hf_mca.toFixed(2)} m.c.a.</div>
+                    <div style="font-size: 1rem; color: #64748b; font-weight: 600;">( ${hf_bar.toFixed(3)} bar )</div>
+                `;
+            } else {
+                alert("Por favor, introduce valores numéricos mayores a cero.");
+            }
+        }
+    </script>
+</body>
+</html>
