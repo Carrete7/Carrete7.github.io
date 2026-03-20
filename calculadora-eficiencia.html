@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eficiencia y Maquinaria Industrial | IndustrialCalc Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #f8fafc; --surface: #ffffff; --text: #1e293b; 
+            --primary: #2563eb; --border: #e2e8f0; --text-muted: #64748b;
+            --header-bg: #0f172a; --accent-green: #10b981; --accent-orange: #f97316;
+        }
+
+        body { 
+            font-family: 'Inter', system-ui, -apple-system, sans-serif; 
+            background: var(--bg); color: var(--text); margin: 0; padding: 0; 
+            line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh;
+            align-items: center; 
+        }
+
+        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); width: 100%; box-sizing: border-box; }
+        .header-content { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .logo span { color: #3b82f6; }
+
+        main { width: 100%; max-width: 800px; padding: 2rem 1rem; box-sizing: border-box; flex: 1; }
+        .back-link { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 1.5rem; color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; }
+        .back-link:hover { color: var(--primary); }
+
+        .card { 
+            background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); 
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); margin-bottom: 2.5rem; width: 100%; box-sizing: border-box; 
+        }
+        h1 { font-size: 1.5rem; margin-top: 0; margin-bottom: 1.5rem; color: var(--primary); text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        
+        .form-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+        
+        label { display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.95rem; color: var(--text); }
+        input, select { 
+            width: 100%; padding: 0.85rem; border: 2px solid var(--border); border-radius: 8px; 
+            box-sizing: border-box; font-size: 1rem; transition: border-color 0.2s; font-family: inherit;
+        }
+        input:focus, select:focus { outline: none; border-color: var(--primary); }
+
+        button { 
+            width: 100%; padding: 1rem; background: var(--primary); color: white; border: none; 
+            border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 1.1rem; transition: background 0.2s;
+        }
+        button:hover { filter: brightness(0.9); }
+
+        .result { margin-top: 1.5rem; padding: 1.5rem; background: #eff6ff; border-radius: 8px; display: none; border: 2px solid #bfdbfe; text-align: center; }
+        .result-value { font-size: 2.2rem; font-weight: 800; color: var(--primary); margin: 0.5rem 0; }
+
+        .article-content { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); width: 100%; box-sizing: border-box; }
+        h2 { color: var(--primary); margin-top: 0; margin-bottom: 1rem; font-size: 1.4rem; }
+        h3 { margin-top: 1.5rem; font-size: 1.1rem; }
+        ul { padding-left: 1.5rem; color: var(--text-muted); }
+        li { margin-bottom: 0.75rem; }
+        p { color: var(--text-muted); }
+
+        footer { text-align: center; padding: 2rem; background-color: var(--surface); border-top: 1px solid var(--border); width: 100%; box-sizing: border-box; margin-top: auto; }
+        footer a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; }
+        footer a:hover { color: var(--primary); text-decoration: underline; }
+
+        @media (min-width: 600px) {
+            .form-grid { grid-template-columns: 1fr 1fr; }
+            .full-width { grid-column: 1 / -1; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <i class="fas fa-industry"></i> Industrial<span>Calc</span> Pro
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <a href="index.html" class="back-link">
+            <i class="fas fa-arrow-left"></i> Volver al inicio
+        </a>
+        
+        <div class="card">
+            <h1 style="color: var(--accent-green);"><i class="fas fa-plug"></i> Batería de Condensadores</h1>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 1.5rem;">Calcula la energía reactiva (kVAr) necesaria para corregir el Factor de Potencia y evitar penalizaciones.</p>
+            
+            <div class="form-grid">
+                <div class="full-width">
+                    <label>Potencia Activa de la instalación (kW)</label>
+                    <input type="number" id="potencia_activa" placeholder="Ej: 150">
+                </div>
+                <div>
+                    <label>Cos φ Actual (Inicial)</label>
+                    <input type="number" id="cos_inicial" placeholder="Ej: 0.75" step="0.01">
+                </div>
+                <div>
+                    <label>Cos φ Deseado (Objetivo)</label>
+                    <input type="number" id="cos_final" value="0.95" step="0.01">
+                </div>
+            </div>
+            
+            <button onclick="calcularCondensador()" style="background: var(--accent-green);">Calcular Potencia Reactiva</button>
+            <div id="res_condensador" class="result" style="background: #ecfdf5; border-color: #a7f3d0;"></div>
+        </div>
+
+        <div class="card">
+            <h1 style="color: #0ea5e9;"><i class="fas fa-fan"></i> Ventilación y Extracción</h1>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 1.5rem;">Determina el caudal de aire necesario para locales según renovaciones por hora.</p>
+            
+            <div class="form-grid">
+                <div>
+                    <label>Largo del local (m)</label>
+                    <input type="number" id="hvac_l" placeholder="Ej: 20">
+                </div>
+                <div>
+                    <label>Ancho del local (m)</label>
+                    <input type="number" id="hvac_a" placeholder="Ej: 10">
+                </div>
+                <div>
+                    <label>Altura del techo (m)</label>
+                    <input type="number" id="hvac_h" placeholder="Ej: 3.5">
+                </div>
+                <div>
+                    <label>Renovaciones por hora (ren/h)</label>
+                    <input type="number" id="hvac_ren" value="6">
+                </div>
+            </div>
+            
+            <button onclick="calcularVentilacion()" style="background: #0ea5e9;">Calcular Caudal de Extracción</button>
+            <div id="res_hvac" class="result" style="background: #f0f9ff; border-color: #bae6fd;"></div>
+        </div>
+
+        <div class="card">
+            <h1 style="color: var(--accent-orange);"><i class="fas fa-cogs"></i> Par Motor y Potencia</h1>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 1.5rem;">Relación mecánica básica para la selección de motores y reductores.</p>
+            
+            <div class="form-grid">
+                <div>
+                    <label>Potencia Mecánica (kW)</label>
+                    <input type="number" id="motor_p" placeholder="Ej: 11">
+                </div>
+                <div>
+                    <label>Velocidad de giro (RPM)</label>
+                    <input type="number" id="motor_rpm" placeholder="Ej: 1450">
+                </div>
+            </div>
+            
+            <button onclick="calcularPar()" style="background: var(--accent-orange);">Calcular Par Torsor</button>
+            <div id="res_motor" class="result" style="background: #fff7ed; border-color: #fed7aa;"></div>
+        </div>
+
+        <div class="article-content">
+            <h2>Manual de Fórmulas: Eficiencia y Mecánica</h2>
+            <p>El diseño industrial eficiente se basa en la optimización de recursos energéticos y el dimensionamiento mecánico preciso. A continuación se detallan las ecuaciones fundamentales empleadas en nuestras herramientas.</p>
+            
+            <h3>1. Corrección del Factor de Potencia</h3>
+            <p>La energía reactiva no produce trabajo útil pero sobrecarga las líneas de distribución. Para compensarla y evitar recargos en la factura eléctrica, se instalan baterías de condensadores.</p>
+            <p style="font-size: 1.2rem; text-align: center; padding: 10px 0;">
+                $$Q_c = P \cdot (\tan\phi_1 - \tan\phi_2)$$
+            </p>
+            <ul>
+                <li><strong>\(Q_c\):</strong> Potencia reactiva a instalar en kilovoltiamperios reactivos (\(\text{kVAr}\)).</li>
+                <li><strong>\(P\):</strong> Potencia activa total de la instalación (\(\text{kW}\)).</li>
+                <li><strong>\(\phi_1\) y \(\phi_2\):</strong> Ángulos correspondientes al coseno de phi inicial y al objetivo, respectivamente.</li>
+            </ul>
+
+            <h3>2. Caudal de Ventilación (HVAC)</h3>
+            <p>Para garantizar la calidad del aire interior (RITE) o extraer contaminantes en naves industriales, se calcula el volumen del recinto y se multiplica por la tasa de renovaciones exigida por normativa.</p>
+            <p style="font-size: 1.2rem; text-align: center; padding: 10px 0;">
+                $$Q = V \cdot n$$
+            </p>
+            <ul>
+                <li><strong>\(Q\):</strong> Caudal de extracción o impulsión necesario (\(\text{m}^3/\text{h}\)).</li>
+                <li><strong>\(V\):</strong> Volumen geométrico libre del local (\(\text{m}^3\)).</li>
+                <li><strong>\(n\):</strong> Número de renovaciones de aire por hora (\(\text{ren/h}\)). Varía desde 1-2 en oficinas hasta más de 10 en cocinas industriales.</li>
+            </ul>
+
+            <h3>3. Relación Potencia-Par en Motores</h3>
+            <p>El par torsor es la fuerza de giro que ejerce un eje. Es crítico para vencer la inercia de las máquinas accionadas (cintas transportadoras, bombas, ventiladores).</p>
+            <p style="font-size: 1.2rem; text-align: center; padding: 10px 0;">
+                $$T = \frac{P \cdot 9550}{RPM}$$
+            </p>
+            <ul>
+                <li><strong>\(T\) (Torque):</strong> Par motor generado en el eje, medido en Newton metro (\(\text{Nm}\)).</li>
+                <li><strong>\(P\):</strong> Potencia mecánica desarrollada por el motor (\(\text{kW}\)).</li>
+                <li><strong>\(RPM\):</strong> Revoluciones por minuto o velocidad angular del eje. La constante 9550 surge de la conversión de radianes por segundo y vatios a unidades industriales estándar.</li>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <a href="legales.html">Aviso Legal, Privacidad y Política de Cookies</a>
+    </footer>
+
+    <script>
+        function calcularCondensador() {
+            const P = parseFloat(document.getElementById('potencia_activa').value);
+            const cos1 = parseFloat(document.getElementById('cos_inicial').value);
+            const cos2 = parseFloat(document.getElementById('cos_final').value);
+
+            if(P > 0 && cos1 > 0 && cos1 <= 1 && cos2 > 0 && cos2 <= 1) {
+                const angulo1 = Math.acos(cos1);
+                const angulo2 = Math.acos(cos2);
+                const Qc = P * (Math.tan(angulo1) - Math.tan(angulo2));
+
+                const resDiv = document.getElementById('res_condensador');
+                resDiv.style.display = 'block';
+                if(Qc > 0) {
+                    resDiv.innerHTML = `
+                        <div style="font-size: 0.9rem; color: #047857;">Batería de Condensadores Recomendada</div>
+                        <div class="result-value" style="color: #059669;">${Qc.toFixed(2)} kVAr</div>
+                    `;
+                } else {
+                    resDiv.innerHTML = `<div style="color: #047857; font-weight: bold;">El Factor de Potencia actual ya es igual o mejor que el deseado. No requiere compensación.</div>`;
+                }
+            } else {
+                alert("Por favor, introduce valores válidos. El Cos φ debe estar entre 0.1 y 1.");
+            }
+        }
+
+        function calcularVentilacion() {
+            const l = parseFloat(document.getElementById('hvac_l').value);
+            const a = parseFloat(document.getElementById('hvac_a').value);
+            const h = parseFloat(document.getElementById('hvac_h').value);
+            const ren = parseFloat(document.getElementById('hvac_ren').value);
+
+            if(l > 0 && a > 0 && h > 0 && ren > 0) {
+                const volumen = l * a * h;
+                const caudal = volumen * ren;
+
+                const resDiv = document.getElementById('res_hvac');
+                resDiv.style.display = 'block';
+                resDiv.innerHTML = `
+                    <div style="font-size: 0.9rem; color: #0369a1;">Caudal de Diseño Necesario</div>
+                    <div class="result-value" style="color: #0284c7;">${caudal.toFixed(0)} m³/h</div>
+                    <div style="font-size: 0.95rem; color: #0369a1;">Volumen del recinto: ${volumen.toFixed(1)} m³</div>
+                `;
+            } else {
+                alert("Por favor, introduce las dimensiones del local.");
+            }
+        }
+
+        function calcularPar() {
+            const P = parseFloat(document.getElementById('motor_p').value);
+            const rpm = parseFloat(document.getElementById('motor_rpm').value);
+
+            if(P > 0 && rpm > 0) {
+                const torque = (P * 9550) / rpm;
+
+                const resDiv = document.getElementById('res_motor');
+                resDiv.style.display = 'block';
+                resDiv.innerHTML = `
+                    <div style="font-size: 0.9rem; color: #c2410c;">Par Torsor en el Eje</div>
+                    <div class="result-value" style="color: #ea580c;">${torque.toFixed(2)} Nm</div>
+                `;
+            } else {
+                alert("Por favor, introduce la potencia y las RPM.");
+            }
+        }
+    </script>
+</body>
+</html>
