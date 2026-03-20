@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo de Volumen de Hormigón | IndustrialCalc Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --bg: #f8fafc; --surface: #ffffff; --text: #1e293b; --primary: #52525b; --border: #e2e8f0; --header-bg: #0f172a; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0; display: flex; flex-direction: column; min-height: 100vh; align-items: center; }
+        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; width: 100%; box-sizing: border-box; }
+        .header-content { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        main { width: 100%; max-width: 800px; padding: 2rem 1rem; box-sizing: border-box; }
+        .back-link { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 1.5rem; color: #64748b; text-decoration: none; font-weight: 500; }
+        .card { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 2rem; }
+        h1 { color: var(--primary); text-align: center; margin-bottom: 1.5rem; }
+        label { font-size: 0.85rem; font-weight: 600; color: #475569; display: block; margin-top: 1rem; }
+        input { width: 100%; padding: 0.8rem; margin-top: 5px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box; }
+        button { width: 100%; padding: 1rem; background: var(--primary); color: white; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 1.5rem; transition: 0.2s; }
+        button:hover { background: #3f3f46; }
+        .result { margin-top: 1.5rem; padding: 1.5rem; background: #f4f4f5; border-radius: 8px; display: none; text-align: center; border: 2px solid #e4e4e7; }
+        .info-box { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); }
+        footer { text-align: center; padding: 2rem; width: 100%; margin-top: auto; border-top: 1px solid var(--border); }
+    </style>
+</head>
+<body>
+    <header><div class="header-content"><a href="index.html" style="color:white; text-decoration:none; font-weight:800;"><i class="fas fa-industry"></i> IndustrialCalc Pro</a></div></header>
+    <main>
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+        <div class="card">
+            <h1><i class="fas fa-hard-hat"></i> Volumen de Hormigón</h1>
+            <label>Largo (metros)</label>
+            <input type="number" id="largo_h" placeholder="Ej: 10">
+            <label>Ancho (metros)</label>
+            <input type="number" id="ancho_h" placeholder="Ej: 5">
+            <label>Espesor / Profundidad (metros)</label>
+            <input type="number" id="espesor_h" placeholder="Ej: 0.2">
+            <button onclick="calcHormigon()">Calcular Metros Cúbicos</button>
+            <div id="res_hormigon" class="result"></div>
+        </div>
+
+        <div class="info-box" style="background: #f4f4f5;">
+            <h2 style="font-size: 1.2rem; color: #52525b;">Cubicaje de Materiales</h2>
+            <p style="font-size: 0.95rem; line-height: 1.6; color: #3f3f46;">
+                Calcular los metros cúbicos exactos es imprescindible para pedir camiones hormigonera (cubas) y no quedarse corto ni desperdiciar material en losas, zapatas o soleras.
+            </p>
+            <p style="font-size: 1.2rem; text-align: center; padding: 10px 0;">
+                $$V = L \cdot W \cdot E \cdot 1.05$$
+            </p>
+            <ul style="font-size: 0.9rem; color: #3f3f46; padding-left: 20px;">
+                <li><strong>\(V\) (Volumen):</strong> Volumen total necesario en metros cúbicos (\(m^3\)).</li>
+                <li><strong>\(L\), \(W\), \(E\):</strong> Largo, ancho y espesor de la losa (m).</li>
+                <li><strong>\(1.05\) (Merma):</strong> Coeficiente de seguridad del 5% recomendado por desperdicio y desniveles del terreno.</li>
+            </ul>
+        </div>
+    </main>
+    <footer><a href="legales.html" style="color:#64748b; text-decoration:none;">Aviso Legal y Privacidad</a></footer>
+    <script>
+        function calcHormigon() {
+            const L = parseFloat(document.getElementById('largo_h').value);
+            const W = parseFloat(document.getElementById('ancho_h').value);
+            const E = parseFloat(document.getElementById('espesor_h').value);
+            if(L>0 && W>0 && E>0) {
+                const volPuro = L * W * E;
+                const volTotal = volPuro * 1.05; // 5% de desperdicio
+                const resDiv = document.getElementById('res_hormigon');
+                resDiv.style.display = 'block';
+                resDiv.innerHTML = `<strong>Volumen a pedir (incluye 5% extra):</strong><br><span style="font-size:2.5rem; color:#52525b;">${volTotal.toFixed(2)} m³</span>`;
+            }
+        }
+    </script>
+</body>
+</html>
