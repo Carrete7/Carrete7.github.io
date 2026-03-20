@@ -20,7 +20,7 @@
             --header-bg: #020617; --ad-bg: #334155; --excel-bg: #059669;
         }
 
-        body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg-body); color: var(--text-main); margin: 0; transition: 0.3s; }
+        body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg-body); color: var(--text-main); margin: 0; transition: 0.3s; display: flex; flex-direction: column; min-height: 100vh;}
         
         header { background: var(--header-bg); color: white; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 1.5rem; font-weight: 800; } .logo span { color: #3b82f6; }
@@ -33,7 +33,7 @@
         .nav-tabs button:hover { color: var(--primary); }
         .nav-tabs button.active { color: var(--primary); border-bottom-color: var(--primary); }
 
-        .layout { max-width: 1200px; margin: 30px auto; padding: 0 5%; display: grid; grid-template-columns: 1fr 300px; gap: 30px; }
+        .layout { max-width: 1200px; margin: 30px auto; padding: 0 5%; display: grid; grid-template-columns: 1fr 300px; gap: 30px; flex: 1; width: 100%; box-sizing: border-box;}
         .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 30px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
         
         .calc-section { display: none; animation: fadeIn 0.3s ease; }
@@ -73,7 +73,7 @@
         .ad-box { background: var(--ad-bg); border: 1px dashed var(--text-muted); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); text-align: center; }
         .ad-square { height: 250px; } .ad-tall { height: 600px; }
         
-        footer { text-align: center; padding: 40px 5%; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 40px; }
+        footer { text-align: center; padding: 40px 5%; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 40px; background: var(--surface);}
         
         @media print { body { background: white; color: black; } header, .nav-tabs, .sidebar, .btn-primary, .result-actions, footer { display: none !important; } .layout { display: block; } .card { border: none; box-shadow: none; padding: 0; } .result-container { border: 2px solid black; background: white; color: black; } .result-value { color: black; } input, select { border: 1px solid #000; color: #000; } }
         @media (max-width: 850px) { .layout { grid-template-columns: 1fr; } .ad-tall { display: none; } }
@@ -285,11 +285,8 @@
 
         // --- MOTOR DE EXPORTACIÓN A EXCEL (CSV) ---
         function exportarExcel(nombreArchivo, cabeceras, datos) {
-            // Se utiliza punto y coma para que el Excel europeo separe las columnas correctamente
-            let contenidoCSV = "\uFEFF"; // BOM para asegurar codificación UTF-8 en Excel
+            let contenidoCSV = "\uFEFF"; 
             contenidoCSV += cabeceras.join(";") + "\n";
-            
-            // Limpiar datos (cambiar puntos por comas si es necesario, o mantener estándar)
             let datosLimpios = datos.map(dato => String(dato).replace('.', ','));
             contenidoCSV += datosLimpios.join(";") + "\n";
 
@@ -308,7 +305,7 @@
         function calcularE() {
             let s = parseFloat(document.getElementById('el-sis').value); 
             let m = parseFloat(document.getElementById('el-mat').value);
-            let factorLongitud = parseFloat(document.getElementById('el-uni-l').value); // Selector de medidas
+            let factorLongitud = parseFloat(document.getElementById('el-uni-l').value); 
             let l = parseFloat(document.getElementById('el-long').value) * factorLongitud; 
             let i = parseFloat(document.getElementById('el-int').value);
             let v = parseFloat(document.getElementById('el-volt').value);
@@ -317,7 +314,6 @@
             document.getElementById('res-e-box').style.display = 'block';
         }
 
-        // Nueva: Hipotecas y Préstamos
         function calcularHipoteca() {
             let cap = parseFloat(document.getElementById('fin-cap').value);
             let interesAnual = parseFloat(document.getElementById('fin-int').value);
@@ -328,10 +324,8 @@
 
             document.getElementById('lbl-moneda').innerText = document.getElementById('fin-moneda').value;
 
-            // Fórmula de cuota constante (Sistema Francés)
             let interesMensual = (interesAnual / 100) / 12;
             let cuota = cap * (interesMensual * Math.pow(1 + interesMensual, totalMeses)) / (Math.pow(1 + interesMensual, totalMeses) - 1);
-            
             if(interesAnual === 0) cuota = cap / totalMeses;
 
             let totalPagar = cuota * totalMeses;
@@ -342,7 +336,6 @@
             document.getElementById('res-fin-box').style.display = 'block';
         }
 
-        // Termodinámica con cambio de unidades
         function calcularTer() {
             let v = parseFloat(document.getElementById('ter-v').value);
             let t_horas = parseFloat(document.getElementById('ter-t').value);
@@ -351,27 +344,24 @@
             
             if(isNaN(v) || isNaN(t_horas) || isNaN(dt)) return alert("Revisa los datos.");
             
-            // Si insertan el salto en Fahrenheit, convertir el salto a Celsius/Kelvin. 
-            // Salto de 1°F equivale a un salto de 5/9 °C.
             if(escala === 'F') dt = dt * (5/9);
             
             let t_segundos = t_horas * 3600;
-            let q_kj = v * 4.18 * dt; // Asumiendo agua
+            let q_kj = v * 4.18 * dt; 
             let p_kw = q_kj / t_segundos;
             
             document.getElementById('res-ter-val').innerText = p_kw.toFixed(2);
             document.getElementById('res-ter-box').style.display = 'block';
         }
 
-        // Fluidos con selector de salida en vivo
-        let potenciaKwBase = 0; // Guardamos el valor en kW para convertirlo en vivo
+        let potenciaKwBase = 0; 
         function calcularF() {
             let d = parseFloat(document.getElementById('fl-den').value); let c = parseFloat(document.getElementById('fl-cau').value);
             let a = parseFloat(document.getElementById('fl-alt').value); let r = parseFloat(document.getElementById('fl-ren').value);
             if(isNaN(d) || isNaN(c) || isNaN(a) || isNaN(r)) return;
             
             potenciaKwBase = (((d * 9.81 * c * a) / r) / 1000);
-            convertirPotencia(); // Aplica la unidad seleccionada
+            convertirPotencia(); 
             document.getElementById('res-f-box').style.display = 'block';
         }
 
@@ -384,7 +374,6 @@
             document.getElementById('res-f-val').innerText = final.toFixed(2);
         }
 
-        // Nueva: Geometría de depósitos
         function calcularGeo() {
             let factorD = parseFloat(document.getElementById('geo-ud').value);
             let factorH = parseFloat(document.getElementById('geo-uh').value);
