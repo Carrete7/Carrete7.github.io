@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instalaciones y Alumbrado | IndustrialCalc Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #f8fafc; --surface: #ffffff; --text: #1e293b; 
+            --primary: #2563eb; --border: #e2e8f0; --text-muted: #64748b;
+            --header-bg: #0f172a; --accent-purple: #8b5cf6; --accent-yellow: #f59e0b;
+        }
+
+        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 0; line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; align-items: center; }
+        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); width: 100%; box-sizing: border-box; }
+        .header-content { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .logo span { color: #3b82f6; }
+
+        main { width: 100%; max-width: 800px; padding: 2rem 1rem; box-sizing: border-box; flex: 1; }
+        .back-link { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 1.5rem; color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; }
+        .back-link:hover { color: var(--primary); }
+
+        .card { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); margin-bottom: 2.5rem; width: 100%; box-sizing: border-box; }
+        h1 { font-size: 1.5rem; margin-top: 0; margin-bottom: 1.5rem; color: var(--primary); text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        
+        .form-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+        label { display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.95rem; color: var(--text); }
+        input, select { width: 100%; padding: 0.85rem; border: 2px solid var(--border); border-radius: 8px; box-sizing: border-box; font-size: 1rem; transition: border-color 0.2s; font-family: inherit; }
+        input:focus, select:focus { outline: none; border-color: var(--primary); }
+
+        button { width: 100%; padding: 1rem; color: white; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 1.1rem; transition: background 0.2s; }
+        button:hover { filter: brightness(0.9); }
+
+        .result { margin-top: 1.5rem; padding: 1.5rem; background: #eff6ff; border-radius: 8px; display: none; border: 2px solid #bfdbfe; text-align: center; }
+        .result-value { font-size: 2.2rem; font-weight: 800; margin: 0.5rem 0; }
+
+        .article-content { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); width: 100%; box-sizing: border-box; }
+        h2 { color: var(--primary); margin-top: 0; margin-bottom: 1rem; font-size: 1.4rem; }
+        h3 { margin-top: 1.5rem; font-size: 1.1rem; }
+        ul { padding-left: 1.5rem; color: var(--text-muted); }
+        li { margin-bottom: 0.75rem; }
+        p { color: var(--text-muted); }
+
+        footer { text-align: center; padding: 2rem; background-color: var(--surface); border-top: 1px solid var(--border); width: 100%; box-sizing: border-box; margin-top: auto; }
+        footer a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; }
+        footer a:hover { color: var(--primary); text-decoration: underline; }
+
+        @media (min-width: 600px) {
+            .form-grid { grid-template-columns: 1fr 1fr; }
+            .full-width { grid-column: 1 / -1; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <i class="fas fa-industry"></i> Industrial<span>Calc</span> Pro
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+        
+        <div class="card">
+            <h1 style="color: var(--accent-yellow);"><i class="fas fa-lightbulb"></i> Cálculo de Alumbrado (Método Lúmenes)</h1>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 1.5rem;">Determina el número de luminarias LED necesarias para alcanzar los luxes que marca la normativa.</p>
+            
+            <div class="form-grid">
+                <div>
+                    <label>Superficie del local (m²)</label>
+                    <input type="number" id="lum_area" placeholder="Ej: 150">
+                </div>
+                <div>
+                    <label>Iluminancia media deseada (Lux)</label>
+                    <input type="number" id="lum_lux" placeholder="Ej: 500 (Oficinas)">
+                </div>
+                <div>
+                    <label>Flujo por luminaria (Lúmenes)</label>
+                    <input type="number" id="lum_flujo" placeholder="Ej: 4000">
+                </div>
+                <div>
+                    <label>Factor de Mantenimiento (0.1 - 1.0)</label>
+                    <input type="number" id="lum_fm" value="0.8" step="0.1">
+                </div>
+                <div class="full-width">
+                    <label>Factor de Utilización (0.1 - 1.0)</label>
+                    <input type="number" id="lum_fu" value="0.6" step="0.1" placeholder="Depende del color de paredes y techo">
+                </div>
+            </div>
+            
+            <button onclick="calcularIluminacion()" style="background: var(--accent-yellow); color: #1e293b;">Calcular Luminarias</button>
+            <div id="res_alumbrado" class="result" style="background: #fef3c7; border-color: #fde68a;"></div>
+        </div>
+
+        <div class="card">
+            <h1 style="color: var(--accent-purple);"><i class="fas fa-bolt"></i> Calibre de Protección (Magnetotérmico)</h1>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 1.5rem;">Calcula la intensidad nominal y selecciona el interruptor automático adecuado para el circuito.</p>
+            
+            <div class="form-grid">
+                <div class="full-width">
+                    <label>Sistema Eléctrico</label>
+                    <select id="prot_sis">
+                        <option value="1">Monofásico (230V)</option>
+                        <option value="1.732">Trifásico (400V)</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Potencia del Receptor (W)</label>
+                    <input type="number" id="prot_p" placeholder="Ej: 4500">
+                </div>
+                <div>
+                    <label>Factor de Potencia (Cos φ)</label>
+                    <input type="number" id="prot_cos" value="1" step="0.05">
+                </div>
+            </div>
+            
+            <button onclick="calcularProteccion()" style="background: var(--accent-purple);">Seleccionar Magnetotérmico</button>
+            <div id="res_proteccion" class="result" style="background: #f3e8ff; border-color: #d8b4fe;"></div>
+        </div>
+
+        <div class="article-content">
+            <h2>Diseño de Instalaciones y Normativa</h2>
+            <p>El diseño de alumbrado y la selección de aparamenta de protección son tareas rutinarias que requieren precisión para cumplir con normativas como el Reglamento Electrotécnico para Baja Tensión (REBT) y el Código Técnico de la Edificación (CTE).</p>
+            
+            <h3>1. El Método de los Lúmenes (Iluminación)</h3>
+            <p>Se utiliza para obtener el valor medio de iluminancia en instalaciones de alumbrado general. La fórmula para hallar el número total de luminarias (\(N\)) es:</p>
+            <p style="font-size: 1.2rem; text-align: center; padding: 10px 0;">
+                $$N = \frac{E_m \cdot S}{\Phi \cdot F_u \cdot F_m}$$
+            </p>
+            <ul>
+                <li><strong>\(E_m\):</strong> Iluminancia media planificada (en Lux). Las oficinas suelen requerir 500 lx, mientras que los pasillos 100 lx.</li>
+                <li><strong>\(S\):</strong> Superficie a iluminar (\(\text{m}^2\)).</li>
+                <li><strong>\(\Phi\):</strong> Flujo luminoso de una única luminaria (Lúmenes).</li>
+                <li><strong>\(F_u\) (Factor de Utilización):</strong> Relación entre el flujo útil que llega al plano de trabajo y el emitido.</li>
+                <li><strong>\(F_m\) (Factor de Mantenimiento):</strong> Previsión de la pérdida de luz por envejecimiento de las lámparas y acumulación de polvo (suele tomarse 0.8 en ambientes limpios).</li>
+            </ul>
+
+            <h3>2. Calibre de los Interruptores Automáticos</h3>
+            <p>Para proteger la línea eléctrica contra sobrecargas y cortocircuitos, el interruptor magnetotérmico debe tener una Intensidad Nominal (\(I_n\)) inmediatamente superior a la intensidad de diseño del receptor, pero inferior a la intensidad máxima admisible del cable.</p>
+            <p style="font-size: 1.2rem; text-align: center; padding: 10px 0;">
+                $$I = \frac{P}{\sqrt{3} \cdot V \cdot \cos\phi} \quad \text{(Para Trifásica)}$$
+            </p>
+            <ul>
+                <li><strong>\(I\):</strong> Intensidad de corriente absorbida (\(\text{A}\)).</li>
+                <li><strong>Calibres normalizados:</strong> En el mercado industrial y doméstico, los calibres estandarizados de magnetotérmicos son: 10A, 16A, 20A, 25A, 32A, 40A, 50A y 63A.</li>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <a href="legales.html">Aviso Legal, Privacidad y Política de Cookies</a>
+    </footer>
+
+    <script>
+        function calcularIluminacion() {
+            const S = parseFloat(document.getElementById('lum_area').value);
+            const E = parseFloat(document.getElementById('lum_lux').value);
+            const flujo = parseFloat(document.getElementById('lum_flujo').value);
+            const Fm = parseFloat(document.getElementById('lum_fm').value);
+            const Fu = parseFloat(document.getElementById('lum_fu').value);
+
+            if(S > 0 && E > 0 && flujo > 0 && Fm > 0 && Fu > 0) {
+                const N = (E * S) / (flujo * Fu * Fm);
+                const luminarias = Math.ceil(N);
+
+                const resDiv = document.getElementById('res_alumbrado');
+                resDiv.style.display = 'block';
+                resDiv.innerHTML = `
+                    <div style="font-size: 0.9rem; color: #b45309;">Número de Luminarias Necesarias</div>
+                    <div class="result-value" style="color: #d97706;">${luminarias} Unidades</div>
+                    <div style="font-size: 0.95rem; color: #b45309;">(Cálculo exacto: ${N.toFixed(2)})</div>
+                `;
+            } else {
+                alert("Por favor, introduce todos los parámetros correctamente.");
+            }
+        }
+
+        function calcularProteccion() {
+            const sis = parseFloat(document.getElementById('prot_sis').value);
+            const P = parseFloat(document.getElementById('prot_p').value);
+            const cos = parseFloat(document.getElementById('prot_cos').value);
+            const V = sis === 1 ? 230 : 400;
+
+            if(P > 0 && cos > 0 && cos <= 1) {
+                const I = P / (sis * V * cos);
+                
+                // Buscar el calibre normalizado superior
+                const calibres = [10, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125];
+                let calibre_recomendado = calibres.find(c => c >= I);
+                
+                let texto_calibre = calibre_recomendado ? `${calibre_recomendado} A` : "Requiere interruptor de caja moldeada (>125A)";
+
+                const resDiv = document.getElementById('res_proteccion');
+                resDiv.style.display = 'block';
+                resDiv.innerHTML = `
+                    <div style="font-size: 0.9rem; color: #6d28d9;">Magnetotérmico Recomendado</div>
+                    <div class="result-value" style="color: #7c3aed;">${texto_calibre}</div>
+                    <div style="font-size: 0.95rem; color: #6d28d9;">Intensidad Real: ${I.toFixed(2)} A</div>
+                `;
+            } else {
+                alert("Verifica la potencia y el Factor de Potencia.");
+            }
+        }
+    </script>
+</body>
+</html>
