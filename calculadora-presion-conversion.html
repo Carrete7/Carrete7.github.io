@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E88WRKF9NQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-E88WRKF9NQ');
+    </script>
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertidor de Unidades de Presión (bar, psi, kPa) | IndustrialCalc Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --bg: #f8fafc; --surface: #ffffff; --text: #1e293b; --primary: #14b8a6; --border: #e2e8f0; --header-bg: #0f172a; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0; display: flex; flex-direction: column; min-height: 100vh; align-items: center; }
+        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; width: 100%; box-sizing: border-box; }
+        .header-content { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        main { width: 100%; max-width: 800px; padding: 2rem 1rem; box-sizing: border-box; }
+        .back-link { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 1.5rem; color: #64748b; text-decoration: none; font-weight: 500; }
+        .card { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 2rem; }
+        h1 { color: var(--primary); text-align: center; margin-bottom: 1.5rem; }
+        label { font-size: 0.85rem; font-weight: 600; color: #475569; display: block; margin-top: 1rem; }
+        input { width: 100%; padding: 0.8rem; margin-top: 5px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box; font-size: 1.1rem; }
+        .result-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 1.5rem; }
+        .res-box { background: #f0fdfa; padding: 1rem; border-radius: 8px; border: 1px solid #ccfbf1; text-align: center; }
+        .res-box span { display: block; font-size: 1.5rem; font-weight: 700; color: #0d9488; }
+        .res-box small { color: #115e59; font-weight: 600; }
+        .info-box { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); margin-top: 2rem; }
+        footer { text-align: center; padding: 2rem; width: 100%; margin-top: auto; border-top: 1px solid var(--border); }
+    </style>
+</head>
+<body>
+    <header><div class="header-content"><a href="index.html" style="color:white; text-decoration:none; font-weight:800;"><i class="fas fa-industry"></i> IndustrialCalc Pro</a></div></header>
+    <main>
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+        <div class="card">
+            <h1><i class="fas fa-tachometer-alt"></i> Conversión de Presión</h1>
+            <label>Introduce el valor en Bar:</label>
+            <input type="number" id="v_bar" placeholder="Ej: 5.5" onkeyup="convertirPresion()" onchange="convertirPresion()">
+            
+            <div class="result-grid">
+                <div class="res-box"><span id="out_psi">0</span><small>PSI (Libras/pulg²)</small></div>
+                <div class="res-box"><span id="out_kpa">0</span><small>kPa (Kilopascales)</small></div>
+                <div class="res-box"><span id="out_atm">0</span><small>Atmósferas</small></div>
+                <div class="res-box"><span id="out_mca">0</span><small>m.c.a. (Metros agua)</small></div>
+            </div>
+        </div>
+
+        <div class="info-box" style="background: #f0fdfa;">
+            <h2 style="font-size: 1.2rem; color: #0d9488;">Equivalencias Hidráulicas y Neumáticas</h2>
+            <p style="font-size: 0.95rem; line-height: 1.6; color: #115e59;">
+                Traducir la presión de trabajo entre los sistemas métrico e imperial es la operación más repetida en catálogos de bombas y compresores.
+            </p>
+            <p style="font-size: 1.2rem; text-align: center; padding: 10px 0;">
+                $$1 \text{ bar} = 14.5038 \text{ psi}$$
+            </p>
+            <ul style="font-size: 0.9rem; color: #115e59; padding-left: 20px;">
+                <li><strong>bar:</strong> Unidad estándar europea. Aprox. la presión atmosférica a nivel del mar.</li>
+                <li><strong>PSI:</strong> Pounds per Square Inch (sistema imperial).</li>
+                <li><strong>kPa:</strong> Kilopascales (Sistema Internacional oficial). $1 \text{ bar} = 100 \text{ kPa}$.</li>
+                <li><strong>m.c.a.:</strong> Metros de Columna de Agua. $1 \text{ bar} \approx 10.197 \text{ m.c.a.}$</li>
+            </ul>
+        </div>
+    </main>
+    <footer><a href="legales.html" style="color:#64748b; text-decoration:none;">Aviso Legal y Privacidad</a></footer>
+    <script>
+        function convertirPresion() {
+            let bar = parseFloat(document.getElementById('v_bar').value);
+            if(isNaN(bar)) bar = 0;
+            
+            document.getElementById('out_psi').innerText = (bar * 14.5038).toFixed(2);
+            document.getElementById('out_kpa').innerText = (bar * 100).toFixed(0);
+            document.getElementById('out_atm').innerText = (bar * 0.986923).toFixed(3);
+            document.getElementById('out_mca').innerText = (bar * 10.197).toFixed(2);
+        }
+    </script>
+</body>
+</html>
