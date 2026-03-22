@@ -2,7 +2,6 @@
 <html lang="es">
 <head>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
-    
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-E88WRKF9NQ"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -27,7 +26,7 @@
         .dropdown { position: relative; display: inline-block; }
         .dropbtn { background-color: rgba(255,255,255,0.1); color: white; padding: 0.8rem 1.2rem; font-size: 1rem; border: none; border-radius: 8px; cursor: pointer; font-family: inherit; font-weight: 600; display: flex; align-items: center; gap: 8px; transition: 0.2s;}
         .dropdown:hover .dropbtn { background-color: rgba(255,255,255,0.2); }
-        .dropdown-content { display: none; position: absolute; right: 0; top: 110%; background-color: var(--surface); min-width: 260px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); z-index: 10; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); max-height: 400px; overflow-y: auto;}
+        .dropdown-content { display: none; position: absolute; right: 0; top: 110%; background-color: var(--surface); min-width: 280px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); z-index: 10; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); max-height: 500px; overflow-y: auto;}
         .dropdown-content a { color: var(--text-main); padding: 12px 16px; text-decoration: none; display: block; font-size: 0.9rem; border-bottom: 1px solid var(--border); }
         .dropdown-content a:hover { background-color: var(--bg-body); color: var(--primary); }
         .dropdown:hover .dropdown-content { display: block; }
@@ -59,7 +58,7 @@
             <a href="index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span> Pro</a>
             
             <div class="dropdown">
-                <button class="dropbtn">Calculadoras <i class="fas fa-chevron-down"></i></button>
+                <button class="dropbtn">26 Herramientas <i class="fas fa-chevron-down"></i></button>
                 <div class="dropdown-content">
                     <a href="herramientas-basicas.html">⚡ Cálculos Básicos</a>
                     <a href="calculadora-bombeo.html">🌊 Potencia de Bombeo</a>
@@ -82,6 +81,11 @@
                     <a href="calculadora-ventilacion.html">🌬️ Renovaciones Aire</a>
                     <a href="calculadora-transformador.html">🔌 Transformadores</a>
                     <a href="calculadora-roi-solar.html">💶 Amortización Solar</a>
+                    <a href="calculadora-par.html">🔄 Par Motor (Nm)</a>
+                    <a href="calculadora-frigorias.html">🧊 Frigorías por Superficie</a>
+                    <a href="calculadora-seccion-tri.html">⚡ Sección Cable Trifásico</a>
+                    <a href="calculadora-gasoleo.html">🔥 Consumo de Gasóleo</a>
+                    <a href="calculadora-presion-conversion.html">🎛️ Conversión de Presión</a>
                 </div>
             </div>
         </div>
@@ -90,11 +94,11 @@
     <main>
         <div class="hero-text">
             <h1>Suite de Ingeniería Industrial</h1>
-            <p>21 herramientas profesionales para automatizar cálculos en oficina técnica y trabajo de campo.</p>
+            <p>26 herramientas profesionales para automatizar cálculos en oficina técnica y trabajo de campo.</p>
             
             <div class="search-hero">
                 <i class="fas fa-search"></i>
-                <input type="text" id="buscadorHome" placeholder="Buscar calculadora (ej: acero, solar, batería...)" onkeyup="filtrarTarjetas()">
+                <input type="text" id="buscadorHome" placeholder="Buscar calculadora (ej: acero, solar, gasóleo...)" onkeyup="filtrarTarjetas()">
             </div>
         </div>
 
@@ -120,6 +124,12 @@
             <a href="calculadora-ventilacion.html" class="card"><div class="card-icon" style="background: #cffafe; color: #0891b2;"><i class="fas fa-fan"></i></div><h2>Renovaciones de Aire</h2><p>Caudal de ventilación y extracción por normativa.</p></a>
             <a href="calculadora-transformador.html" class="card"><div class="card-icon" style="background: #fef08a; color: #ca8a04;"><i class="fas fa-charging-station"></i></div><h2>Transformadores</h2><p>Corriente nominal y potencia trifásica.</p></a>
             <a href="calculadora-roi-solar.html" class="card"><div class="card-icon" style="background: #fef3c7; color: #f59e0b;"><i class="fas fa-hand-holding-dollar"></i></div><h2>Amortización Solar</h2><p>Cálculo del retorno de inversión (ROI) fotovoltaico.</p></a>
+            
+            <a href="calculadora-par.html" class="card"><div class="card-icon" style="background: #eef2ff; color: #6366f1;"><i class="fas fa-sync"></i></div><h2>Par Motor</h2><p>Cálculo de Torque en Nm para ejes y reductores.</p></a>
+            <a href="calculadora-frigorias.html" class="card"><div class="card-icon" style="background: #f0f9ff; color: #0ea5e9;"><i class="fas fa-snowflake"></i></div><h2>Frigorías HVAC</h2><p>Estimación rápida de potencia de aire acondicionado.</p></a>
+            <a href="calculadora-seccion-tri.html" class="card"><div class="card-icon" style="background: #fffbeb; color: #d97706;"><i class="fas fa-bolt"></i></div><h2>Sección Trifásica</h2><p>Cálculo de cables por caída de tensión en 400V.</p></a>
+            <a href="calculadora-gasoleo.html" class="card"><div class="card-icon" style="background: #fef2f2; color: #ef4444;"><i class="fas fa-fire"></i></div><h2>Consumo de Gasóleo</h2><p>Gasto mensual de calderas en calefacción.</p></a>
+            <a href="calculadora-presion-conversion.html" class="card"><div class="card-icon" style="background: #f0fdfa; color: #14b8a6;"><i class="fas fa-tachometer-alt"></i></div><h2>Conversión de Presión</h2><p>Conversor de bar a psi, kPa, y m.c.a. al instante.</p></a>
         </div>
     </main>
 
