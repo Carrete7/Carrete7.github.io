@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E88WRKF9NQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-E88WRKF9NQ');
+    </script>
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Factor de Potencia | IndustrialCalc Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --bg: #f8fafc; --surface: #ffffff; --text: #1e293b; --primary: #8b5cf6; --border: #e2e8f0; --header-bg: #0f172a; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0; display: flex; flex-direction: column; min-height: 100vh; align-items: center; }
+        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; width: 100%; box-sizing: border-box; }
+        .header-content { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        main { width: 100%; max-width: 800px; padding: 2rem 1rem; box-sizing: border-box; }
+        .back-link { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 1.5rem; color: #64748b; text-decoration: none; font-weight: 500; }
+        .card { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 2rem; }
+        h1 { color: var(--primary); text-align: center; margin-bottom: 1.5rem; }
+        label { font-size: 0.85rem; font-weight: 600; color: #475569; display: block; margin-top: 1rem; }
+        input { width: 100%; padding: 0.8rem; margin-top: 5px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box; }
+        button { width: 100%; padding: 1rem; background: var(--primary); color: white; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 1.5rem; transition: 0.2s; }
+        button:hover { background: #7c3aed; }
+        .result { margin-top: 1.5rem; padding: 1.5rem; background: #f5f3ff; border-radius: 8px; display: none; text-align: center; border: 2px solid #ddd6fe; }
+        .info-box { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); margin-top: 2rem; }
+        footer { text-align: center; padding: 2rem; width: 100%; margin-top: auto; border-top: 1px solid var(--border); }
+    </style>
+</head>
+<body>
+    <header><div class="header-content"><a href="index.html" style="color:white; text-decoration:none; font-weight:800;"><i class="fas fa-industry"></i> IndustrialCalc Pro</a></div></header>
+    <main>
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+        <div class="card">
+            <h1><i class="fas fa-bolt"></i> Corrección Factor de Potencia</h1>
+            <label>Potencia Activa Total (kW)</label>
+            <input type="number" id="p_activa" placeholder="Ej: 150">
+            <label>Factor de Potencia Actual $(\cos\phi_1)$</label>
+            <input type="number" id="fp_actual" placeholder="Ej: 0.75" step="0.01">
+            <label>Factor de Potencia Deseado $(\cos\phi_2)$</label>
+            <input type="number" id="fp_deseado" value="0.95" step="0.01">
+            <button onclick="calcBateria()">Calcular Potencia Reactiva (kVAR)</button>
+            <div id="res_fp" class="result"></div>
+        </div>
+
+        <div class="info-box" style="background: #f5f3ff;">
+            <h2 style="font-size: 1.2rem; color: #7c3aed;">Baterías de Condensadores</h2>
+            <p style="font-size: 0.95rem; line-height: 1.6; color: #5b21b6;">
+                Un factor de potencia bajo genera penalizaciones económicas en la factura eléctrica. Esta herramienta calcula la potencia reactiva ($Q_c$) necesaria de la batería de condensadores para compensar el desfase.
+            </p>
+            <p style="font-size: 1.2rem; text-align: center; padding: 10px 0;">
+                $$Q_c = P \cdot (\tan(\phi_1) - \tan(\phi_2))$$
+            </p>
+            <ul style="font-size: 0.9rem; color: #5b21b6; padding-left: 20px;">
+                <li><strong>$Q_c$ (Batería):</strong> Potencia reactiva capacitiva requerida en kilovoltio-amperios reactivos (kVAR).</li>
+                <li><strong>$P$ (Activa):</strong> Potencia real consumida por la instalación en kW.</li>
+                <li><strong>$\phi_1$ y $\phi_2$:</strong> Ángulos correspondientes a los factores de potencia inicial y objetivo calculados mediante arcocoseno.</li>
+            </ul>
+        </div>
+    </main>
+    <footer><a href="legales.html" style="color:#64748b; text-decoration:none;">Aviso Legal y Privacidad</a></footer>
+    <script>
+        function calcBateria() {
+            const P = parseFloat(document.getElementById('p_activa').value);
+            let fp1 = parseFloat(document.getElementById('fp_actual').value);
+            let fp2 = parseFloat(document.getElementById('fp_deseado').value);
+            
+            if(P > 0 && fp1 > 0 && fp2 > 0 && fp1 <= 1 && fp2 <= 1) {
+                // Calcular ángulos en radianes
+                const phi1 = Math.acos(fp1);
+                const phi2 = Math.acos(fp2);
+                
+                // Calcular tangentes
+                const tan1 = Math.tan(phi1);
+                const tan2 = Math.tan(phi2);
+                
+                const Qc = P * (tan1 - tan2);
+                
+                const resDiv = document.getElementById('res_fp');
+                resDiv.style.display = 'block';
+                if(Qc > 0) {
+                    resDiv.innerHTML = `<strong>Batería de Condensadores Necesaria:</strong><br><span style="font-size:2.5rem; color:#8b5cf6;">${Qc.toFixed(1)} kVAR</span>`;
+                } else {
+                    resDiv.innerHTML = `<strong>Factor de potencia óptimo.</strong><br><span style="font-size:1.2rem; color:#8b5cf6;">No se requiere compensación.</span>`;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
