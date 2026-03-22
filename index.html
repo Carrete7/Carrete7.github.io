@@ -82,6 +82,7 @@
             
             <nav class="nav-links">
                 <a href="#sobre-nosotros">Sobre nosotros</a>
+                <a href="contacto.html">Contacto</a>
                 <div class="dropdown">
                     <button class="dropbtn">Herramientas <i class="fas fa-chevron-down"></i></button>
                     <div class="dropdown-content">
@@ -168,7 +169,7 @@
             <div class="about-grid">
                 <div class="about-col">
                     <h3><i class="fas fa-bullseye"></i> Nuestra Misión</h3>
-                    <p>IndustrialCalc Pro nace con el compromiso de digitalizar y simplificar el día a día de ingenieros, proyectistas e instaladores. Ofrecemos herramientas de cálculo precisas basadas en normativas internacionales para optimizar la toma de decisiones técnicas.</p>
+                    <p>IndustrialCalc Pro nace con el compromiso de digitalizar y simplificar el día a día de ingenieros, proyectistas e instaladores. Ofrecemos herramientas de cálculo precisas basadas en normativas internacionales para optimizar la toma de decisiones técnicas y financieras de cada proyecto.</p>
                     
                     <h3><i class="fas fa-medal"></i> Compromiso de Calidad</h3>
                     <ul class="check-list">
@@ -186,7 +187,7 @@
                     <div class="contact-box" id="contacto">
                         <h4 style="margin-top: 0; font-size: 1.2rem;">¿Necesitas ayuda o tienes feedback?</h4>
                         <p style="font-size: 0.95rem;">Si echas de menos alguna herramienta específica o tienes sugerencias de mejora, escríbenos directamente. Estamos para ayudarte.</p>
-                        <a href="mailto:info@industrialcalc.es" class="btn-contact"><i class="fas fa-envelope"></i> Contactar con el Equipo</a>
+                        <a href="contacto.html" class="btn-contact"><i class="fas fa-envelope"></i> Contactar con el Equipo</a>
                     </div>
                 </div>
             </div>
@@ -197,11 +198,18 @@
         <div class="links">
             <a href="index.html">Inicio</a>
             <a href="glosario.html">Glosario Técnico</a>
-            <a href="#sobre-nosotros">Sobre Nosotros</a>
+            <a href="contacto.html">Contacto</a>
             <a href="legales.html">Aviso Legal y Privacidad</a>
         </div>
         <p>&copy; 2026 IndustrialCalc Pro - Suite Profesional de Herramientas Técnicas.</p>
     </footer>
+
+    <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background: #0f172a; color: white; padding: 15px 20px; text-align: center; box-sizing: border-box; z-index: 9999; display: flex; flex-direction: column; align-items: center; gap: 10px; box-shadow: 0 -4px 10px rgba(0,0,0,0.2);">
+        <p style="margin: 0; font-size: 0.9rem; line-height: 1.5; max-width: 800px;">
+            Usamos cookies propias y de terceros (Google Analytics y AdSense) para analizar el tráfico y mostrar publicidad personalizada. Al continuar navegando, aceptas nuestra <a href="legales.html" style="color: #3b82f6; text-decoration: underline;">Política de Privacidad y Cookies</a>.
+        </p>
+        <button onclick="aceptarCookies()" style="background: #2563eb; color: white; border: none; padding: 8px 24px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s;">Entendido</button>
+    </div>
 
     <script>
         function filtrarTarjetas() {
@@ -211,6 +219,15 @@
                 const textoTarjeta = tarjeta.innerText.toLowerCase();
                 tarjeta.style.display = textoTarjeta.includes(input) ? 'flex' : 'none';
             });
+        }
+
+        // Lógica sencilla para ocultar el banner si ya se aceptó
+        if(localStorage.getItem('cookiesAceptadas')) {
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+        function aceptarCookies() {
+            localStorage.setItem('cookiesAceptadas', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
         }
     </script>
 </body>
