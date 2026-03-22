@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://industrialcalc.es/</loc><priority>1.0</priority></url>
+  
+  <url><loc>https://industrialcalc.es/guias/paneles-solares-nave-industrial.html</loc><priority>0.9</priority></url>
+  <url><loc>https://industrialcalc.es/guias/calculo-seccion-cable-trifasico.html</loc><priority>0.9</priority></url>
+  <url><loc>https://industrialcalc.es/guias/potencia-bomba-agua-riego.html</loc><priority>0.9</priority></url>
+  <url><loc>https://industrialcalc.es/guias/cuando-es-obligatorio-bateria-condensadores.html</loc><priority>0.9</priority></url>
+  <url><loc>https://industrialcalc.es/guias/calculo-frigorias-local-comercial.html</loc><priority>0.9</priority></url>
+  <url><loc>https://industrialcalc.es/guias/transmitancia-termica-muros.html</loc><priority>0.9</priority></url>
+  <url><loc>https://industrialcalc.es/guias/diametro-tuberia-aire-comprimido.html</loc><priority>0.9</priority></url>
+  <url><loc>https://industrialcalc.es/guias/corriente-nominal-transformador-trifasico.html</loc><priority>0.9</priority></url>
+  <url><loc>https://industrialcalc.es/guias/dilatacion-termica-tuberias-acero.html</loc><priority>0.9</priority></url>
+  <url><loc>https://industrialcalc.es/guias/capacidad-produccion-cinta-transportadora.html</loc><priority>0.9</priority></url>
+  <url><loc>https://industrialcalc.es/guias/caida-presion-tuberias-agua.html</loc><priority>0.9</priority></url>
+  <url><loc>https://industrialcalc.es/guias/calculo-par-motor-necesario-carga.html</loc><priority>0.9</priority></url>
+  <url><loc>https://industrialcalc.es/guias/formula-volumen-silo-cilindrico.html</loc><priority>0.9</priority></url>
+  <url><loc>https://industrialcalc.es/guias/calculo-atenuacion-acustica-distancia.html</loc><priority>0.9</priority></url>
+  <url><loc>https://industrialcalc.es/guias/calculo-condensadores-motores-monofasicos.html</loc><priority>0.9</priority></url>
+  <url><loc>https://industrialcalc.es/guias/calculo-punto-rocio-aire-comprimido.html</loc><priority>0.9</priority></url>
+  <url><loc>https://industrialcalc.es/guias/calculo-peso-perfiles-acero-ipe-heb.html</loc><priority>0.9</priority></url>
+  <url><loc>https://industrialcalc.es/guias/calculo-volumen-hormigon-losa.html</loc><priority>0.9</priority></url>
+  <url><loc>https://industrialcalc.es/guias/calculo-consumo-gasoleo-caldera.html</loc><priority>0.9</priority></url>
+  <url><loc>https://industrialcalc.es/guias/conversion-senal-analogica-4-20ma-plc.html</loc><priority>0.9</priority></url>
+
   <url><loc>https://industrialcalc.es/herramientas-basicas.html</loc><priority>0.8</priority></url>
   <url><loc>https://industrialcalc.es/calculadora-bombeo.html</loc><priority>0.8</priority></url>
   <url><loc>https://industrialcalc.es/calculadora-presion.html</loc><priority>0.8</priority></url>
@@ -29,6 +51,8 @@
   <url><loc>https://industrialcalc.es/calculadora-presion-conversion.html</loc><priority>0.8</priority></url>
   <url><loc>https://industrialcalc.es/calculadora-factor-potencia.html</loc><priority>0.8</priority></url>
   <url><loc>https://industrialcalc.es/calculadora-escalado-sensores.html</loc><priority>0.8</priority></url>
-  <url><loc>https://industrialcalc.es/legales.html</loc><priority>0.5</priority></url>
+
   <url><loc>https://industrialcalc.es/glosario.html</loc><priority>0.7</priority></url>
+  <url><loc>https://industrialcalc.es/contacto.html</loc><priority>0.6</priority></url>
+  <url><loc>https://industrialcalc.es/legales.html</loc><priority>0.5</priority></url>
 </urlset>
