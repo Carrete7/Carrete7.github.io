@@ -2,7 +2,6 @@
 <html lang="es">
 <head>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
-    
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-E88WRKF9NQ"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -10,10 +9,6 @@
       gtag('js', new Date());
       gtag('config', 'G-E88WRKF9NQ');
     </script>
-    
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora Factor de Potencia | IndustrialCalc Pro</title>
@@ -32,7 +27,9 @@
         button { width: 100%; padding: 1rem; background: var(--primary); color: white; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 1.5rem; transition: 0.2s; }
         button:hover { background: #7c3aed; }
         .result { margin-top: 1.5rem; padding: 1.5rem; background: #f5f3ff; border-radius: 8px; display: none; text-align: center; border: 2px solid #ddd6fe; }
-        .info-box { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); margin-top: 2rem; }
+        .seo-content { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); margin-top: 2rem; line-height: 1.7; }
+        .seo-content h2 { color: var(--primary); font-size: 1.4rem; margin-top: 0; }
+        .seo-content h3 { color: var(--text); font-size: 1.1rem; margin-top: 1.5rem; }
         footer { text-align: center; padding: 2rem; width: 100%; margin-top: auto; border-top: 1px solid var(--border); }
     </style>
 </head>
@@ -44,27 +41,23 @@
             <h1><i class="fas fa-bolt"></i> Corrección Factor de Potencia</h1>
             <label>Potencia Activa Total (kW)</label>
             <input type="number" id="p_activa" placeholder="Ej: 150">
-            <label>Factor de Potencia Actual $(\cos\phi_1)$</label>
+            <label>Factor de Potencia Actual (cos φ)</label>
             <input type="number" id="fp_actual" placeholder="Ej: 0.75" step="0.01">
-            <label>Factor de Potencia Deseado $(\cos\phi_2)$</label>
+            <label>Factor de Potencia Deseado (cos φ objetivo)</label>
             <input type="number" id="fp_deseado" value="0.95" step="0.01">
             <button onclick="calcBateria()">Calcular Potencia Reactiva (kVAR)</button>
             <div id="res_fp" class="result"></div>
         </div>
 
-        <div class="info-box" style="background: #f5f3ff;">
-            <h2 style="font-size: 1.2rem; color: #7c3aed;">Baterías de Condensadores</h2>
-            <p style="font-size: 0.95rem; line-height: 1.6; color: #5b21b6;">
-                Un factor de potencia bajo genera penalizaciones económicas en la factura eléctrica. Esta herramienta calcula la potencia reactiva ($Q_c$) necesaria de la batería de condensadores para compensar el desfase.
-            </p>
-            <p style="font-size: 1.2rem; text-align: center; padding: 10px 0;">
-                $$Q_c = P \cdot (\tan(\phi_1) - \tan(\phi_2))$$
-            </p>
-            <ul style="font-size: 0.9rem; color: #5b21b6; padding-left: 20px;">
-                <li><strong>$Q_c$ (Batería):</strong> Potencia reactiva capacitiva requerida en kilovoltio-amperios reactivos (kVAR).</li>
-                <li><strong>$P$ (Activa):</strong> Potencia real consumida por la instalación en kW.</li>
-                <li><strong>$\phi_1$ y $\phi_2$:</strong> Ángulos correspondientes a los factores de potencia inicial y objetivo calculados mediante arcocoseno.</li>
-            </ul>
+        <div class="seo-content">
+            <h2>Baterías de Condensadores y Energía Reactiva</h2>
+            <p>En el sector eléctrico industrial, los motores de inducción, transformadores y reactancias demandan una energía adicional conocida como Energía Reactiva (medida en kVARh). Un exceso de esta energía disminuye el <strong>Factor de Potencia (cos φ)</strong> de la instalación, lo que conlleva fuertes penalizaciones económicas por parte de la compañía eléctrica.</p>
+            
+            <h3>¿Cómo funciona la compensación?</h3>
+            <p>Para corregir este problema sin cambiar la maquinaria existente, los ingenieros recurren a la instalación de <strong>Baterías de Condensadores</strong>. Estos equipos inyectan potencia reactiva capacitiva a la red local, cancelando la reactiva inductiva que demandan los motores.</p>
+            
+            <h3>Ejemplo de Ahorro Económico</h3>
+            <p>Si una fábrica consume <strong>200 kW</strong> con un factor de potencia de <strong>0.78</strong>, recibirá recargos mensuales en su factura. Al utilizar esta calculadora y marcar un objetivo de <strong>0.95</strong>, obtenemos la potencia exacta de la batería de condensadores necesaria. La instalación de este equipo suele amortizarse en menos de un año solo con el ahorro de las penalizaciones eliminadas de la factura de la luz.</p>
         </div>
     </main>
     <footer><a href="legales.html" style="color:#64748b; text-decoration:none;">Aviso Legal y Privacidad</a></footer>
@@ -75,15 +68,9 @@
             let fp2 = parseFloat(document.getElementById('fp_deseado').value);
             
             if(P > 0 && fp1 > 0 && fp2 > 0 && fp1 <= 1 && fp2 <= 1) {
-                // Calcular ángulos en radianes
                 const phi1 = Math.acos(fp1);
                 const phi2 = Math.acos(fp2);
-                
-                // Calcular tangentes
-                const tan1 = Math.tan(phi1);
-                const tan2 = Math.tan(phi2);
-                
-                const Qc = P * (tan1 - tan2);
+                const Qc = P * (Math.tan(phi1) - Math.tan(phi2));
                 
                 const resDiv = document.getElementById('res_fp');
                 resDiv.style.display = 'block';
