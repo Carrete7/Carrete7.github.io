@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E88WRKF9NQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-E88WRKF9NQ');
+    </script>
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Par Motor (Nm) | IndustrialCalc Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --bg: #f8fafc; --surface: #ffffff; --text: #1e293b; --primary: #6366f1; --border: #e2e8f0; --header-bg: #0f172a; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0; display: flex; flex-direction: column; min-height: 100vh; align-items: center; }
+        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; width: 100%; box-sizing: border-box; }
+        .header-content { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        main { width: 100%; max-width: 800px; padding: 2rem 1rem; box-sizing: border-box; }
+        .back-link { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 1.5rem; color: #64748b; text-decoration: none; font-weight: 500; }
+        .card { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 2rem; }
+        h1 { color: var(--primary); text-align: center; margin-bottom: 1.5rem; }
+        label { font-size: 0.85rem; font-weight: 600; color: #475569; display: block; margin-top: 1rem; }
+        input { width: 100%; padding: 0.8rem; margin-top: 5px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box; }
+        button { width: 100%; padding: 1rem; background: var(--primary); color: white; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 1.5rem; transition: 0.2s; }
+        button:hover { background: #4f46e5; }
+        .result { margin-top: 1.5rem; padding: 1.5rem; background: #eef2ff; border-radius: 8px; display: none; text-align: center; border: 2px solid #c7d2fe; }
+        .info-box { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); margin-top: 2rem; }
+        footer { text-align: center; padding: 2rem; width: 100%; margin-top: auto; border-top: 1px solid var(--border); }
+    </style>
+</head>
+<body>
+    <header><div class="header-content"><a href="index.html" style="color:white; text-decoration:none; font-weight:800;"><i class="fas fa-industry"></i> IndustrialCalc Pro</a></div></header>
+    <main>
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+        <div class="card">
+            <h1><i class="fas fa-sync"></i> Cálculo de Par Motor</h1>
+            <label>Potencia del motor (kW)</label>
+            <input type="number" id="p_motor" placeholder="Ej: 7.5">
+            <label>Velocidad de giro (RPM)</label>
+            <input type="number" id="v_rpm" placeholder="Ej: 1450">
+            <button onclick="calcPar()">Calcular Par (Nm)</button>
+            <div id="res_par" class="result"></div>
+        </div>
+
+        <div class="info-box" style="background: #eef2ff;">
+            <h2 style="font-size: 1.2rem; color: #4f46e5;">Torque Industrial</h2>
+            <p style="font-size: 0.95rem; line-height: 1.6; color: #3730a3;">
+                El par motor o torque representa la fuerza de rotación que puede entregar un motor. Es el parámetro crítico para el diseño mecánico y el dimensionamiento de reductores, transmisiones y ejes.
+            </p>
+            <p style="font-size: 1.2rem; text-align: center; padding: 10px 0;">
+                $$M = 9550 \cdot \frac{P}{n}$$
+            </p>
+            <ul style="font-size: 0.9rem; color: #3730a3; padding-left: 20px;">
+                <li><strong>\(M\) (Par):</strong> Momento torsión resultante expresado en Newton-metro (Nm).</li>
+                <li><strong>\(P\) (Potencia):</strong> Potencia nominal mecánica del motor en kilovatios (kW).</li>
+                <li><strong>\(n\) (Velocidad):</strong> Revoluciones por minuto a las que gira el eje (RPM).</li>
+                <li><strong>\(9550\):</strong> Factor de conversión constante para unificar las unidades técnicas.</li>
+            </ul>
+        </div>
+    </main>
+    <footer><a href="legales.html" style="color:#64748b; text-decoration:none;">Aviso Legal y Privacidad</a></footer>
+    <script>
+        function calcPar() {
+            const P = parseFloat(document.getElementById('p_motor').value);
+            const N = parseFloat(document.getElementById('v_rpm').value);
+            if(P>0 && N>0) {
+                const M = 9550 * (P / N);
+                const resDiv = document.getElementById('res_par');
+                resDiv.style.display = 'block';
+                resDiv.innerHTML = `<strong>Par Motor Resultante:</strong><br><span style="font-size:2.5rem; color:#6366f1;">${M.toFixed(2)} Nm</span>`;
+            }
+        }
+    </script>
+</body>
+</html>
