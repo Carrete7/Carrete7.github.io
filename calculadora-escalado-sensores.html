@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E88WRKF9NQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-E88WRKF9NQ');
+    </script>
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escalado de Sensores (4-20mA) | IndustrialCalc Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --bg: #f8fafc; --surface: #ffffff; --text: #1e293b; --primary: #059669; --border: #e2e8f0; --header-bg: #0f172a; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0; display: flex; flex-direction: column; min-height: 100vh; align-items: center; }
+        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; width: 100%; box-sizing: border-box; }
+        .header-content { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        main { width: 100%; max-width: 800px; padding: 2rem 1rem; box-sizing: border-box; }
+        .back-link { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 1.5rem; color: #64748b; text-decoration: none; font-weight: 500; }
+        .card { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 2rem; }
+        h1 { color: var(--primary); text-align: center; margin-bottom: 1.5rem; }
+        .grid-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        label { font-size: 0.85rem; font-weight: 600; color: #475569; display: block; margin-top: 1rem; }
+        input { width: 100%; padding: 0.8rem; margin-top: 5px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box; }
+        button { width: 100%; padding: 1rem; background: var(--primary); color: white; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 1.5rem; transition: 0.2s; }
+        button:hover { background: #047857; }
+        .result { margin-top: 1.5rem; padding: 1.5rem; background: #ecfdf5; border-radius: 8px; display: none; text-align: center; border: 2px solid #a7f3d0; }
+        .info-box { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); margin-top: 2rem; }
+        footer { text-align: center; padding: 2rem; width: 100%; margin-top: auto; border-top: 1px solid var(--border); }
+    </style>
+</head>
+<body>
+    <header><div class="header-content"><a href="index.html" style="color:white; text-decoration:none; font-weight:800;"><i class="fas fa-industry"></i> IndustrialCalc Pro</a></div></header>
+    <main>
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+        <div class="card">
+            <h1><i class="fas fa-wave-square"></i> Escalado de Sensores 4-20mA</h1>
+            
+            <div class="grid-inputs">
+                <div>
+                    <label>Rango Mínimo Sensor (EU)</label>
+                    <input type="number" id="eu_min" placeholder="Ej: 0">
+                </div>
+                <div>
+                    <label>Rango Máximo Sensor (EU)</label>
+                    <input type="number" id="eu_max" placeholder="Ej: 100">
+                </div>
+            </div>
+            
+            <label>Señal de Corriente Medida (mA)</label>
+            <input type="number" id="ma_in" placeholder="Ej: 12" step="0.1" min="4" max="20">
+            
+            <button onclick="calcEscalado()">Calcular Valor de Ingeniería</button>
+            <div id="res_escalado" class="result"></div>
+        </div>
+
+        <div class="info-box" style="background: #ecfdf5;">
+            <h2 style="font-size: 1.2rem; color: #047857;">Automatización e Instrumentación (PLC)</h2>
+            <p style="font-size: 0.95rem; line-height: 1.6; color: #065f46;">
+                Convierte una señal analógica estándar (normalmente 4-20mA) en su unidad de ingeniería correspondiente (temperatura, presión, caudal, nivel...).
+            </p>
+            <p style="font-size: 1.2rem; text-align: center; padding: 10px 0;">
+                $$E_v = \frac{(I - I_{min}) \cdot (E_{max} - E_{min})}{I_{max} - I_{min}} + E_{min}$$
+            </p>
+            <ul style="font-size: 0.9rem; color: #065f46; padding-left: 20px;">
+                <li><strong>$E_v$:</strong> Valor de ingeniería resultante (Unidades físicas).</li>
+                <li><strong>$I$:</strong> Intensidad eléctrica leída por el autómata (mA).</li>
+                <li><strong>$I_{min}$ y $I_{max}$:</strong> Límites de la señal eléctrica (4 mA y 20 mA).</li>
+                <li><strong>$E_{min}$ y $E_{max}$:</strong> Rango de medición calibrado del instrumento (EU).</li>
+            </ul>
+        </div>
+    </main>
+    <footer><a href="legales.html" style="color:#64748b; text-decoration:none;">Aviso Legal y Privacidad</a></footer>
+    <script>
+        function calcEscalado() {
+            const EUmin = parseFloat(document.getElementById('eu_min').value);
+            const EUmax = parseFloat(document.getElementById('eu_max').value);
+            const mAin = parseFloat(document.getElementById('ma_in').value);
+            
+            if(!isNaN(EUmin) && !isNaN(EUmax) && !isNaN(mAin)) {
+                // Rango estándar 4 a 20 mA
+                const Imin = 4;
+                const Imax = 20;
+                
+                let Ev = ((mAin - Imin) * (EUmax - EUmin)) / (Imax - Imin) + EUmin;
+                
+                const resDiv = document.getElementById('res_escalado');
+                resDiv.style.display = 'block';
+                resDiv.innerHTML = `<strong>Valor Medido:</strong><br><span style="font-size:2.5rem; color:#059669;">${Ev.toFixed(2)} EU</span>`;
+            }
+        }
+    </script>
+</body>
+</html>
