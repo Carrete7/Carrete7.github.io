@@ -6,53 +6,250 @@
     <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-E88WRKF9NQ');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cómo calcular la transmitancia térmica (Valor U) de un muro</title>
-    <meta name="description" content="Aprende a calcular el Valor U y la resistencia térmica de cerramientos para cumplir con la normativa de eficiencia energética en edificación industrial.">
+    <title>Transmitancia Térmica (Valor U) en Cerramientos: Guía de Cálculo | IndustrialCalc</title>
+    <meta name="description" content="Aprende a calcular la Transmitancia Térmica (Valor U) y las resistencias térmicas de muros, cerramientos y aislamientos industriales según el CTE.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --bg-body: #f8fafc; --surface: #ffffff; --text-main: #1e293b; --text-muted: #64748b; --primary: #e11d48; --header-bg: #0f172a; --border: #e2e8f0; }
-        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
-        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
-        .header-content { max-width: 1000px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        :root { --bg-body: #f1f5f9; --surface: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --primary: #e11d48; --header-bg: #0f172a; --border: #e2e8f0; }
+        body.dark-mode { --bg-body: #0f172a; --surface: #1e293b; --text-main: #f8fafc; --text-muted: #94a3b8; --border: #334155; --header-bg: #020617; }
+        
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; display: flex; flex-direction: column; min-height: 100vh; transition: 0.3s; }
+        
+        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; position: sticky; top: 0; z-index: 100; }
+        .header-content { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 1.5rem; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; }
         .logo span { color: #3b82f6; }
-        main { flex: 1; padding: 3rem 1rem; max-width: 800px; margin: 0 auto; width: 100%; box-sizing: border-box; }
-        .article-header { text-align: center; margin-bottom: 3rem; }
-        .article-header h1 { font-size: 2.5rem; color: var(--header-bg); margin-bottom: 1rem; line-height: 1.2; }
-        .article-meta { color: var(--text-muted); font-size: 0.9rem; }
-        .article-content { background: var(--surface); padding: 3rem; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,0.05); font-size: 1.1rem; line-height: 1.8; color: #334155;}
-        .article-content h2 { color: var(--primary); font-size: 1.8rem; margin-top: 2.5rem; border-bottom: 2px solid #ffe4e6; padding-bottom: 0.5rem; }
-        .cta-box { background: #fff1f2; border: 2px dashed var(--primary); padding: 2rem; text-align: center; border-radius: 12px; margin: 3rem 0; }
-        .cta-button { display: inline-block; background: var(--primary); color: white; padding: 1rem 2rem; text-decoration: none; font-weight: bold; font-size: 1.2rem; border-radius: 8px; margin-top: 1rem; transition: 0.2s; }
-        .cta-button:hover { background: #be123c; transform: translateY(-2px); }
-        .back-link { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 1.5rem; color: var(--text-muted); text-decoration: none; font-weight: 600; }
+        .nav-links { display: flex; gap: 15px; align-items: center; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: 0.2s; }
+        .btn-guias { background: rgba(255,255,255,0.2); padding: 0.5rem 1.2rem; border-radius: 8px; font-weight: 700; border: 1px solid white; }
+        .theme-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; padding: 0.5rem; }
+
+        main { flex: 1; padding: 3rem 1rem; max-width: 900px; margin: 0 auto; width: 100%; box-sizing: border-box; }
+        .back-link { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 2rem; color: var(--text-muted); text-decoration: none; font-weight: 600; }
         .back-link:hover { color: var(--primary); }
-        footer { text-align: center; padding: 2rem; background-color: var(--surface); border-top: 1px solid var(--border); margin-top: 3rem; }
-        footer a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; margin: 0 10px; }
+        
+        .article-header { text-align: center; margin-bottom: 3rem; }
+        .badge { background: #ffe4e6; color: #be123c; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; margin-bottom: 1rem; display: inline-block; }
+        body.dark-mode .badge { background: #881337; color: #fecdd3; }
+        .article-header h1 { font-size: 2.8rem; color: var(--text-main); margin-bottom: 1rem; line-height: 1.2; letter-spacing: -1px; }
+        .article-meta { color: var(--text-muted); display: flex; justify-content: center; gap: 20px; font-size: 0.95rem; }
+
+        .content-box { background: var(--surface); padding: 3rem 4rem; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); font-size: 1.15rem; line-height: 1.8; color: var(--text-main); transition: 0.3s; }
+        
+        h2 { color: var(--primary); font-size: 1.8rem; margin-top: 3.5rem; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; scroll-margin-top: 100px; }
+        h3 { color: var(--text-main); font-size: 1.4rem; margin-top: 2rem; }
+        p { margin-bottom: 1.5rem; }
+        ul, ol { margin-bottom: 1.5rem; padding-left: 1.5rem; }
+        li { margin-bottom: 0.8rem; }
+        
+        .toc { background: var(--bg-body); border-left: 4px solid var(--primary); padding: 1.5rem 2rem; border-radius: 0 12px 12px 0; margin: 2rem 0 3rem 0; }
+        .toc h3 { margin-top: 0; font-size: 1.2rem; }
+        .toc a { color: var(--primary); text-decoration: none; font-weight: 500; }
+        .toc a:hover { text-decoration: underline; }
+
+        /* Cajas técnicas */
+        .info-panel { background: #f8fafc; border: 1px solid #cbd5e1; padding: 1.5rem; border-radius: 8px; margin: 2rem 0; }
+        body.dark-mode .info-panel { background: #0f172a; border-color: #334155; }
+        .info-panel h4 { margin-top: 0; color: #334155; font-size: 1.1rem; }
+        body.dark-mode .info-panel h4 { color: #cbd5e1; }
+        .formula { font-family: monospace; background: #e2e8f0; padding: 0.5rem 1rem; border-radius: 6px; font-size: 1.2rem; display: block; text-align: center; margin: 1rem 0; color: #0f172a; font-weight: bold;}
+        body.dark-mode .formula { background: #1e293b; color: #f8fafc; }
+
+        .alert-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 0 8px 8px 0; }
+        body.dark-mode .alert-box { background: #1e3a8a; border-color: #60a5fa; }
+        .alert-box strong { color: #1e40af; }
+        body.dark-mode .alert-box strong { color: #93c5fd; }
+
+        .warning-box { background: #fef2f2; border-left: 4px solid #ef4444; padding: 1.5rem; margin: 2rem 0; border-radius: 0 8px 8px 0; }
+        body.dark-mode .warning-box { background: #7f1d1d; border-color: #f87171; }
+        .warning-box strong { color: #b91c1c; }
+        body.dark-mode .warning-box strong { color: #fca5a5; }
+
+        /* CTAs de Calculadoras */
+        .cta-calc { display: flex; align-items: center; justify-content: space-between; background: linear-gradient(135deg, #e11d48, #9f1239); padding: 2rem; border-radius: 12px; margin: 3rem 0; color: white; box-shadow: 0 10px 15px -3px rgba(225,29,72,0.3); flex-wrap: wrap; gap: 20px;}
+        .cta-calc.blue { background: linear-gradient(135deg, #0284c7, #0369a1); box-shadow: 0 10px 15px -3px rgba(2,132,199,0.3); }
+        .cta-calc.orange { background: linear-gradient(135deg, #ea580c, #c2410c); box-shadow: 0 10px 15px -3px rgba(234,88,12,0.3); }
+        
+        .cta-calc-text h3 { color: white; margin: 0 0 0.5rem 0; font-size: 1.5rem; }
+        .cta-calc-text p { margin: 0; font-size: 1rem; opacity: 0.9; }
+        .cta-btn { background: white; color: #0f172a; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 800; transition: 0.2s; white-space: nowrap; }
+        .cta-btn:hover { transform: scale(1.05); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+
+        footer { text-align: center; padding: 3rem 1rem; background-color: var(--surface); border-top: 1px solid var(--border); margin-top: auto; }
+        footer a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-weight: 500; }
+        
+        @media (max-width: 768px) {
+            .content-box { padding: 2rem 1.5rem; }
+            .article-header h1 { font-size: 2.2rem; }
+            .cta-calc { flex-direction: column; text-align: center; }
+            .cta-btn { width: 100%; box-sizing: border-box; text-align: center; }
+        }
     </style>
 </head>
 <body>
-    <header><div class="header-content"><a href="../index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span> Pro</a></div></header>
+    <header>
+        <div class="header-content">
+            <a href="../index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span></a>
+            <nav class="nav-links">
+                <a href="../guias.html" class="btn-guias"><i class="fas fa-book-open"></i> Documentación</a>
+                <button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button>
+            </nav>
+        </div>
+    </header>
+
     <main>
-        <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver a Herramientas</a>
+        <a href="../guias.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver a Documentación</a>
+        
         <article>
             <div class="article-header">
-                <h1>Cómo calcular la transmitancia térmica (Valor U) de un muro</h1>
-                <div class="article-meta"><i class="far fa-calendar-alt"></i> Actualizado en 2026 | <i class="fas fa-book-reader"></i> 4 min de lectura</div>
-            </div>
-            <div class="article-content">
-                <p>El diseño de edificios eficientes y naves industriales climatizadas requiere un control estricto de las pérdidas de calor. La magnitud fundamental para medir este aislamiento es la Transmitancia Térmica, conocida mundialmente como Valor U.</p>
-                <h2>¿Qué es la Transmitancia Térmica?</h2>
-                <p>El Valor U mide la cantidad de calor que atraviesa 1 metro cuadrado de pared en 1 segundo cuando hay una diferencia de temperatura de 1 grado (Kelvin o Celsius) entre el interior y el exterior. Cuanto menor sea el Valor U, mejor será el aislamiento del edificio.</p>
-                
-                <div class="cta-box">
-                    <h3 style="margin-top:0; color: #0f172a;">🌡️ Calcula el aislamiento al instante</h3>
-                    <p>Introduce los grosores y conductividades de los materiales de tu muro y obtén la resistencia térmica total y el Valor U.</p>
-                    <a href="../calculadora-termica.html" class="cta-button"><i class="fas fa-temperature-high"></i> Calculadora de Aislamiento Térmico</a>
+                <div class="badge">Eficiencia Energética y Aislamiento</div>
+                <h1>Transmitancia Térmica (Valor U) en Cerramientos: Guía de Cálculo y Normativa</h1>
+                <div class="article-meta">
+                    <span><i class="far fa-clock"></i> 11 min de lectura</span>
+                    <span><i class="fas fa-user-engineer"></i> Nivel: Ingeniería / Arquitectura</span>
                 </div>
+            </div>
+
+            <div class="content-box">
+                <p>El diseño de la envolvente térmica determina, en gran medida, la viabilidad económica y ecológica de un edificio industrial o comercial. Un muro o cubierta mal aislada actuará como un coladero de energía, multiplicando exponencialmente la factura de climatización y provocando disconfort térmico en el interior.</p>
+                
+                <p>El parámetro rey que define la calidad de un aislamiento es la <strong>Transmitancia Térmica (Valor U)</strong>. En este documento técnico desglosaremos su formulación matemática, la influencia de la conductividad de los materiales y cómo calcular el flujo de calor a través de cerramientos multicapa.</p>
+
+                <div class="toc">
+                    <h3>Índice del Documento</h3>
+                    <ul>
+                        <li><a href="#paso1">1. Concepto Termodinámico: ¿Qué es el Valor U?</a></li>
+                        <li><a href="#paso2">2. Resistencias Térmicas Superficiales (Rsi y Rse)</a></li>
+                        <li><a href="#paso3">3. Ecuación de la Resistencia Térmica Total (Rt)</a></li>
+                        <li><a href="#paso4">4. Cálculo del Flujo de Calor a través del Muro</a></li>
+                        <li><a href="#paso5">5. Condensaciones Intersticiales y el Punto de Rocío</a></li>
+                        <li><a href="#paso6">6. Normativa e Impacto en la Climatización HVAC</a></li>
+                    </ul>
+                </div>
+
+                <h2 id="paso1">1. Concepto Termodinámico: ¿Qué es el Valor U?</h2>
+                <p>La <strong>Transmitancia Térmica (U)</strong>, medida en <strong>W/m²K</strong> (Vatios por metro cuadrado y Kelvin), representa la cantidad de calor (energía en forma de Vatios) que atraviesa una superficie de 1 metro cuadrado de un cerramiento cuando existe una diferencia de temperatura de 1 Kelvin (o 1ºC) entre el ambiente exterior y el interior.</p>
+
+                <div class="warning-box">
+                    <strong>Regla de Oro del Aislamiento:</strong>
+                    A diferencia de la resistencia térmica, donde "más es mejor", con el Valor U ocurre exactamente lo contrario: <strong>cuanto más bajo es el Valor U, mejor es el aislamiento del muro</strong>. Un muro de hormigón macizo tendrá un Valor U altísimo (mal aislante), mientras que un panel sándwich de poliuretano tendrá un Valor U muy bajo (excelente aislante).
+                </div>
+
+                <h2 id="paso2">2. Resistencias Térmicas Superficiales (Rsi y Rse)</h2>
+                <p>El cálculo de la transmitancia de un muro no depende únicamente de los ladrillos o el aislante que lo forman. Una fina capa de aire en contacto directo con las caras interior y exterior del muro ofrece una ligera resistencia al paso del calor. Estas se conocen como <strong>Resistencias Superficiales</strong>.</p>
+                
+                <p>Según el Código Técnico de la Edificación (CTE - Documento Básico HE1), para el cálculo estandarizado se adoptan los siguientes valores predefinidos en m²K/W (para flujo de calor horizontal, como en las fachadas):</p>
+                
+                <ul>
+                    <li><strong>Rsi (Resistencia superficial interior):</strong> 0.13 m²K/W</li>
+                    <li><strong>Rse (Resistencia superficial exterior):</strong> 0.04 m²K/W</li>
+                </ul>
+                <p><em>Nota: Para flujos de calor ascendentes (cubiertas en invierno) o descendentes (suelos en contacto con el aire), estos valores varían ligeramente según las tablas normativas.</em></p>
+
+                <h2 id="paso3">3. Ecuación de la Resistencia Térmica Total (Rt)</h2>
+                <p>Casi ningún cerramiento industrial está formado por un solo material; se trata de sistemas multicapa (ej. chapa exterior, cámara de aire, lana de roca, placa de yeso interior). La <strong>Resistencia Térmica Total (Rt)</strong> del cerramiento es simplemente la suma de las resistencias de cada una de sus capas, más las resistencias superficiales.</p>
+
+                <div class="info-panel">
+                    <h4>Cálculo de la Resistencia de una Capa (R)</h4>
+                    <span class="formula">R = e / λ</span>
+                    <p>Donde:</p>
+                    <ul>
+                        <li><strong>e:</strong> Espesor de la capa de material en metros (m).</li>
+                        <li><strong>λ (Lambda):</strong> Conductividad Térmica del material en W/mK. Es un dato proporcionado por el fabricante del material. (El poliuretano ronda los 0.025 W/mK, mientras que el acero está por encima de los 50 W/mK).</li>
+                    </ul>
+                </div>
+
+                <p>Por lo tanto, la fórmula completa de la Resistencia Total de un muro compuesto por 3 capas sería:</p>
+                <div class="formula" style="font-size: 1.1rem;">R_total = Rsi + (e1 / λ1) + (e2 / λ2) + (e3 / λ3) + Rse</div>
+
+                <h2 id="paso4">4. Cálculo del Flujo de Calor a través del Muro</h2>
+                <p>Una vez que conocemos la Resistencia Térmica Total (Rt) del cerramiento sumando todas sus capas, calcular la Transmitancia Térmica (U) es sumamente sencillo, ya que es la inversa de la resistencia.</p>
+
+                <div class="info-panel">
+                    <h4>Fórmula Final del Valor U</h4>
+                    <span class="formula">U = 1 / R_total</span>
+                </div>
+
+                <p>Conociendo el Valor U (W/m²K), el proyectista puede determinar fácilmente cuántos Vatios de calor se están perdiendo en invierno o ganando en verano a través de toda la fachada de la nave.</p>
+                <p><strong>Ejemplo de Flujo Térmico (Q):</strong> Si tenemos una fachada de 200 m², con un Valor U de 0.40 W/m²K, y en invierno hace 0ºC fuera y queremos mantener 20ºC dentro (ΔT = 20):</p>
+                <p style="text-align:center; font-family: monospace; font-size: 1.1rem; font-weight: bold;">Q = U · Área · ΔT = 0.40 · 200 · 20 = 1.600 Vatios de pérdida térmica.</p>
+
+                <div class="cta-calc">
+                    <div class="cta-calc-text">
+                        <h3>Acelere el Diseño de Envolventes</h3>
+                        <p>No calcule las resistencias capa por capa. Seleccione los materiales y sus espesores, y nuestra herramienta le devolverá el Valor U total del cerramiento al instante.</p>
+                    </div>
+                    <a href="../calculadora-termica.html" class="cta-btn" style="color: #e11d48;"><i class="fas fa-layer-group"></i> Calculadora Valor U</a>
+                </div>
+
+                <h2 id="paso5">5. Condensaciones Intersticiales y el Punto de Rocío</h2>
+                <p>Un Valor U bajo (buen aislamiento) es vital, pero la termodinámica de los cerramientos esconde un enemigo silencioso: la <strong>condensación intersticial</strong>.</p>
+                <p>A medida que el calor atraviesa las capas del muro en invierno (desde el interior cálido hacia el exterior frío), la temperatura dentro del propio muro va bajando progresivamente. Si en alguna de las capas intermedias la temperatura cae por debajo de la temperatura de rocío del aire contenido en los poros del material, el vapor de agua se licuará dentro del muro.</p>
+
+                <div class="alert-box">
+                    <strong>Peligro Estructural:</strong>
+                    La condensación dentro de los materiales aislantes (como la lana de roca o la fibra de vidrio) moja las fibras, destruyendo instantáneamente su capacidad aislante y favoreciendo la proliferación de moho. Para evitarlo, se debe colocar una <strong>barrera de vapor</strong> siempre en la cara "caliente" del aislante.
+                </div>
+
+                <div class="cta-calc orange">
+                    <div class="cta-calc-text">
+                        <h3>Análisis Psicrométrico</h3>
+                        <p>Calcule la temperatura exacta del Punto de Rocío en función de la temperatura ambiente y la humedad relativa para evitar condensaciones superficiales e intersticiales.</p>
+                    </div>
+                    <a href="../calculadora-psicrometria.html" class="cta-btn" style="color: #ea580c;"><i class="fas fa-droplet"></i> Calculadora de Punto de Rocío</a>
+                </div>
+
+                <h2 id="paso6">6. Normativa e Impacto en la Climatización HVAC</h2>
+                <p>Las legislaciones modernas orientadas a los <em>Edificios de Consumo de Energía Casi Nulo (nZEB)</em> imponen límites extremadamente estrictos a la transmitancia de los cerramientos. En España, el CTE HE1 establece valores U máximos permitidos en función de la zona climática (penetraciones severas en zonas continentales como Madrid o Burgos requieren valores U para fachadas inferiores a 0.41 W/m²K).</p>
+
+                <p>Rebajar el Valor U de un edificio encarece la fase de construcción (CAPEX), pero el ahorro en el dimensionamiento y posterior operación (OPEX) de las unidades de tratamiento de aire (UTAs) y enfriadoras (Chillers) amortiza la inversión en pocos años, ya que la carga térmica sensible por conducción exterior se reduce drásticamente.</p>
+
+                <div class="cta-calc blue">
+                    <div class="cta-calc-text">
+                        <h3>Cálculo de Cargas Térmicas (HVAC)</h3>
+                        <p>Tras determinar el Valor U de su edificio, calcule la potencia frigorífica total (kW térmicos y frigorías/h) necesaria para garantizar el confort climático.</p>
+                    </div>
+                    <a href="../calculadora-frigorias.html" class="cta-btn" style="color: #0284c7;"><i class="fas fa-snowflake"></i> Estimador de Frigorías</a>
+                </div>
+
+                <hr style="border: 0; height: 1px; background: var(--border); margin: 3rem 0;">
+                <p style="font-size: 0.9rem; color: var(--text-muted); text-align: center;"><em>Documentación técnica referencial. Los cálculos termodinámicos definitivos y la justificación del Documento Básico de Ahorro de Energía (DB-HE) deben ser avalados por un proyectista colegiado competente.</em></p>
             </div>
         </article>
     </main>
-    <footer><a href="../index.html">Inicio</a><a href="../glosario.html">Glosario Técnico</a><a href="../legales.html">Aviso Legal</a></footer>
+
+    <footer>
+        <div class="links">
+            <a href="../index.html">Inicio</a>
+            <a href="../guias.html">Documentación</a>
+            <a href="../glosario.html">Glosario Técnico</a>
+            <a href="../contacto.html">Contacto</a>
+            <a href="../legales.html">Aviso Legal</a>
+        </div>
+        <p>&copy; 2026 IndustrialCalc Pro - Suite Profesional de Herramientas Técnicas.</p>
+    </footer>
+
+    <script>
+        const themeBtn = document.getElementById('theme-toggle');
+        const themeIcon = themeBtn.querySelector('i');
+        const currentTheme = localStorage.getItem('industrialcalc-theme');
+
+        if (currentTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('industrialcalc-theme', 'dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                localStorage.setItem('industrialcalc-theme', 'light');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+            }
+        });
+    </script>
 </body>
 </html>
