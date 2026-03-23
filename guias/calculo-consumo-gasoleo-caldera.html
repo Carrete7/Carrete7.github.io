@@ -6,52 +6,225 @@
     <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-E88WRKF9NQ');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cómo calcular el consumo de gasóleo de una caldera industrial</title>
-    <meta name="description" content="Aprende a prever el gasto en litros y euros del gasoil de calefacción o quemadores industriales basándote en la potencia del equipo (kW).">
+    <title>Cálculo de Consumo de Gasóleo en Calderas Industriales | IndustrialCalc</title>
+    <meta name="description" content="Guía de ingeniería térmica para calcular el consumo de combustible (kg/h y Litros/h) en calderas de gasoil. Fórmulas de PCI, rendimiento y densidad.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --bg-body: #f8fafc; --surface: #ffffff; --text-main: #1e293b; --text-muted: #64748b; --primary: #ef4444; --header-bg: #0f172a; --border: #e2e8f0; }
-        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
-        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
-        .header-content { max-width: 1000px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        :root { --bg-body: #f1f5f9; --surface: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --primary: #ef4444; --header-bg: #0f172a; --border: #e2e8f0; }
+        body.dark-mode { --bg-body: #0f172a; --surface: #1e293b; --text-main: #f8fafc; --text-muted: #94a3b8; --border: #334155; --header-bg: #020617; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; display: flex; flex-direction: column; min-height: 100vh; transition: 0.3s; }
+        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; position: sticky; top: 0; z-index: 100; }
+        .header-content { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 1.5rem; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; }
         .logo span { color: #3b82f6; }
-        main { flex: 1; padding: 3rem 1rem; max-width: 800px; margin: 0 auto; width: 100%; box-sizing: border-box; }
-        .article-header { text-align: center; margin-bottom: 3rem; }
-        .article-header h1 { font-size: 2.5rem; color: var(--header-bg); margin-bottom: 1rem; line-height: 1.2; }
-        .article-meta { color: var(--text-muted); font-size: 0.9rem; }
-        .article-content { background: var(--surface); padding: 3rem; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,0.05); font-size: 1.1rem; line-height: 1.8; color: #334155;}
-        .article-content h2 { color: var(--primary); font-size: 1.8rem; margin-top: 2.5rem; border-bottom: 2px solid #fecaca; padding-bottom: 0.5rem; }
-        .cta-box { background: #fef2f2; border: 2px dashed var(--primary); padding: 2rem; text-align: center; border-radius: 12px; margin: 3rem 0; }
-        .cta-button { display: inline-block; background: var(--primary); color: white; padding: 1rem 2rem; text-decoration: none; font-weight: bold; font-size: 1.2rem; border-radius: 8px; margin-top: 1rem; transition: 0.2s; }
-        .cta-button:hover { background: #dc2626; transform: translateY(-2px); }
-        .back-link { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 1.5rem; color: var(--text-muted); text-decoration: none; font-weight: 600; }
+        .nav-links { display: flex; gap: 15px; align-items: center; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: 0.2s; }
+        .btn-guias { background: rgba(255,255,255,0.2); padding: 0.5rem 1.2rem; border-radius: 8px; font-weight: 700; border: 1px solid white; }
+        .theme-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; padding: 0.5rem; }
+        main { flex: 1; padding: 3rem 1rem; max-width: 900px; margin: 0 auto; width: 100%; box-sizing: border-box; }
+        .back-link { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 2rem; color: var(--text-muted); text-decoration: none; font-weight: 600; }
         .back-link:hover { color: var(--primary); }
-        footer { text-align: center; padding: 2rem; background-color: var(--surface); border-top: 1px solid var(--border); margin-top: 3rem; }
-        footer a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; margin: 0 10px; }
+        .article-header { text-align: center; margin-bottom: 3rem; }
+        .badge { background: #fee2e2; color: #b91c1c; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; margin-bottom: 1rem; display: inline-block; }
+        body.dark-mode .badge { background: #7f1d1d; color: #fecaca; }
+        .article-header h1 { font-size: 2.8rem; color: var(--text-main); margin-bottom: 1rem; line-height: 1.2; letter-spacing: -1px; }
+        .article-meta { color: var(--text-muted); display: flex; justify-content: center; gap: 20px; font-size: 0.95rem; }
+        .content-box { background: var(--surface); padding: 3rem 4rem; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); font-size: 1.15rem; line-height: 1.8; color: var(--text-main); transition: 0.3s; }
+        h2 { color: var(--primary); font-size: 1.8rem; margin-top: 3.5rem; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; scroll-margin-top: 100px; }
+        h3 { color: var(--text-main); font-size: 1.4rem; margin-top: 2rem; }
+        p { margin-bottom: 1.5rem; }
+        ul, ol { margin-bottom: 1.5rem; padding-left: 1.5rem; }
+        li { margin-bottom: 0.8rem; }
+        .toc { background: var(--bg-body); border-left: 4px solid var(--primary); padding: 1.5rem 2rem; border-radius: 0 12px 12px 0; margin: 2rem 0 3rem 0; }
+        .toc h3 { margin-top: 0; font-size: 1.2rem; }
+        .toc a { color: var(--primary); text-decoration: none; font-weight: 500; }
+        .toc a:hover { text-decoration: underline; }
+        .info-panel { background: #f8fafc; border: 1px solid #cbd5e1; padding: 1.5rem; border-radius: 8px; margin: 2rem 0; }
+        body.dark-mode .info-panel { background: #0f172a; border-color: #334155; }
+        .info-panel h4 { margin-top: 0; color: #334155; font-size: 1.1rem; }
+        body.dark-mode .info-panel h4 { color: #cbd5e1; }
+        .formula { font-family: monospace; background: #e2e8f0; padding: 0.5rem 1rem; border-radius: 6px; font-size: 1.2rem; display: block; text-align: center; margin: 1rem 0; color: #0f172a; font-weight: bold;}
+        body.dark-mode .formula { background: #1e293b; color: #f8fafc; }
+        .alert-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 0 8px 8px 0; }
+        body.dark-mode .alert-box { background: #1e3a8a; border-color: #60a5fa; }
+        .alert-box strong { color: #1e40af; }
+        body.dark-mode .alert-box strong { color: #93c5fd; }
+        .warning-box { background: #fef2f2; border-left: 4px solid #ef4444; padding: 1.5rem; margin: 2rem 0; border-radius: 0 8px 8px 0; }
+        body.dark-mode .warning-box { background: #7f1d1d; border-color: #f87171; }
+        .warning-box strong { color: #b91c1c; }
+        body.dark-mode .warning-box strong { color: #fca5a5; }
+        .cta-calc { display: flex; align-items: center; justify-content: space-between; background: linear-gradient(135deg, #ef4444, #b91c1c); padding: 2rem; border-radius: 12px; margin: 3rem 0; color: white; box-shadow: 0 10px 15px -3px rgba(239,68,68,0.3); flex-wrap: wrap; gap: 20px;}
+        .cta-calc.orange { background: linear-gradient(135deg, #f97316, #c2410c); box-shadow: 0 10px 15px -3px rgba(249,115,22,0.3); }
+        .cta-calc.slate { background: linear-gradient(135deg, #475569, #1e293b); box-shadow: 0 10px 15px -3px rgba(71,85,105,0.3); }
+        .cta-calc-text h3 { color: white; margin: 0 0 0.5rem 0; font-size: 1.5rem; }
+        .cta-calc-text p { margin: 0; font-size: 1rem; opacity: 0.9; }
+        .cta-btn { background: white; color: #0f172a; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 800; transition: 0.2s; white-space: nowrap; }
+        .cta-btn:hover { transform: scale(1.05); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        footer { text-align: center; padding: 3rem 1rem; background-color: var(--surface); border-top: 1px solid var(--border); margin-top: auto; }
+        footer a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-weight: 500; }
+        @media (max-width: 768px) { .content-box { padding: 2rem 1.5rem; } .article-header h1 { font-size: 2.2rem; } .cta-calc { flex-direction: column; text-align: center; } .cta-btn { width: 100%; box-sizing: border-box; text-align: center; } }
     </style>
 </head>
 <body>
-    <header><div class="header-content"><a href="../index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span> Pro</a></div></header>
+    <header>
+        <div class="header-content">
+            <a href="../index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span></a>
+            <nav class="nav-links">
+                <a href="../guias.html" class="btn-guias"><i class="fas fa-book-open"></i> Documentación</a>
+                <button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button>
+            </nav>
+        </div>
+    </header>
+
     <main>
-        <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver a Herramientas</a>
+        <a href="../guias.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver a Documentación</a>
+        
         <article>
             <div class="article-header">
-                <h1>Cómo calcular el consumo de gasóleo de una caldera industrial</h1>
-                <div class="article-meta"><i class="far fa-calendar-alt"></i> Actualizado en 2026 | <i class="fas fa-book-reader"></i> 3 min de lectura</div>
-            </div>
-            <div class="article-content">
-                <p>Las oscilaciones en el precio de los combustibles fósiles obligan a las empresas a tener un control exhaustivo de los costes térmicos. Calcular el gasto en litros a la hora de una caldera permite planificar los llenados del depósito y auditar la eficiencia del quemador.</p>
-                <h2>El Poder Calorífico Inferior (PCI)</h2>
-                <p>El gasóleo de calefacción (Gasóleo C en España) tiene un poder calorífico aproximado de 10 kWh por litro. Por tanto, para que un quemador genere 100 kW de potencia térmica constante, necesitará quemar unos 10 litros por hora (sin contar las pérdidas por la chimenea).</p>
-                <div class="cta-box">
-                    <h3 style="margin-top:0; color: #0f172a;">🔥 Prevé tus gastos en combustible</h3>
-                    <p>Introduce la potencia de tu caldera y el precio del litro para estimar tu factura mensual.</p>
-                    <a href="../calculadora-gasoleo.html" class="cta-button"><i class="fas fa-fire"></i> Calculadora de Consumo de Gasóleo</a>
+                <div class="badge">Termodinámica y Fluidos Térmicos</div>
+                <h1>Cálculo de Consumo de Gasóleo en Calderas Industriales y de Calefacción</h1>
+                <div class="article-meta">
+                    <span><i class="far fa-clock"></i> 10 min de lectura</span>
+                    <span><i class="fas fa-user-engineer"></i> Nivel: Mantenimiento e Instalaciones</span>
                 </div>
+            </div>
+
+            <div class="content-box">
+                <p>En procesos industriales (generación de vapor, agua sobrecalentada) y en la calefacción de grandes bloques logísticos, el coste del combustible dictamina la viabilidad operativa de la planta. Predecir con exactitud el consumo de un quemador de gasóleo es el primer paso indispensable para dimensionar depósitos de almacenamiento, planificar la logística de suministro y realizar auditorías de eficiencia energética.</p>
+                
+                <p>Un cálculo superficial que ignore el poder calorífico o el rendimiento real de combustión derivará en desviaciones presupuestarias millonarias a final de año. Este documento técnico expone el método riguroso para la determinación del gasto másico y volumétrico de combustible.</p>
+
+                <div class="toc">
+                    <h3>Índice del Documento</h3>
+                    <ul>
+                        <li><a href="#paso1">1. La base termodinámica: Poder Calorífico Inferior (PCI)</a></li>
+                        <li><a href="#paso2">2. El Rendimiento Estacional de la Caldera (η)</a></li>
+                        <li><a href="#paso3">3. Ecuación del Consumo Másico (kg/h)</a></li>
+                        <li><a href="#paso4">4. Densidad: Conversión de Kilogramos a Litros (L/h)</a></li>
+                        <li><a href="#paso5">5. Auditoría de Eficiencia y Tiempos de Ciclo</a></li>
+                    </ul>
+                </div>
+
+                <h2 id="paso1">1. La base termodinámica: Poder Calorífico Inferior (PCI)</h2>
+                <p>No todos los combustibles almacenan la misma cantidad de energía por kilogramo. El parámetro que define esta capacidad es el Poder Calorífico. En ingeniería térmica industrial siempre utilizamos el <strong>Poder Calorífico Inferior (PCI)</strong>, ya que asume que el vapor de agua generado en la combustión se expulsa por la chimenea sin condensar (es decir, no recuperamos su calor latente, a menos que sea una caldera de condensación).</p>
+
+                <div class="info-panel">
+                    <h4>Valores de Referencia del Gasóleo C (Calefacción/Industrial):</h4>
+                    <ul>
+                        <li><strong>PCI en kilocalorías:</strong> Aprox. <strong>10.200 kcal/kg</strong></li>
+                        <li><strong>PCI en kilovatios hora:</strong> Aprox. <strong>11,86 kWh/kg</strong></li>
+                    </ul>
+                    <p><em>Nota: Si su caldera indica la potencia en kW, deberá usar el PCI en kWh/kg. Si la placa de características de la caldera viene en Frigorías/Kilocalorías, use el PCI en kcal/kg. Mezclar unidades es el error de cálculo más frecuente.</em></p>
+                </div>
+
+                <h2 id="paso2">2. El Rendimiento Estacional de la Caldera (η)</h2>
+                <p>Ninguna caldera convierte el 100% de la energía del combustible en calor útil para el agua o el proceso. Una parte se pierde por los humos calientes de la chimenea, y otra parte se pierde por radiación a través de las paredes del equipo hacia la sala de calderas.</p>
+
+                <div class="warning-box">
+                    <strong>Rendimiento Térmico (η):</strong>
+                    El cálculo debe castigar el poder calorífico bruto dividiéndolo por el rendimiento.
+                    <ul>
+                        <li>Calderas antiguas (más de 15 años): <strong>~80% a 85%</strong> (0.80 - 0.85)</li>
+                        <li>Calderas estándar modernas de Baja Temperatura: <strong>~90% a 93%</strong> (0.90 - 0.93)</li>
+                        <li>Calderas de Condensación: <strong>>98%</strong> (Aprovechan el calor latente de los humos).</li>
+                    </ul>
+                </div>
+
+                <h2 id="paso3">3. Ecuación del Consumo Másico (kg/h)</h2>
+                <p>Conocida la potencia nominal que debe entregar la caldera (Potencia Útil), el rendimiento de la máquina y el PCI del combustible, aplicar el balance de masas es inmediato.</p>
+
+                <div class="info-panel">
+                    <h4>Fórmula del Consumo de Combustible en Masa:</h4>
+                    <span class="formula">Consumo (kg/h) = Potencia_Útil / ( PCI · η )</span>
+                    <p><strong>Ejemplo práctico:</strong> Tenemos una caldera industrial que debe entregar <strong>500 kW</strong> térmicos. El quemador tiene un rendimiento del <strong>90% (0.90)</strong> y usamos Gasóleo C (<strong>11.86 kWh/kg</strong>).</p>
+                    <ul>
+                        <li>Consumo = 500 / (11.86 · 0.90)</li>
+                        <li>Consumo = 500 / 10.674 = <strong>46,84 kg/h</strong> de gasóleo.</li>
+                    </ul>
+                </div>
+
+                <div class="cta-calc orange">
+                    <div class="cta-calc-text">
+                        <h3>Cálculo de Demanda Térmica</h3>
+                        <p>Asegúrese de que la caldera está bien dimensionada. Si es para calefacción, calcule las kilocalorías (Frigorías/Carga térmica) que necesita su nave comercial.</p>
+                    </div>
+                    <a href="../calculadora-frigorias.html" class="cta-btn" style="color: #c2410c;"><i class="fas fa-fire-alt"></i> Estimación de Cargas Térmicas</a>
+                </div>
+
+                <h2 id="paso4">4. Densidad: Conversión de Kilogramos a Litros (L/h)</h2>
+                <p>El proveedor de combustible no nos vende el gasóleo por kilos, sino por litros, y el caudalímetro del quemador también mide en volumen. Para pasar de masa a volumen, necesitamos la <strong>Densidad</strong> del fluido a temperatura ambiente (típicamente 15ºC).</p>
+
+                <div class="alert-box">
+                    <strong>Densidad del Gasóleo C:</strong> Este combustible tiene una densidad promedio de <strong>0,84 a 0,85 kg/Litro</strong>. Es más ligero que el agua (por eso flota).
+                    <br><br>
+                    <div style="text-align: center; font-family: monospace; font-size: 1.1rem;">Litros/h = Consumo (kg/h) / Densidad (kg/L)</div>
+                    <br>
+                    Continuando el ejemplo anterior (46,84 kg/h):
+                    <br>
+                    <strong>Consumo Volumétrico = 46,84 / 0.845 = 55,43 Litros por Hora.</strong>
+                </div>
+
+                <p>Con este dato exacto, un ingeniero ya puede diseñar el diámetro de la tubería de suministro desde el depósito nodriza hasta el quemador, y establecer las alarmas de nivel crítico en el sistema de telemetría del tanque.</p>
+
+                <h2 id="paso5">5. Auditoría de Eficiencia y Tiempos de Ciclo</h2>
+                <p>Es vital comprender que una caldera bien diseñada <strong>nunca está encendida el 100% del tiempo</strong> (operación a carga base constante). El quemador modula o trabaja en ciclos de "Todo/Nada" regulados por el termostato del circuito primario.</p>
+
+                <p>Para estimar el consumo diario o mensual real (y el gasto económico presupuestario), debe aplicar un factor de carga o conocer las horas reales de funcionamiento del quemador.</p>
+
+                <div class="cta-calc slate">
+                    <div class="cta-calc-text">
+                        <h3>Eficiencia del Aislamiento</h3>
+                        <p>Reduzca drásticamente el consumo de su caldera mejorando el aislamiento térmico de los muros de la nave. Calcule la transmitancia de la envolvente.</p>
+                    </div>
+                    <a href="../calculadora-termica.html" class="cta-btn" style="color: #1e293b;"><i class="fas fa-layer-group"></i> Calculadora Valor U</a>
+                </div>
+
+                <div class="cta-calc">
+                    <div class="cta-calc-text">
+                        <h3>Cálculos Básicos y Conversiones</h3>
+                        <p>Si necesita convertir de kW a Frigorías, de Litros a Galones o resolver leyes básicas de la termodinámica, utilice nuestro panel de herramientas rápidas.</p>
+                    </div>
+                    <a href="../herramientas-basicas.html" class="cta-btn" style="color: #b91c1c;"><i class="fas fa-calculator"></i> Herramientas Básicas</a>
+                </div>
+
+                <hr style="border: 0; height: 1px; background: var(--border); margin: 3rem 0;">
+                <p style="font-size: 0.9rem; color: var(--text-muted); text-align: center;"><em>Documentación para ingeniería de planta. El rendimiento real de combustión debe verificarse in situ anualmente midiendo la temperatura de los humos y el exceso de oxígeno (O2) mediante un analizador de gases calibrado.</em></p>
             </div>
         </article>
     </main>
-    <footer><a href="../index.html">Inicio</a><a href="../glosario.html">Glosario Técnico</a><a href="../legales.html">Aviso Legal</a></footer>
+
+    <footer>
+        <div class="links">
+            <a href="../index.html">Inicio</a>
+            <a href="../guias.html">Documentación</a>
+            <a href="../glosario.html">Glosario Técnico</a>
+            <a href="../contacto.html">Contacto</a>
+            <a href="../legales.html">Aviso Legal</a>
+        </div>
+        <p>&copy; 2026 IndustrialCalc Pro - Suite Profesional de Herramientas Técnicas.</p>
+    </footer>
+
+    <script>
+        const themeBtn = document.getElementById('theme-toggle');
+        const themeIcon = themeBtn.querySelector('i');
+        const currentTheme = localStorage.getItem('industrialcalc-theme');
+
+        if (currentTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('industrialcalc-theme', 'dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                localStorage.setItem('industrialcalc-theme', 'light');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+            }
+        });
+    </script>
 </body>
 </html>
