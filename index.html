@@ -26,17 +26,23 @@
         .logo { font-size: 1.5rem; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; }
         .logo span { color: #3b82f6; }
         
-        .nav-links { display: flex; gap: 20px; align-items: center; }
-        .nav-links a { color: white; text-decoration: none; font-size: 0.9rem; font-weight: 500; opacity: 0.8; transition: 0.2s; }
-        .nav-links a:hover { opacity: 1; color: #3b82f6; }
-
+        /* --- NUEVOS ESTILOS DEL MENÚ --- */
+        .nav-links { display: flex; gap: 15px; align-items: center; }
+        .nav-links a.nav-normal { color: white; text-decoration: none; font-size: 0.95rem; font-weight: 500; opacity: 0.8; transition: 0.2s; }
+        .nav-links a.nav-normal:hover { opacity: 1; color: #60a5fa; }
+        
+        .nav-links a.btn-guias { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.3); padding: 0.5rem 1.2rem; border-radius: 8px; font-weight: 700; color: white; text-decoration: none; transition: 0.2s; display: flex; align-items: center; gap: 8px;}
+        .nav-links a.btn-guias:hover { background: rgba(255, 255, 255, 0.2); border-color: white; box-shadow: 0 0 10px rgba(255,255,255,0.2); }
+        
         .dropdown { position: relative; display: inline-block; }
-        .dropbtn { background-color: rgba(255,255,255,0.1); color: white; padding: 0.6rem 1rem; font-size: 0.9rem; border: none; border-radius: 8px; cursor: pointer; font-family: inherit; font-weight: 600; display: flex; align-items: center; gap: 8px; transition: 0.2s;}
-        .dropbtn:hover { background-color: rgba(255,255,255,0.2); }
+        .dropbtn { background-color: var(--primary); color: white; padding: 0.6rem 1.5rem; font-size: 0.95rem; border: 2px solid #60a5fa; border-radius: 8px; cursor: pointer; font-family: inherit; font-weight: 800; display: flex; align-items: center; gap: 8px; transition: 0.2s; box-shadow: 0 4px 6px rgba(37, 99, 235, 0.3);}
+        .dropbtn:hover { background-color: #1d4ed8; border-color: white; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(37, 99, 235, 0.4);}
+        
         .dropdown-content { display: none; position: absolute; right: 0; top: 110%; background-color: var(--surface); min-width: 280px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); z-index: 10; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); max-height: 450px; overflow-y: auto;}
-        .dropdown-content a { color: var(--text-main); padding: 12px 16px; text-decoration: none; display: block; font-size: 0.85rem; border-bottom: 1px solid var(--border); opacity: 1; }
+        .dropdown-content a { color: var(--text-main); padding: 12px 16px; text-decoration: none; display: block; font-size: 0.85rem; border-bottom: 1px solid var(--border); font-weight: 500; opacity: 1; }
         .dropdown-content a:hover { background-color: var(--bg-body); color: var(--primary); }
         .dropdown:hover .dropdown-content { display: block; }
+        /* ------------------------------- */
 
         main { flex: 1; padding: 3rem 1rem; max-width: 1200px; margin: 0 auto; width: 100%; box-sizing: border-box; }
         .hero-text { text-align: center; margin-bottom: 4rem; }
@@ -82,11 +88,13 @@
             <a href="index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span> Pro</a>
             
             <nav class="nav-links">
-                <a href="guias.html">Guías</a>
-                <a href="#sobre-nosotros">Sobre nosotros</a>
-                <a href="contacto.html">Contacto</a>
+                <a href="guias.html" class="btn-guias"><i class="fas fa-book-open"></i> Guías</a>
+                
+                <a href="#sobre-nosotros" class="nav-normal">Sobre nosotros</a>
+                <a href="contacto.html" class="nav-normal">Contacto</a>
+                
                 <div class="dropdown">
-                    <button class="dropbtn">Herramientas <i class="fas fa-chevron-down"></i></button>
+                    <button class="dropbtn"><i class="fas fa-tools"></i> Herramientas <i class="fas fa-chevron-down" style="font-size: 0.8em; margin-left: 5px;"></i></button>
                     <div class="dropdown-content">
                         <a href="herramientas-basicas.html">⚡ Cálculos Básicos</a>
                         <a href="calculadora-bombeo.html">🌊 Potencia de Bombeo</a>
