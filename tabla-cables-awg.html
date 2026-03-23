@@ -1,0 +1,68 @@
+<main>
+    <h1>Tabla Completa de Equivalencias AWG a mm² y Ampacidad</h1>
+    <p class="subtitle">Guía de conversión de calibre de cables, secciones transversales y capacidad de conducción de corriente según normativa NEC (NFPA 70).</p>
+
+    <div style="margin: 20px 0; text-align: center; min-height: 90px; background: var(--surface); border: 1px dashed var(--border);">
+        </div>
+
+    <section class="seo-content" style="margin-bottom: 2rem;">
+        <h2>¿Qué es el calibre AWG y cómo se calcula su sección en mm²?</h2>
+        <p>El estándar <strong>American Wire Gauge (AWG)</strong> es el sistema de clasificación de diámetros de conductores eléctricos más utilizado a nivel internacional junto con el sistema métrico (mm²). Entender la equivalencia exacta es vital para el dimensionamiento de líneas de distribución, cuadros de control y motores eléctricos.</p>
+        <p>A diferencia del sistema métrico, donde a mayor número mayor es la sección del cable, en el sistema AWG la relación es inversa: <strong>cuanto mayor es el número AWG, más delgado es el conductor</strong>. A partir del calibre 4/0 (0000), el estándar cambia a kcmil (MCM) para cables de transmisión de potencia industrial.</p>
+    </section>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Calibre (AWG / kcmil)</th>
+                    <th>Sección (mm²)</th>
+                    <th>Diámetro (mm)</th>
+                    <th>Ampacidad 60°C (A)</th>
+                    <th>Ampacidad 75°C (A)</th>
+                    <th>Ampacidad 90°C (A)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1000 kcmil</td><td>507.00</td><td>25.40</td><td>545</td><td>615</td><td>680</td></tr>
+                <tr><td>750 kcmil</td><td>380.00</td><td>22.00</td><td>455</td><td>500</td><td>535</td></tr>
+                <tr><td>500 kcmil</td><td>253.00</td><td>17.96</td><td>320</td><td>380</td><td>430</td></tr>
+                <tr><td>300 kcmil</td><td>152.00</td><td>13.90</td><td>240</td><td>285</td><td>320</td></tr>
+                <tr><td>250 kcmil</td><td>127.00</td><td>12.70</td><td>215</td><td>255</td><td>290</td></tr>
+                <tr><td>4/0 (0000)</td><td>107.22</td><td>11.68</td><td>195</td><td>230</td><td>260</td></tr>
+                <tr><td>3/0 (000)</td><td>85.01</td><td>10.40</td><td>165</td><td>200</td><td>225</td></tr>
+                <tr><td>2/0 (00)</td><td>67.43</td><td>9.27</td><td>145</td><td>175</td><td>195</td></tr>
+                <tr><td>1/0 (0)</td><td>53.49</td><td>8.25</td><td>125</td><td>150</td><td>170</td></tr>
+                <tr><td>1</td><td>42.41</td><td>7.35</td><td>110</td><td>130</td><td>145</td></tr>
+                <tr><td>2</td><td>33.62</td><td>6.54</td><td>95</td><td>115</td><td>130</td></tr>
+                <tr><td>4</td><td>21.15</td><td>5.19</td><td>70</td><td>85</td><td>95</td></tr>
+                <tr><td>6</td><td>13.30</td><td>4.11</td><td>55</td><td>65</td><td>75</td></tr>
+                <tr><td>8</td><td>8.37</td><td>3.26</td><td>40</td><td>50</td><td>55</td></tr>
+                <tr><td>10</td><td>5.26</td><td>2.59</td><td>30</td><td>35</td><td>40</td></tr>
+                <tr><td>12</td><td>3.31</td><td>2.05</td><td>20</td><td>25</td><td>30</td></tr>
+                <tr><td>14</td><td>2.08</td><td>1.63</td><td>15</td><td>20</td><td>25</td></tr>
+                <tr><td>16</td><td>1.31</td><td>1.29</td><td>10</td><td>10</td><td>10</td></tr>
+                <tr><td>18</td><td>0.82</td><td>1.02</td><td>7</td><td>-</td><td>-</td></tr>
+                <tr><td>20</td><td>0.52</td><td>0.81</td><td>5</td><td>-</td><td>-</td></tr>
+                <tr><td>22</td><td>0.33</td><td>0.64</td><td>3</td><td>-</td><td>-</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <section class="seo-content" style="margin-top: 2rem;">
+        <h2>Interpretación de la Ampacidad por Temperatura</h2>
+        <p>Los valores de la tabla están basados en conductores de cobre. Es fundamental entender que la capacidad de transportar corriente (ampacidad) no solo depende de la sección en mm², sino del aislamiento térmico del cable:</p>
+        <ul class="check-list">
+            <li><i class="fas fa-check-circle"></i> <strong>Columna 60°C:</strong> Aplica a aislamientos básicos como TW y UF. Utilizada generalmente para equipos de baja capacidad o instalaciones antiguas.</li>
+            <li><i class="fas fa-check-circle"></i> <strong>Columna 75°C:</strong> El estándar industrial más común. Aplica a cables tipo THW, THWN, SE y USE. La mayoría de bornas de motores y disyuntores están tasadas a esta temperatura.</li>
+            <li><i class="fas fa-check-circle"></i> <strong>Columna 90°C:</strong> Para aislamientos termoplásticos de alta resistencia como THHN, THWN-2, XHHW y EPR. Se usa principalmente para aplicar factores de corrección por agrupamiento o altas temperaturas ambiente.</li>
+        </ul>
+    </section>
+
+    <a href="calculadora-seccion-tri.html" class="cta-calculadora">
+        <i class="fas fa-calculator"></i> Validar cálculo: Calculadora de Caída de Tensión
+    </a>
+
+    <div style="margin: 30px 0; text-align: center; min-height: 90px; background: var(--surface); border: 1px dashed var(--border);">
+        </div>
+</main>
