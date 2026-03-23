@@ -6,53 +6,234 @@
     <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-E88WRKF9NQ');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cálculo del diámetro de tubería para redes de aire comprimido</title>
-    <meta name="description" content="Evita pérdidas de presión en tu red neumática industrial. Descubre cómo calcular el diámetro ideal de tus tuberías de aire comprimido.">
+    <title>Cálculo de Diámetro en Tuberías de Aire Comprimido | IndustrialCalc</title>
+    <meta name="description" content="Guía técnica para dimensionar redes de aire comprimido industrial. Fórmulas de velocidad de flujo, diámetro interior y cálculo de pérdida de carga.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --bg-body: #f8fafc; --surface: #ffffff; --text-main: #1e293b; --text-muted: #64748b; --primary: #475569; --header-bg: #0f172a; --border: #e2e8f0; }
-        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
-        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
-        .header-content { max-width: 1000px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        :root { --bg-body: #f1f5f9; --surface: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --primary: #0ea5e9; --header-bg: #0f172a; --border: #e2e8f0; }
+        body.dark-mode { --bg-body: #0f172a; --surface: #1e293b; --text-main: #f8fafc; --text-muted: #94a3b8; --border: #334155; --header-bg: #020617; }
+        
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; display: flex; flex-direction: column; min-height: 100vh; transition: 0.3s; }
+        
+        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; position: sticky; top: 0; z-index: 100; }
+        .header-content { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 1.5rem; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; }
         .logo span { color: #3b82f6; }
-        main { flex: 1; padding: 3rem 1rem; max-width: 800px; margin: 0 auto; width: 100%; box-sizing: border-box; }
-        .article-header { text-align: center; margin-bottom: 3rem; }
-        .article-header h1 { font-size: 2.5rem; color: var(--header-bg); margin-bottom: 1rem; line-height: 1.2; }
-        .article-meta { color: var(--text-muted); font-size: 0.9rem; }
-        .article-content { background: var(--surface); padding: 3rem; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,0.05); font-size: 1.1rem; line-height: 1.8; color: #334155;}
-        .article-content h2 { color: var(--primary); font-size: 1.8rem; margin-top: 2.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; }
-        .cta-box { background: #f8fafc; border: 2px dashed var(--primary); padding: 2rem; text-align: center; border-radius: 12px; margin: 3rem 0; }
-        .cta-button { display: inline-block; background: var(--primary); color: white; padding: 1rem 2rem; text-decoration: none; font-weight: bold; font-size: 1.2rem; border-radius: 8px; margin-top: 1rem; transition: 0.2s; }
-        .cta-button:hover { background: #334155; transform: translateY(-2px); }
-        .back-link { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 1.5rem; color: var(--text-muted); text-decoration: none; font-weight: 600; }
+        .nav-links { display: flex; gap: 15px; align-items: center; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: 0.2s; }
+        .btn-guias { background: rgba(255,255,255,0.2); padding: 0.5rem 1.2rem; border-radius: 8px; font-weight: 700; border: 1px solid white; }
+        .theme-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; padding: 0.5rem; }
+
+        main { flex: 1; padding: 3rem 1rem; max-width: 900px; margin: 0 auto; width: 100%; box-sizing: border-box; }
+        .back-link { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 2rem; color: var(--text-muted); text-decoration: none; font-weight: 600; }
         .back-link:hover { color: var(--primary); }
-        footer { text-align: center; padding: 2rem; background-color: var(--surface); border-top: 1px solid var(--border); margin-top: 3rem; }
-        footer a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; margin: 0 10px; }
+        
+        .article-header { text-align: center; margin-bottom: 3rem; }
+        .badge { background: #e0f2fe; color: #0369a1; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; margin-bottom: 1rem; display: inline-block; }
+        body.dark-mode .badge { background: #0c4a6e; color: #bae6fd; }
+        .article-header h1 { font-size: 2.8rem; color: var(--text-main); margin-bottom: 1rem; line-height: 1.2; letter-spacing: -1px; }
+        .article-meta { color: var(--text-muted); display: flex; justify-content: center; gap: 20px; font-size: 0.95rem; }
+
+        .content-box { background: var(--surface); padding: 3rem 4rem; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); font-size: 1.15rem; line-height: 1.8; color: var(--text-main); transition: 0.3s; }
+        
+        h2 { color: var(--primary); font-size: 1.8rem; margin-top: 3.5rem; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; scroll-margin-top: 100px; }
+        h3 { color: var(--text-main); font-size: 1.4rem; margin-top: 2rem; }
+        p { margin-bottom: 1.5rem; }
+        ul, ol { margin-bottom: 1.5rem; padding-left: 1.5rem; }
+        li { margin-bottom: 0.8rem; }
+        
+        .toc { background: var(--bg-body); border-left: 4px solid var(--primary); padding: 1.5rem 2rem; border-radius: 0 12px 12px 0; margin: 2rem 0 3rem 0; }
+        .toc h3 { margin-top: 0; font-size: 1.2rem; }
+        .toc a { color: var(--primary); text-decoration: none; font-weight: 500; }
+        .toc a:hover { text-decoration: underline; }
+
+        /* Cajas técnicas */
+        .info-panel { background: #f8fafc; border: 1px solid #cbd5e1; padding: 1.5rem; border-radius: 8px; margin: 2rem 0; }
+        body.dark-mode .info-panel { background: #0f172a; border-color: #334155; }
+        .info-panel h4 { margin-top: 0; color: #334155; font-size: 1.1rem; }
+        body.dark-mode .info-panel h4 { color: #cbd5e1; }
+        .formula { font-family: monospace; background: #e2e8f0; padding: 0.5rem 1rem; border-radius: 6px; font-size: 1.2rem; display: block; text-align: center; margin: 1rem 0; color: #0f172a; font-weight: bold;}
+        body.dark-mode .formula { background: #1e293b; color: #f8fafc; }
+
+        .alert-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 0 8px 8px 0; }
+        body.dark-mode .alert-box { background: #1e3a8a; border-color: #60a5fa; }
+        .alert-box strong { color: #1e40af; }
+        body.dark-mode .alert-box strong { color: #93c5fd; }
+
+        .warning-box { background: #fef2f2; border-left: 4px solid #ef4444; padding: 1.5rem; margin: 2rem 0; border-radius: 0 8px 8px 0; }
+        body.dark-mode .warning-box { background: #7f1d1d; border-color: #f87171; }
+        .warning-box strong { color: #b91c1c; }
+        body.dark-mode .warning-box strong { color: #fca5a5; }
+
+        /* CTAs de Calculadoras */
+        .cta-calc { display: flex; align-items: center; justify-content: space-between; background: linear-gradient(135deg, #0ea5e9, #0369a1); padding: 2rem; border-radius: 12px; margin: 3rem 0; color: white; box-shadow: 0 10px 15px -3px rgba(14,165,233,0.3); flex-wrap: wrap; gap: 20px;}
+        .cta-calc.slate { background: linear-gradient(135deg, #64748b, #334155); box-shadow: 0 10px 15px -3px rgba(100,116,139,0.3); }
+        .cta-calc.orange { background: linear-gradient(135deg, #ea580c, #c2410c); box-shadow: 0 10px 15px -3px rgba(234,88,12,0.3); }
+        
+        .cta-calc-text h3 { color: white; margin: 0 0 0.5rem 0; font-size: 1.5rem; }
+        .cta-calc-text p { margin: 0; font-size: 1rem; opacity: 0.9; }
+        .cta-btn { background: white; color: #0f172a; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 800; transition: 0.2s; white-space: nowrap; }
+        .cta-btn:hover { transform: scale(1.05); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+
+        footer { text-align: center; padding: 3rem 1rem; background-color: var(--surface); border-top: 1px solid var(--border); margin-top: auto; }
+        footer a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-weight: 500; }
+        
+        @media (max-width: 768px) {
+            .content-box { padding: 2rem 1.5rem; }
+            .article-header h1 { font-size: 2.2rem; }
+            .cta-calc { flex-direction: column; text-align: center; }
+            .cta-btn { width: 100%; box-sizing: border-box; text-align: center; }
+        }
     </style>
 </head>
 <body>
-    <header><div class="header-content"><a href="../index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span> Pro</a></div></header>
+    <header>
+        <div class="header-content">
+            <a href="../index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span></a>
+            <nav class="nav-links">
+                <a href="../guias.html" class="btn-guias"><i class="fas fa-book-open"></i> Documentación</a>
+                <button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button>
+            </nav>
+        </div>
+    </header>
+
     <main>
-        <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver a Herramientas</a>
+        <a href="../guias.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver a Documentación</a>
+        
         <article>
             <div class="article-header">
-                <h1>Cálculo del diámetro de tubería para redes de aire comprimido</h1>
-                <div class="article-meta"><i class="far fa-calendar-alt"></i> Actualizado en 2026 | <i class="fas fa-book-reader"></i> 3 min de lectura</div>
-            </div>
-            <div class="article-content">
-                <p>El aire comprimido es el cuarto suministro más importante en la industria, solo por detrás de la electricidad, el agua y el gas. Una red mal dimensionada genera turbulencias, caídas de presión y obliga a los compresores a trabajar al máximo, disparando la factura eléctrica.</p>
-                <h2>La velocidad del aire como límite</h2>
-                <p>El diámetro interior de una tubería neumática debe calcularse para que la velocidad del aire no supere los 6-10 m/s en las líneas principales. Velocidades mayores arrastran la humedad condensada y desgastan prematuramente los anillos de sellado en las máquinas herramienta.</p>
-                
-                <div class="cta-box">
-                    <h3 style="margin-top:0; color: #0f172a;">💨 Dimensiona tu red neumática</h3>
-                    <p>Calcula el diámetro interior óptimo en milímetros introduciendo el caudal del compresor y la presión de trabajo.</p>
-                    <a href="../calculadora-aire.html" class="cta-button"><i class="fas fa-wind"></i> Calculadora de Aire Comprimido</a>
+                <div class="badge">Neumática Industrial</div>
+                <h1>Dimensionamiento de Redes de Aire Comprimido: Diámetro y Pérdidas de Carga</h1>
+                <div class="article-meta">
+                    <span><i class="far fa-clock"></i> 10 min de lectura</span>
+                    <span><i class="fas fa-user-engineer"></i> Nivel: Ingeniería de Planta</span>
                 </div>
+            </div>
+
+            <div class="content-box">
+                <p>El aire comprimido es considerado el cuarto suministro industrial (tras electricidad, agua y gas) y, con diferencia, el más caro de producir. Una red de tuberías mal dimensionada estrangula el flujo neumático, provocando caídas de presión en los puntos de consumo que a menudo se intentan compensar subiendo la presión de trabajo del compresor.</p>
+                
+                <p>Aumentar la presión del compresor un solo bar incrementa el consumo eléctrico de la máquina entre un 7% y un 10%. Este documento detalla el proceso normativo para dimensionar anillos y ramales neumáticos asegurando velocidades de flujo óptimas.</p>
+
+                <div class="toc">
+                    <h3>Índice del Documento</h3>
+                    <ul>
+                        <li><a href="#paso1">1. El Límite Crítico: Velocidad del Aire</a></li>
+                        <li><a href="#paso2">2. Ecuación Continua para el Diámetro Interior</a></li>
+                        <li><a href="#paso3">3. Caudal FAD vs. Caudal Nominal</a></li>
+                        <li><a href="#paso4">4. Cálculo de Caída de Presión (ΔP)</a></li>
+                        <li><a href="#paso5">5. Tratamiento y Punto de Rocío a Presión</a></li>
+                    </ul>
+                </div>
+
+                <h2 id="paso1">1. El Límite Crítico: Velocidad del Aire</h2>
+                <p>El criterio fundamental en el dimensionamiento neumático es la limitación de la velocidad del fluido. Velocidades excesivas incrementan exponencialmente la fricción, arrastran condensados y generan ruido excesivo (vibraciones acústicas).</p>
+
+                <div class="info-panel">
+                    <h4>Velocidades máximas recomendadas (Buenas prácticas de diseño):</h4>
+                    <ul>
+                        <li><strong>Colector principal (Anillo de distribución):</strong> Máximo de <strong>6 a 8 m/s</strong>. Es la tubería "arterial" que sale del cuarto de compresores y recorre el perímetro de la nave. Debe prever futuras ampliaciones de planta.</li>
+                        <li><strong>Ramales secundarios (Bajantes a máquina):</strong> Máximo de <strong>10 a 15 m/s</strong>. Tramos cortos y verticales que alimentan directamente a las válvulas y cilindros neumáticos.</li>
+                    </ul>
+                </div>
+
+                <h2 id="paso2">2. Ecuación Continua para el Diámetro Interior</h2>
+                <p>Conocidos el caudal que debe suministrar la red y la velocidad máxima objetivo, podemos aplicar la ecuación de mecánica de fluidos para gases compresibles y despejar el diámetro interior teórico de la tubería de aluminio, acero o polímero.</p>
+
+                <div class="warning-box">
+                    <strong>Fórmula del Diámetro Interior (D)</strong>
+                    <br><br>
+                    <div style="text-align: center; font-family: monospace; font-size: 1.2rem;">D = √ [ (4 · Q) / (π · v · P_abs) ]</div>
+                    <br>
+                    Donde:
+                    <ul>
+                        <li><strong>D:</strong> Diámetro interior de la tubería (metros).</li>
+                        <li><strong>Q:</strong> Caudal de aire a condiciones libres (m³/s).</li>
+                        <li><strong>v:</strong> Velocidad máxima del aire (m/s).</li>
+                        <li><strong>P_abs:</strong> Presión absoluta del sistema (Presión manométrica + 1 bar).</li>
+                    </ul>
+                </div>
+
+                <div class="cta-calc">
+                    <div class="cta-calc-text">
+                        <h3>Automatización del Dimensionamiento</h3>
+                        <p>No calcule secciones a mano. Ingrese el caudal de su compresor y la presión de red para obtener el diámetro comercial recomendado y la velocidad resultante.</p>
+                    </div>
+                    <a href="../calculadora-aire.html" class="cta-btn"><i class="fas fa-wind"></i> Calculadora Neumática</a>
+                </div>
+
+                <h2 id="paso3">3. Caudal FAD (Free Air Delivery) vs. Caudal Nominal</h2>
+                <p>Uno de los errores más frecuentes en la interpretación de catálogos de compresores es confundir el caudal desplazado con las condiciones de aspiración. El estándar industrial es el <strong>FAD (Free Air Delivery o Aire Libre Suministrado)</strong>.</p>
+                
+                <p>El FAD indica el volumen de aire que el compresor toma del exterior (a 1 bar absoluto y 20ºC) y que luego comprime a la presión de trabajo de la red (ej. 7 bares). Al comprimir el aire, su volumen real dentro de la tubería se reduce drásticamente (Ley de Boyle-Mariotte), lo cual se refleja en el denominador (P_abs) de nuestra fórmula de diámetro.</p>
+
+                <h2 id="paso4">4. Cálculo de Caída de Presión (ΔP) y Longitud Equivalente</h2>
+                <p>Una vez seleccionado el diámetro comercial inmediatamente superior al calculado, debemos verificar que la pérdida de carga desde el calderín hasta la máquina más alejada no supera el límite de diseño aceptable (generalmente se admite una pérdida máxima total de <strong>0.1 a 0.3 bares</strong>).</p>
+
+                <div class="alert-box">
+                    <strong>El factor de Longitud Equivalente:</strong>
+                    La caída de presión no solo depende de los metros de tubo recto. Cada válvula, codo de 90º o derivación en "T" genera turbulencias. En ingeniería, estos accesorios se convierten a "metros equivalentes de tubería recta" y se suman a la longitud total del anillo antes de aplicar las ecuaciones de fricción (D'Arcy-Weisbach o fórmulas empíricas).
+                </div>
+
+                <div class="cta-calc slate">
+                    <div class="cta-calc-text">
+                        <h3>Verificación de Pérdidas de Carga</h3>
+                        <p>Asegúrese de que el aire llega a sus máquinas con la fuerza necesaria. Calcule la caída de presión en tuberías por fricción fluida.</p>
+                    </div>
+                    <a href="../calculadora-presion.html" class="cta-btn" style="color: #334155;"><i class="fas fa-tachometer-alt"></i> Cálculo de Presión</a>
+                </div>
+
+                <h2 id="paso5">5. Humedad y Condensación: El Punto de Rocío</h2>
+                <p>El aire atmosférico siempre contiene vapor de agua. Al comprimirlo a 7 u 8 bares y enviarlo por la red, su capacidad para retener ese vapor de agua disminuye drásticamente, provocando la formación de agua líquida en el interior de los tubos.</p>
+                
+                <p>El agua oxida tuberías de acero galvanizado, arrastra el aceite lubricante de las herramientas neumáticas y contamina productos en líneas de pintura o alimentación. Por ello, la selección de secadores frigoríficos o de adsorción requiere calcular el <strong>Punto de Rocío a Presión (PRP)</strong>.</p>
+
+                <div class="cta-calc orange">
+                    <div class="cta-calc-text">
+                        <h3>Prevención de Condensados</h3>
+                        <p>Determine la temperatura exacta a la que el aire comprimido comenzará a licuar su humedad y defina la clase de secado ISO 8573-1 necesaria para su red.</p>
+                    </div>
+                    <a href="../calculadora-psicrometria.html" class="cta-btn" style="color: #c2410c;"><i class="fas fa-droplet"></i> Punto de Rocío</a>
+                </div>
+
+                <hr style="border: 0; height: 1px; background: var(--border); margin: 3rem 0;">
+                <p style="font-size: 0.9rem; color: var(--text-muted); text-align: center;"><em>Aviso técnico: Las redes de aire comprimido son recipientes a presión y deben ser diseñadas, timbradas y ejecutadas conforme a la normativa de equipos a presión y prevención de riesgos del país correspondiente.</em></p>
             </div>
         </article>
     </main>
-    <footer><a href="../index.html">Inicio</a><a href="../glosario.html">Glosario Técnico</a><a href="../legales.html">Aviso Legal</a></footer>
+
+    <footer>
+        <div class="links">
+            <a href="../index.html">Inicio</a>
+            <a href="../guias.html">Documentación</a>
+            <a href="../glosario.html">Glosario Técnico</a>
+            <a href="../contacto.html">Contacto</a>
+            <a href="../legales.html">Aviso Legal</a>
+        </div>
+        <p>&copy; 2026 IndustrialCalc Pro - Suite Profesional de Herramientas Técnicas.</p>
+    </footer>
+
+    <script>
+        const themeBtn = document.getElementById('theme-toggle');
+        const themeIcon = themeBtn.querySelector('i');
+        const currentTheme = localStorage.getItem('industrialcalc-theme');
+
+        if (currentTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('industrialcalc-theme', 'dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                localStorage.setItem('industrialcalc-theme', 'light');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+            }
+        });
+    </script>
 </body>
 </html>
