@@ -6,60 +6,258 @@
     <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-E88WRKF9NQ');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fórmula para calcular la potencia de una bomba de agua para riego</title>
-    <meta name="description" content="Guía técnica para dimensionar la potencia necesaria (kW y CV) de una bomba de agua agrícola o industrial basándose en el caudal y la altura manométrica.">
+    <title>Cálculo de Potencia en Bombas Hidráulicas: Caudal y Altura Manométrica | IndustrialCalc</title>
+    <meta name="description" content="Procedimiento de cálculo para determinar la potencia mecánica (kW y CV) de una bomba de agua. Análisis de altura manométrica, pérdidas de carga y NPSH.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Mismos estilos exactos que el archivo anterior */
-        :root { --bg-body: #f8fafc; --surface: #ffffff; --text-main: #1e293b; --text-muted: #64748b; --primary: #16a34a; --header-bg: #0f172a; --border: #e2e8f0; }
-        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
-        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
-        .header-content { max-width: 1000px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        :root { --bg-body: #f1f5f9; --surface: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --primary: #0284c7; --header-bg: #0f172a; --border: #e2e8f0; }
+        body.dark-mode { --bg-body: #0f172a; --surface: #1e293b; --text-main: #f8fafc; --text-muted: #94a3b8; --border: #334155; --header-bg: #020617; }
+        
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; display: flex; flex-direction: column; min-height: 100vh; transition: 0.3s; }
+        
+        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; position: sticky; top: 0; z-index: 100; }
+        .header-content { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 1.5rem; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; }
         .logo span { color: #3b82f6; }
-        main { flex: 1; padding: 3rem 1rem; max-width: 800px; margin: 0 auto; width: 100%; box-sizing: border-box; }
-        .article-header { text-align: center; margin-bottom: 3rem; }
-        .article-header h1 { font-size: 2.5rem; color: var(--header-bg); margin-bottom: 1rem; line-height: 1.2; }
-        .article-meta { color: var(--text-muted); font-size: 0.9rem; }
-        .article-content { background: var(--surface); padding: 3rem; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,0.05); font-size: 1.1rem; line-height: 1.8; color: #334155;}
-        .article-content h2 { color: var(--primary); font-size: 1.8rem; margin-top: 2.5rem; border-bottom: 2px solid #d1fae5; padding-bottom: 0.5rem; }
-        .cta-box { background: #f0fdf4; border: 2px dashed var(--primary); padding: 2rem; text-align: center; border-radius: 12px; margin: 3rem 0; }
-        .cta-button { display: inline-block; background: var(--primary); color: white; padding: 1rem 2rem; text-decoration: none; font-weight: bold; font-size: 1.2rem; border-radius: 8px; margin-top: 1rem; transition: 0.2s; }
-        .cta-button:hover { background: #15803d; transform: translateY(-2px); }
-        .back-link { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 1.5rem; color: var(--text-muted); text-decoration: none; font-weight: 600; }
+        .nav-links { display: flex; gap: 15px; align-items: center; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: 0.2s; }
+        .btn-guias { background: rgba(255,255,255,0.2); padding: 0.5rem 1.2rem; border-radius: 8px; font-weight: 700; border: 1px solid white; }
+        .theme-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; padding: 0.5rem; }
+
+        main { flex: 1; padding: 3rem 1rem; max-width: 900px; margin: 0 auto; width: 100%; box-sizing: border-box; }
+        .back-link { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 2rem; color: var(--text-muted); text-decoration: none; font-weight: 600; }
         .back-link:hover { color: var(--primary); }
-        footer { text-align: center; padding: 2rem; background-color: var(--surface); border-top: 1px solid var(--border); margin-top: 3rem; }
-        footer a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; margin: 0 10px; }
+        
+        .article-header { text-align: center; margin-bottom: 3rem; }
+        .badge { background: #e0f2fe; color: #0369a1; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; margin-bottom: 1rem; display: inline-block; }
+        body.dark-mode .badge { background: #0c4a6e; color: #bae6fd; }
+        .article-header h1 { font-size: 2.5rem; color: var(--text-main); margin-bottom: 1rem; line-height: 1.2; letter-spacing: -1px; }
+        .article-meta { color: var(--text-muted); display: flex; justify-content: center; gap: 20px; font-size: 0.95rem; }
+
+        .content-box { background: var(--surface); padding: 3rem 4rem; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); font-size: 1.15rem; line-height: 1.8; color: var(--text-main); transition: 0.3s; }
+        
+        h2 { color: var(--primary); font-size: 1.8rem; margin-top: 3.5rem; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; scroll-margin-top: 100px; }
+        h3 { color: var(--text-main); font-size: 1.4rem; margin-top: 2rem; }
+        p { margin-bottom: 1.5rem; }
+        ul, ol { margin-bottom: 1.5rem; padding-left: 1.5rem; }
+        li { margin-bottom: 0.8rem; }
+        
+        .toc { background: var(--bg-body); border-left: 4px solid var(--primary); padding: 1.5rem 2rem; border-radius: 0 12px 12px 0; margin: 2rem 0 3rem 0; }
+        .toc h3 { margin-top: 0; font-size: 1.2rem; }
+        .toc a { color: var(--primary); text-decoration: none; font-weight: 500; }
+        .toc a:hover { text-decoration: underline; }
+
+        /* Cajas técnicas */
+        .info-panel { background: #f8fafc; border: 1px solid #cbd5e1; padding: 1.5rem; border-radius: 8px; margin: 2rem 0; }
+        body.dark-mode .info-panel { background: #0f172a; border-color: #334155; }
+        .info-panel h4 { margin-top: 0; color: #334155; font-size: 1.1rem; }
+        body.dark-mode .info-panel h4 { color: #cbd5e1; }
+        .formula { font-family: monospace; background: #e2e8f0; padding: 0.5rem 1rem; border-radius: 6px; font-size: 1.2rem; display: block; text-align: center; margin: 1rem 0; color: #0f172a; font-weight: bold;}
+        body.dark-mode .formula { background: #1e293b; color: #f8fafc; }
+
+        .alert-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 0 8px 8px 0; }
+        body.dark-mode .alert-box { background: #1e3a8a; border-color: #60a5fa; }
+        .alert-box strong { color: #1e40af; }
+        body.dark-mode .alert-box strong { color: #93c5fd; }
+
+        .warning-box { background: #fef2f2; border-left: 4px solid #ef4444; padding: 1.5rem; margin: 2rem 0; border-radius: 0 8px 8px 0; }
+        body.dark-mode .warning-box { background: #7f1d1d; border-color: #f87171; }
+        .warning-box strong { color: #b91c1c; }
+        body.dark-mode .warning-box strong { color: #fca5a5; }
+
+        /* CTAs de Calculadoras */
+        .cta-calc { display: flex; align-items: center; justify-content: space-between; background: linear-gradient(135deg, #0ea5e9, #0369a1); padding: 2rem; border-radius: 12px; margin: 3rem 0; color: white; box-shadow: 0 10px 15px -3px rgba(14,165,233,0.3); flex-wrap: wrap; gap: 20px;}
+        .cta-calc.teal { background: linear-gradient(135deg, #14b8a6, #0f766e); box-shadow: 0 10px 15px -3px rgba(20,184,166,0.3); }
+        .cta-calc.gray { background: linear-gradient(135deg, #64748b, #334155); box-shadow: 0 10px 15px -3px rgba(100,116,139,0.3); }
+        
+        .cta-calc-text h3 { color: white; margin: 0 0 0.5rem 0; font-size: 1.5rem; }
+        .cta-calc-text p { margin: 0; font-size: 1rem; opacity: 0.9; }
+        .cta-btn { background: white; color: #0f172a; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 800; transition: 0.2s; white-space: nowrap; }
+        .cta-btn:hover { transform: scale(1.05); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+
+        footer { text-align: center; padding: 3rem 1rem; background-color: var(--surface); border-top: 1px solid var(--border); margin-top: auto; }
+        footer a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-weight: 500; }
+        
+        @media (max-width: 768px) {
+            .content-box { padding: 2rem 1.5rem; }
+            .article-header h1 { font-size: 2.2rem; }
+            .cta-calc { flex-direction: column; text-align: center; }
+            .cta-btn { width: 100%; box-sizing: border-box; text-align: center; }
+        }
     </style>
 </head>
 <body>
-    <header><div class="header-content"><a href="../index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span> Pro</a></div></header>
+    <header>
+        <div class="header-content">
+            <a href="../index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span></a>
+            <nav class="nav-links">
+                <a href="../guias.html" class="btn-guias"><i class="fas fa-book-open"></i> Documentación</a>
+                <button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button>
+            </nav>
+        </div>
+    </header>
+
     <main>
-        <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver a Herramientas</a>
+        <a href="../guias.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver a Documentación</a>
+        
         <article>
             <div class="article-header">
-                <h1>Fórmula para calcular la potencia de una bomba de agua para riego</h1>
-                <div class="article-meta"><i class="far fa-calendar-alt"></i> Actualizado en 2026 | <i class="fas fa-book-reader"></i> 4 min de lectura</div>
-            </div>
-            <div class="article-content">
-                <p>Elegir la bomba adecuada para una finca agrícola o un circuito industrial de refrigeración es clave para optimizar la factura eléctrica. Un motor sobredimensionado consumirá demasiada energía, mientras que uno pequeño no logrará la presión deseada en los aspersores.</p>
-                
-                <h2>Los tres factores clave del bombeo</h2>
-                <p>Para determinar la potencia en el eje del motor necesitas conocer:</p>
-                <ul>
-                    <li><strong>El caudal (Q):</strong> Volumen de agua por unidad de tiempo (m³/h).</li>
-                    <li><strong>La Altura Manométrica Total (H):</strong> Desnivel más pérdidas de carga en la tubería.</li>
-                    <li><strong>El rendimiento (η):</strong> La eficiencia mecánica y eléctrica de la bomba (generalmente entre el 60% y el 80%).</li>
-                </ul>
-
-                <div class="cta-box">
-                    <h3 style="margin-top:0; color: #0f172a;">💧 Dimensiona tu bomba en segundos</h3>
-                    <p>Obtén la potencia exacta requerida en kilovatios (kW) y caballos de vapor (CV) con nuestra herramienta gratuita.</p>
-                    <a href="../calculadora-bombeo.html" class="cta-button"><i class="fas fa-pump-soap"></i> Calculadora de Potencia de Bombeo</a>
+                <div class="badge">Hidráulica Industrial</div>
+                <h1>Cálculo de Potencia de Bombas Hidráulicas: Caudal y Altura Manométrica</h1>
+                <div class="article-meta">
+                    <span><i class="far fa-clock"></i> 10 min de lectura</span>
+                    <span><i class="fas fa-user-engineer"></i> Nivel: Ingeniería Mecánica</span>
                 </div>
+            </div>
+
+            <div class="content-box">
+                <p>El bombeo de fluidos representa uno de los mayores vectores de consumo energético en los sectores industrial, agrícola y de tratamiento de aguas. Seleccionar un grupo motobomba basándose en estimaciones superficiales deriva invariablemente en dos escenarios: un sobredimensionamiento que encarece el OPEX eléctrico, o un subdimensionamiento que fatiga prematuramente el equipo.</p>
+                
+                <p>Este artículo desgrana las ecuaciones de la mecánica de fluidos incompresibles necesarias para determinar la potencia mecánica (kW y CV) que un motor debe entregar al eje de la bomba para satisfacer un punto de trabajo específico.</p>
+
+                <div class="toc">
+                    <h3>Índice del Documento</h3>
+                    <ul>
+                        <li><a href="#paso1">1. Variables de Diseño: Caudal (Q) y Densidad (ρ)</a></li>
+                        <li><a href="#paso2">2. Cálculo de la Altura Manométrica Total (AMT)</a></li>
+                        <li><a href="#paso3">3. Ecuación de Potencia Hidráulica vs Absorbida</a></li>
+                        <li><a href="#paso4">4. Eficiencia (η) y Selección del Motor Eléctrico</a></li>
+                        <li><a href="#paso5">5. Prevención de Cavitación: Análisis del NPSH</a></li>
+                    </ul>
+                </div>
+
+                <h2 id="paso1">1. Variables de Diseño: Caudal (Q) y Densidad (ρ)</h2>
+                <p>El punto de partida del dimensionamiento es establecer la cantidad de fluido que necesitamos desplazar en un tiempo determinado. En hidráulica de potencia, el <strong>Caudal volumétrico (Q)</strong> suele expresarse en m³/h o litros por segundo (l/s).</p>
+                
+                <p>Igualmente crítico es conocer el fluido que se va a impulsar. La potencia requerida para bombear un caudal de agua a 20ºC no es la misma que para bombear melaza, lodo o aceite térmico. La <strong>Densidad (ρ)</strong> y la <strong>Gravedad específica (SG)</strong> son multiplicadores directos de la carga de trabajo.</p>
+
+                <div class="info-panel">
+                    <h4>Densidades estándar de referencia:</h4>
+                    <ul>
+                        <li><strong>Agua dulce (20ºC):</strong> 1.000 kg/m³ (Gravedad Específica = 1.0)</li>
+                        <li><strong>Agua de mar:</strong> 1.025 kg/m³ (Gravedad Específica = 1.025)</li>
+                        <li><strong>Aceites industriales:</strong> ~850 a 900 kg/m³ (Gravedad Específica < 1.0)</li>
+                    </ul>
+                </div>
+
+                <h2 id="paso2">2. Cálculo de la Altura Manométrica Total (AMT)</h2>
+                <p>La bomba no solo tiene que vencer la gravedad; tiene que superar la resistencia que ofrece toda la instalación. La <strong>Altura Manométrica Total (H o AMT)</strong>, expresada en metros de columna de agua (m.c.a.), es la suma de tres componentes energéticos:</p>
+
+                <div class="info-panel">
+                    <h4>Desglose de la Altura Manométrica:</h4>
+                    <span class="formula">H_total = H_geométrica + ΔP_fricción + ΔP_presión</span>
+                    <ul>
+                        <li><strong>H_geométrica (Elevación):</strong> Diferencia de cota vertical en metros desde el nivel del líquido en el depósito de aspiración hasta el punto más alto de descarga.</li>
+                        <li><strong>ΔP_fricción (Pérdidas de carga):</strong> Resistencia al flujo causada por la rugosidad de la tubería recta (pérdidas primarias) y por válvulas, codos y reducciones (pérdidas secundarias).</li>
+                        <li><strong>ΔP_presión:</strong> Si el depósito de destino está presurizado (ej. una caldera), la bomba debe vencer esa presión adicional (1 bar ≈ 10.2 m.c.a.).</li>
+                    </ul>
+                </div>
+
+                <div class="cta-calc teal">
+                    <div class="cta-calc-text">
+                        <h3>Análisis de Fricción en Tuberías</h3>
+                        <p>Calcule la pérdida de carga exacta (ΔP_fricción) introduciendo la longitud, diámetro y rugosidad de su red hidráulica.</p>
+                    </div>
+                    <a href="../calculadora-presion.html" class="cta-btn" style="color: #0f766e;"><i class="fas fa-water"></i> Calculadora de Caída de Presión</a>
+                </div>
+
+                <h2 id="paso3">3. Ecuación de Potencia Hidráulica vs Absorbida</h2>
+                <p>En ingeniería distinguimos entre la potencia que el fluido realmente recibe (Potencia Hidráulica) y la potencia mecánica que el motor debe entregar al eje de la bomba (Potencia Absorbida), debido a las inevitables pérdidas por rozamiento en rodamientos, cierres mecánicos y turbulencias internas.</p>
+                
+                <div class="info-panel">
+                    <h4>Ecuación de Potencia en el Eje (kW)</h4>
+                    <span class="formula">P (kW) = (Q · H · ρ · g) / (3.600.000 · η_bomba)</span>
+                    <p>Donde:</p>
+                    <ul>
+                        <li><strong>Q:</strong> Caudal en m³/h.</li>
+                        <li><strong>H:</strong> Altura manométrica total en metros (m.c.a.).</li>
+                        <li><strong>ρ:</strong> Densidad del fluido en kg/m³.</li>
+                        <li><strong>g:</strong> Aceleración de la gravedad (9.81 m/s²).</li>
+                        <li><strong>η_bomba:</strong> Rendimiento hidráulico de la bomba (valor adimensional, ej. 0.75 para un 75%).</li>
+                    </ul>
+                </div>
+
+                <div class="cta-calc">
+                    <div class="cta-calc-text">
+                        <h3>Resolución de Potencia Hidráulica</h3>
+                        <p>Obtenga el resultado inmediato en kW y CV (Caballos de Vapor) introduciendo el caudal y la altura manométrica del proyecto.</p>
+                    </div>
+                    <a href="../calculadora-bombeo.html" class="cta-btn" style="color: #0369a1;"><i class="fas fa-pump-soap"></i> Calculadora de Bombeo</a>
+                </div>
+
+                <h2 id="paso4">4. Eficiencia (η) y Selección del Motor Eléctrico</h2>
+                <p>Una vez obtenida la potencia absorbida en el eje de la bomba, debemos seleccionar un motor eléctrico normalizado capaz de entregar esa potencia mecánica.</p>
+                
+                <p>Ningún motor convierte el 100% de la energía eléctrica en energía mecánica; una parte se disipa en forma de calor. Por tanto, el consumo eléctrico real de la instalación se calcula dividiendo la potencia del eje entre el rendimiento del motor (<strong>η_motor</strong>).</p>
+
+                <div class="warning-box">
+                    <strong>Factor de Servicio y Margen de Seguridad:</strong>
+                    Nunca se selecciona un motor con la potencia exacta calculada. Para evitar sobrecalentamientos ante variaciones de tensión o densidad del fluido, se aplica un margen estandarizado:
+                    <ul>
+                        <li>Potencia calculada < 1.5 kW ➔ Margen del <strong>25% a 30%</strong>.</li>
+                        <li>Potencia calculada de 1.5 a 15 kW ➔ Margen del <strong>15% a 20%</strong>.</li>
+                        <li>Potencia calculada > 15 kW ➔ Margen del <strong>10% a 15%</strong>.</li>
+                    </ul>
+                </div>
+
+                <div class="cta-calc gray">
+                    <div class="cta-calc-text">
+                        <h3>Optimización de Accionamientos</h3>
+                        <p>Evalúe el rendimiento de motores trifásicos, necesidades de par motor y capacidades para el arranque de sistemas de bombeo.</p>
+                    </div>
+                    <a href="../calculadora-eficiencia.html" class="cta-btn" style="color: #334155;"><i class="fas fa-cogs"></i> Eficiencia y Motores</a>
+                </div>
+
+                <h2 id="paso5">5. Prevención de Cavitación: Análisis del NPSH</h2>
+                <p>Una bomba con la potencia eléctrica perfectamente calculada fallará catastróficamente si no se evalúa la línea de aspiración. Cuando la presión del líquido en la boca de succión de la bomba cae por debajo de su presión de vapor, el líquido hierve a temperatura ambiente, formando burbujas de gas que implosionan violentamente contra el rodete.</p>
+
+                <div class="alert-box">
+                    <strong>Condición Crítica de Diseño:</strong>
+                    Para garantizar la operatividad de la bomba y evitar la cavitación destructiva, se debe cumplir estrictamente la siguiente inecuación en todo el rango de trabajo:
+                    <br><br>
+                    <div style="text-align: center; font-family: monospace; font-size: 1.2rem; font-weight: bold; color: #1e40af;">NPSH_disponible > NPSH_requerido + 0.5m</div>
+                </div>
+
+                <p>El <strong>NPSHr (Requerido)</strong> es un dato empírico suministrado por el fabricante de la bomba, mientras que el <strong>NPSHd (Disponible)</strong> debe calcularlo el proyectista en función de la presión atmosférica local, la cota de aspiración geométrica, la presión de vapor del líquido a la temperatura de trabajo y las pérdidas de carga en la tubería de succión.</p>
+
+                <hr style="border: 0; height: 1px; background: var(--border); margin: 3rem 0;">
+                <p style="font-size: 0.9rem; color: var(--text-muted); text-align: center;"><em>Nota de ingeniería: Las ecuaciones provistas asumen régimen de flujo estacionario y fluidos newtonianos. Para fluidos de alta viscosidad o comportamientos reológicos complejos, aplíquense los factores de corrección del Hydraulic Institute.</em></p>
             </div>
         </article>
     </main>
-    <footer><a href="../index.html">Inicio</a><a href="../glosario.html">Glosario Técnico</a><a href="../legales.html">Aviso Legal</a></footer>
+
+    <footer>
+        <div class="links">
+            <a href="../index.html">Inicio</a>
+            <a href="../guias.html">Documentación</a>
+            <a href="../glosario.html">Glosario Técnico</a>
+            <a href="../contacto.html">Contacto</a>
+            <a href="../legales.html">Aviso Legal</a>
+        </div>
+        <p>&copy; 2026 IndustrialCalc Pro - Suite Profesional de Herramientas Técnicas.</p>
+    </footer>
+
+    <script>
+        const themeBtn = document.getElementById('theme-toggle');
+        const themeIcon = themeBtn.querySelector('i');
+        const currentTheme = localStorage.getItem('industrialcalc-theme');
+
+        if (currentTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('industrialcalc-theme', 'dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                localStorage.setItem('industrialcalc-theme', 'light');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+            }
+        });
+    </script>
 </body>
 </html>
