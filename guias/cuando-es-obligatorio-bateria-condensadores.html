@@ -6,11 +6,11 @@
     <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-E88WRKF9NQ');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cálculo de Potencia en Bombas Hidráulicas: Caudal y Altura Manométrica | IndustrialCalc</title>
-    <meta name="description" content="Procedimiento de cálculo para determinar la potencia mecánica (kW y CV) de una bomba de agua. Análisis de altura manométrica, pérdidas de carga y NPSH.">
+    <title>Compensación de Energía Reactiva: Baterías de Condensadores | IndustrialCalc</title>
+    <meta name="description" content="Guía técnica para el cálculo y dimensionamiento de baterías de condensadores. Corrige el factor de potencia y elimina las penalizaciones por energía reactiva.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --bg-body: #f1f5f9; --surface: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --primary: #0284c7; --header-bg: #0f172a; --border: #e2e8f0; }
+        :root { --bg-body: #f1f5f9; --surface: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --primary: #8b5cf6; --header-bg: #0f172a; --border: #e2e8f0; }
         body.dark-mode { --bg-body: #0f172a; --surface: #1e293b; --text-main: #f8fafc; --text-muted: #94a3b8; --border: #334155; --header-bg: #020617; }
         
         html { scroll-behavior: smooth; }
@@ -30,8 +30,8 @@
         .back-link:hover { color: var(--primary); }
         
         .article-header { text-align: center; margin-bottom: 3rem; }
-        .badge { background: #e0f2fe; color: #0369a1; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; margin-bottom: 1rem; display: inline-block; }
-        body.dark-mode .badge { background: #0c4a6e; color: #bae6fd; }
+        .badge { background: #ede9fe; color: #5b21b6; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; margin-bottom: 1rem; display: inline-block; }
+        body.dark-mode .badge { background: #4c1d95; color: #ddd6fe; }
         .article-header h1 { font-size: 2.5rem; color: var(--text-main); margin-bottom: 1rem; line-height: 1.2; letter-spacing: -1px; }
         .article-meta { color: var(--text-muted); display: flex; justify-content: center; gap: 20px; font-size: 0.95rem; }
 
@@ -67,9 +67,9 @@
         body.dark-mode .warning-box strong { color: #fca5a5; }
 
         /* CTAs de Calculadoras */
-        .cta-calc { display: flex; align-items: center; justify-content: space-between; background: linear-gradient(135deg, #0ea5e9, #0369a1); padding: 2rem; border-radius: 12px; margin: 3rem 0; color: white; box-shadow: 0 10px 15px -3px rgba(14,165,233,0.3); flex-wrap: wrap; gap: 20px;}
-        .cta-calc.teal { background: linear-gradient(135deg, #14b8a6, #0f766e); box-shadow: 0 10px 15px -3px rgba(20,184,166,0.3); }
-        .cta-calc.gray { background: linear-gradient(135deg, #64748b, #334155); box-shadow: 0 10px 15px -3px rgba(100,116,139,0.3); }
+        .cta-calc { display: flex; align-items: center; justify-content: space-between; background: linear-gradient(135deg, #8b5cf6, #5b21b6); padding: 2rem; border-radius: 12px; margin: 3rem 0; color: white; box-shadow: 0 10px 15px -3px rgba(139,92,246,0.3); flex-wrap: wrap; gap: 20px;}
+        .cta-calc.blue { background: linear-gradient(135deg, #3b82f6, #1d4ed8); box-shadow: 0 10px 15px -3px rgba(37,99,235,0.3); }
+        .cta-calc.yellow { background: linear-gradient(135deg, #eab308, #a16207); box-shadow: 0 10px 15px -3px rgba(234,179,8,0.3); }
         
         .cta-calc-text h3 { color: white; margin: 0 0 0.5rem 0; font-size: 1.5rem; }
         .cta-calc-text p { margin: 0; font-size: 1rem; opacity: 0.9; }
@@ -103,126 +103,118 @@
         
         <article>
             <div class="article-header">
-                <div class="badge">Hidráulica Industrial</div>
-                <h1>Cálculo de Potencia de Bombas Hidráulicas: Caudal y Altura Manométrica</h1>
+                <div class="badge">Eficiencia Energética</div>
+                <h1>Compensación de Energía Reactiva: Dimensionamiento de Baterías de Condensadores</h1>
                 <div class="article-meta">
-                    <span><i class="far fa-clock"></i> 10 min de lectura</span>
-                    <span><i class="fas fa-user-engineer"></i> Nivel: Ingeniería Mecánica</span>
+                    <span><i class="far fa-clock"></i> 13 min de lectura</span>
+                    <span><i class="fas fa-user-engineer"></i> Nivel: Ingeniería Eléctrica</span>
                 </div>
             </div>
 
             <div class="content-box">
-                <p>El bombeo de fluidos representa uno de los mayores vectores de consumo energético en los sectores industrial, agrícola y de tratamiento de aguas. Seleccionar un grupo motobomba basándose en estimaciones superficiales deriva invariablemente en dos escenarios: un sobredimensionamiento que encarece el OPEX eléctrico, o un subdimensionamiento que fatiga prematuramente el equipo.</p>
+                <p>Las penalizaciones por energía reactiva son una "fuga de capital" silenciosa pero letal en el entorno industrial. Las comercializadoras eléctricas aplican recargos severos a las instalaciones cuyo factor de potencia (cos φ) cae por debajo de los umbrales normativos.</p>
                 
-                <p>Este artículo desgrana las ecuaciones de la mecánica de fluidos incompresibles necesarias para determinar la potencia mecánica (kW y CV) que un motor debe entregar al eje de la bomba para satisfacer un punto de trabajo específico.</p>
+                <p>La instalación de una batería de condensadores no solo suprime estas penalizaciones en la factura, sino que libera capacidad en los transformadores y disminuye las pérdidas por efecto Joule en el cableado. Este documento detalla la metodología de cálculo, el análisis de armónicos y el dimensionamiento de las etapas de compensación.</p>
 
                 <div class="toc">
                     <h3>Índice del Documento</h3>
                     <ul>
-                        <li><a href="#paso1">1. Variables de Diseño: Caudal (Q) y Densidad (ρ)</a></li>
-                        <li><a href="#paso2">2. Cálculo de la Altura Manométrica Total (AMT)</a></li>
-                        <li><a href="#paso3">3. Ecuación de Potencia Hidráulica vs Absorbida</a></li>
-                        <li><a href="#paso4">4. Eficiencia (η) y Selección del Motor Eléctrico</a></li>
-                        <li><a href="#paso5">5. Prevención de Cavitación: Análisis del NPSH</a></li>
+                        <li><a href="#paso1">1. Fundamentos: Potencia Activa, Reactiva y Aparente</a></li>
+                        <li><a href="#paso2">2. El Factor de Potencia (cos φ) y la Normativa</a></li>
+                        <li><a href="#paso3">3. Ecuación de Cálculo de Potencia Reactiva (kVAr)</a></li>
+                        <li><a href="#paso4">4. Resonancia y Armónicos: Uso de Filtros de Rechazo</a></li>
+                        <li><a href="#paso5">5. Beneficios Técnicos (Sección de cable y trafos)</a></li>
                     </ul>
                 </div>
 
-                <h2 id="paso1">1. Variables de Diseño: Caudal (Q) y Densidad (ρ)</h2>
-                <p>El punto de partida del dimensionamiento es establecer la cantidad de fluido que necesitamos desplazar en un tiempo determinado. En hidráulica de potencia, el <strong>Caudal volumétrico (Q)</strong> suele expresarse en m³/h o litros por segundo (l/s).</p>
-                
-                <p>Igualmente crítico es conocer el fluido que se va a impulsar. La potencia requerida para bombear un caudal de agua a 20ºC no es la misma que para bombear melaza, lodo o aceite térmico. La <strong>Densidad (ρ)</strong> y la <strong>Gravedad específica (SG)</strong> son multiplicadores directos de la carga de trabajo.</p>
+                <h2 id="paso1">1. Fundamentos: Potencia Activa, Reactiva y Aparente</h2>
+                <p>En sistemas de corriente alterna, la presencia de cargas inductivas (motores asíncronos, transformadores, reactancias de iluminación) provoca un desfase entre la onda de tensión y la de corriente. Para comprender la compensación, debemos diferenciar los tres vectores del <strong>Triángulo de Potencias</strong>:</p>
 
                 <div class="info-panel">
-                    <h4>Densidades estándar de referencia:</h4>
+                    <h4>Vectores de Potencia:</h4>
                     <ul>
-                        <li><strong>Agua dulce (20ºC):</strong> 1.000 kg/m³ (Gravedad Específica = 1.0)</li>
-                        <li><strong>Agua de mar:</strong> 1.025 kg/m³ (Gravedad Específica = 1.025)</li>
-                        <li><strong>Aceites industriales:</strong> ~850 a 900 kg/m³ (Gravedad Específica < 1.0)</li>
+                        <li><strong>Potencia Activa (P):</strong> Se mide en kW. Es la potencia "útil", la que realmente se transforma en trabajo mecánico o calor.</li>
+                        <li><strong>Potencia Reactiva (Q):</strong> Se mide en kVAr (kilo-voltio-amperios reactivos). No produce trabajo útil, pero es imprescindible para generar los campos magnéticos en los motores. "Viaja" de ida y vuelta por la red, sobrecargando las líneas.</li>
+                        <li><strong>Potencia Aparente (S):</strong> Se mide en kVA. Es la suma vectorial de las dos anteriores y representa la capacidad total que debe suministrar la red eléctrica o el transformador.</li>
                     </ul>
                 </div>
 
-                <h2 id="paso2">2. Cálculo de la Altura Manométrica Total (AMT)</h2>
-                <p>La bomba no solo tiene que vencer la gravedad; tiene que superar la resistencia que ofrece toda la instalación. La <strong>Altura Manométrica Total (H o AMT)</strong>, expresada en metros de columna de agua (m.c.a.), es la suma de tres componentes energéticos:</p>
+                <h2 id="paso2">2. El Factor de Potencia (cos φ) y la Normativa</h2>
+                <p>El Factor de Potencia (FP) o coseno de fi (cos φ) es la relación entre la Potencia Activa y la Potencia Aparente. Expresa el grado de aprovechamiento de la energía suministrada. Un valor de 1.0 representa la máxima eficiencia (carga puramente resistiva).</p>
 
-                <div class="info-panel">
-                    <h4>Desglose de la Altura Manométrica:</h4>
-                    <span class="formula">H_total = H_geométrica + ΔP_fricción + ΔP_presión</span>
+                <div class="warning-box">
+                    <strong>Penalizaciones Tarifarias:</strong>
+                    La red de distribución se satura al transportar energía reactiva. Por ello, la normativa (en la mayoría de los países europeos) establece que:
                     <ul>
-                        <li><strong>H_geométrica (Elevación):</strong> Diferencia de cota vertical en metros desde el nivel del líquido en el depósito de aspiración hasta el punto más alto de descarga.</li>
-                        <li><strong>ΔP_fricción (Pérdidas de carga):</strong> Resistencia al flujo causada por la rugosidad de la tubería recta (pérdidas primarias) y por válvulas, codos y reducciones (pérdidas secundarias).</li>
-                        <li><strong>ΔP_presión:</strong> Si el depósito de destino está presurizado (ej. una caldera), la bomba debe vencer esa presión adicional (1 bar ≈ 10.2 m.c.a.).</li>
+                        <li><strong>cos φ > 0.95:</strong> Zona libre de penalizaciones.</li>
+                        <li><strong>cos φ entre 0.95 y 0.85:</strong> Se aplican recargos centesimales en la factura por cada kVArh excedente.</li>
+                        <li><strong>cos φ < 0.85:</strong> Las penalizaciones económicas se multiplican, pudiendo llegar a representar un 30% del total de la factura eléctrica.</li>
                     </ul>
                 </div>
 
-                <div class="cta-calc teal">
-                    <div class="cta-calc-text">
-                        <h3>Análisis de Fricción en Tuberías</h3>
-                        <p>Calcule la pérdida de carga exacta (ΔP_fricción) introduciendo la longitud, diámetro y rugosidad de su red hidráulica.</p>
-                    </div>
-                    <a href="../calculadora-presion.html" class="cta-btn" style="color: #0f766e;"><i class="fas fa-water"></i> Calculadora de Caída de Presión</a>
-                </div>
+                <h2 id="paso3">3. Ecuación de Cálculo de Potencia Reactiva (kVAr)</h2>
+                <p>El objetivo de la batería de condensadores es actuar como un "generador local" de energía reactiva capacitiva (Qc) que anule la energía reactiva inductiva (Ql) que demandan los motores. Para calcular los kVAr exactos de la batería, debemos conocer el factor de potencia actual (φ1) y fijar un factor de potencia objetivo (φ2, habitualmente > 0.98).</p>
 
-                <h2 id="paso3">3. Ecuación de Potencia Hidráulica vs Absorbida</h2>
-                <p>En ingeniería distinguimos entre la potencia que el fluido realmente recibe (Potencia Hidráulica) y la potencia mecánica que el motor debe entregar al eje de la bomba (Potencia Absorbida), debido a las inevitables pérdidas por rozamiento en rodamientos, cierres mecánicos y turbulencias internas.</p>
-                
                 <div class="info-panel">
-                    <h4>Ecuación de Potencia en el Eje (kW)</h4>
-                    <span class="formula">P (kW) = (Q · H · ρ · g) / (3.600.000 · η_bomba)</span>
+                    <h4>Fórmula General de Compensación</h4>
+                    <span class="formula">Qc = P · (tan φ1 - tan φ2)</span>
                     <p>Donde:</p>
                     <ul>
-                        <li><strong>Q:</strong> Caudal en m³/h.</li>
-                        <li><strong>H:</strong> Altura manométrica total en metros (m.c.a.).</li>
-                        <li><strong>ρ:</strong> Densidad del fluido en kg/m³.</li>
-                        <li><strong>g:</strong> Aceleración de la gravedad (9.81 m/s²).</li>
-                        <li><strong>η_bomba:</strong> Rendimiento hidráulico de la bomba (valor adimensional, ej. 0.75 para un 75%).</li>
+                        <li><strong>Qc:</strong> Potencia reactiva de la batería en kVAr.</li>
+                        <li><strong>P:</strong> Potencia activa instalada en la nave en kW.</li>
+                        <li><strong>tan φ1:</strong> Tangente del ángulo inicial (obtenido de las facturas o de un analizador de redes).</li>
+                        <li><strong>tan φ2:</strong> Tangente del ángulo objetivo tras la compensación.</li>
                     </ul>
                 </div>
+
+                <p>Las baterías automáticas constan de un regulador y varios "escalones" o pasos accionados por contactores. Si la demanda de la planta fluctúa, el regulador conectará o desconectará los condensadores necesarios para mantener el cos φ estable, evitando la sobrecompensación (que podría inyectar reactiva capacitiva a la red e incurrir en otras multas).</p>
 
                 <div class="cta-calc">
                     <div class="cta-calc-text">
-                        <h3>Resolución de Potencia Hidráulica</h3>
-                        <p>Obtenga el resultado inmediato en kW y CV (Caballos de Vapor) introduciendo el caudal y la altura manométrica del proyecto.</p>
+                        <h3>Cálculo Automatizado de kVAr</h3>
+                        <p>Evite errores de trigonometría. Introduzca la potencia de su instalación y los factores de potencia, y nuestro algoritmo dimensionará la batería en segundos.</p>
                     </div>
-                    <a href="../calculadora-bombeo.html" class="cta-btn" style="color: #0369a1;"><i class="fas fa-pump-soap"></i> Calculadora de Bombeo</a>
+                    <a href="../calculadora-factor-potencia.html" class="cta-btn"><i class="fas fa-bolt"></i> Calculadora de Cos φ</a>
                 </div>
 
-                <h2 id="paso4">4. Eficiencia (η) y Selección del Motor Eléctrico</h2>
-                <p>Una vez obtenida la potencia absorbida en el eje de la bomba, debemos seleccionar un motor eléctrico normalizado capaz de entregar esa potencia mecánica.</p>
-                
-                <p>Ningún motor convierte el 100% de la energía eléctrica en energía mecánica; una parte se disipa en forma de calor. Por tanto, el consumo eléctrico real de la instalación se calcula dividiendo la potencia del eje entre el rendimiento del motor (<strong>η_motor</strong>).</p>
-
-                <div class="warning-box">
-                    <strong>Factor de Servicio y Margen de Seguridad:</strong>
-                    Nunca se selecciona un motor con la potencia exacta calculada. Para evitar sobrecalentamientos ante variaciones de tensión o densidad del fluido, se aplica un margen estandarizado:
-                    <ul>
-                        <li>Potencia calculada < 1.5 kW ➔ Margen del <strong>25% a 30%</strong>.</li>
-                        <li>Potencia calculada de 1.5 a 15 kW ➔ Margen del <strong>15% a 20%</strong>.</li>
-                        <li>Potencia calculada > 15 kW ➔ Margen del <strong>10% a 15%</strong>.</li>
-                    </ul>
-                </div>
-
-                <div class="cta-calc gray">
-                    <div class="cta-calc-text">
-                        <h3>Optimización de Accionamientos</h3>
-                        <p>Evalúe el rendimiento de motores trifásicos, necesidades de par motor y capacidades para el arranque de sistemas de bombeo.</p>
-                    </div>
-                    <a href="../calculadora-eficiencia.html" class="cta-btn" style="color: #334155;"><i class="fas fa-cogs"></i> Eficiencia y Motores</a>
-                </div>
-
-                <h2 id="paso5">5. Prevención de Cavitación: Análisis del NPSH</h2>
-                <p>Una bomba con la potencia eléctrica perfectamente calculada fallará catastróficamente si no se evalúa la línea de aspiración. Cuando la presión del líquido en la boca de succión de la bomba cae por debajo de su presión de vapor, el líquido hierve a temperatura ambiente, formando burbujas de gas que implosionan violentamente contra el rodete.</p>
+                <h2 id="paso4">4. Resonancia y Armónicos: Uso de Filtros de Rechazo</h2>
+                <p>La electrónica de potencia (variadores de frecuencia, iluminación LED, rectificadores) genera distorsiones en la onda senoidal conocidas como <strong>Armónicos</strong> (THDi y THDu). Los condensadores presentan una impedancia muy baja ante las altas frecuencias de estos armónicos, actuando como un sumidero.</p>
 
                 <div class="alert-box">
-                    <strong>Condición Crítica de Diseño:</strong>
-                    Para garantizar la operatividad de la bomba y evitar la cavitación destructiva, se debe cumplir estrictamente la siguiente inecuación en todo el rango de trabajo:
-                    <br><br>
-                    <div style="text-align: center; font-family: monospace; font-size: 1.2rem; font-weight: bold; color: #1e40af;">NPSH_disponible > NPSH_requerido + 0.5m</div>
+                    <strong>Peligro de Resonancia:</strong>
+                    Si la frecuencia de resonancia entre la inductancia del transformador y la capacitancia de la batería coincide con un armónico presente en la red (típicamente el 5º o el 7º), los condensadores pueden explotar y los interruptores dispararán de forma intempestiva.
                 </div>
 
-                <p>El <strong>NPSHr (Requerido)</strong> es un dato empírico suministrado por el fabricante de la bomba, mientras que el <strong>NPSHd (Disponible)</strong> debe calcularlo el proyectista en función de la presión atmosférica local, la cota de aspiración geométrica, la presión de vapor del líquido a la temperatura de trabajo y las pérdidas de carga en la tubería de succión.</p>
+                <p>Para evitar este fenómeno destructivo, se instalan <strong>Filtros de Rechazo</strong> (reactancias desintonizadas conectadas en serie con los condensadores). La regla de diseño general es:</p>
+                <ul>
+                    <li>THDi < 15%: Batería estándar.</li>
+                    <li>THDi entre 15% y 25%: Batería reforzada con reactancias de choque (habitualmente sintonizadas a 189 Hz para rechazar el 5º armónico).</li>
+                    <li>THDi > 25%: Requiere el uso de filtros activos.</li>
+                </ul>
+
+                <h2 id="paso5">5. Beneficios Técnicos (Sección de cable y trafos)</h2>
+                <p>Más allá del aspecto económico en la factura, compensar la energía reactiva tiene implicaciones directas en el hardware de la instalación eléctrica. Al anular la potencia reactiva (Q), la Potencia Aparente (S) disminuye drásticamente, igualándose a la Potencia Activa (P).</p>
+                
+                <p>Al reducirse la Potencia Aparente, <strong>los amperios que circulan por la acometida disminuyen</strong> proporcionalmente. Esto genera dos efectos fundamentales para el proyecto:</p>
+
+                <div class="cta-calc blue">
+                    <div class="cta-calc-text">
+                        <h3>1. Optimización del Cableado</h3>
+                        <p>Al reducir el amperaje, bajan las pérdidas por efecto Joule. Evalúe cómo el factor de potencia permite instalar secciones de cable mucho menores, ahorrando costes en cobre o aluminio.</p>
+                    </div>
+                    <a href="../calculadora-seccion-tri.html" class="cta-btn" style="color: #1d4ed8;"><i class="fas fa-network-wired"></i> Calculadora de Sección</a>
+                </div>
+
+                <div class="cta-calc yellow">
+                    <div class="cta-calc-text">
+                        <h3>2. Liberación del Transformador</h3>
+                        <p>Mejorar el cos φ descongestiona el centro de transformación (cuyo límite está en kVA). Determine cuánta potencia adicional puede conectar sin tener que cambiar la máquina.</p>
+                    </div>
+                    <a href="../calculadora-transformador.html" class="cta-btn" style="color: #a16207;"><i class="fas fa-charging-station"></i> Análisis de Transformador</a>
+                </div>
 
                 <hr style="border: 0; height: 1px; background: var(--border); margin: 3rem 0;">
-                <p style="font-size: 0.9rem; color: var(--text-muted); text-align: center;"><em>Nota de ingeniería: Las ecuaciones provistas asumen régimen de flujo estacionario y fluidos newtonianos. Para fluidos de alta viscosidad o comportamientos reológicos complejos, aplíquense los factores de corrección del Hydraulic Institute.</em></p>
+                <p style="font-size: 0.9rem; color: var(--text-muted); text-align: center;"><em>Nota de ingeniería: El análisis del THD debe realizarse in situ mediante analizadores de redes clase A. El sobredimensionamiento sin análisis puede provocar resonancias capacitivas graves en el sistema.</em></p>
             </div>
         </article>
     </main>
