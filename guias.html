@@ -10,12 +10,8 @@
     <meta name="description" content="Directorio de guías técnicas, tutoriales y fórmulas aplicadas al sector industrial, eléctrico y mecánico.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Variables Modo Claro */
         :root { --bg-body: #f1f5f9; --surface: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --primary: #2563eb; --header-bg: #0f172a; --border: #e2e8f0; }
-        
-        /* Variables Modo Oscuro */
         body.dark-mode { --bg-body: #0f172a; --surface: #1e293b; --text-main: #f8fafc; --text-muted: #94a3b8; --border: #334155; --header-bg: #020617; }
-
         body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; display: flex; flex-direction: column; min-height: 100vh; transition: background-color 0.3s, color 0.3s;}
         
         header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; transition: background-color 0.3s;}
@@ -74,10 +70,7 @@
                         <a href="index.html" style="text-align:center; font-weight:bold; color: var(--primary);">Ver las 28 calculadoras &rarr;</a>
                     </div>
                 </div>
-                
-                <button id="theme-toggle" class="theme-btn" title="Cambiar tema">
-                    <i class="fas fa-moon"></i>
-                </button>
+                <button id="theme-toggle" class="theme-btn" title="Cambiar tema"><i class="fas fa-moon"></i></button>
             </nav>
         </div>
     </header>
@@ -117,7 +110,6 @@
     <footer>
         <div class="links">
             <a href="index.html">Inicio</a>
-            <a href="guias.html">Guías y Tutoriales</a>
             <a href="glosario.html">Glosario Técnico</a>
             <a href="contacto.html">Contacto</a>
             <a href="legales.html">Aviso Legal y Privacidad</a>
@@ -126,18 +118,15 @@
     </footer>
 
     <script>
-        // Lógica Global del Modo Oscuro
         const themeBtn = document.getElementById('theme-toggle');
         const themeIcon = themeBtn.querySelector('i');
         const currentTheme = localStorage.getItem('industrialcalc-theme');
 
-        // Aplicar estado guardado
         if (currentTheme === 'dark') {
             document.body.classList.add('dark-mode');
             themeIcon.classList.replace('fa-moon', 'fa-sun');
         }
 
-        // Alternar modo
         themeBtn.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
             if (document.body.classList.contains('dark-mode')) {
