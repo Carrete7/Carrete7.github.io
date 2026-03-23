@@ -6,52 +6,211 @@
     <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-E88WRKF9NQ');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cálculo de peso de perfiles de acero IPE y HEB para estructuras</title>
-    <meta name="description" content="Tabla y fórmula para calcular los kilogramos por metro lineal de vigas y perfiles metálicos (IPE, IPN, HEB, UPN) en presupuestos de obra.">
+    <title>Cálculo de Peso en Perfiles de Acero Estructural (IPE, HEB) | IndustrialCalc</title>
+    <meta name="description" content="Guía técnica para el cálculo del peso lineal y volumétrico en vigas de acero estructural. Diferencias entre perfiles IPE, HEB, HEA y UPN.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --bg-body: #f8fafc; --surface: #ffffff; --text-main: #1e293b; --text-muted: #64748b; --primary: #475569; --header-bg: #0f172a; --border: #e2e8f0; }
-        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
-        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
-        .header-content { max-width: 1000px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        :root { --bg-body: #f1f5f9; --surface: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --primary: #475569; --header-bg: #0f172a; --border: #e2e8f0; }
+        body.dark-mode { --bg-body: #0f172a; --surface: #1e293b; --text-main: #f8fafc; --text-muted: #94a3b8; --border: #334155; --header-bg: #020617; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; display: flex; flex-direction: column; min-height: 100vh; transition: 0.3s; }
+        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; position: sticky; top: 0; z-index: 100; }
+        .header-content { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 1.5rem; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; }
         .logo span { color: #3b82f6; }
-        main { flex: 1; padding: 3rem 1rem; max-width: 800px; margin: 0 auto; width: 100%; box-sizing: border-box; }
-        .article-header { text-align: center; margin-bottom: 3rem; }
-        .article-header h1 { font-size: 2.5rem; color: var(--header-bg); margin-bottom: 1rem; line-height: 1.2; }
-        .article-meta { color: var(--text-muted); font-size: 0.9rem; }
-        .article-content { background: var(--surface); padding: 3rem; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,0.05); font-size: 1.1rem; line-height: 1.8; color: #334155;}
-        .article-content h2 { color: var(--primary); font-size: 1.8rem; margin-top: 2.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; }
-        .cta-box { background: #f1f5f9; border: 2px dashed var(--primary); padding: 2rem; text-align: center; border-radius: 12px; margin: 3rem 0; }
-        .cta-button { display: inline-block; background: var(--primary); color: white; padding: 1rem 2rem; text-decoration: none; font-weight: bold; font-size: 1.2rem; border-radius: 8px; margin-top: 1rem; transition: 0.2s; }
-        .cta-button:hover { background: #334155; transform: translateY(-2px); }
-        .back-link { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 1.5rem; color: var(--text-muted); text-decoration: none; font-weight: 600; }
+        .nav-links { display: flex; gap: 15px; align-items: center; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: 0.2s; }
+        .btn-guias { background: rgba(255,255,255,0.2); padding: 0.5rem 1.2rem; border-radius: 8px; font-weight: 700; border: 1px solid white; }
+        .theme-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; padding: 0.5rem; }
+        main { flex: 1; padding: 3rem 1rem; max-width: 900px; margin: 0 auto; width: 100%; box-sizing: border-box; }
+        .back-link { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 2rem; color: var(--text-muted); text-decoration: none; font-weight: 600; }
         .back-link:hover { color: var(--primary); }
-        footer { text-align: center; padding: 2rem; background-color: var(--surface); border-top: 1px solid var(--border); margin-top: 3rem; }
-        footer a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; margin: 0 10px; }
+        .article-header { text-align: center; margin-bottom: 3rem; }
+        .badge { background: #f1f5f9; color: #334155; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; margin-bottom: 1rem; display: inline-block; border: 1px solid #cbd5e1; }
+        body.dark-mode .badge { background: #1e293b; color: #cbd5e1; border-color: #475569; }
+        .article-header h1 { font-size: 2.8rem; color: var(--text-main); margin-bottom: 1rem; line-height: 1.2; letter-spacing: -1px; }
+        .article-meta { color: var(--text-muted); display: flex; justify-content: center; gap: 20px; font-size: 0.95rem; }
+        .content-box { background: var(--surface); padding: 3rem 4rem; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); font-size: 1.15rem; line-height: 1.8; color: var(--text-main); transition: 0.3s; }
+        h2 { color: var(--primary); font-size: 1.8rem; margin-top: 3.5rem; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; scroll-margin-top: 100px; }
+        h3 { color: var(--text-main); font-size: 1.4rem; margin-top: 2rem; }
+        p { margin-bottom: 1.5rem; }
+        ul, ol { margin-bottom: 1.5rem; padding-left: 1.5rem; }
+        li { margin-bottom: 0.8rem; }
+        .toc { background: var(--bg-body); border-left: 4px solid var(--primary); padding: 1.5rem 2rem; border-radius: 0 12px 12px 0; margin: 2rem 0 3rem 0; }
+        .toc h3 { margin-top: 0; font-size: 1.2rem; }
+        .toc a { color: var(--primary); text-decoration: none; font-weight: 500; }
+        .toc a:hover { text-decoration: underline; }
+        .info-panel { background: #f8fafc; border: 1px solid #cbd5e1; padding: 1.5rem; border-radius: 8px; margin: 2rem 0; }
+        body.dark-mode .info-panel { background: #0f172a; border-color: #334155; }
+        .info-panel h4 { margin-top: 0; color: #334155; font-size: 1.1rem; }
+        body.dark-mode .info-panel h4 { color: #cbd5e1; }
+        .formula { font-family: monospace; background: #e2e8f0; padding: 0.5rem 1rem; border-radius: 6px; font-size: 1.2rem; display: block; text-align: center; margin: 1rem 0; color: #0f172a; font-weight: bold;}
+        body.dark-mode .formula { background: #1e293b; color: #f8fafc; }
+        .alert-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 0 8px 8px 0; }
+        body.dark-mode .alert-box { background: #1e3a8a; border-color: #60a5fa; }
+        .alert-box strong { color: #1e40af; }
+        body.dark-mode .alert-box strong { color: #93c5fd; }
+        .warning-box { background: #fef2f2; border-left: 4px solid #ef4444; padding: 1.5rem; margin: 2rem 0; border-radius: 0 8px 8px 0; }
+        body.dark-mode .warning-box { background: #7f1d1d; border-color: #f87171; }
+        .warning-box strong { color: #b91c1c; }
+        body.dark-mode .warning-box strong { color: #fca5a5; }
+        .cta-calc { display: flex; align-items: center; justify-content: space-between; background: linear-gradient(135deg, #475569, #1e293b); padding: 2rem; border-radius: 12px; margin: 3rem 0; color: white; box-shadow: 0 10px 15px -3px rgba(71,85,105,0.3); flex-wrap: wrap; gap: 20px;}
+        .cta-calc.blue { background: linear-gradient(135deg, #0284c7, #0369a1); box-shadow: 0 10px 15px -3px rgba(2,132,199,0.3); }
+        .cta-calc.red { background: linear-gradient(135deg, #dc2626, #991b1b); box-shadow: 0 10px 15px -3px rgba(220,38,38,0.3); }
+        .cta-calc-text h3 { color: white; margin: 0 0 0.5rem 0; font-size: 1.5rem; }
+        .cta-calc-text p { margin: 0; font-size: 1rem; opacity: 0.9; }
+        .cta-btn { background: white; color: #0f172a; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 800; transition: 0.2s; white-space: nowrap; }
+        .cta-btn:hover { transform: scale(1.05); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        footer { text-align: center; padding: 3rem 1rem; background-color: var(--surface); border-top: 1px solid var(--border); margin-top: auto; }
+        footer a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-weight: 500; }
+        @media (max-width: 768px) { .content-box { padding: 2rem 1.5rem; } .article-header h1 { font-size: 2.2rem; } .cta-calc { flex-direction: column; text-align: center; } .cta-btn { width: 100%; box-sizing: border-box; text-align: center; } }
     </style>
 </head>
 <body>
-    <header><div class="header-content"><a href="../index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span> Pro</a></div></header>
+    <header>
+        <div class="header-content">
+            <a href="../index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span></a>
+            <nav class="nav-links">
+                <a href="../guias.html" class="btn-guias"><i class="fas fa-book-open"></i> Documentación</a>
+                <button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button>
+            </nav>
+        </div>
+    </header>
+
     <main>
-        <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver a Herramientas</a>
+        <a href="../guias.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver a Documentación</a>
+        
         <article>
             <div class="article-header">
-                <h1>Cálculo de peso de perfiles de acero IPE y HEB para estructuras</h1>
-                <div class="article-meta"><i class="far fa-calendar-alt"></i> Actualizado en 2026 | <i class="fas fa-book-reader"></i> 3 min de lectura</div>
-            </div>
-            <div class="article-content">
-                <p>En el presupuesto de cualquier nave industrial o pórtico metálico, el precio del acero se cotiza por kilogramo. Un pequeño error al estimar el peso de las vigas principales (IPE, HEB) puede arruinar el margen de beneficio de toda la obra.</p>
-                <h2>Los kilogramos por metro lineal (kg/m)</h2>
-                <p>Cada tipo de perfil normalizado tiene un peso específico garantizado por el fabricante. Por ejemplo, un perfil IPE 200 pesa 22.4 kg por cada metro de longitud. Si el pórtico requiere 50 metros de esta viga, el peso total será de 1120 kg.</p>
-                <div class="cta-box">
-                    <h3 style="margin-top:0; color: #0f172a;">🏗️ Presupuesta estructuras metálicas</h3>
-                    <p>Calcula el peso total en kilogramos de tu lista de perfiles estructurales para pedir presupuesto al almacén de hierros.</p>
-                    <a href="../calculadora-acero.html" class="cta-button"><i class="fas fa-cubes"></i> Calculadora de Estructuras de Acero</a>
+                <div class="badge">Estructuras Metálicas</div>
+                <h1>Cálculo de Peso y Dimensionamiento de Perfiles de Acero Estructural (IPE, HEB)</h1>
+                <div class="article-meta">
+                    <span><i class="far fa-clock"></i> 8 min de lectura</span>
+                    <span><i class="fas fa-user-engineer"></i> Nivel: Ingeniería Estructural</span>
                 </div>
+            </div>
+
+            <div class="content-box">
+                <p>En el sector de la construcción metálica, el acero se presupuesta, se transporta y se factura por kilos. Un error en la estimación del peso de las vigas que conforman el esqueleto de una nave industrial puede convertir un proyecto rentable en una pérdida económica masiva para el taller de estructuras.</p>
+                
+                <p>Además de la implicación económica (CAPEX), el cálculo del peso propio de los perfiles es el primer paso obligatorio para realizar el análisis de cargas gravitatorias y dimensionar la cimentación. Este documento desgrana la metodología para calcular el peso lineal de los perfiles europeos más utilizados.</p>
+
+                <div class="toc">
+                    <h3>Índice del Documento</h3>
+                    <ul>
+                        <li><a href="#paso1">1. Densidad del Acero: La Constante Universal</a></li>
+                        <li><a href="#paso2">2. Clasificación de Perfiles: IPE, HEB y HEA</a></li>
+                        <li><a href="#paso3">3. Ecuación del Peso Lineal por Sección Transversal</a></li>
+                        <li><a href="#paso4">4. Cálculo del Presupuesto y Sobrecarga de Estructura</a></li>
+                    </ul>
+                </div>
+
+                <h2 id="paso1">1. Densidad del Acero: La Constante Universal</h2>
+                <p>Para calcular el peso de cualquier elemento metálico, partimos de la masa volumétrica del material. Aunque existen decenas de aleaciones de acero (S275JR, S355, acero corten, etc.), la normativa estructural (Eurocódigo 3) asume una densidad constante para todos los aceros al carbono de uso estructural.</p>
+
+                <div class="info-panel">
+                    <h4>Masa Específica del Acero Estructural:</h4>
+                    <ul>
+                        <li><strong>Densidad (ρ):</strong> 7.850 kg/m³ (kilogramos por metro cúbico).</li>
+                        <li><strong>Peso específico (γ):</strong> 78,5 kN/m³ (kilonewtons por metro cúbico, usado para cálculos de resistencia de materiales).</li>
+                    </ul>
+                </div>
+
+                <h2 id="paso2">2. Clasificación de Perfiles: IPE, HEB y HEA</h2>
+                <p>El acero líquido se lamina en caliente pasándolo por rodillos que le dan su forma definitiva. La forma del perfil (la "letra" que dibujan sus alas y su alma) determina si es óptimo para soportar flexión o compresión.</p>
+
+                <div class="warning-box">
+                    <strong>Selección de Geometría:</strong>
+                    <ul>
+                        <li><strong>Perfil IPE:</strong> Forma de "I". Es estrecho y muy alto. Pesa poco y es extremadamente eficiente soportando esfuerzos de <strong>flexión</strong>. Se usa casi exclusivamente como viga horizontal (dinteles y viguetas).</li>
+                        <li><strong>Perfil HEB:</strong> Forma de "H". Tiene las alas tan anchas como su altura. Es un perfil muy pesado y macizo. Es el rey indiscutible de la <strong>compresión</strong> y el pandeo, por lo que se utiliza para los pilares verticales de la nave.</li>
+                        <li><strong>Perfil HEA:</strong> Es el hermano ligero del HEB. Tiene la misma forma en "H" pero con paredes más delgadas. Ahorra muchos kilos de acero cuando las cargas axiales no son tan extremas.</li>
+                    </ul>
+                </div>
+
+                <div class="cta-calc">
+                    <div class="cta-calc-text">
+                        <h3>Automatice el Cálculo de Perfiles</h3>
+                        <p>Evite buscar en tablas interminables. Seleccione el tipo de perfil (IPE, HEB, UPN), introduzca su métrica y obtenga al instante el peso lineal y total de su viga.</p>
+                    </div>
+                    <a href="../calculadora-acero.html" class="cta-btn"><i class="fas fa-cubes"></i> Calculadora de Acero</a>
+                </div>
+
+                <h2 id="paso3">3. Ecuación del Peso Lineal por Sección Transversal</h2>
+                <p>Si no disponemos del prontuario o las tablas del fabricante, podemos calcular el peso teórico exacto de un metro de viga si conocemos el área de su sección transversal (la superficie que veríamos si cortáramos la viga como una barra de pan).</p>
+
+                <div class="info-panel">
+                    <h4>Fórmula del Peso Lineal (P_lin)</h4>
+                    <span class="formula">P_lin = Área_transversal · Densidad</span>
+                    <p><em>Para mantener las unidades coherentes, el área debe expresarse en metros cuadrados (m²).</em></p>
+                    <br>
+                    <strong>Ejemplo para un perfil IPE 300:</strong>
+                    <ul>
+                        <li>Área tabulada (A) = 53,8 cm² = 0,00538 m²</li>
+                        <li>P_lin = 0,00538 m² · 7.850 kg/m³ = <strong>42,23 kg por cada metro de viga</strong>.</li>
+                    </ul>
+                </div>
+
+                <p>Si nuestro pórtico industrial necesita una viga IPE 300 de 12 metros de longitud para cubrir la luz de la nave, su peso total será de 42,23 kg/m · 12 m = <strong>506,76 kg</strong>.</p>
+
+                <h2 id="paso4">4. Cálculo del Presupuesto y Sobrecarga de Estructura</h2>
+                <p>Una vez tabulados todos los pórticos, pilares, cruces de San Andrés y correas de cubierta, la suma total (ej: 45.000 kg o 45 Toneladas) nos permite solicitar presupuestos a las acerías.</p>
+
+                <p>Sin embargo, un ingeniero no puede olvidar que el acero se dilata drásticamente con los cambios de temperatura. Si las vigas de la cubierta se calientan bajo el sol de verano, empujarán a los pilares hacia afuera. Es imperativo calcular esta expansión para prever agujeros ovalados en las uniones atornilladas o apoyos deslizantes (neoprenos).</p>
+
+                <div class="cta-calc red">
+                    <div class="cta-calc-text">
+                        <h3>Cálculo de Expansión Lineal</h3>
+                        <p>Evalúe cuántos milímetros se estirarán sus vigas de acero por el gradiente de temperatura estival antes de apretar la tortillería estructural.</p>
+                    </div>
+                    <a href="../calculadora-dilatacion.html" class="cta-btn" style="color: #991b1b;"><i class="fas fa-arrows-left-right"></i> Dilatación Térmica</a>
+                </div>
+
+                <div class="cta-calc blue">
+                    <div class="cta-calc-text">
+                        <h3>Repercusión en Cimentación</h3>
+                        <p>El peso del acero recae íntegramente sobre las zapatas. Calcule el volumen de hormigón necesario para garantizar la estabilidad de los perfiles HEB.</p>
+                    </div>
+                    <a href="../calculadora-hormigon.html" class="cta-btn" style="color: #1e40af;"><i class="fas fa-hard-hat"></i> Volumen de Hormigón</a>
+                </div>
+
+                <hr style="border: 0; height: 1px; background: var(--border); margin: 3rem 0;">
+                <p style="font-size: 0.9rem; color: var(--text-muted); text-align: center;"><em>Aviso técnico: El dimensionamiento estructural debe regirse por los Estados Límite Últimos (ELU) y de Servicio (ELS) definidos en el Eurocódigo 3 y el Código Técnico de la Edificación (CTE DB-SE-A). Las fórmulas expuestas son para cubicaje de peso muerto.</em></p>
             </div>
         </article>
     </main>
-    <footer><a href="../index.html">Inicio</a><a href="../glosario.html">Glosario Técnico</a><a href="../legales.html">Aviso Legal</a></footer>
+
+    <footer>
+        <div class="links">
+            <a href="../index.html">Inicio</a>
+            <a href="../guias.html">Documentación</a>
+            <a href="../glosario.html">Glosario Técnico</a>
+            <a href="../contacto.html">Contacto</a>
+            <a href="../legales.html">Aviso Legal</a>
+        </div>
+        <p>&copy; 2026 IndustrialCalc Pro - Suite Profesional de Herramientas Técnicas.</p>
+    </footer>
+
+    <script>
+        const themeBtn = document.getElementById('theme-toggle');
+        const themeIcon = themeBtn.querySelector('i');
+        const currentTheme = localStorage.getItem('industrialcalc-theme');
+
+        if (currentTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('industrialcalc-theme', 'dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                localStorage.setItem('industrialcalc-theme', 'light');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+            }
+        });
+    </script>
 </body>
 </html>
