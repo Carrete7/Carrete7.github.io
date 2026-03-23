@@ -17,16 +17,20 @@
     <title>IndustrialCalc Pro | Portal Integral de Ingeniería</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* Variables Modo Claro (Por defecto) */
         :root { --bg-body: #f1f5f9; --surface: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --primary: #2563eb; --header-bg: #0f172a; --border: #e2e8f0; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
         
-        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+        /* Variables Modo Oscuro */
+        body.dark-mode { --bg-body: #0f172a; --surface: #1e293b; --text-main: #f8fafc; --text-muted: #94a3b8; --border: #334155; --header-bg: #020617; }
+
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; display: flex; flex-direction: column; min-height: 100vh; transition: background-color 0.3s, color 0.3s; }
+        
+        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; transition: background-color 0.3s; }
         .header-content { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
         .logo { font-size: 1.5rem; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; }
         .logo span { color: #3b82f6; }
         
-        /* --- NUEVOS ESTILOS DEL MENÚ --- */
         .nav-links { display: flex; gap: 15px; align-items: center; }
         .nav-links a.nav-normal { color: white; text-decoration: none; font-size: 0.95rem; font-weight: 500; opacity: 0.8; transition: 0.2s; }
         .nav-links a.nav-normal:hover { opacity: 1; color: #60a5fa; }
@@ -39,18 +43,21 @@
         .dropbtn:hover { background-color: #1d4ed8; border-color: white; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(37, 99, 235, 0.4);}
         
         .dropdown-content { display: none; position: absolute; right: 0; top: 110%; background-color: var(--surface); min-width: 280px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); z-index: 10; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); max-height: 450px; overflow-y: auto;}
-        .dropdown-content a { color: var(--text-main); padding: 12px 16px; text-decoration: none; display: block; font-size: 0.85rem; border-bottom: 1px solid var(--border); font-weight: 500; opacity: 1; }
+        .dropdown-content a { color: var(--text-main); padding: 12px 16px; text-decoration: none; display: block; font-size: 0.85rem; border-bottom: 1px solid var(--border); font-weight: 500; opacity: 1; transition: 0.2s;}
         .dropdown-content a:hover { background-color: var(--bg-body); color: var(--primary); }
         .dropdown:hover .dropdown-content { display: block; }
-        /* ------------------------------- */
+
+        .theme-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; opacity: 0.8; transition: 0.2s; padding: 0.5rem; }
+        .theme-btn:hover { opacity: 1; color: #fde047; transform: rotate(15deg); }
 
         main { flex: 1; padding: 3rem 1rem; max-width: 1200px; margin: 0 auto; width: 100%; box-sizing: border-box; }
         .hero-text { text-align: center; margin-bottom: 4rem; }
-        .hero-text h1 { font-size: 2.8rem; margin-bottom: 0.5rem; color: var(--header-bg); letter-spacing: -1px; }
+        .hero-text h1 { font-size: 2.8rem; margin-bottom: 0.5rem; color: var(--header-bg); letter-spacing: -1px; transition: color 0.3s; }
+        body.dark-mode .hero-text h1 { color: var(--text-main); }
         .hero-text p { color: var(--text-muted); font-size: 1.2rem; max-width: 700px; margin: 0 auto; }
         
         .search-hero { position: relative; max-width: 600px; margin: 2.5rem auto 0; }
-        .search-hero input { width: 100%; padding: 1.2rem 1.2rem 1.2rem 3.5rem; font-size: 1.1rem; border: 2px solid var(--border); border-radius: 50px; box-sizing: border-box; outline: none; transition: 0.3s; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        .search-hero input { width: 100%; padding: 1.2rem 1.2rem 1.2rem 3.5rem; font-size: 1.1rem; border: 2px solid var(--border); border-radius: 50px; box-sizing: border-box; outline: none; transition: 0.3s; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); background: var(--surface); color: var(--text-main); }
         .search-hero input:focus { border-color: var(--primary); box-shadow: 0 10px 15px -3px rgba(37,99,235,0.2); }
         .search-hero i { position: absolute; left: 1.4rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 1.2rem; }
 
@@ -61,21 +68,21 @@
         .card h2 { margin: 0 0 0.6rem 0; font-size: 1.2rem; font-weight: 700; }
         .card p { margin: 0; color: var(--text-muted); line-height: 1.5; font-size: 0.9rem; flex-grow: 1; }
 
-        .about-section { background: white; padding: 5rem 1rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .about-section { background: var(--surface); padding: 5rem 1rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); transition: background-color 0.3s; }
         .about-container { max-width: 1100px; margin: 0 auto; }
         .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 4rem; }
-        .about-title { text-align: center; font-size: 2.2rem; color: var(--header-bg); margin-bottom: 3.5rem; font-weight: 800; }
+        .about-title { text-align: center; font-size: 2.2rem; color: var(--text-main); margin-bottom: 3.5rem; font-weight: 800; }
         .about-col h3 { color: var(--primary); display: flex; align-items: center; gap: 10px; margin-bottom: 1.2rem; }
         .about-col p { line-height: 1.8; color: var(--text-muted); margin-bottom: 1.5rem; }
         .check-list { list-style: none; padding: 0; }
         .check-list li { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; color: var(--text-main); font-weight: 500; }
         .check-list i { color: #10b981; }
 
-        .contact-box { background: #f8fafc; padding: 2rem; border-radius: 15px; border: 1px solid var(--border); }
+        .contact-box { background: var(--bg-body); padding: 2rem; border-radius: 15px; border: 1px solid var(--border); transition: background-color 0.3s; }
         .btn-contact { display: inline-block; background: var(--primary); color: white; padding: 0.8rem 1.5rem; text-decoration: none; border-radius: 8px; font-weight: 700; margin-top: 1rem; transition: 0.2s; }
         .btn-contact:hover { background: #1d4ed8; transform: scale(1.02); }
 
-        footer { text-align: center; padding: 3rem 1rem; background-color: var(--surface); }
+        footer { text-align: center; padding: 3rem 1rem; background-color: var(--surface); transition: background-color 0.3s; }
         footer .links { margin-bottom: 1rem; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;}
         footer a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
         footer a:hover { color: var(--primary); }
@@ -89,7 +96,6 @@
             
             <nav class="nav-links">
                 <a href="guias.html" class="btn-guias"><i class="fas fa-book-open"></i> Guías</a>
-                
                 <a href="#sobre-nosotros" class="nav-normal">Sobre nosotros</a>
                 <a href="contacto.html" class="nav-normal">Contacto</a>
                 
@@ -126,6 +132,10 @@
                         <a href="calculadora-escalado-sensores.html">📈 Escalado Sensores</a>
                     </div>
                 </div>
+                
+                <button id="theme-toggle" class="theme-btn" title="Cambiar tema">
+                    <i class="fas fa-moon"></i>
+                </button>
             </nav>
         </div>
     </header>
@@ -180,23 +190,19 @@
                 <div class="about-col">
                     <h3><i class="fas fa-bullseye"></i> Nuestra Misión</h3>
                     <p>IndustrialCalc Pro nace con el compromiso de digitalizar y simplificar el día a día de ingenieros, proyectistas e instaladores. Ofrecemos herramientas de cálculo precisas basadas en normativas internacionales para optimizar la toma de decisiones técnicas y financieras de cada proyecto.</p>
-                    
-                    <h3><i class="fas fa-medal"></i> Compromiso de Calidad</h3>
                     <ul class="check-list">
                         <li><i class="fas fa-check-circle"></i> Fórmulas validadas por estándares IEC e IEEE.</li>
                         <li><i class="fas fa-check-circle"></i> Interfaz 100% optimizada para uso en planta y campo.</li>
                         <li><i class="fas fa-check-circle"></i> Acceso gratuito sin registros ni muros de pago.</li>
-                        <li><i class="fas fa-check-circle"></i> Actualización constante de herramientas técnicas.</li>
                     </ul>
                 </div>
                 
                 <div class="about-col">
                     <h3><i class="fas fa-microchip"></i> Nuestra Expertise</h3>
-                    <p>Nuestro equipo está formado por ingenieros con amplia trayectoria en automatización industrial, energías renovables y eficiencia energética. Entendemos los retos de la oficina técnica y la planta industrial, y diseñamos nuestras herramientas para ser el soporte definitivo en sus cálculos diarios.</p>
-                    
+                    <p>Nuestro equipo está formado por profesionales con amplia trayectoria en automatización industrial, energías renovables y eficiencia energética. Entendemos los retos de la oficina técnica y diseñamos herramientas para ser el soporte definitivo en sus cálculos diarios.</p>
                     <div class="contact-box" id="contacto">
-                        <h4 style="margin-top: 0; font-size: 1.2rem;">¿Necesitas ayuda o tienes feedback?</h4>
-                        <p style="font-size: 0.95rem;">Si echas de menos alguna herramienta específica o tienes sugerencias de mejora, escríbenos directamente. Estamos para ayudarte.</p>
+                        <h4 style="margin-top: 0; font-size: 1.2rem; color: var(--text-main);">¿Necesitas ayuda o tienes feedback?</h4>
+                        <p style="font-size: 0.95rem; color: var(--text-muted);">Si echas de menos alguna herramienta específica, escríbenos directamente.</p>
                         <a href="contacto.html" class="btn-contact"><i class="fas fa-envelope"></i> Contactar con el Equipo</a>
                     </div>
                 </div>
@@ -223,6 +229,7 @@
     </div>
 
     <script>
+        // Lógica del Buscador
         function filtrarTarjetas() {
             const input = document.getElementById('buscadorHome').value.toLowerCase();
             const tarjetas = document.querySelectorAll('#gridHerramientas .card');
@@ -232,6 +239,7 @@
             });
         }
 
+        // Lógica de Cookies
         if(localStorage.getItem('cookiesAceptadas')) {
             document.getElementById('cookie-banner').style.display = 'none';
         }
@@ -239,6 +247,27 @@
             localStorage.setItem('cookiesAceptadas', 'true');
             document.getElementById('cookie-banner').style.display = 'none';
         }
+
+        // Lógica Global del Modo Oscuro
+        const themeBtn = document.getElementById('theme-toggle');
+        const themeIcon = themeBtn.querySelector('i');
+        const currentTheme = localStorage.getItem('industrialcalc-theme');
+
+        if (currentTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('industrialcalc-theme', 'dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                localStorage.setItem('industrialcalc-theme', 'light');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+            }
+        });
     </script>
 </body>
 </html>
