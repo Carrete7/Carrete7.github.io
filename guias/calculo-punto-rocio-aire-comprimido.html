@@ -6,52 +6,216 @@
     <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-E88WRKF9NQ');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cómo calcular el punto de rocío en aire comprimido y climatización</title>
-    <meta name="description" content="Aprende a calcular la temperatura de punto de rocío para evitar condensaciones en tuberías de aire comprimido, conductos HVAC y procesos industriales.">
+    <title>Cálculo del Punto de Rocío a Presión (PRP) en Aire Comprimido | IndustrialCalc</title>
+    <meta name="description" content="Guía técnica para el cálculo del punto de rocío y humedad relativa en redes neumáticas. Secadores frigoríficos, adsorción y norma ISO 8573-1.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --bg-body: #f8fafc; --surface: #ffffff; --text-main: #1e293b; --text-muted: #64748b; --primary: #ea580c; --header-bg: #0f172a; --border: #e2e8f0; }
-        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
-        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
-        .header-content { max-width: 1000px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        :root { --bg-body: #f1f5f9; --surface: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --primary: #0891b2; --header-bg: #0f172a; --border: #e2e8f0; }
+        body.dark-mode { --bg-body: #0f172a; --surface: #1e293b; --text-main: #f8fafc; --text-muted: #94a3b8; --border: #334155; --header-bg: #020617; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; display: flex; flex-direction: column; min-height: 100vh; transition: 0.3s; }
+        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; position: sticky; top: 0; z-index: 100; }
+        .header-content { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 1.5rem; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; }
         .logo span { color: #3b82f6; }
-        main { flex: 1; padding: 3rem 1rem; max-width: 800px; margin: 0 auto; width: 100%; box-sizing: border-box; }
-        .article-header { text-align: center; margin-bottom: 3rem; }
-        .article-header h1 { font-size: 2.5rem; color: var(--header-bg); margin-bottom: 1rem; line-height: 1.2; }
-        .article-meta { color: var(--text-muted); font-size: 0.9rem; }
-        .article-content { background: var(--surface); padding: 3rem; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,0.05); font-size: 1.1rem; line-height: 1.8; color: #334155;}
-        .article-content h2 { color: var(--primary); font-size: 1.8rem; margin-top: 2.5rem; border-bottom: 2px solid #ffedd5; padding-bottom: 0.5rem; }
-        .cta-box { background: #fff7ed; border: 2px dashed var(--primary); padding: 2rem; text-align: center; border-radius: 12px; margin: 3rem 0; }
-        .cta-button { display: inline-block; background: var(--primary); color: white; padding: 1rem 2rem; text-decoration: none; font-weight: bold; font-size: 1.2rem; border-radius: 8px; margin-top: 1rem; transition: 0.2s; }
-        .cta-button:hover { background: #c2410c; transform: translateY(-2px); }
-        .back-link { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 1.5rem; color: var(--text-muted); text-decoration: none; font-weight: 600; }
+        .nav-links { display: flex; gap: 15px; align-items: center; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: 0.2s; }
+        .btn-guias { background: rgba(255,255,255,0.2); padding: 0.5rem 1.2rem; border-radius: 8px; font-weight: 700; border: 1px solid white; }
+        .theme-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; padding: 0.5rem; }
+        main { flex: 1; padding: 3rem 1rem; max-width: 900px; margin: 0 auto; width: 100%; box-sizing: border-box; }
+        .back-link { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 2rem; color: var(--text-muted); text-decoration: none; font-weight: 600; }
         .back-link:hover { color: var(--primary); }
-        footer { text-align: center; padding: 2rem; background-color: var(--surface); border-top: 1px solid var(--border); margin-top: 3rem; }
-        footer a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; margin: 0 10px; }
+        .article-header { text-align: center; margin-bottom: 3rem; }
+        .badge { background: #cffafe; color: #0891b2; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; margin-bottom: 1rem; display: inline-block; }
+        body.dark-mode .badge { background: #164e63; color: #a5f3fc; }
+        .article-header h1 { font-size: 2.8rem; color: var(--text-main); margin-bottom: 1rem; line-height: 1.2; letter-spacing: -1px; }
+        .article-meta { color: var(--text-muted); display: flex; justify-content: center; gap: 20px; font-size: 0.95rem; }
+        .content-box { background: var(--surface); padding: 3rem 4rem; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); font-size: 1.15rem; line-height: 1.8; color: var(--text-main); transition: 0.3s; }
+        h2 { color: var(--primary); font-size: 1.8rem; margin-top: 3.5rem; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; scroll-margin-top: 100px; }
+        h3 { color: var(--text-main); font-size: 1.4rem; margin-top: 2rem; }
+        p { margin-bottom: 1.5rem; }
+        ul, ol { margin-bottom: 1.5rem; padding-left: 1.5rem; }
+        li { margin-bottom: 0.8rem; }
+        .toc { background: var(--bg-body); border-left: 4px solid var(--primary); padding: 1.5rem 2rem; border-radius: 0 12px 12px 0; margin: 2rem 0 3rem 0; }
+        .toc h3 { margin-top: 0; font-size: 1.2rem; }
+        .toc a { color: var(--primary); text-decoration: none; font-weight: 500; }
+        .toc a:hover { text-decoration: underline; }
+        .info-panel { background: #f8fafc; border: 1px solid #cbd5e1; padding: 1.5rem; border-radius: 8px; margin: 2rem 0; }
+        body.dark-mode .info-panel { background: #0f172a; border-color: #334155; }
+        .info-panel h4 { margin-top: 0; color: #334155; font-size: 1.1rem; }
+        body.dark-mode .info-panel h4 { color: #cbd5e1; }
+        .formula { font-family: monospace; background: #e2e8f0; padding: 0.5rem 1rem; border-radius: 6px; font-size: 1.2rem; display: block; text-align: center; margin: 1rem 0; color: #0f172a; font-weight: bold;}
+        body.dark-mode .formula { background: #1e293b; color: #f8fafc; }
+        .alert-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 0 8px 8px 0; }
+        body.dark-mode .alert-box { background: #1e3a8a; border-color: #60a5fa; }
+        .alert-box strong { color: #1e40af; }
+        body.dark-mode .alert-box strong { color: #93c5fd; }
+        .warning-box { background: #fef2f2; border-left: 4px solid #ef4444; padding: 1.5rem; margin: 2rem 0; border-radius: 0 8px 8px 0; }
+        body.dark-mode .warning-box { background: #7f1d1d; border-color: #f87171; }
+        .warning-box strong { color: #b91c1c; }
+        body.dark-mode .warning-box strong { color: #fca5a5; }
+        .cta-calc { display: flex; align-items: center; justify-content: space-between; background: linear-gradient(135deg, #0891b2, #164e63); padding: 2rem; border-radius: 12px; margin: 3rem 0; color: white; box-shadow: 0 10px 15px -3px rgba(8,145,178,0.3); flex-wrap: wrap; gap: 20px;}
+        .cta-calc.blue { background: linear-gradient(135deg, #2563eb, #1e40af); box-shadow: 0 10px 15px -3px rgba(37,99,235,0.3); }
+        .cta-calc.orange { background: linear-gradient(135deg, #ea580c, #c2410c); box-shadow: 0 10px 15px -3px rgba(234,88,12,0.3); }
+        .cta-calc-text h3 { color: white; margin: 0 0 0.5rem 0; font-size: 1.5rem; }
+        .cta-calc-text p { margin: 0; font-size: 1rem; opacity: 0.9; }
+        .cta-btn { background: white; color: #0f172a; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 800; transition: 0.2s; white-space: nowrap; }
+        .cta-btn:hover { transform: scale(1.05); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        footer { text-align: center; padding: 3rem 1rem; background-color: var(--surface); border-top: 1px solid var(--border); margin-top: auto; }
+        footer a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-weight: 500; }
+        @media (max-width: 768px) { .content-box { padding: 2rem 1.5rem; } .article-header h1 { font-size: 2.2rem; } .cta-calc { flex-direction: column; text-align: center; } .cta-btn { width: 100%; box-sizing: border-box; text-align: center; } }
     </style>
 </head>
 <body>
-    <header><div class="header-content"><a href="../index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span> Pro</a></div></header>
+    <header>
+        <div class="header-content">
+            <a href="../index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span></a>
+            <nav class="nav-links">
+                <a href="../guias.html" class="btn-guias"><i class="fas fa-book-open"></i> Documentación</a>
+                <button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button>
+            </nav>
+        </div>
+    </header>
+
     <main>
-        <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver a Herramientas</a>
+        <a href="../guias.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver a Documentación</a>
+        
         <article>
             <div class="article-header">
-                <h1>Cómo calcular el punto de rocío en aire comprimido y climatización</h1>
-                <div class="article-meta"><i class="far fa-calendar-alt"></i> Actualizado en 2026 | <i class="fas fa-book-reader"></i> 4 min de lectura</div>
-            </div>
-            <div class="article-content">
-                <p>La condensación es el enemigo silencioso de la industria. Si la temperatura del aire comprimido o de una habitación cae por debajo de su punto de rocío, el vapor de agua se convierte en líquido, oxidando la neumática de las máquinas y provocando moho en los conductos de ventilación.</p>
-                <h2>La relación entre temperatura y humedad</h2>
-                <p>El punto de rocío no es un valor fijo. Depende directamente de la Temperatura Ambiente (bulbo seco) y de la Humedad Relativa (HR). Si tienes una sala a 25ºC con una HR del 60%, cualquier superficie que esté a menos de 16.7ºC empezará a "sudar" agua.</p>
-                <div class="cta-box">
-                    <h3 style="margin-top:0; color: #0f172a;">💦 Evita la condensación industrial</h3>
-                    <p>Introduce la temperatura y humedad actual para conocer la temperatura exacta de punto de rocío y proteger tus instalaciones.</p>
-                    <a href="../calculadora-psicrometria.html" class="cta-button"><i class="fas fa-droplet"></i> Calculadora de Punto de Rocío</a>
+                <div class="badge">Termodinámica y Neumática</div>
+                <h1>Cálculo del Punto de Rocío a Presión (PRP) en Instalaciones de Aire Comprimido</h1>
+                <div class="article-meta">
+                    <span><i class="far fa-clock"></i> 10 min de lectura</span>
+                    <span><i class="fas fa-user-engineer"></i> Nivel: Ingeniería de Planta</span>
                 </div>
+            </div>
+
+            <div class="content-box">
+                <p>El aire atmosférico que aspira un compresor industrial contiene millones de partículas de vapor de agua. Al comprimir ese aire, la humedad no desaparece; por el contrario, se concentra en un volumen mucho menor. Cuando este aire comprimido caliente entra en contacto con las frías tuberías de la red de distribución, el vapor se condensa rápidamente en forma de agua líquida.</p>
+                
+                <p>El agua libre dentro de una red neumática oxida los tubos de acero, arrastra el lubricante de los cilindros, bloquea electroválvulas y arruina procesos de lacado o alimentación. Para evitar este desastre, el ingeniero debe dominar el concepto del <strong>Punto de Rocío a Presión (PRP)</strong> y dimensionar correctamente los equipos de secado.</p>
+
+                <div class="toc">
+                    <h3>Índice del Documento</h3>
+                    <ul>
+                        <li><a href="#paso1">1. ¿Qué es el Punto de Rocío (Dew Point)?</a></li>
+                        <li><a href="#paso2">2. El Efecto Exprimidor: Humedad Relativa vs Absoluta</a></li>
+                        <li><a href="#paso3">3. Diferencia entre Rocío Atmosférico y PRP</a></li>
+                        <li><a href="#paso4">4. Clases de Calidad del Aire (ISO 8573-1)</a></li>
+                        <li><a href="#paso5">5. Selección Tecnológica: Secador Frigorífico vs. Adsorción</a></li>
+                    </ul>
+                </div>
+
+                <h2 id="paso1">1. ¿Qué es el Punto de Rocío (Dew Point)?</h2>
+                <p>En termodinámica, el punto de rocío es la temperatura exacta a la que un gas (en este caso, aire) alcanza el 100% de humedad relativa (saturación). Si el aire se enfría un solo grado por debajo de esta temperatura, ya no puede contener todo el vapor de agua en estado gaseoso y se ve obligado a licuarlo, formando gotas (condensación).</p>
+
+                <div class="info-panel">
+                    <h4>Variables que definen la psicrometría:</h4>
+                    <ul>
+                        <li><strong>Temperatura del Aire Seco:</strong> La que marca un termómetro común.</li>
+                        <li><strong>Humedad Relativa (HR):</strong> El porcentaje de saturación del aire.</li>
+                        <li><strong>Humedad Absoluta:</strong> Los gramos reales de vapor de agua contenidos en un metro cúbico de aire (g/m³).</li>
+                    </ul>
+                </div>
+
+                <h2 id="paso2">2. El Efecto Exprimidor: Humedad Relativa vs Absoluta</h2>
+                <p>Imaginemos que el compresor aspira aire a 25ºC con un 60% de HR. El compresor coge 8 metros cúbicos de este aire y los "aplasta" para meterlos en 1 solo metro cúbico a 7 bares de presión.</p>
+                <p>El aire actúa como una esponja. Al comprimirlo 8 veces, le estamos obligando a retener la misma cantidad absoluta de agua (gramos) en un espacio 8 veces más pequeño. La "esponja" se satura inmediatamente (alcanza el 100% de HR) y el exceso de agua es expulsado en forma líquida.</p>
+
+                <div class="warning-box">
+                    <strong>Peligro Térmico en la Red:</strong>
+                    Un compresor de 30 kW que opere en verano puede introducir en la red más de <strong>20 litros de agua líquida al día</strong> si no cuenta con un sistema de secado intermedio.
+                </div>
+
+                <div class="cta-calc">
+                    <div class="cta-calc-text">
+                        <h3>Análisis Psicrométrico Avanzado</h3>
+                        <p>No estime la humedad a ojo. Ingrese la temperatura y la humedad relativa ambiental para calcular la temperatura exacta de condensación de su instalación.</p>
+                    </div>
+                    <a href="../calculadora-psicrometria.html" class="cta-btn"><i class="fas fa-droplet"></i> Calculadora de Punto de Rocío</a>
+                </div>
+
+                <h2 id="paso3">3. Diferencia entre Rocío Atmosférico y PRP</h2>
+                <p>Un error clásico es confundir el punto de rocío a presión atmosférica con el PRP.</p>
+
+                <div class="alert-box">
+                    <strong>Punto de Rocío a Presión (PRP):</strong>
+                    Es la temperatura de condensación <em>mientras el aire está presurizado dentro de la tubería</em>. Si expandimos ese aire de 7 bares a 1 bar (presión atmosférica), su volumen aumenta y su punto de rocío baja drásticamente.
+                    <br><br>
+                    <em>Ejemplo: Un PRP de +3ºC a 7 bares equivale a un Punto de Rocío Atmosférico de -22ºC.</em> Los equipos industriales siempre se clasifican en función de su PRP, no del rocío atmosférico.
+                </div>
+
+                <h2 id="paso4">4. Clases de Calidad del Aire (ISO 8573-1)</h2>
+                <p>Para estandarizar el diseño neumático, la norma internacional ISO 8573-1 clasifica la calidad del aire comprimido en función de tres contaminantes: partículas sólidas, agua (PRP) y aceite residual.</p>
+
+                <p>En el apartado del agua, las clases más exigidas en la industria son:</p>
+                <ul>
+                    <li><strong>Clase 4 (PRP ≤ +3ºC):</strong> Estándar para uso general, herramientas neumáticas y cilindros básicos instalados en el interior de naves calefactadas.</li>
+                    <li><strong>Clase 3 (PRP ≤ -20ºC):</strong> Requerida cuando las tuberías discurren por el exterior de la nave y están expuestas a heladas invernales.</li>
+                    <li><strong>Clase 2 y 1 (PRP ≤ -40ºC a -70ºC):</strong> Exigencia máxima para industria farmacéutica, alimentaria, electrónica y corte por láser/plasma. Asegura aire extremadamente seco.</li>
+                </ul>
+
+                <h2 id="paso5">5. Selección Tecnológica: Secador Frigorífico vs. Adsorción</h2>
+                <p>El cálculo del PRP necesario dictamina la tecnología de secado que se debe instalar tras el depósito pulmón:</p>
+
+                <ol>
+                    <li><strong>Secadores Frigoríficos (Refrigerativos):</strong> Funcionan como una nevera. Enfrían el aire comprimido hasta +3ºC, obligando al agua a condensar para poder drenarla. Luego el aire se recalienta y sale a la red. <em>Son perfectos para alcanzar Clase 4 de la ISO 8573-1 y son de bajo consumo eléctrico.</em></li>
+                    <li><strong>Secadores de Adsorción (Desecantes):</strong> Usan torres gemelas llenas de alúmina activada o gel de sílice que atrapan las moléculas de vapor de agua. Pueden alcanzar PRP de -40ºC o -70ºC. <em>Imprescindibles para Clases 1 y 2, pero consumen gran cantidad de energía (purgan aire comprimido para regenerar el material desecante).</em></li>
+                </ol>
+
+                <div class="cta-calc blue">
+                    <div class="cta-calc-text">
+                        <h3>Dimensionamiento de Tuberías Neumáticas</h3>
+                        <p>Tras asegurar la calidad del aire secándolo, calcule el diámetro interior exacto del anillo neumático para evitar caídas de presión en las herramientas.</p>
+                    </div>
+                    <a href="../calculadora-aire.html" class="cta-btn" style="color: #1e40af;"><i class="fas fa-wind"></i> Calculadora Neumática</a>
+                </div>
+
+                <div class="cta-calc orange">
+                    <div class="cta-calc-text">
+                        <h3>Calcule Pérdidas de Carga en Accesorios</h3>
+                        <p>Cada secador frigorífico o filtro coalescente introduce una resistencia al paso del aire. Evalúe cómo afecta a la presión final que llegará a sus máquinas.</p>
+                    </div>
+                    <a href="../calculadora-presion.html" class="cta-btn" style="color: #c2410c;"><i class="fas fa-tachometer-alt"></i> Cálculo de Presión</a>
+                </div>
+
+                <hr style="border: 0; height: 1px; background: var(--border); margin: 3rem 0;">
+                <p style="font-size: 0.9rem; color: var(--text-muted); text-align: center;"><em>Documentación técnica. Asegure siempre la instalación de purgadores capacitivos (cero pérdidas de aire) y filtros separadores de condensados antes y después de los sistemas de secado neumático.</em></p>
             </div>
         </article>
     </main>
-    <footer><a href="../index.html">Inicio</a><a href="../glosario.html">Glosario Técnico</a><a href="../legales.html">Aviso Legal</a></footer>
+
+    <footer>
+        <div class="links">
+            <a href="../index.html">Inicio</a>
+            <a href="../guias.html">Documentación</a>
+            <a href="../glosario.html">Glosario Técnico</a>
+            <a href="../contacto.html">Contacto</a>
+            <a href="../legales.html">Aviso Legal</a>
+        </div>
+        <p>&copy; 2026 IndustrialCalc Pro - Suite Profesional de Herramientas Técnicas.</p>
+    </footer>
+
+    <script>
+        const themeBtn = document.getElementById('theme-toggle');
+        const themeIcon = themeBtn.querySelector('i');
+        const currentTheme = localStorage.getItem('industrialcalc-theme');
+
+        if (currentTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('industrialcalc-theme', 'dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                localStorage.setItem('industrialcalc-theme', 'light');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+            }
+        });
+    </script>
 </body>
 </html>
