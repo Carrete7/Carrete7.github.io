@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="canonical" href="https://industrialcalc.es/en/heating-oil-calculator.html" />
+    <link rel="alternate" hreflang="es" href="https://industrialcalc.es/calculadora-gasoleo.html" />
+    <link rel="alternate" hreflang="en" href="https://industrialcalc.es/en/heating-oil-calculator.html" />
+    <link rel="alternate" hreflang="x-default" href="https://industrialcalc.es/calculadora-gasoleo.html" />
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E88WRKF9NQ"></script>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Heating Oil Consumption Calculator | Gallons & Cost [2026]</title>
+    <meta name="description" content="Calculate your winter heating oil (#2 Fuel Oil) consumption. Estimate total gallons required and heating costs based on furnace efficiency and BTU load.">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --bg-body: #f1f5f9; --surface: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --primary: #2563eb; --header-bg: #0f172a; --border: #e2e8f0; --success: #ef4444; }
+        body.dark-mode { --bg-body: #0f172a; --surface: #1e293b; --text-main: #f8fafc; --text-muted: #94a3b8; --border: #334155; --header-bg: #020617; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
+        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; position: sticky; top: 0; z-index: 100; }
+        .header-content { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: white; text-decoration: none; }
+        .logo span { color: #3b82f6; }
+        .nav-links { display: flex; gap: 15px; align-items: center; }
+        .nav-links a.nav-normal { color: white; text-decoration: none; font-size: 0.95rem; opacity: 0.8; }
+        .lang-switch { display: flex; gap: 5px; background: rgba(255,255,255,0.1); padding: 5px; border-radius: 6px; }
+        .lang-switch a { color: white; text-decoration: none; font-size: 0.85rem; font-weight: bold; padding: 4px 8px; border-radius: 4px; opacity: 0.6; }
+        .lang-switch a.active { background: var(--primary); opacity: 1; }
+        .theme-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; opacity: 0.8; }
+        main { flex: 1; padding: 2rem 1rem; max-width: 900px; margin: 0 auto; width: 100%; box-sizing: border-box; }
+        h1 { font-size: 2.2rem; text-align: center; margin-bottom: 0.5rem; }
+        p.subtitle { text-align: center; color: var(--text-muted); margin-bottom: 2rem; font-size: 1.1rem; }
+        .calculator-box { background: var(--surface); border: 1px solid var(--border); padding: 2rem; border-radius: 12px; margin-bottom: 2rem; }
+        .input-group { margin-bottom: 1.5rem; }
+        .input-group label { display: block; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-main); }
+        .input-row { display: flex; gap: 1rem; }
+        .input-row .input-group { flex: 1; margin-bottom: 0; }
+        input[type="number"], select { width: 100%; padding: 0.8rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-body); color: var(--text-main); font-size: 1rem; box-sizing: border-box; }
+        .btn-calc { width: 100%; background: var(--primary); color: white; border: none; padding: 1rem; font-size: 1.1rem; font-weight: 700; border-radius: 8px; cursor: pointer; margin-top: 1rem; }
+        .result-box { margin-top: 2rem; padding: 1.5rem; background: var(--bg-body); border-radius: 8px; border: 2px dashed var(--success); display: none; text-align: center; }
+        .result-value { font-size: 2.5rem; font-weight: 800; color: var(--success); margin-bottom: 0.5rem; }
+        .seo-section { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 2rem; }
+        .math-box { background: var(--bg-body); padding: 1rem; border-radius: 8px; text-align: center; margin: 1.5rem 0; border: 1px solid var(--border); overflow-x: auto;}
+        footer { text-align: center; padding: 2rem; background-color: var(--surface); border-top: 1px solid var(--border); }
+        footer a { color: var(--text-muted); text-decoration: none; margin: 0 10px; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span></a>
+            <nav class="nav-links">
+                <div class="lang-switch">
+                    <a href="../calculadora-gasoleo.html">ES</a>
+                    <a href="#" class="active">EN</a>
+                </div>
+                <a href="index.html" class="nav-normal">Tools Home</a>
+                <button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <h1>Heating Oil Calculator</h1>
+        <p class="subtitle">Estimate your #2 Fuel Oil consumption and heating costs.</p>
+
+        <div style="margin: 20px 0; text-align: center; min-height: 90px; background: var(--surface); border: 1px dashed var(--border);"></div>
+
+        <div class="calculator-box">
+            <div class="input-row">
+                <div class="input-group">
+                    <label>Heating Load (BTU/hr)</label>
+                    <input type="number" id="load" value="80000" placeholder="e.g. 80000">
+                </div>
+                <div class="input-group">
+                    <label>Furnace/Boiler Efficiency (%)</label>
+                    <input type="number" id="efficiency" value="85" placeholder="e.g. 85">
+                </div>
+            </div>
+
+            <div class="input-row">
+                <div class="input-group">
+                    <label>Operating Hours per Day</label>
+                    <input type="number" id="hours" value="8" placeholder="e.g. 8">
+                </div>
+                <div class="input-group">
+                    <label>Number of Days</label>
+                    <input type="number" id="days" value="30" placeholder="e.g. 30 for a month">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Heating Oil Price ($ per Gallon)</label>
+                <input type="number" id="price" value="3.85" step="0.01">
+            </div>
+
+            <button class="btn-calc" onclick="calculateOil()"><i class="fas fa-fire"></i> Calculate Consumption</button>
+
+            <div id="resultBox" class="result-box">
+                <h3 style="margin:0 0 10px 0; color:var(--text-main);">Estimated Cost</h3>
+                <div id="costResult" class="result-value">$0.00</div>
+                <div id="detailsResult" style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;"></div>
+            </div>
+        </div>
+
+        <div style="margin: 30px 0; text-align: center; min-height: 90px; background: var(--surface); border: 1px dashed var(--border);"></div>
+
+        <section class="seo-section">
+            <h2 style="color:var(--primary); margin-top:0;">#2 Heating Oil Energy Content</h2>
+            <p>In the United States, standard #2 Heating Oil has an incredibly high energy density. One US Gallon of heating oil contains approximately <strong>138,500 BTUs</strong> of energy. However, because no furnace is 100% efficient, some of this heat escapes through the exhaust flue.</p>
+            
+            <div class="math-box">
+                <strong>Gallons Consumed:</strong> 
+                $$ \text{Gallons} = \frac{\text{Load (BTU/hr)} \times \text{Hours}}{\text{138,500} \times \text{Efficiency}} $$
+            </div>
+            
+            <p>By upgrading from an old 70% efficient boiler to a modern 90% condensing boiler, homeowners and industrial facilities can reduce their gallon consumption and heating bills significantly.</p>
+        </section>
+    </main>
+
+    <footer>
+        <a href="index.html">Back to Tools</a>
+        <a href="../legales.html">Privacy Policy</a>
+    </footer>
+
+    <script>
+        function calculateOil() {
+            const load = parseFloat(document.getElementById('load').value);
+            const eff = parseFloat(document.getElementById('efficiency').value) / 100;
+            const hours = parseFloat(document.getElementById('hours').value);
+            const days = parseFloat(document.getElementById('days').value);
+            const price = parseFloat(document.getElementById('price').value);
+
+            if(!load || !eff || !hours || !days || !price) { alert("Please fill all fields."); return; }
+
+            // BTU totales necesarios
+            const totalBTU = load * hours * days;
+            
+            // Un galón de #2 Fuel Oil = 138,500 BTU
+            // Galones consumidos teniendo en cuenta la eficiencia de la caldera
+            const gallons = totalBTU / (138500 * eff);
+            
+            // Coste
+            const totalCost = gallons * price;
+
+            document.getElementById('costResult').innerText = "$" + totalCost.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('detailsResult').innerHTML = 
+                `<strong>Total Oil Required:</strong> ${gallons.toFixed(1)} US Gallons<br>
+                 <strong>Total Energy Demand:</strong> ${totalBTU.toLocaleString()} BTUs`;
+            
+            document.getElementById('resultBox').style.display = 'block';
+        }
+
+        const themeBtn = document.getElementById('theme-toggle');
+        if (localStorage.getItem('industrialcalc-theme') === 'dark') document.body.classList.add('dark-mode');
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('industrialcalc-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+        });
+    </script>
+</body>
+</html>
