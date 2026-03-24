@@ -2,6 +2,11 @@
 <html lang="es">
 <head>
     <link rel="canonical" href="https://industrialcalc.es/" />
+    
+    <link rel="alternate" hreflang="es" href="https://industrialcalc.es/" />
+    <link rel="alternate" hreflang="en" href="https://industrialcalc.es/en/" />
+    <link rel="alternate" hreflang="x-default" href="https://industrialcalc.es/" />
+
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-E88WRKF9NQ"></script>
@@ -69,6 +74,12 @@
         .theme-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; opacity: 0.8; transition: 0.2s; padding: 0.5rem; }
         .theme-btn:hover { opacity: 1; color: #fde047; transform: rotate(15deg); }
 
+        /* Estilos del selector de idioma */
+        .lang-switch { display: flex; gap: 5px; background: rgba(255,255,255,0.1); padding: 5px; border-radius: 6px; }
+        .lang-switch a { color: white; text-decoration: none; font-size: 0.85rem; font-weight: bold; padding: 4px 8px; border-radius: 4px; opacity: 0.6; transition: 0.2s; }
+        .lang-switch a:hover { opacity: 1; }
+        .lang-switch a.active { background: var(--primary); opacity: 1; }
+
         main { flex: 1; padding: 3rem 1rem; max-width: 1200px; margin: 0 auto; width: 100%; box-sizing: border-box; }
         .hero-text { text-align: center; margin-bottom: 4rem; }
         .hero-text h1 { font-size: 2.8rem; margin-bottom: 0.5rem; color: var(--header-bg); letter-spacing: -1px; transition: color 0.3s; }
@@ -120,6 +131,11 @@
             <a href="index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span> Pro</a>
             
             <nav class="nav-links">
+                <div class="lang-switch">
+                    <a href="index.html" class="active">ES</a>
+                    <a href="en/index.html">EN</a>
+                </div>
+
                 <a href="guias.html" class="btn-guias"><i class="fas fa-book-open"></i> Guías</a>
                 <a href="#sobre-nosotros" class="nav-normal">Sobre nosotros</a>
                 <a href="contacto.html" class="nav-normal">Contacto</a>
