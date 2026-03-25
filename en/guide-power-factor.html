@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="canonical" href="https://industrialcalc.es/en/guide-power-factor.html" />
+    <link rel="alternate" hreflang="es" href="https://industrialcalc.es/guia-factor-potencia.html" />
+    <link rel="alternate" hreflang="en" href="https://industrialcalc.es/en/guide-power-factor.html" />
+    <link rel="alternate" hreflang="x-default" href="https://industrialcalc.es/guia-factor-potencia.html" />
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E88WRKF9NQ"></script>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Understanding Power Factor and Capacitor Banks | IndustrialCalc</title>
+    <meta name="description" content="Learn what power factor is, why low power factor causes utility penalties, and how to calculate the required kVAR to correct it using capacitor banks.">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --bg-body: #f1f5f9; --surface: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --primary: #2563eb; --header-bg: #0f172a; --border: #e2e8f0; --accent: #8b5cf6; }
+        body.dark-mode { --bg-body: #0f172a; --surface: #1e293b; --text-main: #f8fafc; --text-muted: #94a3b8; --border: #334155; --header-bg: #020617; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
+        
+        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; position: sticky; top: 0; z-index: 100; }
+        .header-content { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .logo span { color: #3b82f6; }
+        .nav-links { display: flex; gap: 15px; align-items: center; }
+        .nav-links a.nav-normal { color: white; text-decoration: none; font-size: 0.95rem; font-weight: 500; opacity: 0.8; }
+        .nav-links a.nav-normal:hover, .nav-links a.nav-normal.active { opacity: 1; color: #60a5fa; }
+        .lang-switch { display: flex; gap: 5px; background: rgba(255,255,255,0.1); padding: 5px; border-radius: 6px; }
+        .lang-switch a { color: white; text-decoration: none; font-size: 0.85rem; font-weight: bold; padding: 4px 8px; border-radius: 4px; opacity: 0.6; }
+        .lang-switch a.active { background: var(--primary); opacity: 1; }
+        .theme-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; opacity: 0.8; }
+
+        main { flex: 1; padding: 2rem 1rem; max-width: 850px; margin: 0 auto; width: 100%; box-sizing: border-box; }
+        
+        .article-header { text-align: center; margin-bottom: 3rem; }
+        .article-tag { background: #f5f3ff; color: var(--accent); padding: 5px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: 1rem; border: 1px solid #ddd6fe; }
+        body.dark-mode .article-tag { background: rgba(139, 92, 246, 0.2); border-color: rgba(139, 92, 246, 0.4); }
+        .article-header h1 { font-size: 2.5rem; margin-bottom: 1rem; line-height: 1.2; }
+        .article-meta { color: var(--text-muted); font-size: 0.95rem; display: flex; justify-content: center; gap: 20px; align-items: center; }
+        
+        .article-content { font-size: 1.1rem; line-height: 1.8; color: var(--text-main); }
+        .article-content h2 { font-size: 1.8rem; margin: 2.5rem 0 1rem 0; color: var(--primary); border-bottom: 2px solid var(--border); padding-bottom: 10px; }
+        .article-content h3 { font-size: 1.4rem; margin: 2rem 0 1rem 0; }
+        .article-content p { margin-bottom: 1.5rem; }
+        .article-content ul { margin-bottom: 1.5rem; padding-left: 20px; }
+        .article-content li { margin-bottom: 10px; }
+        
+        .math-box { background: var(--surface); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border); border-left: 4px solid var(--primary); margin: 2rem 0; overflow-x: auto; text-align: center; font-size: 1.1rem; }
+        
+        .cta-box { background: linear-gradient(135deg, var(--header-bg), var(--primary)); color: white; padding: 2.5rem 2rem; border-radius: 12px; text-align: center; margin: 3rem 0; box-shadow: 0 10px 15px -3px rgba(37,99,235,0.3); }
+        .cta-box h3 { color: white; margin-top: 0; font-size: 1.6rem; border: none; padding: 0; }
+        .cta-box p { color: rgba(255,255,255,0.9); margin-bottom: 1.5rem; font-size: 1.1rem; }
+        .btn-cta { background: #fde047; color: #0f172a; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 800; font-size: 1.1rem; display: inline-block; transition: 0.2s; }
+        .btn-cta:hover { background: white; transform: translateY(-3px); }
+
+        .faq-section { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); margin-top: 3rem; }
+        .faq-item { margin-bottom: 1.5rem; }
+        .faq-item h4 { margin: 0 0 0.5rem 0; font-size: 1.1rem; color: var(--text-main); }
+        .faq-item p { margin: 0; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+
+        footer { text-align: center; padding: 2rem; background-color: var(--surface); border-top: 1px solid var(--border); margin-top: 3rem; }
+        footer a { color: var(--text-muted); text-decoration: none; margin: 0 10px; }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Understanding Power Factor and Capacitor Banks",
+      "author": {
+        "@type": "Organization",
+        "name": "IndustrialCalc Pro"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "IndustrialCalc Pro",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://industrialcalc.es/logo.png"
+        }
+      },
+      "datePublished": "2026-03-25",
+      "description": "Learn what power factor is, why low power factor causes utility penalties, and how to calculate the required kVAR to correct it using capacitor banks."
+    }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span></a>
+            <nav class="nav-links">
+                <div class="lang-switch">
+                    <a href="../guia-factor-potencia.html">ES</a>
+                    <a href="#" class="active">EN</a>
+                </div>
+                <a href="guides.html" class="nav-normal active">Guides</a>
+                <a href="index.html" class="nav-normal">Tools Home</a>
+                <button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="article-header">
+            <span class="article-tag">Electrical Engineering</span>
+            <h1>Understanding Power Factor and Capacitor Banks</h1>
+            <div class="article-meta">
+                <span><i class="fas fa-clock"></i> 6 min read</span>
+                <span><i class="fas fa-bolt"></i> Power Quality</span>
+            </div>
+        </div>
+
+        <div style="margin: 20px 0 40px 0; text-align: center; min-height: 90px; background: var(--surface); border: 1px dashed var(--border);"></div>
+
+        <div class="article-content">
+            <p>In industrial electrical systems, poor power factor is a silent money drain. If your facility uses induction motors, transformers, or heavy HVAC equipment, you are likely drawing more power from the grid than you are actually using to perform work. Utilities actively monitor this and will penalize businesses with high "Reactive Power" charges on their monthly bills.</p>
+            
+            <p>In this guide, we will break down the concept of Power Factor (PF), explain the "Power Triangle", and show you how to calculate the size of the Capacitor Bank needed to fix the problem.</p>
+
+            <h2>1. The Beer Analogy: Active vs. Reactive Power</h2>
+            <p>To understand Power Factor, engineers often use the classic "Mug of Beer" analogy. When you order a beer, you pay for the whole glass, but what you actually want is the liquid, not the foam.</p>
+            <ul>
+                <li><strong>Active Power (kW):</strong> This is the liquid beer. It's the real power that does the actual work (turning a motor shaft, lighting a bulb).</li>
+                <li><strong>Reactive Power (kVAR):</strong> This is the foam. It takes up space in the glass but does no useful work. However, inductive loads (like motors) <em>need</em> this power to sustain their magnetic fields.</li>
+                <li><strong>Apparent Power (kVA):</strong> This is the whole glass (Beer + Foam). It is the total power that the utility company must generate and push through their transmission lines to supply your facility.</li>
+            </ul>
+            <p><strong>Power Factor (PF)</strong> is simply the ratio of Active Power to Apparent Power. It tells you how efficient your electrical system is. A perfect PF is 1.0 (100% liquid, no foam). Most industrial plants sit around 0.80 before correction.</p>
+
+            <h2>2. The Power Triangle and the Math</h2>
+            <p>In AC electrical theory, the relationship between these three types of power is represented geometrically as a right-angled triangle.</p>
+            
+            <div class="math-box">
+                $$ \text{Power Factor (PF)} = \frac{\text{Active Power (kW)}}{\text{Apparent Power (kVA)}} = \cos(\theta) $$
+            </div>
+            
+            <p>To find the total Apparent Power your utility must supply, the Pythagorean theorem is used:</p>
+            
+            <div class="math-box">
+                $$ kVA^2 = kW^2 + kVAR^2 $$
+            </div>
+
+            <div style="margin: 40px 0; text-align: center; min-height: 90px; background: var(--surface); border: 1px dashed var(--border);"></div>
+
+            <h2>3. Why Do Utilities Charge Penalties?</h2>
+            <p>If your factory needs 100 kW of real power to run, but your Power Factor is a terrible 0.60, the utility company has to generate and transmit <strong>166 kVA</strong> ($100 / 0.60$) to your plant. This means they have to install thicker cables, larger transformers, and burn more fuel at the power plant just to supply the "foam."</p>
+            <p>To compensate for this massive inefficiency, utilities charge steep penalties to commercial customers whose Power Factor drops below a certain threshold (usually 0.90 or 0.95).</p>
+
+            <h2>4. How to Fix It: Capacitor Banks (kVAR)</h2>
+            <p>The solution to a low power factor is to install a <strong>Capacitor Bank</strong> in parallel with your main electrical panel. While inductive motors <em>consume</em> reactive power (lagging), capacitors <em>supply</em> reactive power (leading). By installing capacitors, you provide the "foam" locally, so the utility company doesn't have to send it over the grid.</p>
+
+            <p>To calculate the required size of a capacitor bank in kVAR, engineers use the following formula:</p>
+
+            <div class="math-box">
+                $$ Q_c = P \times (\tan(\cos^{-1}(PF_1)) - \tan(\cos^{-1}(PF_2))) $$
+            </div>
+
+            <p>Where:</p>
+            <ul>
+                <li><strong>$Q_c$</strong> = Required Capacitor Bank size in kVAR.</li>
+                <li><strong>$P$</strong> = Active power of your facility in kW.</li>
+                <li><strong>$PF_1$</strong> = Your current, bad Power Factor (e.g., 0.75).</li>
+                <li><strong>$PF_2$</strong> = Your target, good Power Factor (e.g., 0.95).</li>
+            </ul>
+
+            <div class="cta-box">
+                <h3>Calculate Your Required Capacitor Bank</h3>
+                <p>Avoid complex trigonometry. Enter your current kW load, your present Power Factor, and your target Power Factor. Our free calculator will instantly tell you exactly how many kVARs you need to install to eliminate utility penalties.</p>
+                <a href="power-factor-calculator.html" class="btn-cta"><i class="fas fa-bolt"></i> Open Power Factor Calculator</a>
+            </div>
+
+            <div class="faq-section">
+                <h3 style="margin-top: 0; border: none; color: var(--primary);">Frequently Asked Questions (FAQ)</h3>
+                
+                <div class="faq-item">
+                    <h4>Can I correct my Power Factor to 1.0?</h4>
+                    <p>While mathematically possible, it is not recommended in practice. Over-correcting (going beyond 1.0 into a "leading" power factor) can cause severe voltage spikes and resonance issues that can damage sensitive electronics. Engineers typically target a PF of 0.95 to 0.98.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h4>Do Capacitor Banks save electricity (kWh)?</h4>
+                    <p>No. Correcting your power factor does not reduce the active power (kW) your machines consume. However, it significantly reduces the Apparent Power (kVA) drawn from the utility, eliminating penalty charges and freeing up capacity on your plant's main transformer, allowing you to add more machines without upgrading your electrical service.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <a href="guides.html">Back to Guides</a>
+        <a href="index.html">Tools Home</a>
+        <a href="../legales.html">Privacy Policy</a>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 1rem;">&copy; 2026 IndustrialCalc Pro.</p>
+    </footer>
+
+    <script>
+        const themeBtn = document.getElementById('theme-toggle');
+        if (localStorage.getItem('industrialcalc-theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeBtn.querySelector('i').classList.replace('fa-moon', 'fa-sun');
+        }
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const icon = themeBtn.querySelector('i');
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('industrialcalc-theme', 'dark');
+                icon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                localStorage.setItem('industrialcalc-theme', 'light');
+                icon.classList.replace('fa-sun', 'fa-moon');
+            }
+        });
+    </script>
+</body>
+</html>
