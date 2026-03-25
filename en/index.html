@@ -2,13 +2,11 @@
 <html lang="en">
 <head>
     <link rel="canonical" href="https://industrialcalc.es/en/" />
-    
     <link rel="alternate" hreflang="es" href="https://industrialcalc.es/" />
     <link rel="alternate" hreflang="en" href="https://industrialcalc.es/en/" />
     <link rel="alternate" hreflang="x-default" href="https://industrialcalc.es/" />
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
-    
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-E88WRKF9NQ"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -19,10 +17,9 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online engineering calculators. 28 tools for electrical, mechanical, HVAC, and industrial calculations.">
     
-    <title>Industrial Calculator Online | Engineering Formulas & Tools [2026]</title>
-    <meta name="description" content="The ultimate free online industrial calculator. Instantly solve engineering, electrical, mechanical, and fluid formulas. Accurate results in seconds.">
-    <meta name="robots" content="index, follow">
+    <title>IndustrialCalc Pro | Free Engineering Calculators Online</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -38,122 +35,59 @@
         
         .nav-links { display: flex; gap: 15px; align-items: center; }
         .nav-links a.nav-normal { color: white; text-decoration: none; font-size: 0.95rem; font-weight: 500; opacity: 0.8; transition: 0.2s; }
-        .nav-links a.nav-normal:hover { opacity: 1; color: #60a5fa; }
+        .nav-links a.nav-normal:hover, .nav-links a.nav-normal.active { opacity: 1; color: #60a5fa; }
         
-        .nav-links a.btn-guias { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.3); padding: 0.5rem 1.2rem; border-radius: 8px; font-weight: 700; color: white; text-decoration: none; transition: 0.2s; display: flex; align-items: center; gap: 8px;}
-        .nav-links a.btn-guias:hover { background: rgba(255, 255, 255, 0.2); border-color: white; box-shadow: 0 0 10px rgba(255,255,255,0.2); }
-        
-        .dropdown { position: relative; display: inline-block; }
-        .dropbtn { background-color: var(--primary); color: white; padding: 0.6rem 1.5rem; font-size: 0.95rem; border: 2px solid #60a5fa; border-radius: 8px; cursor: pointer; font-family: inherit; font-weight: 800; display: flex; align-items: center; gap: 8px; transition: 0.2s; box-shadow: 0 4px 6px rgba(37, 99, 235, 0.3);}
-        .dropbtn:hover { background-color: #1d4ed8; border-color: white; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(37, 99, 235, 0.4);}
-        
-        .dropdown-content { display: none; position: absolute; right: 0; top: 110%; background-color: var(--surface); min-width: 280px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); z-index: 10; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); max-height: 450px; overflow-y: auto;}
-        .dropdown-content a { color: var(--text-main); padding: 12px 16px; text-decoration: none; display: block; font-size: 0.85rem; border-bottom: 1px solid var(--border); font-weight: 500; opacity: 1; transition: 0.2s;}
-        .dropdown-content a:hover { background-color: var(--bg-body); color: var(--primary); }
-        .dropdown:hover .dropdown-content { display: block; }
-
-        .theme-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; opacity: 0.8; transition: 0.2s; padding: 0.5rem; }
-        .theme-btn:hover { opacity: 1; color: #fde047; transform: rotate(15deg); }
-
         .lang-switch { display: flex; gap: 5px; background: rgba(255,255,255,0.1); padding: 5px; border-radius: 6px; }
         .lang-switch a { color: white; text-decoration: none; font-size: 0.85rem; font-weight: bold; padding: 4px 8px; border-radius: 4px; opacity: 0.6; transition: 0.2s; }
         .lang-switch a:hover { opacity: 1; }
         .lang-switch a.active { background: var(--primary); opacity: 1; }
 
+        .theme-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; opacity: 0.8; transition: 0.2s; padding: 0.5rem; }
+        .theme-btn:hover { opacity: 1; color: #fde047; }
+
         main { flex: 1; padding: 3rem 1rem; max-width: 1200px; margin: 0 auto; width: 100%; box-sizing: border-box; }
         .hero-text { text-align: center; margin-bottom: 4rem; }
-        .hero-text h1 { font-size: 2.8rem; margin-bottom: 0.5rem; color: var(--header-bg); letter-spacing: -1px; transition: color 0.3s; }
-        body.dark-mode .hero-text h1 { color: var(--text-main); }
+        .hero-text h1 { font-size: 2.8rem; margin-bottom: 0.5rem; color: var(--text-main); letter-spacing: -1px; }
         .hero-text p { color: var(--text-muted); font-size: 1.2rem; max-width: 700px; margin: 0 auto; }
         
-        .search-hero { position: relative; max-width: 600px; margin: 2.5rem auto 0; }
-        .search-hero input { width: 100%; padding: 1.2rem 1.2rem 1.2rem 3.5rem; font-size: 1.1rem; border: 2px solid var(--border); border-radius: 50px; box-sizing: border-box; outline: none; transition: 0.3s; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); background: var(--surface); color: var(--text-main); }
-        .search-hero input:focus { border-color: var(--primary); box-shadow: 0 10px 15px -3px rgba(37,99,235,0.2); }
-        .search-hero i { position: absolute; left: 1.4rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 1.2rem; }
+        .search-bar { width: 100%; max-width: 600px; margin: 2rem auto; position: relative; }
+        .search-bar input { width: 100%; padding: 1rem 1rem 1rem 3rem; font-size: 1.1rem; border-radius: 50px; border: 1px solid var(--border); background: var(--surface); color: var(--text-main); box-sizing: border-box; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        .search-bar i { position: absolute; left: 1.2rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 1.2rem; }
 
-        .section-title { font-size: 1.8rem; color: var(--text-main); margin-bottom: 1.5rem; border-bottom: 2px solid var(--border); padding-bottom: 10px; }
+        .category-title { font-size: 1.5rem; margin-bottom: 1.5rem; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; color: var(--text-main); }
+        .grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); margin-bottom: 3rem; }
+        
+        .card { background: var(--surface); border: 1px solid var(--border); padding: 1.5rem; border-radius: 12px; text-decoration: none; color: inherit; transition: all 0.2s ease; display: flex; flex-direction: column; gap: 10px; }
+        .card:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+        .card-icon { width: 45px; height: 45px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 5px; }
+        .card h3 { margin: 0; font-size: 1.1rem; font-weight: 700; color: var(--text-main); }
+        .card p { margin: 0; font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; }
 
-        .card-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); margin-bottom: 4rem; }
-        .card { background: var(--surface); border: 1px solid var(--border); padding: 1.8rem; border-radius: 12px; text-decoration: none; color: inherit; transition: all 0.3s ease; display: flex; flex-direction: column; height: 100%; box-sizing: border-box; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); border-color: var(--primary); }
-        .card-icon { width: 48px; height: 48px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1.25rem; }
-        .card h2 { margin: 0 0 0.6rem 0; font-size: 1.2rem; font-weight: 700; }
-        .card p { margin: 0; color: var(--text-muted); line-height: 1.5; font-size: 0.9rem; flex-grow: 1; }
+        /* Icon Colors */
+        .icon-electric { background: #eff6ff; color: #2563eb; }
+        .icon-mechanic { background: #f0fdf4; color: #16a34a; }
+        .icon-hvac { background: #fefce8; color: #ca8a04; }
+        .icon-civil { background: #faf5ff; color: #9333ea; }
+        body.dark-mode .icon-electric { background: rgba(37, 99, 235, 0.2); }
+        body.dark-mode .icon-mechanic { background: rgba(22, 163, 74, 0.2); }
+        body.dark-mode .icon-hvac { background: rgba(202, 138, 4, 0.2); }
+        body.dark-mode .icon-civil { background: rgba(147, 51, 234, 0.2); }
 
-        .about-section { background: var(--surface); padding: 5rem 1rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); transition: background-color 0.3s; }
-        .about-container { max-width: 1100px; margin: 0 auto; }
-        .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 4rem; }
-        .about-title { text-align: center; font-size: 2.2rem; color: var(--text-main); margin-bottom: 3.5rem; font-weight: 800; }
-        .about-col h3 { color: var(--primary); display: flex; align-items: center; gap: 10px; margin-bottom: 1.2rem; }
-        .about-col p { line-height: 1.8; color: var(--text-muted); margin-bottom: 1.5rem; }
-        .check-list { list-style: none; padding: 0; }
-        .check-list li { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; color: var(--text-main); font-weight: 500; }
-        .check-list i { color: #10b981; }
-
-        .contact-box { background: var(--bg-body); padding: 2rem; border-radius: 15px; border: 1px solid var(--border); transition: background-color 0.3s; }
-        .btn-contact { display: inline-block; background: var(--primary); color: white; padding: 0.8rem 1.5rem; text-decoration: none; border-radius: 8px; font-weight: 700; margin-top: 1rem; transition: 0.2s; }
-        .btn-contact:hover { background: #1d4ed8; transform: scale(1.02); }
-
-        .seo-content { max-width: 1100px; margin: 0 auto 3rem; padding: 2rem; border-radius: 8px; background-color: var(--surface); border: 1px solid var(--border); }
-        .seo-content h2 { font-size: 1.5rem; color: var(--text-main); margin-top: 0; }
-        .seo-content p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
-
-        footer { text-align: center; padding: 3rem 1rem; background-color: var(--surface); transition: background-color 0.3s; }
-        footer .links { margin-bottom: 1rem; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;}
-        footer a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
-        footer a:hover { color: var(--primary); }
-        footer p { color: var(--text-muted); font-size: 0.85rem; margin-top: 1rem; }
+        footer { text-align: center; padding: 2rem; background-color: var(--surface); border-top: 1px solid var(--border); transition: background-color 0.3s; }
+        footer a { color: var(--text-muted); text-decoration: none; margin: 0 10px; }
     </style>
 </head>
 <body>
     <header>
         <div class="header-content">
             <a href="index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span> Pro</a>
-            
             <nav class="nav-links">
                 <div class="lang-switch">
                     <a href="../index.html">ES</a>
-                    <a href="index.html" class="active">EN</a>
+                    <a href="#" class="active">EN</a>
                 </div>
-                
-                <div class="dropdown">
-                    <button class="dropbtn"><i class="fas fa-tools"></i> Tools <i class="fas fa-chevron-down" style="font-size: 0.8em; margin-left: 5px;"></i></button>
-                    <div class="dropdown-content">
-                        <a href="basic-electrical-calculator.html">⚡ Basic Electrical</a>
-                        <a href="pump-power-calculator.html">🌊 Pump Power</a>
-                        <a href="pressure-drop-calculator.html">💧 Pressure Drop</a>
-                        <a href="solar-calculator.html">☀️ Solar Panels</a>
-                        <a href="motor-efficiency-calculator.html">⚙️ Motor Efficiency</a>
-                        <a href="indoor-lighting-calculator.html">💡 Indoor Lighting</a>
-                        <a href="thermal-insulation-calculator.html">🌡️ Thermal Insulation</a>
-                        <a href="compressed-air-pipe-calculator.html">💨 Compressed Air</a>
-                        <a href="dew-point-calculator.html">💦 Dew Point</a>
-                        <a href="steel-weight-calculator.html">🏗️ Metal Weight</a>
-                        <a href="hvac-cooling-load.html">❄️ HVAC Load</a>
-                        <a href="thermal-expansion-calculator.html">🔥 Thermal Expansion</a>
-                        <a href="tank-volume-calculator.html">🛢️ Tank Volume</a>
-                        <a href="acoustic-attenuation-calculator.html">🔊 Acoustic Attenuation</a>
-                        <a href="conveyor-belt-calculator.html">📦 Conveyor Belt</a>
-                        <a href="concrete-volume-calculator.html">🧱 Concrete Volume</a>
-                        <a href="pulley-speed-calculator.html">🔧 Pulley Speed</a>
-                        <a href="battery-runtime-calculator.html">🔋 Battery Runtime</a>
-                        <a href="ach-ventilation-calculator.html">🌬️ ACH Ventilation</a>
-                        <a href="transformer-calculator.html">🔌 Transformers</a>
-                        <a href="solar-roi-calculator.html">💶 Solar ROI</a>
-                        <a href="torque-calculator.html">🔄 Motor Torque</a>
-                        <a href="ac-btu-calculator.html">🧊 AC BTU Size</a>
-                        <a href="wire-size-calculator.html">⚡ Wire Size (AWG)</a>
-                        <a href="heating-oil-calculator.html">🔥 Heating Oil</a>
-                        <a href="pressure-conversion-calculator.html">🎛️ Pressure Converter</a>
-                        <a href="power-factor-calculator.html">🔋 Power Factor</a>
-                        <a href="analog-sensor-scaling-calculator.html">📈 Sensor Scaling</a>
-                        <a href="motor-capacitor-calculator.html">🪫 Motor Capacitor</a>
-                    </div>
-                </div>
-                
-                <button id="theme-toggle" class="theme-btn" title="Toggle theme">
-                    <i class="fas fa-moon"></i>
-                </button>
+                <a href="guides.html" class="nav-normal"><i class="fas fa-book-open"></i> Guides</a>
+                <button id="theme-toggle" class="theme-btn" title="Toggle dark mode"><i class="fas fa-moon"></i></button>
             </nav>
         </div>
     </header>
@@ -163,118 +97,205 @@
             <h1>Industrial Calculator Online</h1>
             <p>28 professional tools designed to optimize technical and engineering calculations in the US and international industrial sector.</p>
             
-            <div class="search-hero">
+            <div class="search-bar">
                 <i class="fas fa-search"></i>
-                <input type="text" id="buscadorHome" placeholder="What do you need to calculate today? (e.g., AWG, piping, solar, PLC...)" onkeyup="filtrarTarjetas()">
+                <input type="text" id="searchInput" placeholder="What do you need to calculate today? (e.g., AWG, piping, solar, PLC)" onkeyup="filterCalculators()">
             </div>
         </div>
 
-        <h2 class="section-title">Engineering Tools & Calculators</h2>
-        <div class="card-grid" id="gridHerramientas">
-            <a href="basic-electrical-calculator.html" class="card"><div class="card-icon" style="background: #eff6ff; color: #2563eb;"><i class="fas fa-calculator"></i></div><h2>Ohm's Law & Power</h2><p>Basic electrical formulas and power calculations.</p></a>
-            <a href="pump-power-calculator.html" class="card"><div class="card-icon" style="background: #f0fdf4; color: #16a34a;"><i class="fas fa-pump-soap"></i></div><h2>Water Pump Power</h2><p>Hydraulic horsepower (WHP) and brake horsepower (BHP).</p></a>
-            <a href="pressure-drop-calculator.html" class="card"><div class="card-icon" style="background: #ecfeff; color: #0891b2;"><i class="fas fa-water"></i></div><h2>Pipe Pressure Drop</h2><p>Friction loss in water piping systems.</p></a>
-            <a href="solar-calculator.html" class="card"><div class="card-icon" style="background: #fffbeb; color: #d97706;"><i class="fas fa-solar-panel"></i></div><h2>Solar PV Calculator</h2><p>Sizing for solar panels and battery banks.</p></a>
-            <a href="motor-efficiency-calculator.html" class="card"><div class="card-icon" style="background: #f0fdfa; color: #0d9488;"><i class="fas fa-cogs"></i></div><h2>Motor Efficiency</h2><p>Industrial motor performance and power factor.</p></a>
-            <a href="indoor-lighting-calculator.html" class="card"><div class="card-icon" style="background: #f5f3ff; color: #7c3aed;"><i class="fas fa-lightbulb"></i></div><h2>Indoor Lighting</h2><p>LED fixture calculation using Foot-candles.</p></a>
-            
-            <a href="thermal-insulation-calculator.html" class="card"><div class="card-icon" style="background: #fff1f2; color: #e11d48;"><i class="fas fa-temperature-high"></i></div><h2>Thermal Insulation</h2><p>R-Value and U-Factor calculation for walls.</p></a>
-            <a href="compressed-air-pipe-calculator.html" class="card"><div class="card-icon" style="background: #f8fafc; color: #475569;"><i class="fas fa-wind"></i></div><h2>Compressed Air</h2><p>Pipe sizing and PSI friction loss for pneumatics.</p></a>
-            <a href="dew-point-calculator.html" class="card"><div class="card-icon" style="background: #fff7ed; color: #ea580c;"><i class="fas fa-droplet"></i></div><h2>Dew Point</h2><p>Calculate condensation point via Magnus-Tetens.</p></a>
-            <a href="steel-weight-calculator.html" class="card"><div class="card-icon" style="background: #f1f5f9; color: #475569;"><i class="fas fa-cubes"></i></div><h2>Metal Weight</h2><p>Calculate lbs for steel and aluminum structures.</p></a>
-            <a href="hvac-cooling-load.html" class="card"><div class="card-icon" style="background: #e0f2fe; color: #0284c7;"><i class="fas fa-snowflake"></i></div><h2>HVAC Cooling Load</h2><p>Estimated BTU/h and cooling capacity for rooms.</p></a>
-            <a href="thermal-expansion-calculator.html" class="card"><div class="card-icon" style="background: #fee2e2; color: #dc2626;"><i class="fas fa-arrows-left-right"></i></div><h2>Pipe Thermal Expansion</h2><p>Linear expansion for steel, copper, and PVC.</p></a>
-            
-            <a href="tank-volume-calculator.html" class="card"><div class="card-icon" style="background: #e0e7ff; color: #4f46e5;"><i class="fas fa-database"></i></div><h2>Tank Volume</h2><p>Capacity calculation for cylindrical and rectangular silos.</p></a>
-            <a href="acoustic-attenuation-calculator.html" class="card"><div class="card-icon" style="background: #f3e8ff; color: #9333ea;"><i class="fas fa-volume-high"></i></div><h2>Acoustic Attenuation</h2><p>Sound drop over distance in a free field.</p></a>
-            <a href="conveyor-belt-calculator.html" class="card"><div class="card-icon" style="background: #d1fae5; color: #059669;"><i class="fas fa-boxes"></i></div><h2>Conveyor Capacity</h2><p>Mass flow rate (TPH) for bulk materials.</p></a>
-            <a href="concrete-volume-calculator.html" class="card"><div class="card-icon" style="background: #f4f4f5; color: #52525b;"><i class="fas fa-hard-hat"></i></div><h2>Concrete Volume</h2><p>Cubic yards and bags for slabs and footings.</p></a>
-            <a href="pulley-speed-calculator.html" class="card"><div class="card-icon" style="background: #ffedd5; color: #c2410c;"><i class="fas fa-cogs"></i></div><h2>Pulley Speed</h2><p>Drive ratios and belt speed for machinery.</p></a>
-            <a href="battery-runtime-calculator.html" class="card"><div class="card-icon" style="background: #d1fae5; color: #10b981;"><i class="fas fa-car-battery"></i></div><h2>Battery Runtime</h2><p>Backup time for UPS and Off-Grid Inverters.</p></a>
-            
-            <a href="ach-ventilation-calculator.html" class="card"><div class="card-icon" style="background: #cffafe; color: #0891b2;"><i class="fas fa-fan"></i></div><h2>ACH Ventilation</h2><p>Air Changes per Hour and required CFM.</p></a>
-            <a href="transformer-calculator.html" class="card"><div class="card-icon" style="background: #fef08a; color: #ca8a04;"><i class="fas fa-charging-station"></i></div><h2>Transformers</h2><p>Full Load Amperage (FLA) for 1 and 3-Phase.</p></a>
-            <a href="solar-roi-calculator.html" class="card"><div class="card-icon" style="background: #fef3c7; color: #f59e0b;"><i class="fas fa-hand-holding-dollar"></i></div><h2>Solar ROI</h2><p>Payback period and Tax Credit calculation.</p></a>
-            <a href="torque-calculator.html" class="card"><div class="card-icon" style="background: #eef2ff; color: #6366f1;"><i class="fas fa-sync"></i></div><h2>Motor Torque</h2><p>Calculate Torque (lb-ft) for shafts and drives.</p></a>
-            <a href="ac-btu-calculator.html" class="card"><div class="card-icon" style="background: #f0f9ff; color: #0ea5e9;"><i class="fas fa-snowflake"></i></div><h2>AC BTU Size</h2><p>Quick AC sizing for residential rooms.</p></a>
-            <a href="wire-size-calculator.html" class="card"><div class="card-icon" style="background: #fffbeb; color: #d97706;"><i class="fas fa-bolt"></i></div><h2>Wire Size Calculator</h2><p>Voltage drop and cable cross-section (AWG).</p></a>
-            
-            <a href="heating-oil-calculator.html" class="card"><div class="card-icon" style="background: #fef2f2; color: #ef4444;"><i class="fas fa-fire"></i></div><h2>Heating Oil</h2><p>Estimated consumption and cost of #2 Fuel Oil.</p></a>
-            <a href="pressure-conversion-calculator.html" class="card"><div class="card-icon" style="background: #f0fdfa; color: #14b8a6;"><i class="fas fa-tachometer-alt"></i></div><h2>Pressure Converter</h2><p>Live conversion between PSI, Bar, kPa, and inH2O.</p></a>
-            <a href="power-factor-calculator.html" class="card"><div class="card-icon" style="background: #f5f3ff; color: #8b5cf6;"><i class="fas fa-bolt"></i></div><h2>Power Factor</h2><p>Required kVAR for capacitor banks.</p></a>
-            <a href="analog-sensor-scaling-calculator.html" class="card"><div class="card-icon" style="background: #ecfdf5; color: #059669;"><i class="fas fa-wave-square"></i></div><h2>Analog Scaling</h2><p>Scale 4-20mA signals to engineering units for PLC.</p></a>
-            <a href="motor-capacitor-calculator.html" class="card"><div class="card-icon" style="background: #f0fdfa; color: #0d9488;"><i class="fas fa-microchip"></i></div><h2>Motor Capacitor</h2><p>Run capacitor sizing in microfarads (µF).</p></a>
+        <h2 class="category-title">Engineering Tools & Calculators</h2>
+        <div class="grid" id="calcGrid">
+
+            <a href="basic-electrical-calculator.html" class="card" data-tags="electrical ohm law watts amps power voltage">
+                <div class="card-icon icon-electric"><i class="fas fa-calculator"></i></div>
+                <h3>Ohm's Law & Power</h3>
+                <p>Basic electrical formulas and power calculations.</p>
+            </a>
+            <a href="wire-size-calculator.html" class="card" data-tags="electrical wire size awg voltage drop nec">
+                <div class="card-icon icon-electric"><i class="fas fa-bolt"></i></div>
+                <h3>Wire Size Calculator</h3>
+                <p>Calculate AWG section and voltage drop per NEC.</p>
+            </a>
+            <a href="motor-efficiency-calculator.html" class="card" data-tags="electrical motor horsepower efficiency kw power factor">
+                <div class="card-icon icon-electric"><i class="fas fa-cogs"></i></div>
+                <h3>Motor Efficiency</h3>
+                <p>Industrial motor performance and power factor.</p>
+            </a>
+            <a href="power-factor-calculator.html" class="card" data-tags="electrical power factor correction kvar capacitor">
+                <div class="card-icon icon-electric"><i class="fas fa-plug"></i></div>
+                <h3>Power Factor Correction</h3>
+                <p>Calculate required kVAR for capacitor banks.</p>
+            </a>
+            <a href="motor-capacitor-calculator.html" class="card" data-tags="electrical motor capacitor single phase microfarad">
+                <div class="card-icon icon-electric"><i class="fas fa-car-battery"></i></div>
+                <h3>Motor Capacitor</h3>
+                <p>Run capacitor sizing for 1-phase motors.</p>
+            </a>
+            <a href="transformer-calculator.html" class="card" data-tags="electrical transformer fla amps primary secondary">
+                <div class="card-icon icon-electric"><i class="fas fa-charging-station"></i></div>
+                <h3>Transformer FLA</h3>
+                <p>Calculate full load amps for 3-phase transformers.</p>
+            </a>
+            <a href="solar-calculator.html" class="card" data-tags="solar pv panels kw sizing off grid">
+                <div class="card-icon icon-electric" style="background:#fffbeb; color:#d97706;"><i class="fas fa-solar-panel"></i></div>
+                <h3>Solar PV Calculator</h3>
+                <p>Sizing for solar panels and battery banks.</p>
+            </a>
+            <a href="solar-roi-calculator.html" class="card" data-tags="solar roi payback period savings">
+                <div class="card-icon icon-electric" style="background:#fffbeb; color:#d97706;"><i class="fas fa-piggy-bank"></i></div>
+                <h3>Solar ROI</h3>
+                <p>Calculate payback period and savings.</p>
+            </a>
+            <a href="battery-runtime-calculator.html" class="card" data-tags="electrical battery runtime ah load amps">
+                <div class="card-icon icon-electric"><i class="fas fa-battery-half"></i></div>
+                <h3>Battery Runtime</h3>
+                <p>Estimate backup time for Ah batteries.</p>
+            </a>
+            <a href="indoor-lighting-calculator.html" class="card" data-tags="electrical lighting lux foot-candles lumens fixture">
+                <div class="card-icon icon-civil"><i class="fas fa-lightbulb"></i></div>
+                <h3>Indoor Lighting</h3>
+                <p>LED fixture calculation using Foot-candles.</p>
+            </a>
+            <a href="analog-sensor-scaling-calculator.html" class="card" data-tags="automation plc sensor scaling 4-20ma">
+                <div class="card-icon icon-electric"><i class="fas fa-microchip"></i></div>
+                <h3>PLC Sensor Scaling</h3>
+                <p>Scale 4-20mA or 0-10V analog signals.</p>
+            </a>
+
+            <a href="pump-power-calculator.html" class="card" data-tags="mechanical pump horsepower whp bhp tdh gpm">
+                <div class="card-icon icon-mechanic"><i class="fas fa-pump-soap"></i></div>
+                <h3>Water Pump Power</h3>
+                <p>Hydraulic horsepower (WHP) and brake horsepower (BHP).</p>
+            </a>
+            <a href="pressure-drop-calculator.html" class="card" data-tags="mechanical fluid pipe pressure drop friction hazen williams">
+                <div class="card-icon icon-mechanic"><i class="fas fa-water"></i></div>
+                <h3>Pipe Pressure Drop</h3>
+                <p>Friction loss in water piping systems.</p>
+            </a>
+            <a href="compressed-air-pipe-calculator.html" class="card" data-tags="mechanical air compressor pipe sizing cfm">
+                <div class="card-icon icon-mechanic"><i class="fas fa-wind"></i></div>
+                <h3>Compressed Air Pipe</h3>
+                <p>Diameter sizing for pneumatic networks.</p>
+            </a>
+            <a href="dew-point-calculator.html" class="card" data-tags="mechanical air moisture dew point humidity">
+                <div class="card-icon icon-mechanic"><i class="fas fa-tint"></i></div>
+                <h3>Dew Point Calculator</h3>
+                <p>Condensation calculation for compressed air.</p>
+            </a>
+            <a href="pressure-conversion-calculator.html" class="card" data-tags="mechanical pressure conversion psi bar kpa">
+                <div class="card-icon icon-mechanic"><i class="fas fa-tachometer-alt"></i></div>
+                <h3>Pressure Conversion</h3>
+                <p>Convert PSI, Bar, Pascal, and Atmospheres.</p>
+            </a>
+            <a href="tank-volume-calculator.html" class="card" data-tags="mechanical tank volume capacity gallons liters">
+                <div class="card-icon icon-mechanic"><i class="fas fa-database"></i></div>
+                <h3>Tank Volume</h3>
+                <p>Calculate capacity in US Gallons and Liters.</p>
+            </a>
+            <a href="conveyor-belt-calculator.html" class="card" data-tags="mechanical conveyor belt capacity tph speed">
+                <div class="card-icon icon-mechanic"><i class="fas fa-truck-loading"></i></div>
+                <h3>Conveyor Capacity</h3>
+                <p>Calculate Tons Per Hour (TPH) for belts.</p>
+            </a>
+            <a href="pulley-speed-calculator.html" class="card" data-tags="mechanical pulley speed rpm belt ratio">
+                <div class="card-icon icon-mechanic"><i class="fas fa-circle-notch"></i></div>
+                <h3>Pulley RPM & Ratio</h3>
+                <p>Calculate speeds for belt-driven systems.</p>
+            </a>
+            <a href="torque-calculator.html" class="card" data-tags="mechanical torque force lever arm hp rpm">
+                <div class="card-icon icon-mechanic"><i class="fas fa-wrench"></i></div>
+                <h3>Torque Calculator</h3>
+                <p>Calculate torque required for rotary loads.</p>
+            </a>
+
+            <a href="hvac-cooling-load.html" class="card" data-tags="hvac cooling load btu tons ac air conditioning">
+                <div class="card-icon icon-hvac"><i class="fas fa-snowflake"></i></div>
+                <h3>HVAC Cooling Load</h3>
+                <p>Estimate BTU/h and Tons for AC sizing.</p>
+            </a>
+            <a href="ac-btu-calculator.html" class="card" data-tags="hvac ac btu room size cooling">
+                <div class="card-icon icon-hvac"><i class="fas fa-fan"></i></div>
+                <h3>AC Room Sizing</h3>
+                <p>Quick BTU calculation by room square footage.</p>
+            </a>
+            <a href="ach-ventilation-calculator.html" class="card" data-tags="hvac ventilation ach air changes cfm exhaust">
+                <div class="card-icon icon-hvac"><i class="fas fa-seedling"></i></div>
+                <h3>Air Changes (ACH)</h3>
+                <p>Required CFM for proper room ventilation.</p>
+            </a>
+            <a href="thermal-insulation-calculator.html" class="card" data-tags="hvac thermal insulation r-value heat loss u-value">
+                <div class="card-icon icon-hvac"><i class="fas fa-thermometer-half"></i></div>
+                <h3>Thermal Insulation</h3>
+                <p>Calculate U-Value and heat transfer resistance.</p>
+            </a>
+            <a href="heating-oil-calculator.html" class="card" data-tags="hvac heating oil boiler fuel consumption">
+                <div class="card-icon icon-hvac"><i class="fas fa-fire"></i></div>
+                <h3>Heating Oil Consumption</h3>
+                <p>Estimate fuel usage for industrial boilers.</p>
+            </a>
+            <a href="thermal-expansion-calculator.html" class="card" data-tags="mechanical thermal expansion pipe steel coefficient">
+                <div class="card-icon icon-hvac"><i class="fas fa-arrows-alt-h"></i></div>
+                <h3>Thermal Expansion</h3>
+                <p>Calculate pipe expansion due to temperature.</p>
+            </a>
+
+            <a href="steel-weight-calculator.html" class="card" data-tags="civil structural steel weight metal i-beam">
+                <div class="card-icon icon-civil"><i class="fas fa-weight-hanging"></i></div>
+                <h3>Steel Weight</h3>
+                <p>Weight calculation for steel beams and plates.</p>
+            </a>
+            <a href="concrete-volume-calculator.html" class="card" data-tags="civil concrete volume slab yards cubic">
+                <div class="card-icon icon-civil"><i class="fas fa-cubes"></i></div>
+                <h3>Concrete Volume</h3>
+                <p>Calculate cubic yards required for slabs.</p>
+            </a>
+            <a href="acoustic-attenuation-calculator.html" class="card" data-tags="civil acoustic noise sound attenuation decibel distance">
+                <div class="card-icon icon-civil"><i class="fas fa-volume-down"></i></div>
+                <h3>Acoustic Attenuation</h3>
+                <p>Calculate noise drop over distance (Inverse Square Law).</p>
+            </a>
         </div>
     </main>
 
-    <section class="seo-content">
-        <h2>The Ultimate Industrial Calculator for Professionals</h2>
-        <p>In engineering and maintenance, precision is everything. IndustrialCalc Pro is your go-to <strong>online industrial calculator</strong>, bringing together electrical, mechanical, and fluid formulas in one place. Our tools are optimized to deliver instant results based on US and international standards (NEC, IEEE, ASHRAE), making it easier to size projects and troubleshoot issues right on the plant floor.</p>
-    </section>
-
-    <section id="about-us" class="about-section">
-        <div class="about-container">
-            <h2 class="about-title">Leaders in Industrial Engineering Tools</h2>
-            <div class="about-grid">
-                <div class="about-col">
-                    <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
-                    <p>IndustrialCalc Pro was created to digitize and simplify the daily workflow of engineers, designers, and installers. We provide precise calculation tools based on international standards to optimize technical and financial decision-making for every project.</p>
-                    <ul class="check-list">
-                        <li><i class="fas fa-check-circle"></i> Formulas validated by NEC, IEEE, and ASHRAE standards.</li>
-                        <li><i class="fas fa-check-circle"></i> Interface 100% optimized for plant and field use.</li>
-                        <li><i class="fas fa-check-circle"></i> Free access with no registrations or paywalls.</li>
-                    </ul>
-                </div>
-                
-                <div class="about-col">
-                    <h3><i class="fas fa-microchip"></i> Our Expertise</h3>
-                    <p>Our team consists of professionals with extensive experience in industrial automation, renewable energy, and energy efficiency. We understand the challenges of the engineering office and design tools to be the ultimate support for your daily calculations.</p>
-                    <div class="contact-box" id="contacto">
-                        <h4 style="margin-top: 0; font-size: 1.2rem; color: var(--text-main);">Need help or have feedback?</h4>
-                        <p style="font-size: 0.95rem; color: var(--text-muted);">If you are missing a specific tool, let us know directly.</p>
-                        <a href="../contacto.html" class="btn-contact"><i class="fas fa-envelope"></i> Contact the Team</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <footer>
-        <div class="links">
-            <a href="index.html">Home</a>
-            <a href="../contacto.html">Contact</a>
-            <a href="../legales.html">Privacy Policy</a>
-        </div>
-        <p>&copy; 2026 IndustrialCalc Pro - Professional Engineering Tools Suite.</p>
+        <a href="index.html">Tools</a>
+        <a href="../contacto.html">Contact</a>
+        <a href="../legales.html">Privacy Policy</a>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 1rem;">&copy; 2026 IndustrialCalc Pro.</p>
     </footer>
 
     <script>
-        function filtrarTarjetas() {
-            const input = document.getElementById('buscadorHome').value.toLowerCase();
-            const tarjetas = document.querySelectorAll('main .card');
-            tarjetas.forEach(tarjeta => {
-                const textoTarjeta = tarjeta.innerText.toLowerCase();
-                tarjeta.style.display = textoTarjeta.includes(input) ? 'flex' : 'none';
+        function filterCalculators() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.card');
+            
+            cards.forEach(card => {
+                const tags = card.getAttribute('data-tags').toLowerCase();
+                const title = card.querySelector('h3').innerText.toLowerCase();
+                
+                if (tags.includes(input) || title.includes(input)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
             });
         }
 
         const themeBtn = document.getElementById('theme-toggle');
-        const themeIcon = themeBtn.querySelector('i');
-        const currentTheme = localStorage.getItem('industrialcalc-theme');
-
-        if (currentTheme === 'dark') {
+        if (localStorage.getItem('industrialcalc-theme') === 'dark') {
             document.body.classList.add('dark-mode');
-            themeIcon.classList.replace('fa-moon', 'fa-sun');
+            themeBtn.querySelector('i').classList.replace('fa-moon', 'fa-sun');
         }
-
+        
         themeBtn.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
+            const icon = themeBtn.querySelector('i');
             if (document.body.classList.contains('dark-mode')) {
                 localStorage.setItem('industrialcalc-theme', 'dark');
-                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                icon.classList.replace('fa-moon', 'fa-sun');
             } else {
                 localStorage.setItem('industrialcalc-theme', 'light');
-                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                icon.classList.replace('fa-sun', 'fa-moon');
             }
         });
     </script>
