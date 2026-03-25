@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="canonical" href="https://industrialcalc.es/en/guide-solar-sizing.html" />
+    <link rel="alternate" hreflang="es" href="https://industrialcalc.es/guia-dimensionamiento-solar.html" />
+    <link rel="alternate" hreflang="en" href="https://industrialcalc.es/en/guide-solar-sizing.html" />
+    <link rel="alternate" hreflang="x-default" href="https://industrialcalc.es/guia-dimensionamiento-solar.html" />
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E88WRKF9NQ"></script>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>The Ultimate Guide to Sizing a Solar PV System | IndustrialCalc</title>
+    <meta name="description" content="Step-by-step guide to calculating your solar panel needs. Learn how to determine kW size, peak sun hours, and derate factors for grid-tied and off-grid systems.">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --bg-body: #f1f5f9; --surface: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --primary: #2563eb; --header-bg: #0f172a; --border: #e2e8f0; --accent: #d97706; }
+        body.dark-mode { --bg-body: #0f172a; --surface: #1e293b; --text-main: #f8fafc; --text-muted: #94a3b8; --border: #334155; --header-bg: #020617; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
+        
+        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; position: sticky; top: 0; z-index: 100; }
+        .header-content { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .logo span { color: #3b82f6; }
+        .nav-links { display: flex; gap: 15px; align-items: center; }
+        .nav-links a.nav-normal { color: white; text-decoration: none; font-size: 0.95rem; font-weight: 500; opacity: 0.8; }
+        .nav-links a.nav-normal:hover, .nav-links a.nav-normal.active { opacity: 1; color: #60a5fa; }
+        .lang-switch { display: flex; gap: 5px; background: rgba(255,255,255,0.1); padding: 5px; border-radius: 6px; }
+        .lang-switch a { color: white; text-decoration: none; font-size: 0.85rem; font-weight: bold; padding: 4px 8px; border-radius: 4px; opacity: 0.6; }
+        .lang-switch a.active { background: var(--primary); opacity: 1; }
+        .theme-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; opacity: 0.8; }
+
+        main { flex: 1; padding: 2rem 1rem; max-width: 850px; margin: 0 auto; width: 100%; box-sizing: border-box; }
+        
+        /* Estilos específicos del artículo */
+        .article-header { text-align: center; margin-bottom: 3rem; }
+        .article-tag { background: #fffbeb; color: var(--accent); padding: 5px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: 1rem; }
+        body.dark-mode .article-tag { background: rgba(217, 119, 6, 0.2); }
+        .article-header h1 { font-size: 2.5rem; margin-bottom: 1rem; line-height: 1.2; }
+        .article-meta { color: var(--text-muted); font-size: 0.95rem; display: flex; justify-content: center; gap: 20px; align-items: center; }
+        
+        .article-content { font-size: 1.1rem; line-height: 1.8; color: var(--text-main); }
+        .article-content h2 { font-size: 1.8rem; margin: 2.5rem 0 1rem 0; color: var(--primary); border-bottom: 2px solid var(--border); padding-bottom: 10px; }
+        .article-content h3 { font-size: 1.4rem; margin: 2rem 0 1rem 0; }
+        .article-content p { margin-bottom: 1.5rem; }
+        .article-content ul { margin-bottom: 1.5rem; padding-left: 20px; }
+        .article-content li { margin-bottom: 10px; }
+        
+        .math-box { background: var(--surface); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border); border-left: 4px solid var(--primary); margin: 2rem 0; overflow-x: auto; text-align: center; font-size: 1.1rem; }
+        
+        .cta-box { background: linear-gradient(135deg, var(--header-bg), var(--primary)); color: white; padding: 2.5rem 2rem; border-radius: 12px; text-align: center; margin: 3rem 0; box-shadow: 0 10px 15px -3px rgba(37,99,235,0.3); }
+        .cta-box h3 { color: white; margin-top: 0; font-size: 1.6rem; border: none; padding: 0; }
+        .cta-box p { color: rgba(255,255,255,0.9); margin-bottom: 1.5rem; font-size: 1.1rem; }
+        .btn-cta { background: #fde047; color: #0f172a; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 800; font-size: 1.1rem; display: inline-block; transition: 0.2s; }
+        .btn-cta:hover { background: white; transform: translateY(-3px); }
+
+        .faq-section { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); margin-top: 3rem; }
+        .faq-item { margin-bottom: 1.5rem; }
+        .faq-item h4 { margin: 0 0 0.5rem 0; font-size: 1.1rem; color: var(--text-main); }
+        .faq-item p { margin: 0; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+
+        footer { text-align: center; padding: 2rem; background-color: var(--surface); border-top: 1px solid var(--border); margin-top: 3rem; }
+        footer a { color: var(--text-muted); text-decoration: none; margin: 0 10px; }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "The Ultimate Guide to Sizing a Solar PV System",
+      "author": {
+        "@type": "Organization",
+        "name": "IndustrialCalc Pro"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "IndustrialCalc Pro",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://industrialcalc.es/logo.png"
+        }
+      },
+      "datePublished": "2026-03-25",
+      "description": "Step-by-step guide to calculating your solar panel needs. Learn how to determine kW size, peak sun hours, and derate factors for grid-tied and off-grid systems."
+    }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span></a>
+            <nav class="nav-links">
+                <div class="lang-switch">
+                    <a href="../guia-dimensionamiento-solar.html">ES</a>
+                    <a href="#" class="active">EN</a>
+                </div>
+                <a href="guides.html" class="nav-normal active">Guides</a>
+                <a href="index.html" class="nav-normal">Tools Home</a>
+                <button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="article-header">
+            <span class="article-tag">Renewable Energy</span>
+            <h1>The Ultimate Guide to Sizing a Solar PV System</h1>
+            <div class="article-meta">
+                <span><i class="fas fa-clock"></i> 6 min read</span>
+                <span><i class="fas fa-user-shield"></i> Engineering Standards</span>
+            </div>
+        </div>
+
+        <div style="margin: 20px 0 40px 0; text-align: center; min-height: 90px; background: var(--surface); border: 1px dashed var(--border);"></div>
+
+        <div class="article-content">
+            <p>Transitioning to solar energy is one of the smartest financial and environmental decisions a homeowner or business can make. However, the most critical step before contacting an installer or buying equipment is answering one simple question: <strong>How many solar panels do I actually need?</strong></p>
+            
+            <p>If you oversize your system, you waste money on unnecessary equipment. If you undersize it, you won't offset enough of your utility bill to see a solid Return on Investment (ROI). In this guide, we will break down the professional engineering process to calculate the exact Kilowatt (kW) size of your required solar array.</p>
+
+            <h2>Step 1: Determine Your Energy Consumption (kWh)</h2>
+            <p>Solar panels produce energy, measured in kilowatt-hours (kWh). To know how much you need to produce, you must first know how much you consume. Grab your last 12 utility bills and find your total annual kWh usage. Divide that by 12 to find your <strong>Average Monthly Usage</strong>.</p>
+            <p>For example, the average US home uses about 900 kWh per month. To find your daily requirement, divide by 30:</p>
+            
+            <div class="math-box">
+                $$ E_{daily} = \frac{\text{Monthly kWh}}{30} $$
+            </div>
+            
+            <p>If your monthly usage is 900 kWh, your daily energy requirement is <strong>30 kWh/day</strong>.</p>
+
+            <h2>Step 2: Understand Peak Sun Hours (PSH)</h2>
+            <p>A "Peak Sun Hour" is not the same as hours of daylight. It is defined as an hour during which the intensity of sunlight is 1,000 watts per square meter ($1000 W/m^2$). Even if the sun is up for 12 hours, a typical location in the US might only receive <strong>4.5 Peak Sun Hours</strong> per day due to the sun's angle and morning/evening weakness.</p>
+            <ul>
+                <li><strong>Arizona / Nevada:</strong> 5.5 to 6.5 PSH</li>
+                <li><strong>New York / Ohio:</strong> 3.5 to 4.0 PSH</li>
+                <li><strong>Florida / Texas:</strong> 4.5 to 5.5 PSH</li>
+            </ul>
+
+            <div style="margin: 40px 0; text-align: center; min-height: 90px; background: var(--surface); border: 1px dashed var(--border);"></div>
+
+            <h2>Step 3: The Derate Factor (System Losses)</h2>
+            <p>This is where amateur calculations fail. A 400W solar panel will almost never produce exactly 400W of power in real-world conditions. Energy is lost due to several factors:</p>
+            <ul>
+                <li>DC to AC Inverter inefficiencies (approx. 4-5% loss).</li>
+                <li>Voltage drop in copper wiring (approx. 2% loss).</li>
+                <li>Soiling (dust, dirt, and snow on panels).</li>
+                <li>High temperatures (solar panels lose efficiency as they get hotter).</li>
+            </ul>
+            <p>Engineers use a global <strong>Derate Factor</strong> to account for these losses. The industry standard is 0.78 (meaning the system operates at 78% of its theoretical laboratory maximum).</p>
+
+            <h2>Step 4: Calculate Your Required System Size (kW)</h2>
+            <p>Now we combine your daily energy needs, your local Peak Sun Hours, and the Derate Factor to find the DC capacity your roof needs to support.</p>
+
+            <div class="math-box">
+                $$ \text{System Size (kW)} = \frac{E_{daily}}{\text{PSH} \times 0.78} $$
+            </div>
+
+            <p>Using our example: We need 30 kWh/day, we live in an area with 4.5 PSH, and we use the 0.78 derate factor.</p>
+            <p style="text-align: center; font-size: 1.2rem;">$$ \text{System Size} = \frac{30}{4.5 \times 0.78} = \mathbf{8.54 \text{ kW}} $$</p>
+
+            <div class="cta-box">
+                <h3>Want to skip the manual math?</h3>
+                <p>Use our free interactive calculator. Just input your monthly bill and let our algorithm determine your required kW size, number of panels, and estimated roof space instantly.</p>
+                <a href="solar-calculator.html" class="btn-cta"><i class="fas fa-calculator"></i> Open Solar Sizing Calculator</a>
+            </div>
+
+            <h2>Step 5: How Many Panels is That?</h2>
+            <p>Once you have your total system size in kW, multiply it by 1,000 to get Watts. Then, divide by the wattage of the specific solar panels you plan to install (modern panels usually range from 350W to 450W).</p>
+            <p>For an 8.54 kW system using 400W panels:</p>
+            <ul>
+                <li>$8.54 \text{ kW} \times 1000 = 8,540 \text{ Watts}$</li>
+                <li>$8,540 / 400 = 21.35$</li>
+            </ul>
+            <p>You would round up and install exactly <strong>22 solar panels</strong>.</p>
+
+            <div class="faq-section">
+                <h3 style="margin-top: 0; border: none; color: var(--primary);">Frequently Asked Questions (FAQ)</h3>
+                
+                <div class="faq-item">
+                    <h4>What happens if I oversize my solar system?</h4>
+                    <p>If you are grid-tied, generating more power than you use will feed electricity back into the grid. Depending on your local utility's Net Metering policy, you may receive credits on your bill or a small monetary payout at the end of the year. However, the payout rate is usually lower than what you pay, so massive oversizing is rarely a good financial investment.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h4>Do I need battery storage?</h4>
+                    <p>If you have reliable grid power and 1:1 Net Metering, batteries are not financially necessary. The grid acts as your "battery." You only need physical batteries (like the Tesla Powerwall) if you live off-grid or experience frequent power outages.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <a href="guides.html">Back to Guides</a>
+        <a href="index.html">Tools Home</a>
+        <a href="../legales.html">Privacy Policy</a>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 1rem;">&copy; 2026 IndustrialCalc Pro.</p>
+    </footer>
+
+    <script>
+        const themeBtn = document.getElementById('theme-toggle');
+        if (localStorage.getItem('industrialcalc-theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeBtn.querySelector('i').classList.replace('fa-moon', 'fa-sun');
+        }
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const icon = themeBtn.querySelector('i');
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('industrialcalc-theme', 'dark');
+                icon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                localStorage.setItem('industrialcalc-theme', 'light');
+                icon.classList.replace('fa-sun', 'fa-moon');
+            }
+        });
+    </script>
+</body>
+</html>
