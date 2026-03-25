@@ -2,29 +2,166 @@
 <html lang="en">
 <head>
     <link rel="canonical" href="https://industrialcalc.es/en/cfm-to-m3h.html" />
-    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CFM to Cubic Meters per Hour | Air Flow [2026]</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CFM to m3/h Converter | Airflow Unit Conversion [2026]</title>
+    <meta name="description" content="Convert CFM to m3/h and m3/h to CFM instantly. Professional airflow converter for HVAC, air compressors, and industrial ventilation systems.">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --bg: #f1f5f9; --surf: #ffffff; --text: #0f172a; --primary: #f59e0b; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); display: flex; flex-direction: column; min-height: 100vh; margin: 0; align-items: center; justify-content: center; }
-        .box { background: var(--surf); padding: 2.5rem; border-radius: 16px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); width: 100%; max-width: 400px; text-align: center; }
-        input { width: 100%; padding: 1rem; margin: 10px 0; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 1.2rem; text-align: center; }
-        .label { font-weight: 700; color: var(--primary); margin-bottom: 5px; display: block; }
-        footer { margin-top: 2rem; font-size: 0.9rem; opacity: 0.7; }
+        :root { --bg-body: #f1f5f9; --surface: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --primary: #06b6d4; --header-bg: #0f172a; --border: #e2e8f0; }
+        body.dark-mode { --bg-body: #0f172a; --surface: #1e293b; --text-main: #f8fafc; --text-muted: #94a3b8; --border: #334155; --header-bg: #020617; }
+        
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; transition: 0.3s; line-height: 1.6; }
+        
+        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+        .header-content { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-size: 1.3rem; font-weight: 800; color: white; text-decoration: none; }
+        .logo span { color: #3b82f6; }
+        .nav-link { color: #60a5fa; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+
+        main { max-width: 900px; margin: 3rem auto; padding: 0 1.5rem; box-sizing: border-box; }
+        
+        .converter-card { background: var(--surface); padding: 2.5rem; border-radius: 16px; border: 1px solid var(--border); text-align: center; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); border-left: 5px solid var(--primary); }
+        h1 { margin-top: 0; font-size: 2rem; letter-spacing: -1px; }
+
+        .input-container { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px; margin: 30px 0; }
+        .input-group { text-align: left; }
+        label { display: block; font-weight: 700; margin-bottom: 8px; color: var(--primary); font-size: 0.9rem; text-transform: uppercase; }
+        input { width: 100%; padding: 1.2rem; border: 2px solid var(--border); border-radius: 10px; font-size: 1.5rem; background: var(--bg-body); color: var(--text-main); box-sizing: border-box; outline: none; transition: 0.2s; }
+        input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.1); }
+        .swap-icon { font-size: 1.5rem; color: var(--text-muted); margin-top: 25px; }
+
+        .content-section { margin-top: 4rem; }
+        .content-section h2 { font-size: 1.8rem; color: var(--text-main); border-bottom: 3px solid var(--primary); display: inline-block; margin-bottom: 1.5rem; }
+        .content-section p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 1.5rem; }
+        
+        .formula-box { background: var(--surface); border: 1px solid var(--border); padding: 1.5rem; border-radius: 12px; margin: 2rem 0; position: relative; overflow: hidden; }
+        .formula-box::before { content: "FLOW RATIO"; position: absolute; top: 0; right: 0; background: var(--primary); color: white; font-size: 0.7rem; padding: 4px 10px; font-weight: 900; }
+        .formula-box code { font-size: 1.2rem; color: var(--text-main); font-family: 'Courier New', monospace; font-weight: bold; display: block; margin: 5px 0; }
+
+        .quick-table { width: 100%; border-collapse: collapse; margin: 2rem 0; background: var(--surface); border-radius: 8px; overflow: hidden; font-size: 0.9rem; }
+        .quick-table th { background: var(--primary); color: white; padding: 12px; text-align: left; }
+        .quick-table td { padding: 12px; border-bottom: 1px solid var(--border); color: var(--text-main); }
+        .quick-table tr:hover { background: var(--bg-body); }
+
+        .faq-item { margin-bottom: 1.5rem; background: var(--surface); padding: 1.5rem; border-radius: 10px; border: 1px solid var(--border); }
+        .faq-item h3 { margin-top: 0; font-size: 1.1rem; color: var(--primary); }
+
+        footer { text-align: center; padding: 4rem 1rem; color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 4rem; }
+
+        @media (max-width: 600px) {
+            .input-container { grid-template-columns: 1fr; }
+            .swap-icon { transform: rotate(90deg); margin: 0; }
+        }
     </style>
 </head>
 <body>
-    <div class="box">
-        <h2><i class="fas fa-wind"></i> CFM to m³/h</h2>
-        <div><span class="label">Cubic Feet per Minute (CFM)</span><input type="number" id="cfm" placeholder="0" oninput="convertCfm(this.value)"></div>
-        <i class="fas fa-exchange-alt" style="color: #94a3b8; margin: 10px 0;"></i>
-        <div><span class="label">m³/h (Cubic Meters per Hour)</span><input type="number" id="m3h" placeholder="0" oninput="convertM3(this.value)"></div>
+
+<header>
+    <div class="header-content">
+        <a href="index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span></a>
+        <a href="index.html" class="nav-link"><i class="fas fa-th"></i> All Tools</a>
     </div>
-    <footer><a href="index.html" style="color: inherit; text-decoration: none;">&larr; Back to Tools</a></footer>
-    <script>
-        function convertCfm(v){ document.getElementById('m3h').value = (v * 1.69901).toFixed(2); }
-        function convertM3(v){ document.getElementById('cfm').value = (v / 1.69901).toFixed(2); }
-    </script>
+</header>
+
+<main>
+    <div class="converter-card">
+        <h1>CFM to m3/h Converter</h1>
+        <p style="color: var(--text-muted);">Airflow and volumetric flow conversion tool.</p>
+
+        <div class="input-container">
+            <div class="input-group">
+                <label>Cubic Feet / Min (CFM)</label>
+                <input type="number" id="cfm" placeholder="0" oninput="convert(this.id, this.value)">
+            </div>
+            
+            <div class="swap-icon">
+                <i class="fas fa-wind"></i>
+            </div>
+
+            <div class="input-group">
+                <label>Cubic Meters / Hour (m3/h)</label>
+                <input type="number" id="m3h" placeholder="0" oninput="convert(this.id, this.value)">
+            </div>
+        </div>
+    </div>
+
+    <section class="content-section">
+        <h2>How to convert CFM to m3/h?</h2>
+        <p>CFM stands for Cubic Feet per Minute, a standard imperial unit for measuring airflow. In the metric system, engineers use Cubic Meters per Hour (m³/h). This conversion is essential when designing HVAC systems or specifying industrial air compressors for international facilities.</p>
+        
+        <div class="formula-box">
+            <code>1 CFM = 1.69901 m³/h</code>
+            <code>1 m³/h = 0.588578 CFM</code>
+        </div>
+
+        <h2>Airflow Reference Table</h2>
+        <p>Typical airflow requirements for industrial applications:</p>
+        <table class="quick-table">
+            <thead>
+                <tr>
+                    <th>Airflow (CFM)</th>
+                    <th>Metric (m3/h) - Approx</th>
+                    <th>Industrial Context</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>5 CFM</td><td>8.5 m3/h</td><td>Small pneumatic nailer</td></tr>
+                <tr><td>25 CFM</td><td>42.5 m3/h</td><td>Industrial impact wrench (1/2")</td></tr>
+                <tr><td>100 CFM</td><td>169.9 m3/h</td><td>Medium industrial compressor</td></tr>
+                <tr><td>500 CFM</td><td>849.5 m3/h</td><td>Paint booth ventilation fan</td></tr>
+                <tr><td>2000 CFM</td><td>3,398 m3/h</td><td>Large warehouse exhaust unit</td></tr>
+            </tbody>
+        </table>
+
+        <h2>Airflow in Industrial Processes</h2>
+        <p>Why accurate flow calculation is vital for your facility:</p>
+        <ul>
+            <li><strong>Pneumatic Tooling:</strong> Every tool has a specific CFM requirement. If the supply (measured in m³/h) is lower than the tool's demand, performance drops and equipment can be damaged.</li>
+            <li><strong>Dust Collection:</strong> Exhaust systems in woodworking or chemical plants require a minimum "capture velocity" calculated in CFM to ensure harmful particles are removed from the air.</li>
+            <li><strong>HVAC Duct Sizing:</strong> Sizing ductwork requires a precise understanding of the air volume to be moved to maintain room pressure and temperature.</li>
+        </ul>
+
+        <h2>FAQ: Airflow & Volumetric Units</h2>
+        <div class="faq-item">
+            <h3>What is the difference between CFM and SCFM?</h3>
+            <p><strong>CFM</strong> measures the actual volume of air, while <strong>SCFM (Standard CFM)</strong> is the airflow corrected to standard conditions (temperature and pressure). In many industrial specs, they are treated as similar for quick estimates.</p>
+        </div>
+        <div class="faq-item">
+            <h3>How do I convert m3/min to CFM?</h3>
+            <p>To convert cubic meters per minute (m3/min) to CFM, you multiply by <strong>35.31</strong>.</p>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2026 IndustrialCalc Pro - Fluid Dynamics & Airflow Tools.<br>
+    <a href="../legales.html" style="color: var(--text-muted); text-decoration: underline;">Privacy Policy</a></p>
+</footer>
+
+<script>
+    if (localStorage.getItem('industrialcalc-theme') === 'dark') document.body.classList.add('dark-mode');
+
+    function convert(id, val) {
+        const cfmInput = document.getElementById('cfm');
+        const m3hInput = document.getElementById('m3h');
+        const factor = 1.69901082;
+
+        if (val === "") {
+            cfmInput.value = "";
+            m3hInput.value = "";
+            return;
+        }
+
+        const v = parseFloat(val);
+        if (id === 'cfm') {
+            m3hInput.value = (v * factor).toFixed(2);
+        } else {
+            cfmInput.value = (v / factor).toFixed(2);
+        }
+    }
+</script>
+
 </body>
 </html>
