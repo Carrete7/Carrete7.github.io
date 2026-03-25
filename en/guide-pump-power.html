@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="canonical" href="https://industrialcalc.es/en/guide-pump-power.html" />
+    <link rel="alternate" hreflang="es" href="https://industrialcalc.es/guia-potencia-bombas.html" />
+    <link rel="alternate" hreflang="en" href="https://industrialcalc.es/en/guide-pump-power.html" />
+    <link rel="alternate" hreflang="x-default" href="https://industrialcalc.es/guia-potencia-bombas.html" />
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E88WRKF9NQ"></script>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>How to Calculate Water Pump Horsepower (BHP) | IndustrialCalc</title>
+    <meta name="description" content="Learn the engineering formula to calculate Water Horsepower (WHP) and Brake Horsepower (BHP) for centrifugal pumps. Master GPM and TDH calculations.">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --bg-body: #f1f5f9; --surface: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --primary: #2563eb; --header-bg: #0f172a; --border: #e2e8f0; --accent: #16a34a; }
+        body.dark-mode { --bg-body: #0f172a; --surface: #1e293b; --text-main: #f8fafc; --text-muted: #94a3b8; --border: #334155; --header-bg: #020617; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
+        
+        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; position: sticky; top: 0; z-index: 100; }
+        .header-content { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .logo span { color: #3b82f6; }
+        .nav-links { display: flex; gap: 15px; align-items: center; }
+        .nav-links a.nav-normal { color: white; text-decoration: none; font-size: 0.95rem; font-weight: 500; opacity: 0.8; }
+        .nav-links a.nav-normal:hover, .nav-links a.nav-normal.active { opacity: 1; color: #60a5fa; }
+        .lang-switch { display: flex; gap: 5px; background: rgba(255,255,255,0.1); padding: 5px; border-radius: 6px; }
+        .lang-switch a { color: white; text-decoration: none; font-size: 0.85rem; font-weight: bold; padding: 4px 8px; border-radius: 4px; opacity: 0.6; }
+        .lang-switch a.active { background: var(--primary); opacity: 1; }
+        .theme-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; opacity: 0.8; }
+
+        main { flex: 1; padding: 2rem 1rem; max-width: 850px; margin: 0 auto; width: 100%; box-sizing: border-box; }
+        
+        .article-header { text-align: center; margin-bottom: 3rem; }
+        .article-tag { background: #f0fdf4; color: var(--accent); padding: 5px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: 1rem; border: 1px solid #bbf7d0; }
+        body.dark-mode .article-tag { background: rgba(22, 163, 74, 0.2); border-color: rgba(22, 163, 74, 0.4); }
+        .article-header h1 { font-size: 2.5rem; margin-bottom: 1rem; line-height: 1.2; }
+        .article-meta { color: var(--text-muted); font-size: 0.95rem; display: flex; justify-content: center; gap: 20px; align-items: center; }
+        
+        .article-content { font-size: 1.1rem; line-height: 1.8; color: var(--text-main); }
+        .article-content h2 { font-size: 1.8rem; margin: 2.5rem 0 1rem 0; color: var(--primary); border-bottom: 2px solid var(--border); padding-bottom: 10px; }
+        .article-content h3 { font-size: 1.4rem; margin: 2rem 0 1rem 0; }
+        .article-content p { margin-bottom: 1.5rem; }
+        .article-content ul { margin-bottom: 1.5rem; padding-left: 20px; }
+        .article-content li { margin-bottom: 10px; }
+        
+        .math-box { background: var(--surface); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border); border-left: 4px solid var(--primary); margin: 2rem 0; overflow-x: auto; text-align: center; font-size: 1.1rem; }
+        
+        .cta-box { background: linear-gradient(135deg, var(--header-bg), var(--primary)); color: white; padding: 2.5rem 2rem; border-radius: 12px; text-align: center; margin: 3rem 0; box-shadow: 0 10px 15px -3px rgba(37,99,235,0.3); }
+        .cta-box h3 { color: white; margin-top: 0; font-size: 1.6rem; border: none; padding: 0; }
+        .cta-box p { color: rgba(255,255,255,0.9); margin-bottom: 1.5rem; font-size: 1.1rem; }
+        .btn-cta { background: #fde047; color: #0f172a; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 800; font-size: 1.1rem; display: inline-block; transition: 0.2s; }
+        .btn-cta:hover { background: white; transform: translateY(-3px); }
+
+        .faq-section { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); margin-top: 3rem; }
+        .faq-item { margin-bottom: 1.5rem; }
+        .faq-item h4 { margin: 0 0 0.5rem 0; font-size: 1.1rem; color: var(--text-main); }
+        .faq-item p { margin: 0; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+
+        footer { text-align: center; padding: 2rem; background-color: var(--surface); border-top: 1px solid var(--border); margin-top: 3rem; }
+        footer a { color: var(--text-muted); text-decoration: none; margin: 0 10px; }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "How to Calculate Water Pump Horsepower (BHP)",
+      "author": {
+        "@type": "Organization",
+        "name": "IndustrialCalc Pro"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "IndustrialCalc Pro",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://industrialcalc.es/logo.png"
+        }
+      },
+      "datePublished": "2026-03-25",
+      "description": "Learn the engineering formula to calculate Water Horsepower (WHP) and Brake Horsepower (BHP) for centrifugal pumps. Master GPM and TDH calculations."
+    }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span></a>
+            <nav class="nav-links">
+                <div class="lang-switch">
+                    <a href="../guia-potencia-bombas.html">ES</a>
+                    <a href="#" class="active">EN</a>
+                </div>
+                <a href="guides.html" class="nav-normal active">Guides</a>
+                <a href="index.html" class="nav-normal">Tools Home</a>
+                <button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="article-header">
+            <span class="article-tag">Fluid Mechanics</span>
+            <h1>How to Calculate Water Pump Horsepower (BHP)</h1>
+            <div class="article-meta">
+                <span><i class="fas fa-clock"></i> 5 min read</span>
+                <span><i class="fas fa-water"></i> Hydraulics</span>
+            </div>
+        </div>
+
+        <div style="margin: 20px 0 40px 0; text-align: center; min-height: 90px; background: var(--surface); border: 1px dashed var(--border);"></div>
+
+        <div class="article-content">
+            <p>Sizing a centrifugal pump correctly is critical for industrial facilities, agricultural irrigation, and municipal water systems. An undersized pump will fail to deliver the required flow, while an oversized pump will consume excessive electrical energy and suffer from premature mechanical wear due to cavitation or operating off its Best Efficiency Point (BEP).</p>
+            
+            <p>To find the right motor for your pump, you need to understand two key concepts: <strong>Water Horsepower (WHP)</strong>, which is the raw energy required to move the fluid, and <strong>Brake Horsepower (BHP)</strong>, which is the actual power the electric motor must deliver to the pump shaft.</p>
+
+            <h2>1. The Core Variables: GPM and TDH</h2>
+            <p>Before doing any math, you must determine the hydraulic requirements of your piping system.</p>
+            <ul>
+                <li><strong>Flow Rate (GPM):</strong> Gallons Per Minute. How much liquid needs to be moved in a specific timeframe.</li>
+                <li><strong>Total Dynamic Head (TDH):</strong> Measured in Feet. This is the total equivalent height that the fluid is to be pumped, taking into account friction losses in the pipe, valves, and fittings, plus the actual vertical elevation change.</li>
+                <li><strong>Specific Gravity (SG):</strong> The density of the fluid compared to water. Clean water has an SG of 1.0. If you are pumping heavy sludge, the SG will be higher, requiring more power.</li>
+            </ul>
+
+            <h2>2. Calculating Water Horsepower (WHP)</h2>
+            <p>Water Horsepower is the theoretical minimum power required to move the fluid if the pump were 100% efficient (which physically doesn't exist). The standard US engineering formula is:</p>
+            
+            <div class="math-box">
+                $$ WHP = \frac{\text{GPM} \times \text{TDH (ft)} \times \text{Specific Gravity}}{3960} $$
+            </div>
+            
+            <p><em>Note: The number 3960 is a conversion constant derived from the weight of one gallon of water (8.33 lbs) and the definition of one horsepower (33,000 foot-pounds per minute).</em></p>
+
+            <div style="margin: 40px 0; text-align: center; min-height: 90px; background: var(--surface); border: 1px dashed var(--border);"></div>
+
+            <h2>3. Calculating Brake Horsepower (BHP)</h2>
+            <p>Because no mechanical device is perfectly efficient, energy is lost inside the pump casing due to friction, turbulence, and mechanical drag on the bearings. To find the actual size of the motor you need to buy, you must divide the WHP by the pump's mechanical efficiency.</p>
+
+            <div class="math-box">
+                $$ BHP = \frac{WHP}{\text{Pump Efficiency (\%)} \div 100} $$
+            </div>
+
+            <p><strong>Example:</strong> You need to pump 500 GPM of water (SG = 1.0) against a Total Dynamic Head of 120 Feet. Your pump curve shows an efficiency of 75%.</p>
+            <ul>
+                <li>$WHP = (500 \times 120 \times 1.0) / 3960 = \mathbf{15.15 \text{ WHP}}$</li>
+                <li>$BHP = 15.15 / 0.75 = \mathbf{20.2 \text{ BHP}}$</li>
+            </ul>
+            <p>You would need an electric motor capable of delivering at least 20.2 HP. In the real world, you would select the next standard NEMA motor size up, which is a <strong>25 HP motor</strong>.</p>
+
+            <div class="cta-box">
+                <h3>Instantly Calculate Pump Power</h3>
+                <p>Don't want to crunch the numbers manually? Enter your GPM, TDH, and efficiency into our free calculator to get your WHP, BHP, and required electrical kilowatts instantly.</p>
+                <a href="pump-power-calculator.html" class="btn-cta"><i class="fas fa-pump-soap"></i> Open Pump Calculator</a>
+            </div>
+
+            <div class="faq-section">
+                <h3 style="margin-top: 0; border: none; color: var(--primary);">Frequently Asked Questions (FAQ)</h3>
+                
+                <div class="faq-item">
+                    <h4>What is the difference between BHP and Motor HP?</h4>
+                    <p>Brake Horsepower (BHP) is the power required at the pump shaft. Motor HP is the nameplate rating of the electric motor. Engineers always select a Motor HP that is slightly larger than the calculated BHP (usually by a 10% to 15% safety margin) to prevent the motor from overheating during peak loads.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h4>How does Specific Gravity affect pump power?</h4>
+                    <p>Pumping fluids heavier than water (like brine or slurry, which have an SG > 1.0) takes more effort. If you pump a liquid with an SG of 1.2, your BHP requirement increases by exactly 20%. Conversely, pumping hot oils or gasoline (SG < 1.0) requires less horsepower than water.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <a href="guides.html">Back to Guides</a>
+        <a href="index.html">Tools Home</a>
+        <a href="../legales.html">Privacy Policy</a>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 1rem;">&copy; 2026 IndustrialCalc Pro.</p>
+    </footer>
+
+    <script>
+        const themeBtn = document.getElementById('theme-toggle');
+        if (localStorage.getItem('industrialcalc-theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeBtn.querySelector('i').classList.replace('fa-moon', 'fa-sun');
+        }
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const icon = themeBtn.querySelector('i');
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('industrialcalc-theme', 'dark');
+                icon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                localStorage.setItem('industrialcalc-theme', 'light');
+                icon.classList.replace('fa-sun', 'fa-moon');
+            }
+        });
+    </script>
+</body>
+</html>
