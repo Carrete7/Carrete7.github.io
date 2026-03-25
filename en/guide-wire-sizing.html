@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="canonical" href="https://industrialcalc.es/en/guide-wire-sizing.html" />
+    <link rel="alternate" hreflang="es" href="https://industrialcalc.es/guia-seccion-cable.html" />
+    <link rel="alternate" hreflang="en" href="https://industrialcalc.es/en/guide-wire-sizing.html" />
+    <link rel="alternate" hreflang="x-default" href="https://industrialcalc.es/guia-seccion-cable.html" />
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E88WRKF9NQ"></script>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Wire Sizing & Voltage Drop Explained (NEC Guide) | IndustrialCalc</title>
+    <meta name="description" content="Master the NEC voltage drop rules. Learn how to size electrical conductors using the K-factor method and Circular Mils for 1-phase and 3-phase circuits.">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --bg-body: #f1f5f9; --surface: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --primary: #2563eb; --header-bg: #0f172a; --border: #e2e8f0; --accent: #e11d48; }
+        body.dark-mode { --bg-body: #0f172a; --surface: #1e293b; --text-main: #f8fafc; --text-muted: #94a3b8; --border: #334155; --header-bg: #020617; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
+        
+        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; position: sticky; top: 0; z-index: 100; }
+        .header-content { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .logo span { color: #3b82f6; }
+        .nav-links { display: flex; gap: 15px; align-items: center; }
+        .nav-links a.nav-normal { color: white; text-decoration: none; font-size: 0.95rem; font-weight: 500; opacity: 0.8; }
+        .nav-links a.nav-normal:hover, .nav-links a.nav-normal.active { opacity: 1; color: #60a5fa; }
+        .lang-switch { display: flex; gap: 5px; background: rgba(255,255,255,0.1); padding: 5px; border-radius: 6px; }
+        .lang-switch a { color: white; text-decoration: none; font-size: 0.85rem; font-weight: bold; padding: 4px 8px; border-radius: 4px; opacity: 0.6; }
+        .lang-switch a.active { background: var(--primary); opacity: 1; }
+        .theme-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; opacity: 0.8; }
+
+        main { flex: 1; padding: 2rem 1rem; max-width: 850px; margin: 0 auto; width: 100%; box-sizing: border-box; }
+        
+        .article-header { text-align: center; margin-bottom: 3rem; }
+        .article-tag { background: #fff1f2; color: var(--accent); padding: 5px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: 1rem; border: 1px solid #fecdd3; }
+        body.dark-mode .article-tag { background: rgba(225, 29, 72, 0.2); border-color: rgba(225, 29, 72, 0.4); }
+        .article-header h1 { font-size: 2.5rem; margin-bottom: 1rem; line-height: 1.2; }
+        .article-meta { color: var(--text-muted); font-size: 0.95rem; display: flex; justify-content: center; gap: 20px; align-items: center; }
+        
+        .article-content { font-size: 1.1rem; line-height: 1.8; color: var(--text-main); }
+        .article-content h2 { font-size: 1.8rem; margin: 2.5rem 0 1rem 0; color: var(--primary); border-bottom: 2px solid var(--border); padding-bottom: 10px; }
+        .article-content h3 { font-size: 1.4rem; margin: 2rem 0 1rem 0; }
+        .article-content p { margin-bottom: 1.5rem; }
+        .article-content ul { margin-bottom: 1.5rem; padding-left: 20px; }
+        .article-content li { margin-bottom: 10px; }
+        .article-content a { color: var(--primary); text-decoration: none; font-weight: 600; }
+        .article-content a:hover { text-decoration: underline; }
+        
+        .math-box { background: var(--surface); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border); border-left: 4px solid var(--primary); margin: 2rem 0; overflow-x: auto; text-align: center; font-size: 1.1rem; }
+        
+        .cta-box { background: linear-gradient(135deg, var(--header-bg), var(--primary)); color: white; padding: 2.5rem 2rem; border-radius: 12px; text-align: center; margin: 3rem 0; box-shadow: 0 10px 15px -3px rgba(37,99,235,0.3); }
+        .cta-box h3 { color: white; margin-top: 0; font-size: 1.6rem; border: none; padding: 0; }
+        .cta-box p { color: rgba(255,255,255,0.9); margin-bottom: 1.5rem; font-size: 1.1rem; }
+        .btn-cta { background: #fde047; color: #0f172a; padding: 1rem 2rem; text-decoration: none; border-radius: 8px; font-weight: 800; font-size: 1.1rem; display: inline-block; transition: 0.2s; }
+        .btn-cta:hover { background: white; transform: translateY(-3px); }
+
+        .faq-section { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); margin-top: 3rem; }
+        .faq-item { margin-bottom: 1.5rem; }
+        .faq-item h4 { margin: 0 0 0.5rem 0; font-size: 1.1rem; color: var(--text-main); }
+        .faq-item p { margin: 0; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+
+        footer { text-align: center; padding: 2rem; background-color: var(--surface); border-top: 1px solid var(--border); margin-top: 3rem; }
+        footer a { color: var(--text-muted); text-decoration: none; margin: 0 10px; }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Wire Sizing & Voltage Drop Explained (NEC Guide)",
+      "author": {
+        "@type": "Organization",
+        "name": "IndustrialCalc Pro"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "IndustrialCalc Pro",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://industrialcalc.es/logo.png"
+        }
+      },
+      "datePublished": "2026-03-25",
+      "description": "Master the NEC voltage drop rules. Learn how to size electrical conductors using the K-factor method and Circular Mils for 1-phase and 3-phase circuits."
+    }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span></a>
+            <nav class="nav-links">
+                <div class="lang-switch">
+                    <a href="../guia-seccion-cable.html">ES</a>
+                    <a href="#" class="active">EN</a>
+                </div>
+                <a href="guides.html" class="nav-normal active">Guides</a>
+                <a href="index.html" class="nav-normal">Tools Home</a>
+                <button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="article-header">
+            <span class="article-tag">NEC Standards</span>
+            <h1>Wire Sizing & Voltage Drop Explained</h1>
+            <div class="article-meta">
+                <span><i class="fas fa-clock"></i> 7 min read</span>
+                <span><i class="fas fa-plug"></i> Electrical Design</span>
+            </div>
+        </div>
+
+        <div style="margin: 20px 0 40px 0; text-align: center; min-height: 90px; background: var(--surface); border: 1px dashed var(--border);"></div>
+
+        <div class="article-content">
+            <p>Sizing electrical conductors correctly is not just a matter of functionality; it is a matter of strict safety and fire prevention. If a wire is too small for the load it carries, its internal resistance will cause it to overheat, potentially melting the insulation and causing an electrical fire.</p>
+            
+            <p>Furthermore, running undersized cables over long distances results in excessive <strong>Voltage Drop</strong>. When voltage drops, motors run hot, lights dim, and sensitive electronics fail. In this guide, we will walk you through the professional method of sizing wires in American Wire Gauge (AWG) based on the National Electrical Code (NEC).</p>
+
+            <h2>Step 1: Determine the Load (Amperage)</h2>
+            <p>Before selecting a wire, you must know how much current (Amps) the circuit will draw. If you only know the wattage of your equipment, you can use our <a href="basic-electrical-calculator.html">Ohm's Law & Power Calculator</a> to convert Watts to Amps.</p>
+            <p>If you are sizing a circuit for an industrial motor, the process is slightly different because you must account for the motor's power factor and efficiency. We recommend using our <a href="motor-efficiency-calculator.html">3-Phase Motor Power Calculator</a> to find the exact Full Load Amperage (FLA) before proceeding.</p>
+
+            <h2>Step 2: Understand NEC Voltage Drop Limits</h2>
+            <p>According to <strong>NEC Article 210.19(A) Informational Note No. 4</strong>, conductors for branch circuits should be sized to prevent a voltage drop exceeding <strong>3%</strong> at the farthest outlet. For a combination of feeder and branch circuits, the total drop should not exceed <strong>5%</strong>.</p>
+            <ul>
+                <li><strong>Example on a 120V circuit:</strong> A 3% maximum drop means you cannot lose more than $120 \times 0.03 = \mathbf{3.6 \text{ Volts}}$.</li>
+                <li><strong>Example on a 480V circuit:</strong> A 3% maximum drop means you cannot lose more than $480 \times 0.03 = \mathbf{14.4 \text{ Volts}}$.</li>
+            </ul>
+
+            <div style="margin: 40px 0; text-align: center; min-height: 90px; background: var(--surface); border: 1px dashed var(--border);"></div>
+
+            <h2>Step 3: The Circular Mils (CM) Formula</h2>
+            <p>To find the physical cross-sectional area of the wire needed to meet the NEC voltage drop requirement, electrical engineers calculate the <strong>Circular Mils (CM)</strong>. The formula depends on whether the system is Single-Phase or Three-Phase.</p>
+            
+            <div class="math-box">
+                <strong>Single-Phase (1-Phase):</strong><br>
+                $$ CM = \frac{2 \times K \times I \times D}{V_{drop}} $$
+            </div>
+            
+            <div class="math-box">
+                <strong>Three-Phase (3-Phase):</strong><br>
+                $$ CM = \frac{1.732 \times K \times I \times D}{V_{drop}} $$
+            </div>
+
+            <p><strong>What are these variables?</strong></p>
+            <ul>
+                <li><strong>$CM$</strong> = Wire area required in Circular Mils.</li>
+                <li><strong>$K$</strong> = Direct Current Resistance constant. This is <strong>12.9 for Copper</strong> and <strong>21.2 for Aluminum</strong>.</li>
+                <li><strong>$I$</strong> = Current load in Amperes.</li>
+                <li><strong>$D$</strong> = One-way length of the wire in Feet.</li>
+                <li><strong>$V_{drop}$</strong> = The maximum allowable voltage drop you calculated in Step 2.</li>
+            </ul>
+            <p><em>Pro Tip: If you are feeding power from a step-down transformer, calculate the primary and secondary voltage drops separately. You can find primary and secondary amperage using our <a href="transformer-calculator.html">Transformer FLA Calculator</a>.</em></p>
+
+            <h2>Step 4: Convert Circular Mils to AWG</h2>
+            <p>Once you calculate the required Circular Mils, you must look at a standard AWG table to find the commercial wire size that matches or exceeds your CM value. For example, if your calculation results in 14,000 CM, a 10 AWG wire (10,380 CM) is too small, so you must jump up to an <strong>8 AWG wire</strong> (16,510 CM).</p>
+
+            <div class="cta-box">
+                <h3>Skip the Tables and Formulas</h3>
+                <p>Don't want to do the math manually or search through AWG tables? Enter your voltage, amps, distance, and material into our free calculator, and we will tell you the exact AWG size you need to pass NEC inspection.</p>
+                <a href="wire-size-calculator.html" class="btn-cta"><i class="fas fa-bolt"></i> Open Wire Size Calculator</a>
+            </div>
+
+            <div class="faq-section">
+                <h3 style="margin-top: 0; border: none; color: var(--primary);">Frequently Asked Questions (FAQ)</h3>
+                
+                <div class="faq-item">
+                    <h4>Why is Aluminum wire thicker than Copper for the same Amps?</h4>
+                    <p>Aluminum has a higher electrical resistance (a K-factor of 21.2) compared to Copper (K-factor of 12.9). Because it resists the flow of electricity more, an aluminum conductor must have a larger physical diameter (higher AWG/kcmil) to carry the same amount of current without overheating.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h4>What is kcmil (MCM)?</h4>
+                    <p>The AWG (American Wire Gauge) system only goes up to size 4/0 (0000). For massive industrial cables carrying hundreds of amps, the industry switches to <strong>kcmil</strong> (kilo-circular mils), previously known as MCM. For example, a 250 kcmil cable has a cross-sectional area of exactly 250,000 Circular Mils.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <a href="guides.html">Back to Guides</a>
+        <a href="index.html">Tools Home</a>
+        <a href="../legales.html">Privacy Policy</a>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 1rem;">&copy; 2026 IndustrialCalc Pro.</p>
+    </footer>
+
+    <script>
+        const themeBtn = document.getElementById('theme-toggle');
+        if (localStorage.getItem('industrialcalc-theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeBtn.querySelector('i').classList.replace('fa-moon', 'fa-sun');
+        }
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const icon = themeBtn.querySelector('i');
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('industrialcalc-theme', 'dark');
+                icon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                localStorage.setItem('industrialcalc-theme', 'light');
+                icon.classList.replace('fa-sun', 'fa-moon');
+            }
+        });
+    </script>
+</body>
+</html>
