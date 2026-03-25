@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="canonical" href="https://industrialcalc.es/en/kg-to-pounds.html" />
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kilograms to Pounds Converter | kg to lbs [2026]</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --bg: #f1f5f9; --surf: #ffffff; --text: #0f172a; --primary: #2563eb; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); display: flex; flex-direction: column; min-height: 100vh; margin: 0; align-items: center; justify-content: center; }
+        .box { background: var(--surf); padding: 2.5rem; border-radius: 16px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); width: 100%; max-width: 400px; text-align: center; }
+        input { width: 100%; padding: 1rem; margin: 10px 0; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 1.2rem; text-align: center; }
+        .label { font-weight: 700; color: var(--primary); margin-bottom: 5px; display: block; }
+        footer { margin-top: 2rem; font-size: 0.9rem; opacity: 0.7; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2><i class="fas fa-weight-hanging"></i> kg to lbs</h2>
+        <div style="margin-bottom: 20px;">
+            <span class="label">Kilograms (kg)</span>
+            <input type="number" id="kg" placeholder="0" oninput="convertKg(this.value)">
+        </div>
+        <i class="fas fa-exchange-alt" style="color: #94a3b8; margin: 10px 0;"></i>
+        <div style="margin-top: 20px;">
+            <span class="label">Pounds (lbs)</span>
+            <input type="number" id="lbs" placeholder="0" oninput="convertLbs(this.value)">
+        </div>
+        <p style="font-size: 0.8rem; color: #64748b; margin-top: 15px;">Standard: 1 kg = 2.20462 lbs</p>
+    </div>
+    <footer><a href="index.html" style="color: inherit; text-decoration: none;">&larr; Back to Tools</a></footer>
+    <script>
+        function convertKg(val) { document.getElementById('lbs').value = (val * 2.20462262).toFixed(3); }
+        function convertLbs(val) { document.getElementById('kg').value = (val / 2.20462262).toFixed(3); }
+    </script>
+</body>
+</html>
