@@ -2,29 +2,164 @@
 <html lang="en">
 <head>
     <link rel="canonical" href="https://industrialcalc.es/en/psi-to-bar.html" />
-    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PSI to Bar Converter | Pressure Units [2026]</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSI to Bar Converter | Pressure Unit Conversion [2026]</title>
+    <meta name="description" content="Convert PSI to Bar and Bar to PSI instantly. Professional pressure converter with formulas, industrial standards, and pneumatic reference tables.">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --bg: #f1f5f9; --surf: #ffffff; --text: #0f172a; --primary: #0ea5e9; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); display: flex; flex-direction: column; min-height: 100vh; margin: 0; align-items: center; justify-content: center; }
-        .box { background: var(--surf); padding: 2.5rem; border-radius: 16px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); width: 100%; max-width: 400px; text-align: center; }
-        input { width: 100%; padding: 1rem; margin: 10px 0; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 1.2rem; text-align: center; }
-        .label { font-weight: 700; color: var(--primary); margin-bottom: 5px; display: block; }
-        footer { margin-top: 2rem; font-size: 0.9rem; opacity: 0.7; }
+        :root { --bg-body: #f1f5f9; --surface: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --primary: #0ea5e9; --header-bg: #0f172a; --border: #e2e8f0; }
+        body.dark-mode { --bg-body: #0f172a; --surface: #1e293b; --text-main: #f8fafc; --text-muted: #94a3b8; --border: #334155; --header-bg: #020617; }
+        
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; transition: 0.3s; line-height: 1.6; }
+        
+        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+        .header-content { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-size: 1.3rem; font-weight: 800; color: white; text-decoration: none; }
+        .logo span { color: #3b82f6; }
+        .nav-link { color: #60a5fa; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+
+        main { max-width: 900px; margin: 3rem auto; padding: 0 1.5rem; box-sizing: border-box; }
+        
+        .converter-card { background: var(--surface); padding: 2.5rem; border-radius: 16px; border: 1px solid var(--border); text-align: center; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); border-left: 5px solid var(--primary); }
+        h1 { margin-top: 0; font-size: 2rem; letter-spacing: -1px; }
+
+        .input-container { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px; margin: 30px 0; }
+        .input-group { text-align: left; }
+        label { display: block; font-weight: 700; margin-bottom: 8px; color: var(--primary); font-size: 0.9rem; text-transform: uppercase; }
+        input { width: 100%; padding: 1.2rem; border: 2px solid var(--border); border-radius: 10px; font-size: 1.5rem; background: var(--bg-body); color: var(--text-main); box-sizing: border-box; outline: none; transition: 0.2s; }
+        input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1); }
+        .swap-icon { font-size: 1.5rem; color: var(--text-muted); margin-top: 25px; }
+
+        .content-section { margin-top: 4rem; }
+        .content-section h2 { font-size: 1.8rem; color: var(--text-main); border-bottom: 3px solid var(--primary); display: inline-block; margin-bottom: 1.5rem; }
+        .content-section p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 1.5rem; }
+        
+        .formula-box { background: var(--surface); border: 1px solid var(--border); padding: 1.5rem; border-radius: 12px; margin: 2rem 0; position: relative; overflow: hidden; }
+        .formula-box::before { content: "PRESSURE RATIO"; position: absolute; top: 0; right: 0; background: var(--primary); color: white; font-size: 0.7rem; padding: 4px 10px; font-weight: 900; }
+        .formula-box code { font-size: 1.2rem; color: var(--text-main); font-family: 'Courier New', monospace; font-weight: bold; display: block; margin: 5px 0; }
+
+        .quick-table { width: 100%; border-collapse: collapse; margin: 2rem 0; background: var(--surface); border-radius: 8px; overflow: hidden; }
+        .quick-table th { background: var(--primary); color: white; padding: 12px; text-align: left; }
+        .quick-table td { padding: 12px; border-bottom: 1px solid var(--border); color: var(--text-main); }
+
+        .faq-item { margin-bottom: 1.5rem; background: var(--surface); padding: 1.5rem; border-radius: 10px; border: 1px solid var(--border); }
+        .faq-item h3 { margin-top: 0; font-size: 1.1rem; color: var(--primary); }
+
+        footer { text-align: center; padding: 4rem 1rem; color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 4rem; }
+
+        @media (max-width: 600px) {
+            .input-container { grid-template-columns: 1fr; }
+            .swap-icon { transform: rotate(90deg); margin: 0; }
+        }
     </style>
 </head>
 <body>
-    <div class="box">
-        <h2><i class="fas fa-gauge-high"></i> PSI to Bar</h2>
-        <div><span class="label">PSI (Pound-Force sq in)</span><input type="number" id="psi" placeholder="0" oninput="convertPsi(this.value)"></div>
-        <i class="fas fa-exchange-alt" style="color: #94a3b8; margin: 10px 0;"></i>
-        <div><span class="label">Bar</span><input type="number" id="bar" placeholder="0" oninput="convertBar(this.value)"></div>
+
+<header>
+    <div class="header-content">
+        <a href="index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span></a>
+        <a href="index.html" class="nav-link"><i class="fas fa-th"></i> All Tools</a>
     </div>
-    <footer><a href="index.html" style="color: inherit; text-decoration: none;">&larr; Back to Tools</a></footer>
-    <script>
-        function convertPsi(v){ document.getElementById('bar').value = (v * 0.0689476).toFixed(4); }
-        function convertBar(v){ document.getElementById('psi').value = (v / 0.0689476).toFixed(4); }
-    </script>
+</header>
+
+<main>
+    <div class="converter-card">
+        <h1>PSI to Bar Converter</h1>
+        <p style="color: var(--text-muted);">Pneumatic and hydraulic pressure conversion.</p>
+
+        <div class="input-container">
+            <div class="input-group">
+                <label>PSI (lb/in²)</label>
+                <input type="number" id="psi" placeholder="0" oninput="convert(this.id, this.value)">
+            </div>
+            
+            <div class="swap-icon">
+                <i class="fas fa-exchange-alt"></i>
+            </div>
+
+            <div class="input-group">
+                <label>Bar (10⁵ Pa)</label>
+                <input type="number" id="bar" placeholder="0" oninput="convert(this.id, this.value)">
+            </div>
+        </div>
+    </div>
+
+    <section class="content-section">
+        <h2>How to convert PSI to Bar?</h2>
+        <p>PSI (Pounds per Square Inch) is the imperial unit of pressure, while the Bar is a metric unit frequently used in industrial pneumatics and hydraulics. One bar is approximately equal to the atmospheric pressure on Earth at sea level.</p>
+        
+        <div class="formula-box">
+            <code>1 Bar = 14.5038 PSI</code>
+            <code>1 PSI = 0.0689476 Bar</code>
+        </div>
+
+        <h2>Standard Pressure Table</h2>
+        <table class="quick-table">
+            <thead>
+                <tr>
+                    <th>PSI</th>
+                    <th>Bar (Rounded)</th>
+                    <th>Common Application</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>14.5 PSI</td><td>1.0 Bar</td><td>Sea Level Atmospheric Pressure</td></tr>
+                <tr><td>32.0 PSI</td><td>2.2 Bar</td><td>Average Car Tire Pressure</td></tr>
+                <tr><td>90.0 PSI</td><td>6.2 Bar</td><td>Standard Pneumatic Tool Supply</td></tr>
+                <tr><td>100 PSI</td><td>6.9 Bar</td><td>Industrial Air Compressors</td></tr>
+                <tr><td>3000 PSI</td><td>206.8 Bar</td><td>High Pressure Hydraulic Systems</td></tr>
+            </tbody>
+        </table>
+
+        <h2>Pressure Units in Industry</h2>
+        <p>Understanding these units is crucial for safety and equipment performance:</p>
+        <ul>
+            <li><strong>Air Compressors:</strong> Most industrial compressors in the US are rated in PSI, but international components often specify maximum pressure in Bar.</li>
+            <li><strong>Hydraulic Systems:</strong> Heavy machinery uses Bar to define operating pressure for cylinders and pumps to ensure seal integrity.</li>
+            <li><strong>Pressure Gauges:</strong> Many professional gauges feature dual scales (PSI and Bar) to avoid manual calculation errors in the field.</li>
+        </ul>
+
+        <h2>FAQ: Pressure Conversion</h2>
+        <div class="faq-item">
+            <h3>Is 1 Bar equal to 1 Atmosphere?</h3>
+            <p>Technically, no. 1 standard atmosphere (atm) is 1.01325 bar. However, in many industrial contexts, they are treated as roughly equivalent for quick estimations.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Why is 14.5 PSI the magic number?</h3>
+            <p>Because the conversion factor is exactly 14.50377377 PSI per Bar. Using 14.5 is a common industry shortcut for mental math.</p>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2026 IndustrialCalc Pro - Fluid Power Tools.<br>
+    <a href="../legales.html" style="color: var(--text-muted); text-decoration: underline;">Privacy Policy</a></p>
+</footer>
+
+<script>
+    if (localStorage.getItem('industrialcalc-theme') === 'dark') document.body.classList.add('dark-mode');
+
+    function convert(id, val) {
+        const psiInput = document.getElementById('psi');
+        const barInput = document.getElementById('bar');
+        const factor = 0.0689476;
+
+        if (val === "") {
+            psiInput.value = "";
+            barInput.value = "";
+            return;
+        }
+
+        const v = parseFloat(val);
+        if (id === 'psi') {
+            barInput.value = (v * factor).toFixed(4);
+        } else {
+            psiInput.value = (v / factor).toFixed(2);
+        }
+    }
+</script>
+
 </body>
 </html>
