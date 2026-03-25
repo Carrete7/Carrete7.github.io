@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="canonical" href="https://industrialcalc.es/en/cfm-to-m3h.html" />
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CFM to Cubic Meters per Hour | Air Flow [2026]</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --bg: #f1f5f9; --surf: #ffffff; --text: #0f172a; --primary: #f59e0b; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); display: flex; flex-direction: column; min-height: 100vh; margin: 0; align-items: center; justify-content: center; }
+        .box { background: var(--surf); padding: 2.5rem; border-radius: 16px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); width: 100%; max-width: 400px; text-align: center; }
+        input { width: 100%; padding: 1rem; margin: 10px 0; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 1.2rem; text-align: center; }
+        .label { font-weight: 700; color: var(--primary); margin-bottom: 5px; display: block; }
+        footer { margin-top: 2rem; font-size: 0.9rem; opacity: 0.7; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2><i class="fas fa-wind"></i> CFM to m³/h</h2>
+        <div><span class="label">Cubic Feet per Minute (CFM)</span><input type="number" id="cfm" placeholder="0" oninput="convertCfm(this.value)"></div>
+        <i class="fas fa-exchange-alt" style="color: #94a3b8; margin: 10px 0;"></i>
+        <div><span class="label">m³/h (Cubic Meters per Hour)</span><input type="number" id="m3h" placeholder="0" oninput="convertM3(this.value)"></div>
+    </div>
+    <footer><a href="index.html" style="color: inherit; text-decoration: none;">&larr; Back to Tools</a></footer>
+    <script>
+        function convertCfm(v){ document.getElementById('m3h').value = (v * 1.69901).toFixed(2); }
+        function convertM3(v){ document.getElementById('cfm').value = (v / 1.69901).toFixed(2); }
+    </script>
+</body>
+</html>
