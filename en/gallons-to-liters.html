@@ -1,4 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="canonical" href="https://industrialcalc.es/en/gallons-to-liters.html" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallons to Liters Converter | US gal to L [2026]</title>
+    <meta name="description" content="Convert US Gallons to Liters (gal to L) instantly. Professional volume converter for industrial tanks, chemical processing, and fluid logistics.">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --bg-body: #f1f5f9; --surface: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --primary: #d97706; --header-bg: #0f172a; --border: #e2e8f0; }
+        body.dark-mode { --bg-body: #0f172a; --surface: #1e293b; --text-main: #f8fafc; --text-muted: #94a3b8; --border: #334155; --header-bg: #020617; }
+        
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; transition: 0.3s; line-height: 1.6; }
+        
+        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+        .header-content { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-size: 1.3rem; font-weight: 800; color: white; text-decoration: none; }
+        .logo span { color: #3b82f6; }
+        .nav-link { color: #60a5fa; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+
+        main { max-width: 900px; margin: 3rem auto; padding: 0 1.5rem; box-sizing: border-box; }
+        
+        .converter-card { background: var(--surface); padding: 2.5rem; border-radius: 16px; border: 1px solid var(--border); text-align: center; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); border-right: 5px solid var(--primary); }
+        h1 { margin-top: 0; font-size: 2rem; letter-spacing: -1px; }
+
+        .input-container { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px; margin: 30px 0; }
+        .input-group { text-align: left; }
+        label { display: block; font-weight: 700; margin-bottom: 8px; color: var(--primary); font-size: 0.9rem; text-transform: uppercase; }
+        input { width: 100%; padding: 1.2rem; border: 2px solid var(--border); border-radius: 10px; font-size: 1.5rem; background: var(--bg-body); color: var(--text-main); box-sizing: border-box; outline: none; transition: 0.2s; }
+        input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(217, 119, 6, 0.1); }
+        .swap-icon { font-size: 1.5rem; color: var(--text-muted); margin-top: 25px; }
+
+        .content-section { margin-top: 4rem; }
+        .content-section h2 { font-size: 1.8rem; color: var(--text-main); border-bottom: 3px solid var(--primary); display: inline-block; margin-bottom: 1.5rem; }
+        .content-section p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 1.5rem; }
+        
+        .formula-box { background: var(--surface); border: 1px solid var(--border); padding: 1.5rem; border-radius: 12px; margin: 2rem 0; position: relative; overflow: hidden; }
+        .formula-box::before { content: "VOLUME RATIO"; position: absolute; top: 0; right: 0; background: var(--primary); color: white; font-size: 0.7rem; padding: 4px 10px; font-weight: 900; }
+        .formula-box code { font-size: 1.2rem; color: var(--text-main); font-family: 'Courier New', monospace; font-weight: bold; display: block; margin: 5px 0; }
+
+        .quick-table { width: 100%; border-collapse: collapse; margin: 2rem 0; background: var(--surface); border-radius: 8px; overflow: hidden; }
+        .quick-table th { background: var(--primary); color: white; padding: 12px; text-align: left; }
+        .quick-table td { padding: 12px; border-bottom: 1px solid var(--border); color: var(--text-main); }
+
+        .faq-item { margin-bottom: 1.5rem; background: var(--surface); padding: 1.5rem; border-radius: 10px; border: 1px solid var(--border); }
+        .faq-item h3 { margin-top: 0; font-size: 1.1rem; color: var(--primary); }
+
+        footer { text-align: center; padding: 4rem 1rem; color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 4rem; }
+
+        @media (max-width: 600px) {
+            .input-container { grid-template-columns: 1fr; }
+            .swap-icon { transform: rotate(90deg); margin: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <a href="index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span></a>
+        <a href="index.html" class="nav-link"><i class="fas fa-th"></i> All Tools</a>
+    </div>
+</header>
+
+<main>
+    <div class="converter-card">
+        <h1>Gallons to Liters Converter</h1>
+        <p style="color: var(--text-muted);">Industrial fluid capacity conversion (US Gallons).</p>
+
+        <div class="input-container">
+            <div class="input-group">
+                <label>US Gallons (gal)</label>
+                <input type="number" id="gal" placeholder="0" oninput="convert(this.id, this.value)">
+            </div>
+            
+            <div class="swap-icon">
+                <i class="fas fa-faucet"></i>
+            </div>
+
+            <div class="input-group">
+                <label>Liters (L)</label>
+                <input type="number" id="l" placeholder="0" oninput="convert(this.id, this.value)">
+            </div>
+        </div>
+    </div>
+
+    <section class="content-section">
+        <h2>How to convert Gallons to Liters?</h2>
+        <p>In industrial environments, fluid storage and transport are measured in different units depending on the region. The US Liquid Gallon is a standard unit in North America, while the Liter is the primary metric unit for volume worldwide.</p>
+        
+        <div class="formula-box">
+            <code>1 US Gallon = 3.78541 Liters</code>
+            <code>1 Liter = 0.264172 US Gallons</code>
+        </div>
+
+        <h2>Fluid Capacity Reference</h2>
+        <table class="quick-table">
+            <thead>
+                <tr>
+                    <th>US Gallons (gal)</th>
+                    <th>Liters (L) - Approx</th>
+                    <th>Common Industrial Use</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1 gal</td><td>3.78 L</td><td>Standard lubricant container</td></tr>
+                <tr><td>5 gal</td><td>18.93 L</td><td>Typical industrial bucket/pail</td></tr>
+                <tr><td>55 gal</td><td>208.2 L</td><td>Standard steel drum (Oil/Chemicals)</td></tr>
+                <tr><td>275 gal</td><td>1,041 L</td><td>Standard IBC Tote capacity</td></tr>
+                <tr><td>1000 gal</td><td>3,785 L</td><td>Large storage tank</td></tr>
+            </tbody>
+        </table>
+
+        <h2>Why Volume Conversion Matters</h2>
+        <p>Accurate fluid measurement is critical for safety and operational efficiency:</p>
+        <ul>
+            <li><strong>Chemical Dosing:</strong> Mixing specific concentrations requires exact ratios between solvents and active components.</li>
+            <li><strong>Logistics:</strong> International shipping manifests must often list volumes in both units to clear customs and safety inspections.</li>
+            <li><strong>Equipment Sizing:</strong> Sizing pumps and pipes depends on the flow rate (GPM vs LPM), making initial volume understanding essential.</li>
+        </ul>
+
+        <h2>FAQ: Volume & Fluid Units</h2>
+        <div class="faq-item">
+            <h3>Is a Gallon the same as an Imperial Gallon?</h3>
+            <p>No. This tool uses the <strong>US Liquid Gallon</strong> (3.785L). The UK Imperial Gallon is larger, equaling approximately 4.546 Liters.</p>
+        </div>
+        <div class="faq-item">
+            <h3>How many liters are in a 55-gallon drum?</h3>
+            <p>A standard 55-gallon industrial drum contains approximately <strong>208.2 liters</strong> of fluid.</p>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2026 IndustrialCalc Pro - Professional Volume Tools.<br>
+    <a href="../legales.html" style="color: var(--text-muted); text-decoration: underline;">Privacy Policy</a></p>
+</footer>
+
 <script>
-    function convertGal(v){ document.getElementById('l').value = (v * 3.78541).toFixed(3); }
-    function convertL(v){ document.getElementById('gal').value = (v / 3.78541).toFixed(3); }
+    if (localStorage.getItem('industrialcalc-theme') === 'dark') document.body.classList.add('dark-mode');
+
+    function convert(id, val) {
+        const galInput = document.getElementById('gal');
+        const lInput = document.getElementById('l');
+        const factor = 3.78541178;
+
+        if (val === "") {
+            galInput.value = "";
+            lInput.value = "";
+            return;
+        }
+
+        const v = parseFloat(val);
+        if (id === 'gal') {
+            lInput.value = (v * factor).toFixed(3);
+        } else {
+            galInput.value = (v / factor).toFixed(3);
+        }
+    }
 </script>
+
+</body>
+</html>
