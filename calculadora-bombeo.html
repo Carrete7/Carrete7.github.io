@@ -1,82 +1,184 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E88WRKF9NQ"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-E88WRKF9NQ');
-    </script>
+    <link rel="canonical" href="https://industrialcalc.es/calculadora-bombeo.html" />
     <meta charset="UTF-8">
-  <title>Calculadora de Potencia de Bomba de Agua (Hidráulica)</title>
-<meta name="description" content="Dimensiona tu equipo de bombeo. Calcula la potencia exacta (kW/HP) necesaria para elevar agua según caudal y altura manométrica.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Potencia de Bombas de Agua (kW y HP) | IndustrialCalc</title>
+    <meta name="description" content="Calcula online la potencia hidráulica y la potencia al freno (BHP) necesarias para una bomba de agua. Dimensionamiento exacto para proyectos de bombeo industrial y riego.">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --bg: #f8fafc; --surface: #ffffff; --text: #1e293b; --primary: #16a34a; --border: #e2e8f0; --header-bg: #0f172a; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0; display: flex; flex-direction: column; min-height: 100vh; align-items: center; }
-        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; width: 100%; box-sizing: border-box; }
-        .header-content { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
-        main { width: 100%; max-width: 800px; padding: 2rem 1rem; box-sizing: border-box; }
-        .back-link { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 1.5rem; color: #64748b; text-decoration: none; font-weight: 500; }
-        .card { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 2rem; }
-        h1 { color: var(--primary); text-align: center; margin-bottom: 1.5rem; }
-        label { font-size: 0.85rem; font-weight: 600; color: #475569; display: block; margin-top: 1rem; }
-        input { width: 100%; padding: 0.8rem; margin-top: 5px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box; }
-        button { width: 100%; padding: 1rem; background: var(--primary); color: white; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 1.5rem; transition: 0.2s; }
-        button:hover { background: #15803d; }
-        .result { margin-top: 1.5rem; padding: 1.5rem; background: #f0fdf4; border-radius: 8px; display: none; text-align: center; border: 2px solid #bbf7d0; }
-        .seo-content { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); margin-top: 2rem; line-height: 1.7; }
-        .seo-content h2 { color: var(--primary); font-size: 1.4rem; margin-top: 0; }
-        .seo-content h3 { color: var(--text); font-size: 1.1rem; margin-top: 1.5rem; }
-        footer { text-align: center; padding: 2rem; width: 100%; margin-top: auto; border-top: 1px solid var(--border); }
+        :root { --bg-body: #f1f5f9; --surface: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --primary: #16a34a; --header-bg: #0f172a; --border: #e2e8f0; }
+        body.dark-mode { --bg-body: #0f172a; --surface: #1e293b; --text-main: #f8fafc; --text-muted: #94a3b8; --border: #334155; --header-bg: #020617; }
+        
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; transition: 0.3s; line-height: 1.6; }
+        
+        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        .logo { font-size: 1.3rem; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .logo span { color: #3b82f6; }
+        .nav-link { color: #60a5fa; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+
+        main { max-width: 900px; margin: 3rem auto; padding: 0 1.5rem; }
+        
+        .calculator-card { background: var(--surface); padding: 2.5rem; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); border-top: 5px solid var(--primary); margin-bottom: 4rem; }
+        h1 { margin-top: 0; font-size: 2.2rem; letter-spacing: -1px; text-align: center; }
+        .subtitle { color: var(--text-muted); text-align: center; margin-bottom: 2rem; }
+
+        .input-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 20px; }
+        .input-group { display: flex; flex-direction: column; }
+        label { font-weight: 700; margin-bottom: 8px; color: var(--text-main); font-size: 0.9rem; }
+        input, select { padding: 1rem; border: 2px solid var(--border); border-radius: 10px; font-size: 1rem; background: var(--bg-body); color: var(--text-main); outline: none; transition: 0.2s; }
+        input:focus, select:focus { border-color: var(--primary); }
+        
+        button { background-color: var(--primary); color: white; border: none; padding: 1rem; width: 100%; border-radius: 10px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.2s; margin-top: 10px; }
+        button:hover { filter: brightness(1.1); }
+
+        .result-box { background: rgba(22, 163, 74, 0.1); border: 2px solid var(--primary); padding: 1.5rem; border-radius: 10px; text-align: center; margin-top: 20px; display: none; }
+        .result-box h3 { margin: 0 0 10px 0; color: var(--primary); font-size: 1.2rem; }
+        .result-value { font-size: 2.5rem; font-weight: 900; color: var(--text-main); }
+        .result-desc { color: var(--text-muted); font-size: 0.9rem; margin-top: 10px; }
+
+        /* Estilos del artículo SEO */
+        .content-section { margin-top: 3rem; }
+        .content-section h2 { font-size: 1.8rem; color: var(--text-main); border-bottom: 3px solid var(--primary); display: inline-block; margin-bottom: 1.5rem; }
+        .content-section h3 { font-size: 1.3rem; color: var(--text-main); margin-top: 2rem; }
+        .content-section p, .content-section li { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 1rem; }
+        
+        .table-responsive { overflow-x: auto; margin: 2rem 0; border-radius: 8px; border: 1px solid var(--border); }
+        table { width: 100%; border-collapse: collapse; min-width: 600px; }
+        th { background: var(--header-bg); color: white; padding: 12px; text-align: left; }
+        td { padding: 12px; border-bottom: 1px solid var(--border); color: var(--text-main); }
+        tr:nth-child(even) { background: var(--bg-body); }
+
+        .faq-item { background: var(--surface); padding: 1.5rem; border-radius: 10px; border: 1px solid var(--border); margin-bottom: 1rem; }
+        .faq-item h4 { margin: 0 0 10px 0; color: var(--primary); font-size: 1.1rem; }
+        .faq-item p { margin: 0; font-size: 0.95rem; }
+
+        footer { text-align: center; padding: 4rem 1rem; color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 4rem; }
     </style>
 </head>
 <body>
-    <header><div class="header-content"><a href="index.html" style="color:white; text-decoration:none; font-weight:800;"><i class="fas fa-industry"></i> IndustrialCalc Pro</a></div></header>
-    <main>
-        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
-        <div class="card">
-            <h1><i class="fas fa-pump-soap"></i> Potencia de Bombeo</h1>
-            <label>Caudal (m³/h)</label>
-            <input type="number" id="caudal" placeholder="Ej: 50">
-            <label>Altura Manométrica Total (m.c.a.)</label>
-            <input type="number" id="altura" placeholder="Ej: 30">
-            <label>Rendimiento Global de la Bomba (%)</label>
-            <input type="number" id="rendimiento" value="70">
-            <button onclick="calcBombeo()">Calcular Potencia del Motor (kW)</button>
-            <div id="res_bombeo" class="result"></div>
+
+<header>
+    <a href="index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span></a>
+    <a href="index.html" class="nav-link"><i class="fas fa-th"></i> Todas las herramientas</a>
+</header>
+
+<main>
+    <div class="calculator-card">
+        <h1>Potencia de Bombeo</h1>
+        <p class="subtitle">Calcula la potencia al freno (BHP) y los kW necesarios para tu sistema hidráulico.</p>
+
+        <div class="input-grid">
+            <div class="input-group">
+                <label>Caudal (m³/h)</label>
+                <input type="number" id="flow" placeholder="Ej: 50" min="0">
+            </div>
+            <div class="input-group">
+                <label>Altura Total / TDH (m.c.a.)</label>
+                <input type="number" id="head" placeholder="Ej: 30" min="0">
+            </div>
+            <div class="input-group">
+                <label>Densidad del fluido (kg/m³)</label>
+                <input type="number" id="density" value="1000" placeholder="1000 para agua dulce" min="0">
+            </div>
+            <div class="input-group">
+                <label>Rendimiento Bomba (%)</label>
+                <input type="number" id="efficiency" value="70" placeholder="Ej: 70" min="1" max="100">
+            </div>
         </div>
 
-        <div class="seo-content">
-            <h2>Cálculo de Potencia en Instalaciones Hidráulicas</h2>
-            <p>Determinar la potencia correcta del motor de una bomba centrífuga es fundamental en proyectos de ingeniería industrial y riego agrícola. Un motor subdimensionado se quemará por sobrecarga térmica, mientras que uno sobredimensionado operará con un factor de potencia muy bajo, aumentando los costes de electricidad.</p>
-            
-            <h3>La Altura Manométrica Total (AMT)</h3>
-            <p>El error más común al usar calculadoras de bombeo es introducir solo el desnivel geométrico (la altura física a la que hay que subir el agua). La <strong>Altura Manométrica</strong> real debe incluir las pérdidas de carga continuas (rozamiento del agua contra las paredes de la tubería) y las pérdidas localizadas (válvulas, codos y reducciones).</p>
-            
-            <h3>Ejemplo de Dimensionamiento</h3>
-            <p>Si necesitamos trasladar <strong>100 m3/h</strong> de agua a un depósito situado a <strong>25 metros</strong> de altura, asumiendo un rendimiento global del conjunto bomba-motor del <strong>65%</strong>, la herramienta calculará la potencia en el eje. Es recomendable aplicar un coeficiente de seguridad del 15% al valor final antes de seleccionar el motor comercial (kW o CV) del catálogo del fabricante.</p>
+        <button onclick="calculatePumpPower()">Calcular Potencia del Motor</button>
+
+        <div class="result-box" id="result-box">
+            <h3>Potencia Recomendada (BHP)</h3>
+            <div class="result-value" id="result-val">0.00 kW</div>
+            <div class="result-desc" id="result-head">Equivale a 0.00 HP (Caballos de Fuerza)</div>
+            <p style="font-size: 0.8rem; margin-top: 15px; color: var(--primary);">Nota: Se recomienda aplicar un factor de seguridad del 10-15% a la hora de comprar el motor eléctrico.</p>
         </div>
-    </main>
-    <footer><a href="legales.html" style="color:#64748b; text-decoration:none;">Aviso Legal y Privacidad</a></footer>
-    <script>
-        function calcBombeo() {
-            const Q = parseFloat(document.getElementById('caudal').value);
-            const H = parseFloat(document.getElementById('altura').value);
-            const n = parseFloat(document.getElementById('rendimiento').value);
-            if(Q > 0 && H > 0 && n > 0) {
-                // Potencia (kW) = (Q(m3/h) * H(m) * Densidad(kg/m3) * g) / (3600 * 1000 * n)
-                // Simplificado para agua (Densidad 1000): P = (Q * H) / (367 * (n/100))
-                const nDecimal = n / 100;
-                const P_kW = (Q * H) / (367 * nDecimal);
-                const P_CV = P_kW * 1.35962;
-                const resDiv = document.getElementById('res_bombeo');
-                resDiv.style.display = 'block';
-                resDiv.innerHTML = `<strong>Potencia Eléctrica Necesaria:</strong><br><span style="font-size:2.5rem; color:#16a34a;">${P_kW.toFixed(2)} kW</span><br><span style="font-size:1.2rem; color:#15803d;">(${P_CV.toFixed(2)} CV)</span>`;
-            }
+    </div>
+
+    <section class="content-section">
+        <h2>¿Cómo se calcula la Potencia de una Bomba de Agua?</h2>
+        <p>Dimensionar correctamente el motor de una bomba centrífuga es el paso más importante en el diseño de instalaciones de riego, saneamiento o procesos industriales. Un motor demasiado pequeño se sobrecalentará y quemará, mientras que uno demasiado grande supondrá un gasto energético innecesario.</p>
+        <p>El cálculo se divide en dos conceptos vitales: la <strong>Potencia Hidráulica (WHP)</strong>, que es la energía pura que el agua necesita para moverse, y la <strong>Potencia al Freno (BHP)</strong>, que es la energía real que el motor eléctrico debe suministrar, teniendo en cuenta las pérdidas por rozamiento en la propia bomba.</p>
+
+        <h2>Tabla de Rendimientos Típicos (Eficiencia)</h2>
+        <p>Ninguna bomba es 100% eficiente. Gran parte de la energía del motor se pierde en turbulencias, fricción de rodamientos y calor. Si no tienes la curva técnica del fabricante a mano, puedes usar estos valores estándar para tu cálculo:</p>
+        
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tipo de Bomba</th>
+                        <th>Eficiencia Promedio (η)</th>
+                        <th>Aplicación Común</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Bomba Centrífuga Pequeña</td><td>50% - 65%</td><td>Piscinas, riego doméstico</td></tr>
+                    <tr><td>Bomba Centrífuga Industrial</td><td>70% - 85%</td><td>Refrigeración, distribución</td></tr>
+                    <tr><td>Bomba Sumergible de Pozo</td><td>60% - 75%</td><td>Extracción de aguas subterráneas</td></tr>
+                    <tr><td>Bomba de Desplazamiento Positivo</td><td>85% - 90%</td><td>Fluidos viscosos, aceites</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>La Fórmula de la Potencia de Bombeo</h2>
+        <p>El cálculo que realiza nuestra herramienta se basa en la fórmula estándar de la ingeniería hidráulica métrica:</p>
+        <div style="background: var(--surface); border: 1px solid var(--border); padding: 1.5rem; text-align: center; border-radius: 8px; font-weight: bold; font-size: 1.2rem; color: var(--text-main); margin: 1.5rem 0;">
+            P (kW) = [ Q (m³/h) × H (m.c.a) × Densidad (kg/m³) ] / [ 367 × 1000 × Eficiencia (%) ]
+        </div>
+        <p>Recuerda que a este resultado final es altamente recomendable añadirle un <strong>margen de seguridad mecánico del 10% al 15%</strong> (conocido como factor de servicio) para evitar que el motor trabaje constantemente al 100% de su capacidad.</p>
+
+        <h2>Preguntas Frecuentes (FAQ)</h2>
+        
+        <div class="faq-item">
+            <h4>¿Qué es la Altura Total Dinámica (TDH)?</h4>
+            <p>El TDH (Total Dynamic Head) no es solo la diferencia de altura vertical entre el agua y el punto de salida. Incluye también la presión que se pierde por la fricción del agua contra la tubería y las válvulas. Puedes calcular ese valor exacto con nuestra <a href="calculadora-presion.html" style="color: var(--primary);">Calculadora de Pérdida de Carga</a>.</p>
+        </div>
+
+        <div class="faq-item">
+            <h4>¿Qué diferencia hay entre kW y HP?</h4>
+            <p>Ambas son unidades de potencia. El kW (Kilovatio) es el estándar métrico internacional, mientras que el HP (Horsepower o Caballo de Fuerza) es la unidad del sistema imperial que todavía se usa de forma predominante en los motores eléctricos a nivel comercial. <strong>1 kW equivale aproximadamente a 1.34 HP.</strong></p>
+        </div>
+
+        <div class="faq-item">
+            <h4>¿Afecta la temperatura del agua al cálculo?</h4>
+            <p>Para agua a temperatura ambiente, no de forma significativa. Sin embargo, si estás bombeando agua caliente (por ejemplo, en sistemas de calderas a más de 80°C), la densidad del agua disminuye (ya no son 1000 kg/m³), lo que significa que necesitarás un poco menos de potencia para mover el mismo volumen, pero deberás vigilar la cavitación y el NPSH (Net Positive Suction Head).</p>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2026 IndustrialCalc Pro - Herramientas de Bombeo e Hidráulica.</p>
+</footer>
+
+<script>
+    if (localStorage.getItem('industrialcalc-theme') === 'dark') document.body.classList.add('dark-mode');
+
+    function calculatePumpPower() {
+        const flow = parseFloat(document.getElementById('flow').value);
+        const head = parseFloat(document.getElementById('head').value);
+        const density = parseFloat(document.getElementById('density').value);
+        const efficiency = parseFloat(document.getElementById('efficiency').value);
+
+        if (!flow || !head || !density || !efficiency || flow <= 0 || head <= 0 || density <= 0 || efficiency <= 0) {
+            alert("Por favor, introduce valores numéricos válidos y mayores a cero.");
+            return;
         }
-    </script>
+
+        // P (kW) = (Q(m3/h) * H(m) * Densidad(kg/m3)) / (367 * 1000 * eficiencia_decimal)
+        const effDecimal = efficiency / 100;
+        const kw = (flow * head * density) / (367 * 1000 * effDecimal);
+        const hp = kw * 1.34102; // Conversión a HP mecánico
+
+        document.getElementById('result-val').innerText = kw.toFixed(2) + " kW";
+        document.getElementById('result-head').innerText = "Equivale a " + hp.toFixed(2) + " HP (Caballos de Fuerza)";
+        document.getElementById('result-box').style.display = "block";
+    }
+</script>
+
 </body>
 </html>
