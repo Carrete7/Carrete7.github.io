@@ -1,10 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="canonical" href="https://industrialcalc.es/tabla-tuberias-acero.html" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Diámetros de Tuberías de Acero (NPS, DN y Schedule) | IndustrialCalc</title>
+    <meta name="description" content="Tabla de dimensiones comerciales para tuberías de acero al carbono e inoxidable. Equivalencias NPS a DN, diámetro exterior y espesores Schedule 40 y 80.">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E88WRKF9NQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-E88WRKF9NQ');
+    </script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --bg-body: #f1f5f9; --surface: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --primary: #2563eb; --header-bg: #0f172a; --border: #e2e8f0; --accent: #10b981; }
+        body.dark-mode { --bg-body: #0f172a; --surface: #1e293b; --text-main: #f8fafc; --text-muted: #94a3b8; --border: #334155; --header-bg: #020617; }
+        
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; transition: 0.3s; line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
+        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        .logo { font-size: 1.3rem; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .logo span { color: #3b82f6; }
+        .nav-link { color: #60a5fa; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+
+        main { max-width: 1000px; margin: 3rem auto; padding: 0 1.5rem; flex: 1; width: 100%; box-sizing: border-box; }
+        
+        h1 { font-size: 2.2rem; letter-spacing: -1px; text-align: center; color: var(--primary); margin-bottom: 0.5rem; }
+        .subtitle { color: var(--text-muted); text-align: center; margin-bottom: 2rem; font-size: 1.05rem; }
+
+        /* Estilos de la Tabla */
+        .table-container { background: var(--surface); border-radius: 12px; border: 1px solid var(--border); overflow-x: auto; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); margin: 2rem 0; }
+        table { width: 100%; border-collapse: collapse; min-width: 700px; }
+        th { background: var(--header-bg); color: white; padding: 15px; text-align: left; font-size: 0.9rem; letter-spacing: 0.5px; }
+        td { padding: 12px 15px; border-bottom: 1px solid var(--border); font-size: 0.95rem; color: var(--text-main); font-weight: 500; }
+        tr:nth-child(even) { background: var(--bg-body); }
+        tr:hover { background: rgba(37, 99, 235, 0.05); }
+
+        /* Estilos del Contenido SEO */
+        .seo-content { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 2rem; }
+        .seo-content h2 { font-size: 1.5rem; color: var(--text-main); border-bottom: 3px solid var(--primary); display: inline-block; margin-top: 0; margin-bottom: 1rem; }
+        .seo-content p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 1rem; }
+        
+        /* Lista con iconos */
+        .check-list { list-style: none; padding: 0; margin: 0; }
+        .check-list li { margin-bottom: 1rem; color: var(--text-muted); font-size: 1.05rem; display: flex; align-items: flex-start; gap: 10px; }
+        .check-list i { color: var(--accent); font-size: 1.2rem; margin-top: 3px; }
+
+        /* Botón Enlace Interno */
+        .cta-calculadora { display: flex; align-items: center; justify-content: center; gap: 10px; background: var(--primary); color: white; text-align: center; padding: 1.2rem; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 1.1rem; margin: 2rem auto; max-width: 500px; transition: 0.2s; box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2); }
+        .cta-calculadora:hover { background: #1d4ed8; transform: translateY(-2px); }
+
+        /* Bloques de Anuncios */
+        .ad-placeholder { margin: 2rem auto; text-align: center; min-height: 100px; display: flex; align-items: center; justify-content: center; background: var(--bg-body); border: 2px dashed var(--border); border-radius: 8px; color: var(--text-muted); font-size: 0.9rem; width: 100%; max-width: 728px; }
+
+        footer { text-align: center; padding: 2rem 1rem; color: var(--text-muted); border-top: 1px solid var(--border); background: var(--surface); width: 100%; box-sizing: border-box; }
+        footer a { color: var(--text-muted); text-decoration: none; }
+        footer a:hover { color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span> Pro</a>
+    <a href="index.html" class="nav-link"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+</header>
+
 <main>
     <h1>Tabla de Diámetros de Tuberías de Acero (NPS, DN y Schedule)</h1>
     <p class="subtitle">Dimensiones normalizadas comerciales para tuberías de acero al carbono e inoxidable (Sch 40 y Sch 80).</p>
 
-    <div style="margin: 20px 0; text-align: center; min-height: 90px; background: var(--surface); border: 1px dashed var(--border);"></div>
+    <div class="ad-placeholder">
+        [Espacio reservado para banner de AdSense - 728x90]
+    </div>
 
-    <section class="seo-content" style="margin-bottom: 2rem;">
+    <section class="seo-content">
         <h2>Entendiendo las normativas NPS, DN y el "Schedule"</h2>
         <p>En la ingeniería de tuberías industriales y fluidos mecánicos, el dimensionamiento estandarizado es vital para asegurar la compatibilidad de válvulas, bridas y accesorios. La normativa se rige por el estándar ASME B36.10 para tuberías de acero soldado y sin costura.</p>
         <p>Es un error común pensar que una tubería de "2 pulgadas" mide 2 pulgadas de diámetro exterior. El <strong>Nominal Pipe Size (NPS)</strong> y su equivalente métrico <strong>Diámetro Nominal (DN)</strong> son solo designaciones adimensionales. El diámetro exterior (OD) es fijo para cada NPS, mientras que el grosor de la pared —y por tanto el diámetro interior (ID)— varía según el <strong>Schedule (Sch)</strong> o cédula.</p>
@@ -45,18 +119,31 @@
         </table>
     </div>
 
-    <section class="seo-content" style="margin-top: 2rem;">
+    <section class="seo-content">
         <h2>Diferencia entre Cédula 40 y Cédula 80</h2>
         <p>El "Schedule" o cédula define el espesor de la pared de la tubería. Un espesor mayor reduce el diámetro interno útil, afectando a la velocidad del fluido y a la caída de presión, pero aumenta enormemente la resistencia mecánica:</p>
         <ul class="check-list">
-            <li><i class="fas fa-check-circle"></i> <strong>Sch 40 (Standard):</strong> Es la tubería más habitual. Se utiliza en sistemas de agua fría y caliente, aire comprimido a presiones normales y distribución de gases a baja presión.</li>
-            <li><i class="fas fa-check-circle"></i> <strong>Sch 80 (Extra Heavy):</strong> Posee una pared más gruesa. Obligatoria en sistemas industriales de vapor, líneas químicas corrosivas, alta presión hidráulica o tuberías expuestas a desgaste mecánico externo severo.</li>
+            <li><i class="fas fa-check-circle"></i> <div><strong>Sch 40 (Standard):</strong> Es la tubería más habitual. Se utiliza en sistemas de agua fría y caliente, aire comprimido a presiones normales y distribución de gases a baja presión.</div></li>
+            <li><i class="fas fa-check-circle"></i> <div><strong>Sch 80 (Extra Heavy):</strong> Posee una pared más gruesa. Obligatoria en sistemas industriales de vapor, líneas químicas corrosivas, alta presión hidráulica o tuberías expuestas a desgaste mecánico externo severo.</div></li>
         </ul>
     </section>
 
     <a href="calculadora-presion.html" class="cta-calculadora">
-        <i class="fas fa-calculator"></i> Validar sistema: Calculadora de Caída de Presión en Tuberías
+        <i class="fas fa-calculator"></i> Validar sistema: Calculadora de Caída de Presión
     </a>
 
-    <div style="margin: 30px 0; text-align: center; min-height: 90px; background: var(--surface); border: 1px dashed var(--border);"></div>
+    <div class="ad-placeholder">
+        [Espacio reservado para banner de AdSense - Adaptable]
+    </div>
 </main>
+
+<footer>
+    <a href="legales.html">Aviso Legal, Privacidad y Política de Cookies</a>
+</footer>
+
+<script>
+    if (localStorage.getItem('industrialcalc-theme') === 'dark') document.body.classList.add('dark-mode');
+</script>
+
+</body>
+</html>
