@@ -85,8 +85,8 @@
         .card p { margin: 0; color: var(--text-muted); line-height: 1.5; font-size: 0.85rem; }
 
         .seo-content { max-width: 1100px; margin: 4rem auto 3rem; padding: 2rem; border-radius: 8px; background-color: var(--surface); border: 1px solid var(--border); }
-        .seo-content h2 { font-size: 1.5rem; color: var(--text-main); margin-top: 0; }
-        .seo-content p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+        .seo-content h2 { font-size: 1.5rem; color: var(--text-main); margin-top: 0; margin-bottom: 1rem; border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 0.5rem;}
+        .seo-content p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.6; margin-bottom: 1rem;}
 
         footer { text-align: center; padding: 3rem 1rem; background-color: var(--surface); border-top: 1px solid var(--border); }
         footer .links { margin-bottom: 1rem; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;}
@@ -115,7 +115,7 @@
             <p>Suite profesional de herramientas técnicas para ingeniería, mantenimiento y procesos industriales.</p>
             <div class="search-hero">
                 <i class="fas fa-search"></i>
-                <input type="text" id="buscadorHome" placeholder="Buscar herramienta o unidad (ej: AWG, BTU, kg, solar...)" onkeyup="filtrarTarjetas()">
+                <input type="text" id="buscadorHome" placeholder="Buscar herramienta o unidad (ej: AWG, voltaje, presión...)" onkeyup="filtrarTarjetas()">
             </div>
         </div>
 
@@ -123,15 +123,15 @@
         <div class="card-grid" id="gridHerramientas">
             <a href="calculadora-bombeo.html" class="card"><div class="card-icon" style="background: #f0fdf4; color: #16a34a;"><i class="fas fa-pump-soap"></i></div><h2>Potencia de Bombeo</h2><p>Cálculo de potencia hidráulica y rendimiento.</p></a>
             <a href="calculadora-presion.html" class="card"><div class="card-icon" style="background: #ecfeff; color: #0891b2;"><i class="fas fa-water"></i></div><h2>Caída de Presión</h2><p>Pérdida de carga en tuberías de agua.</p></a>
+            <a href="calculadora-tension.html" class="card"><div class="card-icon" style="background: #fef08a; color: #ca8a04;"><i class="fas fa-bolt"></i></div><h2>Caída de Tensión</h2><p>Pérdida de voltaje en cables (% y V).</p></a>
+            <a href="calculadora-factor-potencia.html" class="card"><div class="card-icon" style="background: #f5f3ff; color: #8b5cf6;"><i class="fas fa-plug"></i></div><h2>Factor de Potencia</h2><p>Reactiva y baterías de condensadores.</p></a>
             <a href="calculadora-solar.html" class="card"><div class="card-icon" style="background: #fffbeb; color: #d97706;"><i class="fas fa-solar-panel"></i></div><h2>Energía Solar</h2><p>Dimensionamiento fotovoltaico y cableado.</p></a>
             <a href="calculadora-eficiencia.html" class="card"><div class="card-icon" style="background: #f0fdfa; color: #0d9488;"><i class="fas fa-cogs"></i></div><h2>Eficiencia y Motores</h2><p>Condensadores y par motor industrial.</p></a>
-            <a href="calculadora-seccion-tri.html" class="card"><div class="card-icon" style="background: #f5f3ff; color: #7c3aed;"><i class="fas fa-bolt"></i></div><h2>Sección Trifásica</h2><p>Cálculo de cables por caída de tensión.</p></a>
+            <a href="calculadora-seccion-tri.html" class="card"><div class="card-icon" style="background: #f5f3ff; color: #7c3aed;"><i class="fas fa-charging-station"></i></div><h2>Sección Trifásica</h2><p>Cálculo de cables por intensidad máxima.</p></a>
             <a href="calculadora-climatizacion.html" class="card"><div class="card-icon" style="background: #e0f2fe; color: #0284c7;"><i class="fas fa-snowflake"></i></div><h2>Carga Térmica HVAC</h2><p>Frigorías y potencia de equipos.</p></a>
             <a href="calculadora-aire.html" class="card"><div class="card-icon" style="background: #f8fafc; color: #475569;"><i class="fas fa-wind"></i></div><h2>Aire Comprimido</h2><p>Diámetros de redes neumáticas.</p></a>
             <a href="calculadora-acero.html" class="card"><div class="card-icon" style="background: #f1f5f9; color: #475569;"><i class="fas fa-cubes"></i></div><h2>Estructuras de Acero</h2><p>Peso de perfiles IPE y HEB.</p></a>
             <a href="calculadora-depositos.html" class="card"><div class="card-icon" style="background: #e0e7ff; color: #4f46e5;"><i class="fas fa-database"></i></div><h2>Depósitos</h2><p>Volumen de silos y tanques.</p></a>
-            <a href="calculadora-transformador.html" class="card"><div class="card-icon" style="background: #fef08a; color: #ca8a04;"><i class="fas fa-charging-station"></i></div><h2>Transformadores</h2><p>Corriente nominal y potencia.</p></a>
-            <a href="calculadora-factor-potencia.html" class="card"><div class="card-icon" style="background: #f5f3ff; color: #8b5cf6;"><i class="fas fa-bolt"></i></div><h2>Factor de Potencia</h2><p>Reactiva y condensadores.</p></a>
             <a href="calculadora-escalado-sensores.html" class="card"><div class="card-icon" style="background: #ecfdf5; color: #059669;"><i class="fas fa-wave-square"></i></div><h2>Sensores 4-20mA</h2><p>Escalado analógico para PLC.</p></a>
         </div>
 
@@ -156,8 +156,9 @@
     </main>
 
     <section class="seo-content">
-        <h2>La Calculadora Industrial para Profesionales</h2>
-        <p>IndustrialCalc Pro es tu <strong>calculadora industrial online</strong> de referencia, agrupando fórmulas de electricidad, mecánica y fluidos en un solo lugar. Optimizada para ofrecer resultados inmediatos basados en normativas internacionales.</p>
+        <h2>La suite de herramientas para la Ingeniería Moderna</h2>
+        <p><strong>IndustrialCalc Pro</strong> nace con el objetivo de agilizar el día a día de ingenieros, técnicos de mantenimiento, instaladores de climatización (HVAC) y estudiantes. Hemos digitalizado las fórmulas más complejas de la mecánica de fluidos, electricidad y termodinámica para que puedas realizar dimensionamientos a pie de obra directamente desde tu smartphone.</p>
+        <p>Nuestras calculadoras gratuitas te permiten desde estimar la <strong>Pérdida de Carga por fricción mediante Hazen-Williams</strong>, hasta dimensionar la <strong>Potencia al Freno (BHP)</strong> de motores de bombas de agua, pasando por conversores industriales y normativas de cableado eléctrico AWG. Simplifica tus proyectos y deja atrás las viejas hojas de cálculo.</p>
     </section>
 
     <footer>
