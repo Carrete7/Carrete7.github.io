@@ -84,13 +84,14 @@
         .card h2 { margin: 0 0 0.5rem 0; font-size: 1.15rem; font-weight: 700; }
         .card p { margin: 0; color: var(--text-muted); line-height: 1.5; font-size: 0.85rem; }
 
-        .seo-content { max-width: 1100px; margin: 4rem auto 3rem; padding: 2rem; border-radius: 8px; background-color: var(--surface); border: 1px solid var(--border); }
-        .seo-content h2 { font-size: 1.5rem; color: var(--text-main); margin-top: 0; margin-bottom: 1rem; border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 0.5rem;}
-        .seo-content p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.6; margin-bottom: 1rem;}
+        .seo-content { max-width: 1100px; margin: 4rem auto 3rem; padding: 2.5rem; border-radius: 12px; background-color: var(--surface); border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .seo-content h2 { font-size: 1.6rem; color: var(--text-main); margin-top: 0; margin-bottom: 1.5rem; border-bottom: 3px solid var(--primary); display: inline-block; padding-bottom: 0.5rem;}
+        .seo-content p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.2rem;}
 
         footer { text-align: center; padding: 3rem 1rem; background-color: var(--surface); border-top: 1px solid var(--border); }
         footer .links { margin-bottom: 1rem; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;}
-        footer a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
+        footer a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s;}
+        footer a:hover { color: var(--primary); }
     </style>
 </head>
 <body>
@@ -115,7 +116,7 @@
             <p>Suite profesional de herramientas técnicas para ingeniería, mantenimiento y procesos industriales.</p>
             <div class="search-hero">
                 <i class="fas fa-search"></i>
-                <input type="text" id="buscadorHome" placeholder="Buscar herramienta o unidad (ej: AWG, voltaje, presión...)" onkeyup="filtrarTarjetas()">
+                <input type="text" id="buscadorHome" placeholder="Buscar herramienta o unidad (ej: voltaje, hormigón, tuberías...)" onkeyup="filtrarTarjetas()">
             </div>
         </div>
 
@@ -123,26 +124,46 @@
         <div class="card-grid" id="gridHerramientas">
             <a href="calculadora-bombeo.html" class="card"><div class="card-icon" style="background: #f0fdf4; color: #16a34a;"><i class="fas fa-pump-soap"></i></div><h2>Potencia de Bombeo</h2><p>Cálculo de potencia hidráulica y rendimiento.</p></a>
             <a href="calculadora-presion.html" class="card"><div class="card-icon" style="background: #ecfeff; color: #0891b2;"><i class="fas fa-water"></i></div><h2>Caída de Presión</h2><p>Pérdida de carga en tuberías de agua.</p></a>
+            <a href="calculadora-solar.html" class="card"><div class="card-icon" style="background: #fffbeb; color: #d97706;"><i class="fas fa-solar-panel"></i></div><h2>Energía Solar</h2><p>Dimensionamiento fotovoltaico y cableado.</p></a>
+            <a href="calculadora-roi-solar.html" class="card"><div class="card-icon" style="background: #fef9c3; color: #ca8a04;"><i class="fas fa-hand-holding-usd"></i></div><h2>ROI Fotovoltaico</h2><p>Amortización de placas solares.</p></a>
+            
             <a href="calculadora-tension.html" class="card"><div class="card-icon" style="background: #fef08a; color: #ca8a04;"><i class="fas fa-bolt"></i></div><h2>Caída de Tensión</h2><p>Pérdida de voltaje en cables (% y V).</p></a>
             <a href="calculadora-factor-potencia.html" class="card"><div class="card-icon" style="background: #f5f3ff; color: #8b5cf6;"><i class="fas fa-plug"></i></div><h2>Factor de Potencia</h2><p>Reactiva y baterías de condensadores.</p></a>
-            <a href="calculadora-solar.html" class="card"><div class="card-icon" style="background: #fffbeb; color: #d97706;"><i class="fas fa-solar-panel"></i></div><h2>Energía Solar</h2><p>Dimensionamiento fotovoltaico y cableado.</p></a>
-            <a href="calculadora-eficiencia.html" class="card"><div class="card-icon" style="background: #f0fdfa; color: #0d9488;"><i class="fas fa-cogs"></i></div><h2>Eficiencia y Motores</h2><p>Condensadores y par motor industrial.</p></a>
             <a href="calculadora-seccion-tri.html" class="card"><div class="card-icon" style="background: #f5f3ff; color: #7c3aed;"><i class="fas fa-charging-station"></i></div><h2>Sección Trifásica</h2><p>Cálculo de cables por intensidad máxima.</p></a>
+            <a href="calculadora-transformador.html" class="card"><div class="card-icon" style="background: #fef08a; color: #ca8a04;"><i class="fas fa-charging-station"></i></div><h2>Transformadores</h2><p>Corriente nominal y potencia.</p></a>
+            <a href="calculadora-baterias.html" class="card"><div class="card-icon" style="background: #f0fdf4; color: #16a34a;"><i class="fas fa-battery-full"></i></div><h2>Baterías y UPS</h2><p>Autonomía y capacidad en Ah.</p></a>
+
             <a href="calculadora-climatizacion.html" class="card"><div class="card-icon" style="background: #e0f2fe; color: #0284c7;"><i class="fas fa-snowflake"></i></div><h2>Carga Térmica HVAC</h2><p>Frigorías y potencia de equipos.</p></a>
+            <a href="calculadora-frigorias.html" class="card"><div class="card-icon" style="background: #e0f2fe; color: #0284c7;"><i class="fas fa-temperature-low"></i></div><h2>Frigorías</h2><p>Potencia frigorífica necesaria.</p></a>
+            <a href="calculadora-psicrometria.html" class="card"><div class="card-icon" style="background: #eff6ff; color: #3b82f6;"><i class="fas fa-tint"></i></div><h2>Psicrometría</h2><p>Punto de rocío y humedad relativa.</p></a>
+            <a href="calculadora-termica.html" class="card"><div class="card-icon" style="background: #fef2f2; color: #dc2626;"><i class="fas fa-fire-alt"></i></div><h2>Aislamiento Térmico</h2><p>Pérdidas de calor en superficies.</p></a>
+            <a href="calculadora-ventilacion.html" class="card"><div class="card-icon" style="background: #f8fafc; color: #475569;"><i class="fas fa-fan"></i></div><h2>Ventilación (ACH)</h2><p>Renovaciones de aire por hora.</p></a>
+
+            <a href="calculadora-eficiencia.html" class="card"><div class="card-icon" style="background: #f0fdfa; color: #0d9488;"><i class="fas fa-cogs"></i></div><h2>Eficiencia y Motores</h2><p>Condensadores y par motor industrial.</p></a>
+            <a href="calculadora-par.html" class="card"><div class="card-icon" style="background: #fefce8; color: #a16207;"><i class="fas fa-sync-alt"></i></div><h2>Par Motor (Torque)</h2><p>Fuerza y revoluciones por minuto.</p></a>
+            <a href="calculadora-poleas.html" class="card"><div class="card-icon" style="background: #f5f3ff; color: #6d28d9;"><i class="fas fa-circle-notch"></i></div><h2>Relación de Poleas</h2><p>Transmisión por correas y velocidad.</p></a>
             <a href="calculadora-aire.html" class="card"><div class="card-icon" style="background: #f8fafc; color: #475569;"><i class="fas fa-wind"></i></div><h2>Aire Comprimido</h2><p>Diámetros de redes neumáticas.</p></a>
             <a href="calculadora-acero.html" class="card"><div class="card-icon" style="background: #f1f5f9; color: #475569;"><i class="fas fa-cubes"></i></div><h2>Estructuras de Acero</h2><p>Peso de perfiles IPE y HEB.</p></a>
+            <a href="calculadora-hormigon.html" class="card"><div class="card-icon" style="background: #f3f4f6; color: #6b7280;"><i class="fas fa-layer-group"></i></div><h2>Volumen de Hormigón</h2><p>Metros cúbicos para cimentaciones.</p></a>
             <a href="calculadora-depositos.html" class="card"><div class="card-icon" style="background: #e0e7ff; color: #4f46e5;"><i class="fas fa-database"></i></div><h2>Depósitos</h2><p>Volumen de silos y tanques.</p></a>
+            <a href="calculadora-dilatacion.html" class="card"><div class="card-icon" style="background: #fef2f2; color: #ef4444;"><i class="fas fa-arrows-alt-h"></i></div><h2>Dilatación Térmica</h2><p>Expansión de tuberías y metales.</p></a>
+            <a href="calculadora-cintas.html" class="card"><div class="card-icon" style="background: #fff7ed; color: #ea580c;"><i class="fas fa-truck-moving"></i></div><h2>Cintas Transportadoras</h2><p>Velocidad y capacidad de carga.</p></a>
+
             <a href="calculadora-escalado-sensores.html" class="card"><div class="card-icon" style="background: #ecfdf5; color: #059669;"><i class="fas fa-wave-square"></i></div><h2>Sensores 4-20mA</h2><p>Escalado analógico para PLC.</p></a>
+            <a href="calculadora-acustica.html" class="card"><div class="card-icon" style="background: #fdf2f8; color: #db2777;"><i class="fas fa-volume-up"></i></div><h2>Acústica Industrial</h2><p>Atenuación de ruido y decibelios.</p></a>
+            <a href="calculadora-gasoleo.html" class="card"><div class="card-icon" style="background: #f1f5f9; color: #334155;"><i class="fas fa-gas-pump"></i></div><h2>Consumo Gasóleo</h2><p>Calderas y grupos electrógenos.</p></a>
+            <a href="calculadora-instalaciones.html" class="card"><div class="card-icon" style="background: #ecfdf5; color: #059669;"><i class="fas fa-tools"></i></div><h2>Cálculo Instalaciones</h2><p>Dimensionamiento y diseño general.</p></a>
         </div>
 
         <h2 class="section-title">Conversores de Unidades Industriales</h2>
         <div class="card-grid" id="gridConversores">
+            <a href="calculadora-presion-conversion.html" class="card"><div class="card-icon" style="background: #ecfeff; color: #0891b2;"><i class="fas fa-tachometer-alt"></i></div><h2>Conversor de Presión</h2><p>Bar, PSI, Pascales y Atmósferas.</p></a>
             <a href="en/kg-to-pounds.html" class="card"><div class="card-icon" style="background: #eff6ff; color: #2563eb;"><i class="fas fa-weight-hanging"></i></div><h2>Peso (kg a lbs)</h2><p>Conversión de masa métrica a imperial.</p></a>
             <a href="en/celsius-to-fahrenheit.html" class="card"><div class="card-icon" style="background: #fef2f2; color: #ef4444;"><i class="fas fa-thermometer-half"></i></div><h2>Temperatura (°C a °F)</h2><p>Escalas térmicas para HVAC.</p></a>
-            <a href="en/psi-to-bar.html" class="card"><div class="card-icon" style="background: #f0fdfa; color: #14b8a6;"><i class="fas fa-tachometer-alt"></i></div><h2>Presión (PSI a Bar)</h2><p>Unidades de presión neumática.</p></a>
+            <a href="en/psi-to-bar.html" class="card"><div class="card-icon" style="background: #f0fdfa; color: #14b8a6;"><i class="fas fa-compress-arrows-alt"></i></div><h2>Presión (PSI a Bar)</h2><p>Unidades de presión neumática.</p></a>
             <a href="en/meters-to-feet.html" class="card"><div class="card-icon" style="background: #f5f3ff; color: #7c3aed;"><i class="fas fa-ruler-combined"></i></div><h2>Longitud (m a ft)</h2><p>Metros a pies y viceversa.</p></a>
             <a href="en/gallons-to-liters.html" class="card"><div class="card-icon" style="background: #fffbeb; color: #d97706;"><i class="fas fa-faucet"></i></div><h2>Volumen (Gal a Litros)</h2><p>Capacidad de fluidos líquidos.</p></a>
-            <a href="en/kw-to-hp.html" class="card"><div class="card-icon" style="background: #eff6ff; color: #2563eb;"><i class="fas fa-bolt"></i></div><h2>Potencia (kW a HP)</h2><p>Motores eléctricos y caballos.</p></a>
+            <a href="en/kw-to-hp.html" class="card"><div class="card-icon" style="background: #eff6ff; color: #2563eb;"><i class="fas fa-car-battery"></i></div><h2>Potencia (kW a HP)</h2><p>Motores eléctricos y caballos.</p></a>
             <a href="en/inches-to-mm.html" class="card"><div class="card-icon" style="background: #f1f5f9; color: #475569;"><i class="fas fa-ruler"></i></div><h2>Inches a mm</h2><p>Pulgadas a milímetros métricos.</p></a>
             <a href="en/btu-to-kw.html" class="card"><div class="card-icon" style="background: #fef2f2; color: #ef4444;"><i class="fas fa-fire"></i></div><h2>Energía (BTU a kW)</h2><p>Potencia térmica y calderas.</p></a>
         </div>
