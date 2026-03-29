@@ -1,20 +1,37 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
+    <link rel="canonical" href="https://industrialcalc.es/guias.html" />
+    
+    <link rel="alternate" hreflang="es" href="https://industrialcalc.es/guias.html" />
+    <link rel="alternate" hreflang="en" href="https://industrialcalc.es/en/guides.html" />
+    <link rel="alternate" hreflang="x-default" href="https://industrialcalc.es/guias.html" />
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-E88WRKF9NQ"></script>
-    <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-E88WRKF9NQ');</script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-E88WRKF9NQ');
+    </script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentación y Artículos Técnicos | IndustrialCalc Pro</title>
-    <meta name="description" content="Directorio de documentación técnica, cálculos y normativas aplicadas al sector industrial, eléctrico y mecánico.">
+    
+    <title>Guías y Tutoriales de Ingeniería | IndustrialCalc Pro</title>
+    <meta name="description" content="Aprende paso a paso a dimensionar instalaciones industriales. Guías de cálculo eléctrico, mecánico, climatización y energía solar.">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --bg-body: #f1f5f9; --surface: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --primary: #2563eb; --header-bg: #0f172a; --border: #e2e8f0; }
+        :root { --bg-body: #f1f5f9; --surface: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --primary: #2563eb; --primary-dark: #1d4ed8; --header-bg: #0f172a; --border: #e2e8f0; }
         body.dark-mode { --bg-body: #0f172a; --surface: #1e293b; --text-main: #f8fafc; --text-muted: #94a3b8; --border: #334155; --header-bg: #020617; }
-        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; display: flex; flex-direction: column; min-height: 100vh; transition: background-color 0.3s, color 0.3s;}
+
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; display: flex; flex-direction: column; min-height: 100vh; transition: 0.3s; }
         
-        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; transition: background-color 0.3s;}
+        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
         .header-content { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
         .logo { font-size: 1.5rem; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; }
         .logo span { color: #3b82f6; }
@@ -22,35 +39,46 @@
         .nav-links { display: flex; gap: 15px; align-items: center; }
         .nav-links a.nav-normal { color: white; text-decoration: none; font-size: 0.95rem; font-weight: 500; opacity: 0.8; transition: 0.2s; }
         .nav-links a.nav-normal:hover { opacity: 1; color: #60a5fa; }
-        .nav-links a.btn-guias { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.3); padding: 0.5rem 1.2rem; border-radius: 8px; font-weight: 700; color: white; text-decoration: none; transition: 0.2s; display: flex; align-items: center; gap: 8px;}
-        .nav-links a.btn-guias:hover { background: rgba(255, 255, 255, 0.2); border-color: white; box-shadow: 0 0 10px rgba(255,255,255,0.2); }
-        .dropdown { position: relative; display: inline-block; }
-        .dropbtn { background-color: var(--primary); color: white; padding: 0.6rem 1.5rem; font-size: 0.95rem; border: 2px solid #60a5fa; border-radius: 8px; cursor: pointer; font-family: inherit; font-weight: 800; display: flex; align-items: center; gap: 8px; transition: 0.2s; box-shadow: 0 4px 6px rgba(37, 99, 235, 0.3);}
-        .dropbtn:hover { background-color: #1d4ed8; border-color: white; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(37, 99, 235, 0.4);}
-        .dropdown-content { display: none; position: absolute; right: 0; top: 110%; background-color: var(--surface); min-width: 280px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); z-index: 10; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); max-height: 450px; overflow-y: auto;}
-        .dropdown-content a { color: var(--text-main); padding: 12px 16px; text-decoration: none; display: block; font-size: 0.85rem; border-bottom: 1px solid var(--border); font-weight: 500; opacity: 1; transition: 0.2s; }
-        .dropdown-content a:hover { background-color: var(--bg-body); color: var(--primary); }
-        .dropdown:hover .dropdown-content { display: block; }
+        .nav-links a.btn-guias { background: rgba(255, 255, 255, 0.2); border: 1px solid white; padding: 0.5rem 1.2rem; border-radius: 8px; font-weight: 700; color: white; text-decoration: none; transition: 0.2s; display: flex; align-items: center; gap: 8px;}
+        
+        .lang-switch { display: flex; gap: 5px; background: rgba(255,255,255,0.1); padding: 5px; border-radius: 6px; }
+        .lang-switch a { color: white; text-decoration: none; font-size: 0.85rem; font-weight: bold; padding: 4px 8px; border-radius: 4px; opacity: 0.6; }
+        .lang-switch a.active { background: var(--primary); opacity: 1; }
 
         .theme-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; opacity: 0.8; transition: 0.2s; padding: 0.5rem; }
-        .theme-btn:hover { opacity: 1; color: #fde047; transform: rotate(15deg); }
 
-        main { flex: 1; padding: 4rem 1rem; max-width: 1200px; margin: 0 auto; width: 100%; box-sizing: border-box; }
-        .page-header { text-align: center; margin-bottom: 4rem; }
-        .page-header h1 { font-size: 2.8rem; margin-bottom: 0.5rem; color: var(--text-main); letter-spacing: -1px; transition: color 0.3s; }
-        .page-header p { color: var(--text-muted); font-size: 1.2rem; max-width: 700px; margin: 0 auto; }
+        main { flex: 1; padding: 3rem 1rem; max-width: 1200px; margin: 0 auto; width: 100%; box-sizing: border-box; }
+        
+        .hero-text { text-align: center; margin-bottom: 4rem; }
+        .hero-text h1 { font-size: 2.8rem; margin-bottom: 0.5rem; color: var(--primary); letter-spacing: -1px; }
+        .hero-text p { color: var(--text-muted); font-size: 1.2rem; max-width: 700px; margin: 0 auto; }
+        
+        .search-hero { position: relative; max-width: 600px; margin: 2.5rem auto 0; }
+        .search-hero input { width: 100%; padding: 1.2rem 1.2rem 1.2rem 3.5rem; font-size: 1.1rem; border: 2px solid var(--border); border-radius: 50px; box-sizing: border-box; outline: none; background: var(--surface); color: var(--text-main); }
+        .search-hero i { position: absolute; left: 1.4rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 1.2rem; }
 
-        .guides-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem; }
-        .guide-card { background: var(--surface); border: 1px solid var(--border); padding: 1.5rem; border-radius: 12px; text-decoration: none; color: inherit; transition: all 0.3s ease; display: flex; align-items: center; gap: 20px; }
-        .guide-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); border-color: var(--primary); }
-        .guide-icon { width: 50px; height: 50px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; background: rgba(37, 99, 235, 0.1); color: var(--primary); flex-shrink: 0; transition: background 0.3s; }
-        body.dark-mode .guide-icon { background: rgba(37, 99, 235, 0.2); }
-        .guide-info h2 { margin: 0 0 0.5rem 0; font-size: 1.1rem; font-weight: 700; color: var(--text-main); line-height: 1.3; }
-        .guide-info p { margin: 0; color: var(--text-muted); font-size: 0.9rem; }
+        .section-title { font-size: 1.6rem; color: var(--text-main); margin: 3rem 0 1.5rem; border-bottom: 2px solid var(--border); padding-bottom: 10px; display: flex; align-items: center; gap: 10px; }
 
-        footer { text-align: center; padding: 3rem 1rem; background-color: var(--surface); border-top: 1px solid var(--border); margin-top: auto; transition: background-color 0.3s;}
+        .blog-grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        
+        .article-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; text-decoration: none; color: inherit; transition: all 0.3s ease; display: flex; flex-direction: column; height: 100%; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .article-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 10px 20px -5px rgba(0,0,0,0.1); }
+        
+        .article-img { height: 160px; background-color: var(--border); display: flex; align-items: center; justify-content: center; font-size: 3rem; color: var(--text-muted); opacity: 0.5; }
+        .article-content { padding: 1.5rem; display: flex; flex-direction: column; flex: 1; }
+        
+        .tag { font-size: 0.8rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.8rem; display: inline-block; }
+        .article-card h2 { margin: 0 0 1rem 0; font-size: 1.25rem; line-height: 1.4; color: var(--text-main); }
+        .article-card p { margin: 0; color: var(--text-muted); line-height: 1.6; font-size: 0.95rem; flex: 1; }
+        
+        .read-more { margin-top: 1.5rem; font-weight: 600; color: var(--primary); display: flex; align-items: center; gap: 5px; font-size: 0.9rem; }
+        .article-card:hover .read-more { color: var(--primary-dark); }
+
+        .ad-placeholder { margin: 3rem auto; text-align: center; min-height: 100px; display: flex; align-items: center; justify-content: center; background: var(--bg-body); border: 2px dashed var(--border); border-radius: 8px; color: var(--text-muted); font-size: 0.9rem; width: 100%; }
+
+        footer { text-align: center; padding: 3rem 1rem; background-color: var(--surface); border-top: 1px solid var(--border); margin-top: 4rem; }
         footer .links { margin-bottom: 1rem; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;}
-        footer a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+        footer a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s;}
         footer a:hover { color: var(--primary); }
     </style>
 </head>
@@ -59,81 +87,125 @@
         <div class="header-content">
             <a href="index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span> Pro</a>
             <nav class="nav-links">
-                <a href="guias.html" class="btn-guias" style="background: rgba(255,255,255,0.2); border-color: white;"><i class="fas fa-book-open"></i> Documentación</a>
-                <a href="index.html#sobre-nosotros" class="nav-normal">Sobre nosotros</a>
-                <a href="contacto.html" class="nav-normal">Contacto</a>
-                <div class="dropdown">
-                    <button class="dropbtn"><i class="fas fa-tools"></i> Herramientas <i class="fas fa-chevron-down" style="font-size: 0.8em; margin-left: 5px;"></i></button>
-                    <div class="dropdown-content">
-                        <a href="herramientas-basicas.html">⚡ Cálculos Básicos</a>
-                        <a href="calculadora-solar.html">☀️ Energía Solar</a>
-                        <a href="index.html" style="text-align:center; font-weight:bold; color: var(--primary);">Ver las 28 calculadoras &rarr;</a>
-                    </div>
+                <div class="lang-switch">
+                    <a href="guias.html" class="active">ES</a>
+                    <a href="en/guides.html">EN</a>
                 </div>
-                <button id="theme-toggle" class="theme-btn" title="Cambiar tema"><i class="fas fa-moon"></i></button>
+                <a href="index.html" class="nav-normal">Calculadoras</a>
+                <a href="guias.html" class="btn-guias"><i class="fas fa-book-open"></i> Guías</a>
+                <button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button>
             </nav>
         </div>
     </header>
 
     <main>
-        <div class="page-header">
-            <h1>Documentación y Artículos Técnicos</h1>
-            <p>Procedimientos de cálculo, justificación normativa y dimensionamiento aplicado al sector industrial.</p>
+        <div class="hero-text">
+            <h1>Guías de Ingeniería</h1>
+            <p>Manuales paso a paso, metodologías de cálculo y normativas explicadas de forma sencilla para el sector industrial.</p>
+            <div class="search-hero">
+                <i class="fas fa-search"></i>
+                <input type="text" id="buscadorGuias" placeholder="Buscar una guía (ej: paneles solares, trifásica...)" onkeyup="filtrarGuias()">
+            </div>
         </div>
 
-        <div class="guides-grid">
-            <a href="guias/paneles-solares-nave-industrial.html" class="guide-card"><div class="guide-icon"><i class="fas fa-solar-panel"></i></div><div class="guide-info"><h2>Dimensionamiento solar para naves industriales</h2><p>Procedimiento de cálculo de módulos y potencia.</p></div></a>
-            <a href="guias/calculo-seccion-cable-trifasico.html" class="guide-card"><div class="guide-icon"><i class="fas fa-bolt"></i></div><div class="guide-info"><h2>Cálculo de sección de cable trifásico</h2><p>Análisis de caída de tensión según REBT.</p></div></a>
-            <a href="guias/potencia-bomba-agua-riego.html" class="guide-card"><div class="guide-icon"><i class="fas fa-water"></i></div><div class="guide-info"><h2>Potencia de bomba hidráulica</h2><p>Cálculo de caudal y altura manométrica.</p></div></a>
-            <a href="guias/cuando-es-obligatorio-bateria-condensadores.html" class="guide-card"><div class="guide-icon"><i class="fas fa-car-battery"></i></div><div class="guide-info"><h2>Compensación de energía reactiva</h2><p>Dimensionamiento de baterías de condensadores.</p></div></a>
-            <a href="guias/calculo-frigorias-local-comercial.html" class="guide-card"><div class="guide-icon"><i class="fas fa-snowflake"></i></div><div class="guide-info"><h2>Cargas térmicas y frigorías</h2><p>Estimación de potencia para climatización HVAC.</p></div></a>
-            <a href="guias/transmitancia-termica-muros.html" class="guide-card"><div class="guide-icon"><i class="fas fa-temperature-high"></i></div><div class="guide-info"><h2>Transmitancia térmica (Valor U)</h2><p>Análisis de aislamiento en cerramientos industriales.</p></div></a>
-            <a href="guias/diametro-tuberia-aire-comprimido.html" class="guide-card"><div class="guide-icon"><i class="fas fa-wind"></i></div><div class="guide-info"><h2>Diámetro de tubería neumática</h2><p>Cálculo de sección para redes de aire comprimido.</p></div></a>
-            <a href="guias/corriente-nominal-transformador-trifasico.html" class="guide-card"><div class="guide-icon"><i class="fas fa-charging-station"></i></div><div class="guide-info"><h2>Corriente nominal en transformadores</h2><p>Determinación de amperaje por devanado.</p></div></a>
-            <a href="guias/dilatacion-termica-tuberias-acero.html" class="guide-card"><div class="guide-icon"><i class="fas fa-arrows-left-right"></i></div><div class="guide-info"><h2>Dilatación térmica en tuberías</h2><p>Cálculo de expansión lineal para acero y cobre.</p></div></a>
-            <a href="guias/capacidad-produccion-cinta-transportadora.html" class="guide-card"><div class="guide-icon"><i class="fas fa-boxes"></i></div><div class="guide-info"><h2>Producción en cintas transportadoras</h2><p>Estimación de flujo másico y volumétrico.</p></div></a>
-            <a href="guias/caida-presion-tuberias-agua.html" class="guide-card"><div class="guide-icon"><i class="fas fa-tachometer-alt"></i></div><div class="guide-info"><h2>Pérdidas de carga hidráulica</h2><p>Caída de presión por fricción en tuberías.</p></div></a>
-            <a href="guias/calculo-par-motor-necesario-carga.html" class="guide-card"><div class="guide-icon"><i class="fas fa-sync"></i></div><div class="guide-info"><h2>Cálculo de par motor (Torque)</h2><p>Relación mecánica entre potencia y régimen de giro.</p></div></a>
-            <a href="guias/formula-volumen-silo-cilindrico.html" class="guide-card"><div class="guide-icon"><i class="fas fa-database"></i></div><div class="guide-info"><h2>Cubicaje de silos cilíndricos</h2><p>Cálculo de volumen útil y capacidad de almacenaje.</p></div></a>
-            <a href="guias/calculo-atenuacion-acustica-distancia.html" class="guide-card"><div class="guide-icon"><i class="fas fa-volume-high"></i></div><div class="guide-info"><h2>Atenuación acústica por distancia</h2><p>Propagación del ruido mecánico en campo libre.</p></div></a>
-            <a href="guias/calculo-condensadores-motores-monofasicos.html" class="guide-card"><div class="guide-icon"><i class="fas fa-microchip"></i></div><div class="guide-info"><h2>Condensadores para motores eléctricos</h2><p>Selección de capacidad para motores monofásicos.</p></div></a>
-            <a href="guias/calculo-punto-rocio-aire-comprimido.html" class="guide-card"><div class="guide-icon"><i class="fas fa-droplet"></i></div><div class="guide-info"><h2>Cálculo de temperatura de rocío</h2><p>Prevención de condensación en procesos industriales.</p></div></a>
-            <a href="guias/calculo-peso-perfiles-acero-ipe-heb.html" class="guide-card"><div class="guide-icon"><i class="fas fa-cubes"></i></div><div class="guide-info"><h2>Peso en perfiles estructurales</h2><p>Estimación de masa lineal para IPE y HEB.</p></div></a>
-            <a href="guias/calculo-volumen-hormigon-losa.html" class="guide-card"><div class="guide-icon"><i class="fas fa-hard-hat"></i></div><div class="guide-info"><h2>Volumen de hormigón en losas</h2><p>Cubicaje y coeficientes de seguridad para obra civil.</p></div></a>
-            <a href="guias/calculo-consumo-gasoleo-caldera.html" class="guide-card"><div class="guide-icon"><i class="fas fa-fire"></i></div><div class="guide-info"><h2>Consumo térmico en calderas</h2><p>Gasto de combustible en función de la potencia.</p></div></a>
-            <a href="guias/conversion-senal-analogica-4-20ma-plc.html" class="guide-card"><div class="guide-icon"><i class="fas fa-wave-square"></i></div><div class="guide-info"><h2>Escalado de señales analógicas</h2><p>Conversión 4-20mA a unidades de ingeniería para PLC.</p></div></a>
+        <div class="ad-placeholder">
+            [AdSense Banner - Horizontal Responsive]
         </div>
+
+        <h2 class="section-title"><i class="fas fa-bolt" style="color: #ca8a04;"></i> Instalaciones Eléctricas y Energía</h2>
+        <div class="blog-grid" id="gridElectrica">
+            <a href="guias/calculo-seccion-cable-trifasico.html" class="article-card">
+                <div class="article-img" style="background: #fefce8; color: #ca8a04;"><i class="fas fa-plug"></i></div>
+                <div class="article-content">
+                    <span class="tag">Electricidad</span>
+                    <h2>Cómo calcular la sección de un cable trifásico paso a paso</h2>
+                    <p>Aprende a dimensionar líneas trifásicas considerando la caída de tensión máxima admisible y la intensidad de cortocircuito.</p>
+                    <div class="read-more">Leer guía completa <i class="fas fa-arrow-right"></i></div>
+                </div>
+            </a>
+            
+            <a href="guias/paneles-solares-nave-industrial.html" class="article-card">
+                <div class="article-img" style="background: #fffbeb; color: #d97706;"><i class="fas fa-solar-panel"></i></div>
+                <div class="article-content">
+                    <span class="tag">Renovables</span>
+                    <h2>Guía de Autoconsumo: Paneles Solares en Naves Industriales</h2>
+                    <p>Metodología para calcular el número de placas fotovoltaicas necesarias para cubrir la demanda energética de una fábrica.</p>
+                    <div class="read-more">Leer guía completa <i class="fas fa-arrow-right"></i></div>
+                </div>
+            </a>
+
+            <a href="guias/cuando-es-obligatorio-bateria-condensadores.html" class="article-card">
+                <div class="article-img" style="background: #f5f3ff; color: #7c3aed;"><i class="fas fa-charging-station"></i></div>
+                <div class="article-content">
+                    <span class="tag">Eficiencia</span>
+                    <h2>¿Cuándo es obligatorio instalar una batería de condensadores?</h2>
+                    <p>Explicación sobre las penalizaciones por energía reactiva (kVAR) y cómo justificar la inversión en tu factura eléctrica.</p>
+                    <div class="read-more">Leer guía completa <i class="fas fa-arrow-right"></i></div>
+                </div>
+            </a>
+        </div>
+
+        <h2 class="section-title" style="margin-top: 4rem;"><i class="fas fa-water" style="color: #0891b2;"></i> Fluidos y Termodinámica</h2>
+        <div class="blog-grid" id="gridFluidos">
+            <a href="guias/caida-presion-tuberias-agua.html" class="article-card">
+                <div class="article-img" style="background: #ecfeff; color: #0891b2;"><i class="fas fa-tint"></i></div>
+                <div class="article-content">
+                    <span class="tag">Hidráulica</span>
+                    <h2>Cálculo de pérdida de carga en tuberías de agua</h2>
+                    <p>Comprende la ecuación de Hazen-Williams y cómo la rugosidad del material afecta al rendimiento de tu bomba hidráulica.</p>
+                    <div class="read-more">Leer guía completa <i class="fas fa-arrow-right"></i></div>
+                </div>
+            </a>
+
+            <a href="guias/calculo-frigorias-local-comercial.html" class="article-card">
+                <div class="article-img" style="background: #e0f2fe; color: #0284c7;"><i class="fas fa-snowflake"></i></div>
+                <div class="article-content">
+                    <span class="tag">Climatización</span>
+                    <h2>Cómo calcular las frigorías para climatizar un local comercial</h2>
+                    <p>Método práctico para estimar la carga térmica de refrigeración (BTU/h) teniendo en cuenta aforos y aislamientos.</p>
+                    <div class="read-more">Leer guía completa <i class="fas fa-arrow-right"></i></div>
+                </div>
+            </a>
+        </div>
+
+        <div class="ad-placeholder">
+            [AdSense Banner - In-Feed / Responsive]
+        </div>
+
     </main>
 
     <footer>
         <div class="links">
-            <a href="index.html">Inicio</a>
+            <a href="index.html">Calculadoras</a>
             <a href="glosario.html">Glosario Técnico</a>
             <a href="contacto.html">Contacto</a>
             <a href="legales.html">Aviso Legal y Privacidad</a>
         </div>
-        <p>&copy; 2026 IndustrialCalc Pro - Suite Profesional de Herramientas Técnicas.</p>
+        <p>&copy; 2026 IndustrialCalc Pro. Herramientas técnicas gratuitas.</p>
     </footer>
 
     <script>
-        const themeBtn = document.getElementById('theme-toggle');
-        const themeIcon = themeBtn.querySelector('i');
-        const currentTheme = localStorage.getItem('industrialcalc-theme');
-
-        if (currentTheme === 'dark') {
-            document.body.classList.add('dark-mode');
-            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        function filtrarGuias() {
+            const input = document.getElementById('buscadorGuias').value.toLowerCase();
+            const tarjetas = document.querySelectorAll('.article-card');
+            
+            tarjetas.forEach(tarjeta => {
+                const titulo = tarjeta.querySelector('h2').innerText.toLowerCase();
+                const desc = tarjeta.querySelector('p').innerText.toLowerCase();
+                
+                if (titulo.includes(input) || desc.includes(input)) {
+                    tarjeta.style.display = 'flex';
+                } else {
+                    tarjeta.style.display = 'none';
+                }
+            });
         }
 
+        const themeBtn = document.getElementById('theme-toggle');
+        if (localStorage.getItem('industrialcalc-theme') === 'dark') document.body.classList.add('dark-mode');
         themeBtn.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
-            if (document.body.classList.contains('dark-mode')) {
-                localStorage.setItem('industrialcalc-theme', 'dark');
-                themeIcon.classList.replace('fa-moon', 'fa-sun');
-            } else {
-                localStorage.setItem('industrialcalc-theme', 'light');
-                themeIcon.classList.replace('fa-sun', 'fa-moon');
-            }
+            localStorage.setItem('industrialcalc-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
         });
     </script>
 </body>
