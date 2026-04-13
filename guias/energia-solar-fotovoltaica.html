@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="canonical" href="https://industrialcalc.es/guias/energia-solar-fotovoltaica.html" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tratado Maestro sobre Energía Solar Fotovoltaica 2026 | IndustrialCalc</title>
+    <meta name="description" content="La guía más extensa de internet sobre energía solar. Ingeniería, física de semiconductores, dimensionado de strings, inversores y autoconsumo industrial.">
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --bg: #fffcf2; --surface: #ffffff; --text: #252422; --primary: #eb5e28; --secondary: #403d39; --border: #ccc5b9; }
+        body.dark-mode { --bg: #252422; --surface: #403d39; --text: #fffcf2; --border: #403d39; }
+        
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; margin: 0; }
+        header { background: #252422; color: white; padding: 1.2rem 2rem; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--primary); }
+        .logo { font-weight: 900; text-decoration: none; color: white; font-size: 1.4rem; text-transform: uppercase; }
+        
+        .hero-section { background: #403d39; color: white; padding: 80px 20px; text-align: center; border-bottom: 10px solid var(--primary); }
+        .hero-section h1 { font-size: 4rem; margin: 0; letter-spacing: -2px; line-height: 1; }
+        
+        main { max-width: 1000px; margin: 0 auto; padding: 4rem 1.5rem; }
+        
+        .mega-toc { background: var(--surface); border: 2px solid var(--primary); padding: 3rem; border-radius: 20px; margin-top: -100px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); position: relative; z-index: 10; }
+        .mega-toc h2 { color: var(--primary); margin-top: 0; font-size: 1.8rem; text-transform: uppercase; }
+        .mega-toc grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        
+        section { margin-bottom: 6rem; }
+        h2 { font-size: 2.8rem; border-left: 8px solid var(--primary); padding-left: 20px; margin-bottom: 2rem; }
+        h3 { font-size: 1.8rem; color: var(--primary); margin-top: 3rem; }
+        
+        p { font-size: 1.25rem; margin-bottom: 2rem; text-align: justify; }
+        
+        .info-box { background: rgba(235, 94, 40, 0.1); border-left: 5px solid var(--primary); padding: 2rem; margin: 3rem 0; border-radius: 0 15px 15px 0; }
+        
+        .data-table { width: 100%; border-collapse: collapse; margin: 3rem 0; font-size: 1.1rem; }
+        .data-table th { background: var(--primary); color: white; padding: 15px; text-align: left; }
+        .data-table td { padding: 15px; border-bottom: 1px solid var(--border); }
+
+        .big-quote { font-size: 2rem; font-style: italic; text-align: center; margin: 4rem 0; color: var(--secondary); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 2rem 0; }
+
+        footer { background: #252422; color: white; padding: 5rem 2rem; text-align: center; }
+        
+        @media (max-width: 768px) { .hero-section h1 { font-size: 2.5rem; } .mega-toc grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="../index.html" class="logo">IndustrialCalc <span>PRO</span></a>
+    <button id="theme-toggle" style="background:var(--primary); border:none; color:white; padding:8px 15px; border-radius:5px; font-weight:bold; cursor:pointer;">SWITCH THEME</button>
+</header>
+
+<div class="hero-section">
+    <h1>LA BIBLIA DE LA <br>ENERGÍA FOTOVOLTAICA</h1>
+    <p style="font-size: 1.5rem; opacity: 0.8;">Ingeniería avanzada, diseño de sistemas y rentabilidad económica</p>
+</div>
+
+<main>
+    <div class="mega-toc">
+        <h2>Contenido del Tratado</h2>
+        <div class="grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <ul style="list-style: none; padding: 0;">
+                <li><a href="#fisica">I. Física del Efecto Fotovoltaico</a></li>
+                <li><a href="#paneles">II. Tecnologías de Paneles (P-Type vs N-Type)</a></li>
+                <li><a href="#inversores">III. Inversores y Electrónica de Potencia</a></li>
+                <li><a href="#dimensionado">IV. Cálculo de Strings y Voltajes</a></li>
+            </ul>
+            <ul style="list-style: none; padding: 0;">
+                <li><a href="#baterias">V. Almacenamiento y Litio (LFP)</a></li>
+                <li><a href="#normativa">VI. Normativa y Vertido a Red</a></li>
+                <li><a href="#mantenimiento">VII. Mantenimiento Preventivo</a></li>
+                <li><a href="#roi">VIII. Análisis de Payback y LCOE</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <section id="fisica">
+        <h2>I. Física del Efecto Fotovoltaico</h2>
+        <p>Para comprender la energía solar, debemos descender al nivel atómico. El efecto fotovoltaico ocurre cuando un fotón (partícula de luz) impacta contra un átomo de silicio dopado, liberando un electrón de su órbita. Este proceso no es mágico; es pura mecánica cuántica aplicada a semiconductores.</p>
+        <div class="info-box">
+            <strong>El Límite de Shockley-Queisser:</strong> Existe un límite físico para la eficiencia de las células de silicio de unión simple, situado aproximadamente en el 33.7%. Entender esto es vital para no caer en fraudes de "paneles milagrosos".
+        </div>
+        <p>El dopado tipo P (con boro) y tipo N (con fósforo) crea una unión P-N. Esta unión genera un campo eléctrico interno que obliga a los electrones liberados a fluir en una dirección específica, creando así la Corriente Continua (DC) que aprovechamos.</p>
+    </section>
+
+    <div style="text-align:center; margin: 40px 0;">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2230094544889798" data-ad-slot="YOUR_SLOT_ID" data-ad-format="auto"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <section id="paneles">
+        <h2>II. Tecnologías de Paneles: ¿Monocristalino o Policristalino?</h2>
+        <p>En 2026, el panel policristalino ha quedado relegado a museos. Hoy hablamos de células <strong>PERC</strong>, tecnología <strong>TopCon</strong> y paneles <strong>HJT (Heterounión)</strong>. La diferencia radica en cómo capturan los fotones que rebotan en la parte trasera de la célula.</p>
+        <h3>Comparativa de Eficiencia</h3>
+        <table class="data-table">
+            <thead>
+                <tr><th>Tecnología</th><th>Eficiencia Media</th><th>Degradación Anual</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Silicio Monocristalino PERC</td><td>20-22%</td><td>0.5%</td></tr>
+                <tr><td>TopCon (N-Type)</td><td>22-24%</td><td>0.4%</td></tr>
+                <tr><td>HJT (Heterojunction)</td><td>24-26%</td><td>0.25%</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <div class="big-quote">
+        "La energía que incide sobre la Tierra en una hora es suficiente para cubrir la demanda mundial de un año completo."
+    </div>
+
+    <section id="dimensionado">
+        <h2>IV. Cálculo de Strings y Voltajes</h2>
+        <p>Un error común en el diseño es no tener en cuenta el coeficiente de temperatura. Cuando hace frío, el voltaje del panel (Voc) sube. Si calculamos mal el número de paneles en serie, podemos freír el inversor en una mañana helada de invierno.</p>
+        <div class="info-box">
+            <strong>Fórmula Maestra de Voltaje:</strong><br>
+            V<sub>max_string</sub> = n · V<sub>oc</sub> · [1 + β · (T<sub>min</sub> - 25)]
+        </div>
+        <p>Donde β es el coeficiente de temperatura del panel (usualmente entre -0.25% y -0.35% por grado Celsius). Ignorar esta fórmula es la principal causa de pérdida de garantía en inversores industriales.</p>
+    </section>
+
+    <section id="roi">
+        <h2>VIII. Análisis de Payback y LCOE</h2>
+        <p>Nadie instala solar por amor al arte; se hace por rentabilidad. El <strong>LCOE (Levelized Cost of Energy)</strong> es el coste real de cada kWh producido durante los 25 años de vida útil del sistema, incluyendo la inversión inicial y el mantenimiento.</p>
+        <p>En España, gracias a la alta radiación, estamos viendo retornos de inversión (Payback) de entre 4 y 6 años para industrias, y unos 6 a 8 años para hogares. Si sumamos bonificaciones fiscales como el IBI o el ICIO, el periodo puede bajar de los 3 años.</p>
+    </section>
+
+    <section>
+        <h2>Conclusión y Futuro de la Energía Distribuida</h2>
+        <p>La red eléctrica del futuro no será un sistema unidireccional de grandes centrales hacia consumidores. Será una red de nodos inteligentes (Smart Grids) donde cada fábrica y cada hogar será una pequeña central eléctrica...</p>
+    </section>
+
+</main>
+
+<footer>
+    <p>INDUSTRIAL CALC PRO &copy; 2026 - Conocimiento para Ingenieros</p>
+    <a href="../index.html" style="color:var(--primary); text-decoration:none; font-weight:bold;">VOLVER A LAS HERRAMIENTAS</a>
+</footer>
+
+<script>
+    const toggle = document.getElementById('theme-toggle');
+    if (localStorage.getItem('dark-mode') === 'true') document.body.classList.add('dark-mode');
+    toggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        localStorage.setItem('dark-mode', document.body.classList.contains('dark-mode'));
+    });
+</script>
+
+</body>
+</html>
