@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <link rel="canonical" href="https://industrialcalc.es/en/pressure-drop-calculator.html" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pipe Pressure Drop Calculator | Friction Loss (Hazen-Williams)</title>
+    <meta name="description" content="Free online pressure drop calculator for water pipes. Calculate friction loss and fluid velocity using the empirical Hazen-Williams equation.">
     
-    <link rel="alternate" hreflang="es" href="https://industrialcalc.es/calculadora-presion.html" />
-    <link rel="alternate" hreflang="en" href="https://industrialcalc.es/en/pressure-drop-calculator.html" />
-    <link rel="alternate" hreflang="x-default" href="https://industrialcalc.es/calculadora-presion.html" />
-
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-E88WRKF9NQ"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -14,17 +14,11 @@
       gtag('js', new Date());
       gtag('config', 'G-E88WRKF9NQ');
     </script>
-
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pipe Pressure Drop Calculator (Hazen-Williams) | IndustrialCalc</title>
-    <meta name="description" content="Free online friction head loss calculator for water pipes. Calculate PSI drop and Feet of Head using the Hazen-Williams equation.">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --bg-body: #f1f5f9; --surface: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --primary: #0891b2; --primary-dark: #0e7490; --header-bg: #0f172a; --border: #e2e8f0; }
+        :root { --bg-body: #f1f5f9; --surface: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --primary: #0284c7; --primary-dark: #0369a1; --header-bg: #0f172a; --border: #e2e8f0; }
         body.dark-mode { --bg-body: #0f172a; --surface: #1e293b; --text-main: #f8fafc; --text-muted: #94a3b8; --border: #334155; --header-bg: #020617; }
         
         body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; transition: 0.3s; line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
@@ -32,11 +26,11 @@
         .logo { font-size: 1.3rem; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 8px; }
         .logo span { color: #3b82f6; }
         .nav-link { color: #60a5fa; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
-
+        
         .lang-switch { display: flex; gap: 5px; background: rgba(255,255,255,0.1); padding: 5px; border-radius: 6px; }
         .lang-switch a { color: white; text-decoration: none; font-size: 0.85rem; font-weight: bold; padding: 4px 8px; border-radius: 4px; opacity: 0.6; }
         .lang-switch a.active { background: var(--primary); opacity: 1; }
-
+        
         .theme-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; opacity: 0.8; transition: 0.2s; padding: 0.5rem; }
 
         main { max-width: 900px; margin: 3rem auto; padding: 0 1.5rem; flex: 1; width: 100%; box-sizing: border-box; }
@@ -54,26 +48,33 @@
         button { background-color: var(--primary); color: #fff; border: none; padding: 1.2rem; width: 100%; border-radius: 10px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.2s; margin-top: 10px; }
         button:hover { background-color: var(--primary-dark); transform: translateY(-2px); }
 
-        .result-box { background: rgba(8, 145, 178, 0.1); border: 2px solid var(--primary); padding: 1.5rem; border-radius: 10px; text-align: center; margin-top: 20px; display: none; }
-        .result-box h3 { margin: 0 0 10px 0; color: var(--primary-dark); font-size: 1.2rem; }
-        .result-value { font-size: 2.8rem; font-weight: 900; color: var(--text-main); margin-bottom: 5px;}
-        .result-desc { color: var(--text-muted); font-size: 1.1rem; font-weight: bold;}
-        .warning { color: #ef4444; font-size: 0.95rem; margin-top: 15px; font-weight: 600; display: none; background: rgba(239, 68, 68, 0.1); padding: 10px; border-radius: 8px;}
+        .result-box { background: rgba(2, 132, 199, 0.05); border: 2px solid var(--primary); padding: 1.5rem; border-radius: 10px; text-align: center; margin-top: 20px; display: none; }
+        .result-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-top: 15px;}
+        .res-item { background: var(--surface); border: 1px solid var(--border); padding: 15px; border-radius: 8px; }
+        .res-val { font-size: 1.8rem; font-weight: 900; color: var(--text-main); margin-bottom: 5px;}
+        .res-lbl { color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; font-weight: bold;}
 
-        /* Estilos del Contenido SEO */
+        /* SEO Content Styles */
         .seo-content { background: var(--surface); padding: 2.5rem; border-radius: 12px; border: 1px solid var(--border); margin-top: 2rem; margin-bottom: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
         .seo-content h2 { font-size: 1.7rem; color: var(--text-main); border-bottom: 3px solid var(--primary); display: inline-block; margin-top: 2rem; margin-bottom: 1.5rem; }
         .seo-content h2:first-child { margin-top: 0; }
-        .seo-content h3 { font-size: 1.3rem; color: var(--text-main); margin-top: 1.5rem; }
         .seo-content p, .seo-content li { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 1rem; line-height: 1.7; }
         
-        .formula-box { background: var(--bg-body); border-left: 4px solid var(--primary); padding: 1.5rem; margin: 1.5rem 0; font-family: monospace; font-size: 1.2rem; color: var(--text-main); overflow-x: auto; text-align: center; border-radius: 0 8px 8px 0; }
+        .formula-box { background: var(--bg-body); border-left: 4px solid var(--primary); padding: 1.5rem; margin: 1.5rem 0; font-family: monospace; font-size: 1.1rem; color: var(--text-main); overflow-x: auto; border-radius: 0 8px 8px 0; text-align: center; }
 
-        .ad-placeholder { margin: 2rem auto; text-align: center; min-height: 100px; display: flex; align-items: center; justify-content: center; background: var(--bg-body); border: 2px dashed var(--border); border-radius: 8px; color: var(--text-muted); font-size: 0.9rem; width: 100%; max-width: 728px; }
+        .internal-link-box { background: rgba(59, 130, 246, 0.1); border: 1px solid #3b82f6; padding: 15px; border-radius: 8px; margin: 20px 0; display: flex; align-items: center; gap: 15px; }
+        .internal-link-box i { font-size: 2rem; color: #3b82f6; }
+        .internal-link-box a { color: #1d4ed8; font-weight: bold; text-decoration: none; }
+        .internal-link-box a:hover { text-decoration: underline; }
 
-        footer { text-align: center; padding: 2rem 1rem; color: var(--text-muted); border-top: 1px solid var(--border); background: var(--surface); width: 100%; box-sizing: border-box; }
+        .ad-placeholder { margin: 2rem auto; text-align: center; min-height: 100px; display: flex; align-items: center; justify-content: center; background: var(--bg-body); border: 2px dashed var(--border); border-radius: 8px; color: var(--text-muted); width: 100%; max-width: 728px; }
+
+        footer { text-align: center; padding: 2rem 1rem; color: var(--text-muted); border-top: 1px solid var(--border); background: var(--surface); margin-top: auto; }
         footer a { color: var(--text-muted); text-decoration: none; }
-        footer a:hover { color: var(--primary); }
+        
+        @media (max-width: 600px) {
+            .result-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -83,7 +84,7 @@
     <div style="display: flex; gap: 15px; align-items: center;">
         <div class="lang-switch">
             <a href="../calculadora-presion.html">ES</a>
-            <a href="pressure-drop-calculator.html" class="active">EN</a>
+            <a href="pressure-drop-calculator.html" class="active">EN</a> 
         </div>
         <button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button>
         <a href="index.html" class="nav-link"><i class="fas fa-arrow-left"></i> Home</a>
@@ -92,28 +93,19 @@
 
 <main>
     <div class="calculator-card">
-        <h1><i class="fas fa-water" style="color: var(--primary);"></i> Pipe Pressure Drop Calculator</h1>
-        <p class="subtitle">Calculate friction head loss (Hazen-Williams) for water systems, HVAC, and plumbing networks.</p>
+        <h1><i class="fas fa-water" style="color: var(--primary);"></i> Pipe Pressure Drop</h1>
+        <p class="subtitle">Calculate friction head loss and fluid velocity in water pipes using the empirical Hazen-Williams equation.</p>
 
         <div class="input-grid">
             <div class="input-group">
                 <label>Flow Rate (Q)</label>
                 <div style="display: flex; gap: 10px;">
-                    <input type="number" id="flow" placeholder="e.g., 50" min="0.1" step="0.1" style="flex: 2;">
-                    <select id="flowUnit" style="flex: 1;">
-                        <option value="gpm">GPM (US)</option>
+                    <input type="number" id="caudal" placeholder="e.g. 50" min="0.1" step="0.1" style="flex: 2;">
+                    <select id="unidadCaudal" style="flex: 1;">
                         <option value="m3h">m³/h</option>
                         <option value="lpm">L/min</option>
-                    </select>
-                </div>
-            </div>
-            <div class="input-group">
-                <label>Internal Diameter (d)</label>
-                <div style="display: flex; gap: 10px;">
-                    <input type="number" id="diameter" placeholder="e.g., 4" min="0.1" step="0.1" style="flex: 2;">
-                    <select id="diaUnit" style="flex: 1;">
-                        <option value="inch">Inches (")</option>
-                        <option value="mm">mm</option>
+                        <option value="lps">L/s</option>
+                        <option value="gpm">GPM (US)</option>
                     </select>
                 </div>
             </div>
@@ -121,34 +113,52 @@
             <div class="input-group">
                 <label>Pipe Length (L)</label>
                 <div style="display: flex; gap: 10px;">
-                    <input type="number" id="length" placeholder="e.g., 100" min="1" step="1" style="flex: 2;">
-                    <select id="lenUnit" style="flex: 1;">
-                        <option value="feet">Feet (ft)</option>
-                        <option value="meters">Meters (m)</option>
-                    </select>
+                    <input type="number" id="longitud" placeholder="e.g. 100" min="1" step="1" style="flex: 2;">
+                    <span style="display: flex; align-items: center; padding: 0 10px; background: var(--bg-body); border: 2px solid var(--border); border-radius: 8px;">meters</span>
                 </div>
             </div>
 
             <div class="input-group">
-                <label>Pipe Material (C-Factor)</label>
+                <label>Inner Diameter (D)</label>
+                <div style="display: flex; gap: 10px;">
+                    <input type="number" id="diametro" placeholder="e.g. 100" min="1" step="0.1" style="flex: 2;">
+                    <span style="display: flex; align-items: center; padding: 0 10px; background: var(--bg-body); border: 2px solid var(--border); border-radius: 8px;">mm</span>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Pipe Material (C Factor)</label>
                 <select id="material">
-                    <option value="150">PVC / CPVC (C=150)</option>
-                    <option value="140">Polyethylene (PE) / Copper (C=140)</option>
-                    <option value="130">Stainless Steel (C=130)</option>
-                    <option value="120">New Commercial Steel (C=120)</option>
-                    <option value="100">Old Cast Iron / Rusted Steel (C=100)</option>
+                    <option value="150" selected>PVC / HDPE (Smooth Plastic) - C:150</option>
+                    <option value="140">Copper / Stainless Steel - C:140</option>
+                    <option value="130">New Commercial Steel - C:130</option>
+                    <option value="100">Old Galvanized Steel - C:100</option>
+                    <option value="90">Rusted Cast Iron - C:90</option>
                 </select>
             </div>
         </div>
 
-        <button onclick="calculatePressureDrop()">Calculate Head Loss</button>
+        <button onclick="calcularPerdidaCarga()">Calculate Friction Loss</button>
 
         <div class="result-box" id="result-box">
-            <h3>Estimated Friction Loss</h3>
-            <div class="result-value" id="res-psi">0.00 PSI</div>
-            <div class="result-desc" id="res-fthead">0.00 Feet of Head</div>
-            <div style="margin-top: 10px; font-size: 0.9rem; color: var(--text-muted);" id="res-metric">0.00 Bar | 0.00 mH2O</div>
-            <div class="warning" id="warning-msg"><i class="fas fa-exclamation-triangle"></i> <strong>Warning:</strong> Fluid velocity is too high (> 8 ft/s). High risk of water hammer, noise, and pipe erosion. Consider increasing the pipe diameter.</div>
+            <h3 style="margin: 0 0 15px 0; color: var(--primary-dark);">Results (Hazen-Williams)</h3>
+            <div class="result-grid">
+                <div class="res-item">
+                    <div class="res-val" id="res-mca">0.00</div>
+                    <div class="res-lbl">m.c.a. (Meters of Head)</div>
+                </div>
+                <div class="res-item">
+                    <div class="res-val" id="res-bar">0.00</div>
+                    <div class="res-lbl">Bar (Pressure Drop)</div>
+                </div>
+                <div class="res-item" style="background: rgba(2, 132, 199, 0.1); border-color: var(--primary);">
+                    <div class="res-val" id="res-vel">0.00</div>
+                    <div class="res-lbl" style="color: var(--primary-dark);">Fluid Velocity (m/s)</div>
+                </div>
+            </div>
+            <div id="warning-msg" style="margin-top: 15px; font-size: 0.9rem; color: #ef4444; font-weight: bold; display: none;">
+                <i class="fas fa-exclamation-triangle"></i> Warning: The velocity exceeds 2.5 m/s. It is recommended to increase the pipe diameter to prevent water hammer and excessive noise.
+            </div>
         </div>
     </div>
 
@@ -157,98 +167,105 @@
     </div>
 
     <section class="seo-content">
-        <h2>What is Friction Head Loss?</h2>
-        <p>When a fluid, such as water, travels through a pipe, it experiences resistance due to friction against the inner walls of the pipe and internal friction between the fluid particles themselves. This resistance causes a dissipation of energy, directly resulting in a <strong>pressure drop</strong> along the line.</p>
-        <p>In hydraulic engineering and HVAC systems, accurately calculating this loss is critical for correctly sizing a <strong>pump's Brake Horsepower (BHP)</strong>. If the pump cannot overcome this friction, the water will not reach its destination with the required flow rate or pressure.</p>
-        
-        <h2>The Hazen-Williams Equation</h2>
-        <p>While the Darcy-Weisbach equation is theoretically more rigorous, the empirical <strong>Hazen-Williams formula</strong> is the industry standard for water flow at ambient temperatures. It is widely preferred because it does not require calculating the Reynolds Number or iterative friction factors.</p>
-        
-        <div class="formula-box">
-            h<sub>f</sub> = 0.2083 × (100 / C)<sup>1.852</sup> × (Q<sup>1.852</sup> / d<sup>4.8655</sup>)
+        <h2>The Physics of Fluid Friction</h2>
+        <p>In the design of pumping systems, irrigation networks, or HVAC circuits, fluid (usually water) encounters physical resistance as it travels through the interior of a pipe. This resistance, or friction, depends directly on the pipe's internal roughness and the velocity at which the fluid is moving.</p>
+        <p>As water rubs against the inner walls, it loses kinetic energy. This lost energy mathematically translates into a <strong>pressure drop</strong>, also known in engineering terminology as <em>Friction Head Loss</em>.</p>
+
+        <div class="internal-link-box">
+            <i class="fas fa-pump-soap"></i>
+            <div>
+                <span style="display:block; color: var(--text-main); font-size: 0.9rem;">Do you already know the Total Dynamic Head (TDH)?</span>
+                <a href="pump-power-calculator.html">Size the motor now with the Water Pump Power Calculator.</a>
+            </div>
         </div>
 
-        <p>Where (in US Customary Units):</p>
+        <h2>The Empirical Hazen-Williams Equation</h2>
+        <p>While there are several methods to calculate fluid friction (such as the complex Darcy-Weisbach equation), for the flow of water at ordinary temperatures in closed conduits, the industry has universally adopted the <strong>empirical Hazen-Williams formula</strong> due to its extreme reliability and parametric simplicity.</p>
+        
+        <div class="formula-box">
+            h<sub>f</sub> = 10.67 × L × ( Q / C )<sup>1.852</sup> / D<sup>4.87</sup>
+        </div>
+        
+        <p>Where the components of the formula in the Metric System are:</p>
         <ul>
-            <li><strong>h<sub>f</sub></strong> = Friction head loss in feet of water per 100 feet of pipe</li>
-            <li><strong>Q</strong> = Volumetric flow rate (GPM)</li>
-            <li><strong>C</strong> = Hazen-Williams roughness coefficient (dimensionless)</li>
-            <li><strong>d</strong> = Inside diameter of the pipe (inches)</li>
+            <li><strong>h<sub>f</sub></strong> = Head loss obtained in meters of water column (m.c.a.)</li>
+            <li><strong>L</strong> = Real length of the straight pipe in meters (m)</li>
+            <li><strong>Q</strong> = Volumetric flow rate circulating in cubic meters per second (m³/s)</li>
+            <li><strong>D</strong> = <strong>Inner</strong> diameter of the pipe in meters (m)</li>
+            <li><strong>C</strong> = Hazen-Williams roughness coefficient (dimensionless). It is inverse to roughness; the smoother the pipe, the higher the C value (e.g., Smooth PVC has C=150, while rusted steel can have C=90).</li>
         </ul>
-        <p><em>Note: This calculator uses the universal metric base equation internally and converts the results to your preferred units to guarantee absolute precision.</em></p>
 
-        <h2>The C-Factor and Fluid Velocity</h2>
-        <p>The <strong>C-Factor</strong> determines how "smooth" the inside of the pipe is. Plastic materials like PVC (C=150) or Polyethylene offer much less resistance than an aged steel or cast iron pipe (C=100).</p>
-        <p>Additionally, this calculator verifies the <strong>fluid velocity</strong> (V = Q / A). In standard industrial and plumbing installations, it is highly recommended to keep water velocity <strong>between 3.5 ft/s and 8 ft/s</strong>. Velocities exceeding these limits dramatically increase pressure drop, system noise, and the risk of a destructive "Water Hammer" effect when valves are closed quickly.</p>
+        <h2>Controlling Fluid Velocity</h2>
+        <p>An engineer must not only look at the pressure drop but also closely monitor the linear velocity of the water inside the tube. Our calculator includes this critical parameter highlighted in blue. The continuity equation dictates that:</p>
+        <div class="formula-box">
+            Velocity (V) = Flow Rate (Q) / Cross-Sectional Area (A)
+        </div>
+        <p><strong>Normative design rules:</strong> It is highly recommended that water velocity is maintained between <strong>1.0 m/s and 2.5 m/s</strong> (approx. 3 to 8 ft/s). Lower velocities cause the sedimentation of heavy particles (fouling the pipe), while velocities exceeding 2.5 m/s generate excessive noise due to turbulence, drastically increase pressure drop, and cause the dangerous phenomenon known as <em>Water Hammer</em> when valves are closed suddenly.</p>
     </section>
-
-    <div class="ad-placeholder">
-        [AdSense Banner - Responsive]
-    </div>
 
 </main>
 
 <footer>
-    <a href="../legales.html">Legal & Privacy Policy</a>
+    <a href="../legales.html">Privacy Policy & Legal Notice</a>
 </footer>
 
 <script>
     if (localStorage.getItem('industrialcalc-theme') === 'dark') document.body.classList.add('dark-mode');
-    
     document.getElementById('theme-toggle').addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
         localStorage.setItem('industrialcalc-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
     });
 
-    function calculatePressureDrop() {
-        const flowInput = parseFloat(document.getElementById('flow').value);
-        const flowUnit = document.getElementById('flowUnit').value;
-        const diaInput = parseFloat(document.getElementById('diameter').value);
-        const diaUnit = document.getElementById('diaUnit').value;
-        const lenInput = parseFloat(document.getElementById('length').value);
-        const lenUnit = document.getElementById('lenUnit').value;
-        const cFactor = parseFloat(document.getElementById('material').value);
+    function calcularPerdidaCarga() {
+        const caudalInput = parseFloat(document.getElementById('caudal').value);
+        const unidadCaudal = document.getElementById('unidadCaudal').value;
+        const longitud = parseFloat(document.getElementById('longitud').value);
+        const diametro_mm = parseFloat(document.getElementById('diametro').value);
+        const coef_C = parseFloat(document.getElementById('material').value);
 
-        if (!flowInput || !diaInput || !lenInput || flowInput <= 0 || diaInput <= 0 || lenInput <= 0) {
+        if (!caudalInput || !longitud || !diametro_mm || caudalInput <= 0 || longitud <= 0 || diametro_mm <= 0) {
             alert("Please enter numerical values greater than zero.");
             return;
         }
 
-        // 1. Convert everything to base metric (m3/s, meters) for the core HW equation
-        let flow_m3s = flowInput;
-        if (flowUnit === 'gpm') flow_m3s = flowInput * 0.0000630901964;
-        else if (flowUnit === 'm3h') flow_m3s = flowInput / 3600;
-        else if (flowUnit === 'lpm') flow_m3s = flowInput / 60000;
+        // 1. Convert Flow to m3/s for Hazen-Williams
+        let caudal_m3s = caudalInput;
+        if (unidadCaudal === 'm3h') {
+            caudal_m3s = caudalInput / 3600;
+        } else if (unidadCaudal === 'lpm') {
+            caudal_m3s = caudalInput / 60000;
+        } else if (unidadCaudal === 'lps') {
+            caudal_m3s = caudalInput / 1000;
+        } else if (unidadCaudal === 'gpm') {
+            caudal_m3s = caudalInput * 0.0000630901964; // US GPM to m3/s
+        }
 
-        let dia_m = diaInput;
-        if (diaUnit === 'inch') dia_m = diaInput * 0.0254;
-        else if (diaUnit === 'mm') dia_m = diaInput / 1000;
+        // 2. Convert Diameter to meters
+        const diametro_m = diametro_mm / 1000;
 
-        let len_m = lenInput;
-        if (lenUnit === 'feet') len_m = lenInput * 0.3048;
+        // 3. Hazen-Williams Equation for hf (m.c.a)
+        // hf = 10.67 * L * (Q/C)^1.852 / D^4.87
+        const numerador = 10.67 * longitud * Math.pow((caudal_m3s / coef_C), 1.852);
+        const denominador = Math.pow(diametro_m, 4.87);
+        const perdida_mca = numerador / denominador;
 
-        // 2. Hazen-Williams Equation (Metric Base: yields meters of head)
-        const hf_mca = 10.67 * len_m * Math.pow((flow_m3s / cFactor), 1.852) / Math.pow(dia_m, 4.87);
-        
-        // 3. Convert outputs back to US and Metric display standards
-        const hf_fthead = hf_mca * 3.28084;
-        const hf_psi = hf_fthead * 0.4335275;
-        const hf_bar = hf_mca * 0.0980665;
+        // 4. Convert m.c.a to Bar (10.197 mca = 1 bar approx)
+        const perdida_bar = perdida_mca / 10.197;
 
-        // 4. Velocity check (m/s to ft/s)
-        const area_m2 = Math.PI * Math.pow((dia_m / 2), 2);
-        const vel_ms = flow_m3s / area_m2;
-        const vel_fts = vel_ms * 3.28084;
+        // 5. Calculate Linear fluid velocity
+        // V = Q / Area. Area = PI * r^2
+        const radio_m = diametro_m / 2;
+        const area_m2 = Math.PI * Math.pow(radio_m, 2);
+        const velocidad_ms = caudal_m3s / area_m2;
 
-        // 5. Update UI
-        document.getElementById('res-psi').innerText = hf_psi.toFixed(3) + " PSI";
-        document.getElementById('res-fthead').innerText = hf_fthead.toFixed(2) + " Feet of Head";
-        document.getElementById('res-metric').innerText = hf_bar.toFixed(3) + " Bar | " + hf_mca.toFixed(2) + " m.c.a.";
-        
+        // Show results
+        document.getElementById('res-mca').innerText = perdida_mca.toFixed(2);
+        document.getElementById('res-bar').innerText = perdida_bar.toFixed(3);
+        document.getElementById('res-vel').innerText = velocidad_ms.toFixed(2);
+
+        // Warning if velocity is too high (water hammer risk)
         const warning = document.getElementById('warning-msg');
-        // Velocity limit warning (8 ft/s)
-        if (vel_fts > 8.0) {
-            warning.innerHTML = `<i class="fas fa-exclamation-triangle"></i> <strong>Warning:</strong> Fluid velocity is too high (${vel_fts.toFixed(1)} ft/s). High risk of water hammer, noise, and pipe erosion. Consider increasing the pipe diameter.`;
+        if (velocidad_ms > 2.5) {
             warning.style.display = "block";
         } else {
             warning.style.display = "none";
