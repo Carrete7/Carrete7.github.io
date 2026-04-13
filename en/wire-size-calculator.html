@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <link rel="canonical" href="https://industrialcalc.es/en/wire-size-calculator.html" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wire Size Calculator (AWG) | Voltage Drop & Ampacity (NEC)</title>
+    <meta name="description" content="Free online AWG wire size calculator. Determine the correct electrical cable section based on allowable voltage drop and NEC ampacity standards.">
     
-    <link rel="alternate" hreflang="es" href="https://industrialcalc.es/calculadora-tension.html" />
-    <link rel="alternate" hreflang="en" href="https://industrialcalc.es/en/wire-size-calculator.html" />
-    <link rel="alternate" hreflang="x-default" href="https://industrialcalc.es/calculadora-tension.html" />
-
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-E88WRKF9NQ"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -14,30 +14,22 @@
       gtag('js', new Date());
       gtag('config', 'G-E88WRKF9NQ');
     </script>
-
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Voltage Drop & Wire Size Calculator (NEC) | IndustrialCalc</title>
-    <meta name="description" content="Free online voltage drop calculator. Calculate wire size (AWG), voltage loss, and percentage for single-phase and three-phase circuits based on NEC standards.">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --bg-body: #f1f5f9; --surface: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --primary: #eab308; --primary-dark: #ca8a04; --header-bg: #0f172a; --border: #e2e8f0; }
+        :root { --bg-body: #f1f5f9; --surface: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --primary: #2563eb; --primary-dark: #1d4ed8; --header-bg: #0f172a; --border: #e2e8f0; }
         body.dark-mode { --bg-body: #0f172a; --surface: #1e293b; --text-main: #f8fafc; --text-muted: #94a3b8; --border: #334155; --header-bg: #020617; }
         
         body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; transition: 0.3s; line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
-        
         header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
         .logo { font-size: 1.3rem; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 8px; }
         .logo span { color: #3b82f6; }
         .nav-link { color: #60a5fa; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
-
+        
         .lang-switch { display: flex; gap: 5px; background: rgba(255,255,255,0.1); padding: 5px; border-radius: 6px; }
         .lang-switch a { color: white; text-decoration: none; font-size: 0.85rem; font-weight: bold; padding: 4px 8px; border-radius: 4px; opacity: 0.6; }
-        .lang-switch a.active { background: var(--primary); color: #000; opacity: 1; }
+        .lang-switch a.active { background: var(--primary); opacity: 1; }
         
         .theme-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; opacity: 0.8; transition: 0.2s; padding: 0.5rem; }
 
@@ -53,34 +45,36 @@
         input, select { padding: 1rem; border: 2px solid var(--border); border-radius: 10px; font-size: 1rem; background: var(--bg-body); color: var(--text-main); outline: none; transition: 0.2s; }
         input:focus, select:focus { border-color: var(--primary); }
         
-        button { background-color: var(--primary); color: #111; border: none; padding: 1.2rem; width: 100%; border-radius: 10px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.2s; margin-top: 10px; }
+        button { background-color: var(--primary); color: #fff; border: none; padding: 1.2rem; width: 100%; border-radius: 10px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.2s; margin-top: 10px; }
         button:hover { background-color: var(--primary-dark); transform: translateY(-2px); }
 
-        .result-box { background: rgba(234, 179, 8, 0.1); border: 2px solid var(--primary); padding: 1.5rem; border-radius: 10px; text-align: center; margin-top: 20px; display: none; }
-        .result-box h3 { margin: 0 0 10px 0; color: var(--primary-dark); font-size: 1.2rem; }
-        .result-value { font-size: 2.8rem; font-weight: 900; color: var(--text-main); margin-bottom: 5px;}
-        .result-desc { color: var(--text-muted); font-size: 1.1rem; font-weight: bold;}
-        .warning { color: #ef4444; font-size: 0.95rem; margin-top: 15px; font-weight: 600; display: none; background: rgba(239, 68, 68, 0.1); padding: 10px; border-radius: 8px;}
+        .result-box { background: rgba(37, 99, 235, 0.05); border: 2px solid var(--primary); padding: 1.5rem; border-radius: 10px; text-align: center; margin-top: 20px; display: none; }
+        .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;}
+        .res-item { background: var(--surface); border: 1px solid var(--border); padding: 15px; border-radius: 8px; }
+        .res-val { font-size: 2.2rem; font-weight: 900; color: var(--text-main); margin-bottom: 5px;}
+        .res-lbl { color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; font-weight: bold;}
 
-        /* Estilos del Contenido SEO Gigante */
+        /* SEO Content Styles */
         .seo-content { background: var(--surface); padding: 2.5rem; border-radius: 12px; border: 1px solid var(--border); margin-top: 2rem; margin-bottom: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
         .seo-content h2 { font-size: 1.7rem; color: var(--text-main); border-bottom: 3px solid var(--primary); display: inline-block; margin-top: 2rem; margin-bottom: 1.5rem; }
         .seo-content h2:first-child { margin-top: 0; }
-        .seo-content h3 { font-size: 1.3rem; color: var(--text-main); margin-top: 1.5rem; }
         .seo-content p, .seo-content li { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 1rem; line-height: 1.7; }
         
-        .formula-box { background: var(--bg-body); border-left: 4px solid var(--primary); padding: 1.5rem; margin: 1.5rem 0; font-family: monospace; font-size: 1.2rem; color: var(--text-main); overflow-x: auto; text-align: center; border-radius: 0 8px 8px 0; }
+        .formula-box { background: var(--bg-body); border-left: 4px solid var(--primary); padding: 1.5rem; margin: 1.5rem 0; font-family: monospace; font-size: 1.1rem; color: var(--text-main); overflow-x: auto; border-radius: 0 8px 8px 0; }
 
-        .faq-item { margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
-        .faq-item h4 { color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px; }
-        .faq-item h4 i { color: var(--primary); }
-        .faq-item:last-child { border-bottom: none; }
+        .internal-link-box { background: rgba(37, 99, 235, 0.1); border: 1px solid var(--primary); padding: 15px; border-radius: 8px; margin: 20px 0; display: flex; align-items: center; gap: 15px; }
+        .internal-link-box i { font-size: 2rem; color: var(--primary); }
+        .internal-link-box a { color: var(--primary-dark); font-weight: bold; text-decoration: none; }
+        .internal-link-box a:hover { text-decoration: underline; }
 
-        .ad-placeholder { margin: 2rem auto; text-align: center; min-height: 100px; display: flex; align-items: center; justify-content: center; background: var(--bg-body); border: 2px dashed var(--border); border-radius: 8px; color: var(--text-muted); font-size: 0.9rem; width: 100%; max-width: 728px; }
+        .ad-placeholder { margin: 2rem auto; text-align: center; min-height: 100px; display: flex; align-items: center; justify-content: center; background: var(--bg-body); border: 2px dashed var(--border); border-radius: 8px; color: var(--text-muted); width: 100%; max-width: 728px; }
 
-        footer { text-align: center; padding: 2rem 1rem; color: var(--text-muted); border-top: 1px solid var(--border); background: var(--surface); width: 100%; box-sizing: border-box; }
+        footer { text-align: center; padding: 2rem 1rem; color: var(--text-muted); border-top: 1px solid var(--border); background: var(--surface); margin-top: auto; }
         footer a { color: var(--text-muted); text-decoration: none; }
-        footer a:hover { color: var(--primary); }
+        
+        @media (max-width: 600px) {
+            .result-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -89,8 +83,8 @@
     <a href="index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span> Pro</a>
     <div style="display: flex; gap: 15px; align-items: center;">
         <div class="lang-switch">
-            <a href="../calculadora-tension.html">ES</a>
-            <a href="wire-size-calculator.html" class="active">EN</a>
+            <a href="../calculadora-seccion-tri.html">ES</a>
+            <a href="wire-size-calculator.html" class="active">EN</a> 
         </div>
         <button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button>
         <a href="index.html" class="nav-link"><i class="fas fa-arrow-left"></i> Home</a>
@@ -99,71 +93,75 @@
 
 <main>
     <div class="calculator-card">
-        <h1><i class="fas fa-bolt" style="color: var(--primary);"></i> Voltage Drop & Wire Size</h1>
-        <p class="subtitle">Calculate voltage loss in electrical cables based on length, AWG size, and material (Compliant with NEC Standards).</p>
+        <h1><i class="fas fa-bolt" style="color: var(--primary);"></i> AWG Wire Size Calculator</h1>
+        <p class="subtitle">Determine the correct electrical wire size (AWG or kcmil) based on allowable voltage drop and load current, compliant with standard engineering practices.</p>
 
         <div class="input-grid">
             <div class="input-group">
-                <label>Electrical System</label>
+                <label>System Type</label>
                 <select id="sistema">
-                    <option value="monofasico">Single-Phase (e.g., 120V / 240V)</option>
-                    <option value="trifasico">Three-Phase (e.g., 208V / 480V)</option>
+                    <option value="2">Single-Phase (120V / 240V)</option>
+                    <option value="1.732" selected>Three-Phase (208V / 480V)</option>
+                    <option value="2">DC (Direct Current)</option>
                 </select>
-            </div>
-            <div class="input-group">
-                <label>Source Voltage (V)</label>
-                <input type="number" id="voltaje" value="120" min="1">
-            </div>
-            <div class="input-group">
-                <label>Load Current (Amps)</label>
-                <input type="number" id="corriente" placeholder="e.g., 20" min="0.1" step="0.1">
             </div>
             
             <div class="input-group">
-                <label>Distance / Cable Length</label>
+                <label>Line Voltage (V)</label>
+                <input type="number" id="tension" value="480" min="12" step="1">
+            </div>
+
+            <div class="input-group">
+                <label>Load Current (Amps)</label>
+                <input type="number" id="corriente" placeholder="e.g. 50" min="0.1" step="0.1">
+            </div>
+
+            <div class="input-group">
+                <label>One-Way Distance</label>
                 <div style="display: flex; gap: 10px;">
-                    <input type="number" id="longitud" placeholder="100" min="1" style="flex: 2;">
+                    <input type="number" id="longitud" placeholder="e.g. 150" min="1" step="1" style="flex: 2;">
                     <select id="unidadLongitud" style="flex: 1;">
-                        <option value="feet">Feet</option>
-                        <option value="meters">Meters</option>
+                        <option value="ft">Feet</option>
+                        <option value="m">Meters</option>
                     </select>
                 </div>
             </div>
 
             <div class="input-group">
-                <label>Conductor Material</label>
-                <select id="material">
-                    <option value="0.0172">Copper (Cu)</option>
-                    <option value="0.0282">Aluminum (Al)</option>
+                <label>Allowable Voltage Drop (%)</label>
+                <select id="caida_max">
+                    <option value="2">2% (Critical Equipment)</option>
+                    <option value="3" selected>3% (NEC Branch Circuits)</option>
+                    <option value="5">5% (NEC Feeders + Branch)</option>
                 </select>
             </div>
+
             <div class="input-group">
-                <label>Wire Size (AWG / kcmil)</label>
-                <select id="seccion">
-                    <option value="2.08">14 AWG</option>
-                    <option value="3.31">12 AWG</option>
-                    <option value="5.26">10 AWG</option>
-                    <option value="8.37">8 AWG</option>
-                    <option value="13.3">6 AWG</option>
-                    <option value="21.15">4 AWG</option>
-                    <option value="33.62">2 AWG</option>
-                    <option value="42.41">1 AWG</option>
-                    <option value="53.49">1/0 AWG</option>
-                    <option value="67.43">2/0 AWG</option>
-                    <option value="85.01">3/0 AWG</option>
-                    <option value="107.22">4/0 AWG</option>
-                    <option value="127">250 kcmil</option>
+                <label>Conductor Material</label>
+                <select id="material">
+                    <option value="12.9" selected>Copper (Cu)</option>
+                    <option value="21.2">Aluminum (Al)</option>
                 </select>
             </div>
         </div>
 
-        <button onclick="calcularCaidaTension()">Calculate Voltage Drop</button>
+        <button onclick="calcularAWG()">Calculate Minimum AWG Size</button>
 
         <div class="result-box" id="result-box">
-            <h3>Calculation Results</h3>
-            <div class="result-value" id="res-voltios">0.00 V</div>
-            <div class="result-desc" id="res-porcentaje">0.00% Drop</div>
-            <div class="warning" id="warning-msg"><i class="fas fa-exclamation-triangle"></i> <strong>NEC Warning:</strong> The voltage drop exceeds the 3% recommended maximum for branch circuits. Please consider increasing the wire size.</div>
+            <h3 style="margin: 0 0 10px 0; color: var(--primary-dark);">Recommended Wire Size</h3>
+            <div class="result-grid">
+                <div class="res-item">
+                    <div class="res-val" id="res-awg">--</div>
+                    <div class="res-lbl">AWG / kcmil (US Standard)</div>
+                </div>
+                <div class="res-item">
+                    <div class="res-val" id="res-vd">0.00 V</div>
+                    <div class="res-lbl">Actual Voltage Drop</div>
+                </div>
+            </div>
+            <div style="margin-top: 15px; font-size: 0.9rem; color: #ef4444; font-weight: bold; background: #fef2f2; padding: 10px; border-radius: 8px;">
+                <i class="fas fa-exclamation-triangle"></i> <strong>Important:</strong> This result is based strictly on voltage drop. You must also verify that the selected wire meets the ampacity requirements of the National Electrical Code (NEC Table 310.16) for your specific insulation type and temperature rating.
+            </div>
         </div>
     </div>
 
@@ -172,99 +170,134 @@
     </div>
 
     <section class="seo-content">
-        <h2>What is Voltage Drop?</h2>
-        <p>Electrical cables are not perfect conductors; they have a natural inherent resistance to the flow of electricity. When power is transmitted over long distances, this resistance causes a portion of the voltage to be lost as heat before reaching the load. This phenomenon is known as <strong>voltage drop</strong>.</p>
-        <p>If the voltage drop is too high, motors will lose torque and run hotter, lighting will flicker or dim, and sensitive electronic equipment may fail or experience unexpected reboots due to undervoltage.</p>
-        
-        <h2>NEC Standards & Maximum Allowable Limits</h2>
-        <p>The <strong>National Electrical Code (NEC)</strong> provides strict guidelines for electrical design to ensure safety and efficiency. According to NEC Article 210.19(A) Informational Note No. 4:</p>
-        <ul>
-            <li><strong>Branch Circuits:</strong> The maximum recommended voltage drop is <strong>3%</strong> at the farthest outlet.</li>
-            <li><strong>Feeders + Branch Circuits:</strong> The total combined voltage drop should not exceed <strong>5%</strong>.</li>
-            <li><strong>Solar PV Systems:</strong> For solar panels, it is often recommended to keep the drop below 1.5% - 2% to maximize energy yield.</li>
-        </ul>
+        <h2>How to Calculate Wire Size based on Voltage Drop?</h2>
+        <p>In electrical engineering, selecting the correct conductor size is not just about ensuring the wire doesn't melt under high currents (Ampacity). According to the <strong>National Electrical Code (NEC)</strong>, specifically in its Informational Notes, a conductor must also be sized to prevent excessive voltage loss across long distances.</p>
+        <p>If a wire is too thin or the run is too long, the inherent resistance of the metal will cause the voltage at the load end (e.g., a motor or a panel) to drop significantly. This can lead to equipment malfunction, overheating, and decreased efficiency.</p>
 
-        <h2>Voltage Drop Engineering Formula</h2>
-        <p>This calculator determines the loss using the standard engineering formula based on the conductor's specific resistivity, length, and cross-sectional area. The formula used for a single-phase AC or DC circuit is:</p>
-        
-        <div class="formula-box">
-            $$V_d = \frac{2 \cdot L \cdot I \cdot \rho}{A}$$
+        <div class="internal-link-box">
+            <i class="fas fa-table"></i>
+            <div>
+                <span style="display:block; color: var(--text-main); font-size: 0.9rem;">Need to check NEC Ampacity limits?</span>
+                <a href="wire-size-table.html">View our complete AWG Wire Size & Ampacity Reference Table.</a>
+            </div>
         </div>
 
-        <p>Where:</p>
+        <h2>The Voltage Drop Formula (Circular Mils)</h2>
+        <p>In North America, the standard mathematical approach for calculating wire cross-sectional area to limit voltage drop uses <strong>Circular Mils (cmil)</strong> instead of square millimeters.</p>
+        
+        <div class="formula-box">
+            CMIL = ( K × I × L × System Multiplier ) / Allowable Voltage Drop
+        </div>
+        
+        <p>Let's break down the components of this vital formula:</p>
         <ul>
-            <li><strong>V<sub>d</sub></strong> = Voltage Drop (Volts)</li>
-            <li><strong>L</strong> = One-way length of the circuit (converted to meters internally)</li>
-            <li><strong>I</strong> = Load current (Amps)</li>
-            <li><strong>ρ</strong> = Specific resistivity of the material (0.0172 for Copper, 0.0282 for Aluminum at 20°C)</li>
-            <li><strong>A</strong> = Cross-sectional area of the wire in mm² (mapped from AWG)</li>
+            <li><strong>K (Specific Resistance):</strong> The constant for the conductor material. Commonly accepted values are <strong>12.9 ohms-cmil/ft</strong> for Copper and <strong>21.2 ohms-cmil/ft</strong> for Aluminum at standard operating temperatures (75°C).</li>
+            <li><strong>I (Current):</strong> The maximum continuous load current in Amperes (Amps).</li>
+            <li><strong>L (Length):</strong> The one-way distance from the power source to the load in feet.</li>
+            <li><strong>System Multiplier:</strong> This accounts for the return path of the current. It is <strong>2</strong> for Single-Phase or DC circuits, and <strong>1.732 (√3)</strong> for Three-Phase systems.</li>
+            <li><strong>Allowable Voltage Drop:</strong> The maximum voltage loss permitted (e.g., 3% of 480V = 14.4V).</li>
         </ul>
-        <p><em>Note: For three-phase circuits, the multiplier "2" is replaced by the square root of 3 (approx. 1.732).</em></p>
 
-        <h2>How to fix an excessive voltage drop?</h2>
-        <p>The most direct and common engineering solution is to <strong>increase the wire size (decrease the AWG number)</strong>. By using a thicker wire, you reduce its ohmic resistance, allowing current to flow with much less loss. Another alternative for extremely long distances is transmitting the power at a higher voltage and using step-down transformers at the destination.</p>
+        <h2>Understanding AWG and kcmil</h2>
+        <p>Once the mathematical calculation gives us the required area in Circular Mils (cmil), we must translate this theoretical number into a commercially available wire size. In the United States, this is done using the <strong>American Wire Gauge (AWG)</strong> standard.</p>
+        <p>AWG works backwards: the larger the AWG number (e.g., 14 AWG, 12 AWG), the thinner the wire. For cables larger than 4/0 AWG (0000), the industry switches to <strong>kcmil</strong> (thousands of circular mils), formerly known as MCM. Our calculator automatically handles this complex conversion, providing you with the exact commercial size you need to purchase.</p>
+        
+        <h3>NEC Voltage Drop Recommendations</h3>
+        <p>While often cited as a strict rule, the NEC handles voltage drop as a recommendation for efficiency (FPN in Section 210.19(A) and 215.2(A)):</p>
+        <ul>
+            <li><strong>Branch Circuits:</strong> Maximum <strong>3%</strong> voltage drop at the farthest outlet.</li>
+            <li><strong>Feeders + Branch Circuits combined:</strong> Maximum total of <strong>5%</strong> voltage drop.</li>
+        </ul>
     </section>
-
-    <div class="ad-placeholder">
-        [AdSense Banner - Responsive]
-    </div>
 
 </main>
 
 <footer>
-    <a href="../legales.html">Legal & Privacy Policy</a>
+    <a href="../legales.html">Privacy Policy & Legal Notice</a>
 </footer>
 
 <script>
     if (localStorage.getItem('industrialcalc-theme') === 'dark') document.body.classList.add('dark-mode');
-    
     document.getElementById('theme-toggle').addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
         localStorage.setItem('industrialcalc-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
     });
 
-    function calcularCaidaTension() {
-        const sistema = document.getElementById('sistema').value;
-        const voltaje = parseFloat(document.getElementById('voltaje').value);
-        const corriente = parseFloat(document.getElementById('corriente').value);
-        const inputLongitud = parseFloat(document.getElementById('longitud').value);
-        const unidadLongitud = document.getElementById('unidadLongitud').value;
-        const resistividad = parseFloat(document.getElementById('material').value);
-        const seccion_mm2 = parseFloat(document.getElementById('seccion').value);
+    // Tabla interna de conversión CMIL a AWG
+    const awgTable = [
+        { size: "14 AWG", cmil: 4110 },
+        { size: "12 AWG", cmil: 6530 },
+        { size: "10 AWG", cmil: 10380 },
+        { size: "8 AWG", cmil: 16510 },
+        { size: "6 AWG", cmil: 26240 },
+        { size: "4 AWG", cmil: 41740 },
+        { size: "3 AWG", cmil: 52620 },
+        { size: "2 AWG", cmil: 66360 },
+        { size: "1 AWG", cmil: 83690 },
+        { size: "1/0 AWG", cmil: 105600 },
+        { size: "2/0 AWG", cmil: 133100 },
+        { size: "3/0 AWG", cmil: 167800 },
+        { size: "4/0 AWG", cmil: 211600 },
+        { size: "250 kcmil", cmil: 250000 },
+        { size: "300 kcmil", cmil: 300000 },
+        { size: "350 kcmil", cmil: 350000 },
+        { size: "400 kcmil", cmil: 400000 },
+        { size: "500 kcmil", cmil: 500000 },
+        { size: "600 kcmil", cmil: 600000 },
+        { size: "750 kcmil", cmil: 750000 },
+        { size: "1000 kcmil", cmil: 1000000 }
+    ];
 
-        if (!voltaje || !corriente || !inputLongitud || voltaje <= 0 || corriente <= 0 || inputLongitud <= 0) {
-            alert("Please enter numerical values greater than zero.");
+    function calcularAWG() {
+        const factor_sistema = parseFloat(document.getElementById('sistema').value);
+        const V = parseFloat(document.getElementById('tension').value);
+        const I = parseFloat(document.getElementById('corriente').value);
+        let L = parseFloat(document.getElementById('longitud').value);
+        const unidadL = document.getElementById('unidadLongitud').value;
+        const vd_percent = parseFloat(document.getElementById('caida_max').value);
+        const K = parseFloat(document.getElementById('material').value);
+
+        if (!V || !I || !L || I <= 0 || L <= 0 || V <= 0) {
+            alert("Please enter valid numerical values for Voltage, Current, and Distance.");
             return;
         }
 
-        // Convertir pies a metros si el usuario seleccionó "feet"
-        let longitudEnMetros = inputLongitud;
-        if (unidadLongitud === 'feet') {
-            longitudEnMetros = inputLongitud * 0.3048;
+        // Convertir L a pies si está en metros (1 m = 3.28084 ft)
+        if (unidadL === 'm') {
+            L = L * 3.28084;
         }
 
-        let caidaVoltios = 0;
+        // Caída de tensión máxima permitida en Voltios
+        const max_vd_volts = (vd_percent / 100) * V;
 
-        // Fórmulas estándar (Single-phase vs Three-phase)
-        if (sistema === 'monofasico') {
-            caidaVoltios = (2 * longitudEnMetros * corriente * resistividad) / seccion_mm2;
-        } else {
-            caidaVoltios = (Math.sqrt(3) * longitudEnMetros * corriente * resistividad) / seccion_mm2;
+        // Fórmula americana: CMIL = (K * I * L * Factor_Sistema) / VD_Permitido
+        const required_cmil = (K * I * L * factor_sistema) / max_vd_volts;
+
+        // Buscar el tamaño de cable adecuado en la tabla AWG
+        let recommended_wire = "Out of Range (>1000 kcmil)";
+        let actual_cmil = 1000000;
+
+        for (let i = 0; i < awgTable.length; i++) {
+            if (awgTable[i].cmil >= required_cmil) {
+                recommended_wire = awgTable[i].size;
+                actual_cmil = awgTable[i].cmil;
+                break;
+            }
         }
 
-        const porcentajeCaida = (caidaVoltios / voltaje) * 100;
+        // Calcular la caída de tensión REAL con el cable seleccionado
+        // VD_Real = (K * I * L * Factor_Sistema) / CMIL_Real
+        const actual_vd_volts = (K * I * L * factor_sistema) / actual_cmil;
 
-        document.getElementById('res-voltios').innerText = caidaVoltios.toFixed(2) + " V";
-        document.getElementById('res-porcentaje').innerText = porcentajeCaida.toFixed(2) + "% Drop";
+        // Mostrar resultados
+        document.getElementById('res-awg').innerText = recommended_wire;
         
-        const warning = document.getElementById('warning-msg');
-        // El límite del NEC es 3%
-        if (porcentajeCaida > 3) {
-            warning.style.display = "block";
+        if (recommended_wire === "Out of Range (>1000 kcmil)") {
+             document.getElementById('res-vd').innerText = "-- V";
         } else {
-            warning.style.display = "none";
+             document.getElementById('res-vd').innerText = actual_vd_volts.toFixed(2) + " V";
         }
-
+       
         document.getElementById('result-box').style.display = "block";
     }
 </script>
