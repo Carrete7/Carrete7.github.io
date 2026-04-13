@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
+    <link rel="canonical" href="https://industrialcalc.es/guias/cuando-es-obligatorio-bateria-condensadores.html" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Cuándo es obligatorio instalar una Batería de Condensadores? | Guía IndustrialCalc</title>
+    <meta name="description" content="Guía completa sobre penalizaciones de energía reactiva, factor de potencia y cómo justificar la instalación de una batería de condensadores en tu empresa.">
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-E88WRKF9NQ"></script>
     <script>
@@ -10,73 +14,144 @@
       gtag('js', new Date());
       gtag('config', 'G-E88WRKF9NQ');
     </script>
-    
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    
-    <meta charset="UTF-8">
-  <title>Calculadora de Frigorías por m² y m³ | Online Gratis</title>
-<meta name="description" content="Calcula rápidamente cuántas frigorías necesitas para tu equipo de aire acondicionado según los metros cuadrados o cúbicos de la estancia.">
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --bg: #f8fafc; --surface: #ffffff; --text: #1e293b; --primary: #0ea5e9; --border: #e2e8f0; --header-bg: #0f172a; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0; display: flex; flex-direction: column; min-height: 100vh; align-items: center; }
-        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; width: 100%; box-sizing: border-box; }
-        .header-content { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
-        main { width: 100%; max-width: 800px; padding: 2rem 1rem; box-sizing: border-box; }
-        .back-link { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 1.5rem; color: #64748b; text-decoration: none; font-weight: 500; }
-        .card { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 2rem; }
-        h1 { color: var(--primary); text-align: center; margin-bottom: 1.5rem; }
-        label { font-size: 0.85rem; font-weight: 600; color: #475569; display: block; margin-top: 1rem; }
-        input { width: 100%; padding: 0.8rem; margin-top: 5px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box; }
-        button { width: 100%; padding: 1rem; background: var(--primary); color: white; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 1.5rem; transition: 0.2s; }
-        button:hover { background: #0284c7; }
-        .result { margin-top: 1.5rem; padding: 1.5rem; background: #f0f9ff; border-radius: 8px; display: none; text-align: center; border: 2px solid #bae6fd; }
-        .info-box { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); margin-top: 2rem; }
-        footer { text-align: center; padding: 2rem; width: 100%; margin-top: auto; border-top: 1px solid var(--border); }
+        :root { --bg-body: #f1f5f9; --surface: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --primary: #7c3aed; --primary-dark: #6d28d9; --header-bg: #0f172a; --border: #e2e8f0; --accent: #8b5cf6; }
+        body.dark-mode { --bg-body: #0f172a; --surface: #1e293b; --text-main: #f8fafc; --text-muted: #94a3b8; --border: #334155; --header-bg: #020617; }
+        
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; transition: 0.3s; line-height: 1.7; display: flex; flex-direction: column; min-height: 100vh; }
+        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        .logo { font-size: 1.3rem; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .logo span { color: #3b82f6; }
+        .nav-link { color: #60a5fa; text-decoration: none; font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
+
+        .theme-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; opacity: 0.8; transition: 0.2s; padding: 0.5rem; margin-left: 15px;}
+
+        main { max-width: 850px; margin: 3rem auto; padding: 0 1.5rem; flex: 1; width: 100%; box-sizing: border-box; }
+        
+        .article-header { text-align: center; margin-bottom: 3rem; }
+        .category-tag { background: rgba(124, 58, 237, 0.1); color: var(--primary); padding: 6px 16px; border-radius: 50px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: 1.5rem; border: 1px solid var(--primary); }
+        h1 { font-size: 2.8rem; margin: 0 0 1rem 0; letter-spacing: -1px; color: var(--text-main); line-height: 1.2; }
+        .author-meta { color: var(--text-muted); font-size: 0.95rem; display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 1.5rem; }
+        
+        .featured-image { width: 100%; height: 350px; background: linear-gradient(135deg, var(--surface) 0%, var(--bg-body) 100%); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 3rem; border: 1px solid var(--border); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); }
+        .featured-image i { font-size: 6rem; color: var(--primary); opacity: 0.8; }
+
+        .article-content { background: var(--surface); padding: 3rem; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .article-content h2 { font-size: 1.8rem; color: var(--text-main); margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 10px; border-bottom: 2px solid var(--border); display: flex; align-items: center; gap: 10px; }
+        .article-content h2:first-child { margin-top: 0; }
+        .article-content h3 { font-size: 1.4rem; color: var(--text-main); margin-top: 2rem; }
+        .article-content p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+        .article-content ul { font-size: 1.1rem; color: var(--text-muted); padding-left: 1.5rem; margin-bottom: 1.5rem; }
+        .article-content li { margin-bottom: 0.8rem; }
+
+        .highlight-box { background: rgba(124, 58, 237, 0.05); border-left: 4px solid var(--primary); padding: 1.5rem; margin: 2rem 0; border-radius: 0 8px 8px 0; }
+        .highlight-box p { margin: 0; color: var(--text-main); font-weight: 500; }
+        
+        .interactive-cta { background: var(--header-bg); color: white; padding: 2rem; border-radius: 12px; text-align: center; margin: 3rem 0; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+        .interactive-cta h3 { color: white; margin-top: 0; }
+        .interactive-cta p { color: #94a3b8; margin-bottom: 1.5rem; }
+        .interactive-cta a { background: var(--primary); color: white; text-decoration: none; padding: 1rem 2rem; border-radius: 8px; font-weight: bold; display: inline-block; transition: 0.2s; }
+        .interactive-cta a:hover { background: var(--primary-dark); transform: translateY(-2px); }
+
+        .ad-placeholder { margin: 2.5rem auto; text-align: center; min-height: 250px; display: flex; align-items: center; justify-content: center; background: var(--bg-body); border: 2px dashed var(--border); border-radius: 12px; color: var(--text-muted); width: 100%; }
+
+        footer { text-align: center; padding: 3rem 1rem; color: var(--text-muted); border-top: 1px solid var(--border); background: var(--surface); margin-top: 4rem; }
+        footer a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+        footer a:hover { color: var(--primary); }
     </style>
 </head>
 <body>
-    <header><div class="header-content"><a href="index.html" style="color:white; text-decoration:none; font-weight:800;"><i class="fas fa-industry"></i> IndustrialCalc Pro</a></div></header>
-    <main>
-        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
-        <div class="card">
-            <h1><i class="fas fa-snowflake"></i> Frigorías por Superficie</h1>
-            <label>Superficie del local o habitación (m²)</label>
-            <input type="number" id="area_frig" placeholder="Ej: 25">
-            <label>Carga térmica estim. (100 normal / 150 mucho sol o áticos)</label>
-            <input type="number" id="carga_frig" value="100">
-            <button onclick="calcFrig()">Calcular Frigorías Necesarias</button>
-            <div id="res_frig" class="result"></div>
+
+<header>
+    <a href="../index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span> Pro</a>
+    <div style="display: flex; align-items: center;">
+        <a href="../guias.html" class="nav-link"><i class="fas fa-arrow-left"></i> Volver a Guías</a>
+        <button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button>
+    </div>
+</header>
+
+<main>
+    <article>
+        <header class="article-header">
+            <span class="category-tag">Eficiencia Energética</span>
+            <h1>¿Cuándo es obligatorio instalar una Batería de Condensadores?</h1>
+            <div class="author-meta">
+                <span><i class="far fa-calendar-alt"></i> Actualizado: Abril 2026</span>
+                <span><i class="far fa-clock"></i> 6 min de lectura</span>
+            </div>
+        </header>
+
+        <div class="featured-image">
+            <i class="fas fa-charging-station"></i>
         </div>
 
-        <div class="info-box" style="background: #f0f9ff;">
-            <h2 style="font-size: 1.2rem; color: #0284c7;">Dimensionamiento Práctico de Climatización</h2>
-            <p style="font-size: 0.95rem; line-height: 1.6; color: #075985;">
-                Para un cálculo rápido de la potencia de refrigeración, se suele utilizar una base de 100 frigorías por metro cuadrado para estancias estándar. Este valor debe incrementarse si el local tiene mala orientación, grandes superficies acristaladas o techos altos.
-            </p>
-            <p style="font-size: 1.2rem; text-align: center; padding: 10px 0;">
-                $$Q = A \cdot C$$
-            </p>
-            <ul style="font-size: 0.9rem; color: #075985; padding-left: 20px;">
-                <li><strong>\(Q\) (Potencia):</strong> Capacidad de refrigeración necesaria expresada en frigorías por hora (fg/h).</li>
-                <li><strong>\(A\) (Superficie):</strong> Área total del local medida en metros cuadrados (\(m^2\)).</li>
-                <li><strong>\(C\) (Carga Térmica):</strong> Coeficiente empírico de frigorías estimadas por metro cuadrado.</li>
+        <div class="ad-placeholder">[AdSense In-Article Banner]</div>
+
+        <div class="article-content">
+            <h2><i class="fas fa-bolt" style="color: var(--primary);"></i> El problema de la Energía Reactiva</h2>
+            <p>En el entorno industrial, la mayoría de los receptores eléctricos (motores, transformadores, luminarias con balastos magnéticos) necesitan generar campos magnéticos para funcionar. Para crear estos campos, absorben de la red eléctrica una energía que no produce trabajo útil: la <strong>Energía Reactiva (kVArh)</strong>.</p>
+            <p>Aunque esta energía "rebota" entre el generador y el receptor sin consumirse realmente, sí ocupa un espacio físico en los cables y satura los transformadores de las compañías eléctricas, obligándolas a sobredimensionar sus infraestructuras.</p>
+
+            <div class="highlight-box">
+                <p><strong>El Factor de Potencia (Cos φ):</strong> Es el indicador que mide qué porcentaje de la energía total que llega a tu instalación se está usando para trabajar (Energía Activa) y cuánta se está desperdiciando (Energía Reactiva). Un valor de 1 es perfecto; un valor por debajo de 0.95 es problemático.</p>
+            </div>
+
+            <h2><i class="fas fa-file-invoice-dollar" style="color: var(--primary);"></i> ¿Es legalmente obligatorio?</h2>
+            <p>Estrictamente hablando, la ley no "obliga" a instalar un equipo físico llamado batería de condensadores. Lo que hace la normativa (regulada en España por el BOE y directivas europeas equivalentes) es <strong>penalizar económicamente</strong> a los usuarios que inyecten un exceso de energía reactiva a la red.</p>
+            <p>Por lo tanto, la instalación de una batería de condensadores no es una obligación técnica, sino una <strong>necesidad financiera imperativa</strong> para evitar recargos masivos en la factura de la luz.</p>
+
+            <h3>¿Cuándo empiezan las penalizaciones?</h3>
+            <p>La normativa actual estipula que las compañías eléctricas aplicarán un recargo en la factura cuando el consumo de energía reactiva exceda el <strong>33% del consumo de energía activa</strong> durante el periodo de facturación. Esto equivale a tener un Factor de Potencia (Cos φ) inferior a <strong>0.95</strong>.</p>
+            <ul>
+                <li><strong>Cos φ > 0.95:</strong> No hay recargo (Zona de seguridad).</li>
+                <li><strong>Cos φ entre 0.95 y 0.80:</strong> Recargo moderado por cada kVArh excedente.</li>
+                <li><strong>Cos φ < 0.80:</strong> Recargo severo (la penalización se multiplica).</li>
+            </ul>
+
+            <div class="ad-placeholder">[AdSense In-Article Banner]</div>
+
+            <h2><i class="fas fa-tools" style="color: var(--primary);"></i> Cómo justificar la inversión</h2>
+            <p>Para la dirección de una fábrica, instalar una batería automática de condensadores suele ser una de las decisiones financieras más fáciles de tomar, ya que su <strong>Retorno de Inversión (ROI)</strong> suele ser inferior a un año.</p>
+            <p>Para calcular la rentabilidad, solo necesitas mirar las últimas facturas eléctricas, sumar el concepto de "Penalización por Energía Reactiva" de los últimos 12 meses y compararlo con el coste de adquisición e instalación del equipo compensador.</p>
+
+            <div class="interactive-cta">
+                <h3>¿Necesitas calcular de qué tamaño debe ser la batería?</h3>
+                <p>Usa nuestra calculadora gratuita. Solo introduce tu potencia instalada y tu factor de potencia actual, y te diremos los kVAR exactos que necesitas comprar.</p>
+                <a href="../calculadora-factor-potencia.html"><i class="fas fa-calculator"></i> Ir a la Calculadora de Factor de Potencia (kVAR)</a>
+            </div>
+
+            <h2><i class="fas fa-exclamation-triangle" style="color: var(--primary);"></i> Riesgos técnicos de no instalarla</h2>
+            <p>Más allá del impacto en la factura, tener un mal factor de potencia provoca problemas físicos graves en la instalación interna de tu empresa:</p>
+            <ul>
+                <li><strong>Sobrecalentamiento de cables:</strong> Al demandar más corriente total (Aparente) de la necesaria, los conductores operan por encima de su temperatura ideal, degradando su aislamiento.</li>
+                <li><strong>Caídas de tensión:</strong> A mayor corriente circulando, mayor es la caída de voltaje en las líneas largas, lo que hace que los motores pierdan par y los equipos electrónicos se reinicien.</li>
+                <li><strong>Saturación del trafo:</strong> Si tienes un centro de transformación propio, la energía reactiva consume su capacidad nominal (kVA), impidiéndote conectar nuevas máquinas aunque tengas margen en potencia activa (kW).</li>
             </ul>
         </div>
-    </main>
-    <footer><a href="legales.html" style="color:#64748b; text-decoration:none;">Aviso Legal y Privacidad</a></footer>
-    <script>
-        function calcFrig() {
-            const A = parseFloat(document.getElementById('area_frig').value);
-            const C = parseFloat(document.getElementById('carga_frig').value);
-            if(A>0 && C>0) {
-                const res = A * C;
-                const resDiv = document.getElementById('res_frig');
-                resDiv.style.display = 'block';
-                resDiv.innerHTML = `<strong>Potencia recomendada:</strong><br><span style="font-size:2.5rem; color:#0ea5e9;">${res.toFixed(0)} fg/h</span>`;
-            }
-        }
-    </script>
+    </article>
+</main>
+
+<footer>
+    <div style="margin-bottom: 1rem;">
+        <a href="../index.html">Calculadoras</a> | 
+        <a href="../contacto.html">Contacto</a> | 
+        <a href="../legales.html">Aviso Legal</a>
+    </div>
+    <p>&copy; 2026 IndustrialCalc Pro. Herramientas técnicas para profesionales.</p>
+</footer>
+
+<script>
+    if (localStorage.getItem('industrialcalc-theme') === 'dark') document.body.classList.add('dark-mode');
+    
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        localStorage.setItem('industrialcalc-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    });
+</script>
+
 </body>
 </html>
