@@ -4,8 +4,8 @@
     <link rel="canonical" href="https://industrialcalc.es/calculadora-presion.html" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Caída de Presión en Tuberías (Hazen-Williams) | IndustrialCalc</title>
-    <meta name="description" content="Calculadora online gratuita de pérdida de carga por fricción en tuberías de agua. Dimensiona diámetros y caudales según la ecuación de Hazen-Williams.">
+    <title>Calculadora de Caída de Presión en Tuberías de Agua | IndustrialCalc</title>
+    <meta name="description" content="Calculadora online para determinar la pérdida de carga por fricción en tuberías de agua mediante la ecuación empírica de Hazen-Williams.">
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-E88WRKF9NQ"></script>
     <script>
@@ -14,12 +14,11 @@
       gtag('js', new Date());
       gtag('config', 'G-E88WRKF9NQ');
     </script>
-
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --bg-body: #f1f5f9; --surface: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --primary: #0891b2; --primary-dark: #0e7490; --header-bg: #0f172a; --border: #e2e8f0; }
+        :root { --bg-body: #f1f5f9; --surface: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --primary: #0284c7; --primary-dark: #0369a1; --header-bg: #0f172a; --border: #e2e8f0; }
         body.dark-mode { --bg-body: #0f172a; --surface: #1e293b; --text-main: #f8fafc; --text-muted: #94a3b8; --border: #334155; --header-bg: #020617; }
         
         body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; transition: 0.3s; line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
@@ -27,11 +26,11 @@
         .logo { font-size: 1.3rem; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 8px; }
         .logo span { color: #3b82f6; }
         .nav-link { color: #60a5fa; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
-
+        
         .lang-switch { display: flex; gap: 5px; background: rgba(255,255,255,0.1); padding: 5px; border-radius: 6px; }
         .lang-switch a { color: white; text-decoration: none; font-size: 0.85rem; font-weight: bold; padding: 4px 8px; border-radius: 4px; opacity: 0.6; }
         .lang-switch a.active { background: var(--primary); opacity: 1; }
-
+        
         .theme-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; opacity: 0.8; transition: 0.2s; padding: 0.5rem; }
 
         main { max-width: 900px; margin: 3rem auto; padding: 0 1.5rem; flex: 1; width: 100%; box-sizing: border-box; }
@@ -49,26 +48,33 @@
         button { background-color: var(--primary); color: #fff; border: none; padding: 1.2rem; width: 100%; border-radius: 10px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.2s; margin-top: 10px; }
         button:hover { background-color: var(--primary-dark); transform: translateY(-2px); }
 
-        .result-box { background: rgba(8, 145, 178, 0.1); border: 2px solid var(--primary); padding: 1.5rem; border-radius: 10px; text-align: center; margin-top: 20px; display: none; }
-        .result-box h3 { margin: 0 0 10px 0; color: var(--primary-dark); font-size: 1.2rem; }
-        .result-value { font-size: 2.8rem; font-weight: 900; color: var(--text-main); margin-bottom: 5px;}
-        .result-desc { color: var(--text-muted); font-size: 1.1rem; font-weight: bold;}
-        .warning { color: #ef4444; font-size: 0.95rem; margin-top: 15px; font-weight: 600; display: none; background: rgba(239, 68, 68, 0.1); padding: 10px; border-radius: 8px;}
+        .result-box { background: rgba(2, 132, 199, 0.05); border: 2px solid var(--primary); padding: 1.5rem; border-radius: 10px; text-align: center; margin-top: 20px; display: none; }
+        .result-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-top: 15px;}
+        .res-item { background: var(--surface); border: 1px solid var(--border); padding: 15px; border-radius: 8px; }
+        .res-val { font-size: 1.8rem; font-weight: 900; color: var(--text-main); margin-bottom: 5px;}
+        .res-lbl { color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; font-weight: bold;}
 
         /* Estilos del Contenido SEO */
         .seo-content { background: var(--surface); padding: 2.5rem; border-radius: 12px; border: 1px solid var(--border); margin-top: 2rem; margin-bottom: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
         .seo-content h2 { font-size: 1.7rem; color: var(--text-main); border-bottom: 3px solid var(--primary); display: inline-block; margin-top: 2rem; margin-bottom: 1.5rem; }
         .seo-content h2:first-child { margin-top: 0; }
-        .seo-content h3 { font-size: 1.3rem; color: var(--text-main); margin-top: 1.5rem; }
         .seo-content p, .seo-content li { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 1rem; line-height: 1.7; }
         
-        .formula-box { background: var(--bg-body); border-left: 4px solid var(--primary); padding: 1.5rem; margin: 1.5rem 0; font-family: monospace; font-size: 1.2rem; color: var(--text-main); overflow-x: auto; text-align: center; border-radius: 0 8px 8px 0; }
+        .formula-box { background: var(--bg-body); border-left: 4px solid var(--primary); padding: 1.5rem; margin: 1.5rem 0; font-family: monospace; font-size: 1.1rem; color: var(--text-main); overflow-x: auto; border-radius: 0 8px 8px 0; text-align: center; }
 
-        .ad-placeholder { margin: 2rem auto; text-align: center; min-height: 100px; display: flex; align-items: center; justify-content: center; background: var(--bg-body); border: 2px dashed var(--border); border-radius: 8px; color: var(--text-muted); font-size: 0.9rem; width: 100%; max-width: 728px; }
+        .internal-link-box { background: rgba(59, 130, 246, 0.1); border: 1px solid #3b82f6; padding: 15px; border-radius: 8px; margin: 20px 0; display: flex; align-items: center; gap: 15px; }
+        .internal-link-box i { font-size: 2rem; color: #3b82f6; }
+        .internal-link-box a { color: #1d4ed8; font-weight: bold; text-decoration: none; }
+        .internal-link-box a:hover { text-decoration: underline; }
 
-        footer { text-align: center; padding: 2rem 1rem; color: var(--text-muted); border-top: 1px solid var(--border); background: var(--surface); width: 100%; box-sizing: border-box; }
+        .ad-placeholder { margin: 2rem auto; text-align: center; min-height: 100px; display: flex; align-items: center; justify-content: center; background: var(--bg-body); border: 2px dashed var(--border); border-radius: 8px; color: var(--text-muted); width: 100%; max-width: 728px; }
+
+        footer { text-align: center; padding: 2rem 1rem; color: var(--text-muted); border-top: 1px solid var(--border); background: var(--surface); margin-top: auto; }
         footer a { color: var(--text-muted); text-decoration: none; }
-        footer a:hover { color: var(--primary); }
+        
+        @media (max-width: 600px) {
+            .result-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -78,7 +84,7 @@
     <div style="display: flex; gap: 15px; align-items: center;">
         <div class="lang-switch">
             <a href="calculadora-presion.html" class="active">ES</a>
-            <a href="en/pressure-drop-calculator.html">EN</a>
+            <a href="en/pressure-drop-calculator.html">EN</a> 
         </div>
         <button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button>
         <a href="index.html" class="nav-link"><i class="fas fa-arrow-left"></i> Inicio</a>
@@ -87,8 +93,8 @@
 
 <main>
     <div class="calculator-card">
-        <h1><i class="fas fa-water" style="color: var(--primary);"></i> Caída de Presión en Tuberías</h1>
-        <p class="subtitle">Calcula la pérdida de carga por fricción (Hazen-Williams) para dimensionar redes de agua e instalaciones hidráulicas.</p>
+        <h1><i class="fas fa-water" style="color: var(--primary);"></i> Caída de Presión</h1>
+        <p class="subtitle">Calcula la pérdida de carga por fricción en tuberías de agua mediante la ecuación empírica de Hazen-Williams.</p>
 
         <div class="input-grid">
             <div class="input-group">
@@ -98,36 +104,35 @@
                     <select id="unidadCaudal" style="flex: 1;">
                         <option value="m3h">m³/h</option>
                         <option value="lpm">L/min</option>
-                    </select>
-                </div>
-            </div>
-            <div class="input-group">
-                <label>Diámetro Interior (D)</label>
-                <div style="display: flex; gap: 10px;">
-                    <input type="number" id="diametro" placeholder="ej: 100" min="1" step="1" style="flex: 2;">
-                    <select id="unidadDiametro" style="flex: 1;">
-                        <option value="mm">mm</option>
-                        <option value="inch">Pulgadas (")</option>
+                        <option value="lps">L/s</option>
                     </select>
                 </div>
             </div>
             
             <div class="input-group">
-                <label>Longitud de la Tubería (L)</label>
+                <label>Longitud de Tubería (L)</label>
                 <div style="display: flex; gap: 10px;">
-                    <input type="number" id="longitud" placeholder="ej: 200" min="1" step="1" style="flex: 2;">
+                    <input type="number" id="longitud" placeholder="ej: 100" min="1" step="1" style="flex: 2;">
                     <span style="display: flex; align-items: center; padding: 0 10px; background: var(--bg-body); border: 2px solid var(--border); border-radius: 8px;">metros</span>
                 </div>
             </div>
 
             <div class="input-group">
-                <label>Material (Coef. Hazen-Williams, C)</label>
+                <label>Diámetro Interior (D)</label>
+                <div style="display: flex; gap: 10px;">
+                    <input type="number" id="diametro" placeholder="ej: 100" min="1" step="0.1" style="flex: 2;">
+                    <span style="display: flex; align-items: center; padding: 0 10px; background: var(--bg-body); border: 2px solid var(--border); border-radius: 8px;">mm</span>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Material de la Tubería (Coef. C)</label>
                 <select id="material">
-                    <option value="150">PVC / CPVC (C=150)</option>
-                    <option value="140">Polietileno (PE) / Cobre (C=140)</option>
-                    <option value="130">Acero Inoxidable (C=130)</option>
-                    <option value="120">Acero Comercial Nuevo (C=120)</option>
-                    <option value="100">Hierro Fundido Viejo / Acero Oxidado (C=100)</option>
+                    <option value="150" selected>PVC / PEAD (Plástico Liso) - C:150</option>
+                    <option value="140">Cobre / Acero Inox - C:140</option>
+                    <option value="130">Acero Comercial Nuevo - C:130</option>
+                    <option value="100">Acero Galvanizado Usado - C:100</option>
+                    <option value="90">Fundición Oxidada - C:90</option>
                 </select>
             </div>
         </div>
@@ -135,46 +140,67 @@
         <button onclick="calcularPerdidaCarga()">Calcular Pérdida de Carga</button>
 
         <div class="result-box" id="result-box">
-            <h3>Pérdida de Presión Estimada</h3>
-            <div class="result-value" id="res-bar">0.00 Bar</div>
-            <div class="result-desc" id="res-mca">0.00 m.c.a. (Metros de Columna de Agua)</div>
-            <div class="warning" id="warning-msg"><i class="fas fa-exclamation-triangle"></i> <strong>Aviso:</strong> La velocidad del fluido es muy alta (>2.5 m/s). Riesgo elevado de golpe de ariete, ruido y erosión. Se recomienda aumentar el diámetro de la tubería.</div>
+            <h3 style="margin: 0 0 15px 0; color: var(--primary-dark);">Resultados (Ecuación Hazen-Williams)</h3>
+            <div class="result-grid">
+                <div class="res-item">
+                    <div class="res-val" id="res-mca">0.00</div>
+                    <div class="res-lbl">m.c.a. (Metros Columna Agua)</div>
+                </div>
+                <div class="res-item">
+                    <div class="res-val" id="res-bar">0.00</div>
+                    <div class="res-lbl">Bares (Caída Presión)</div>
+                </div>
+                <div class="res-item" style="background: rgba(2, 132, 199, 0.1); border-color: var(--primary);">
+                    <div class="res-val" id="res-vel">0.00</div>
+                    <div class="res-lbl" style="color: var(--primary-dark);">Velocidad del Fluido (m/s)</div>
+                </div>
+            </div>
+            <div id="warning-msg" style="margin-top: 15px; font-size: 0.9rem; color: #ef4444; font-weight: bold; display: none;">
+                <i class="fas fa-exclamation-triangle"></i> Aviso: La velocidad supera los 2.5 m/s. Se recomienda aumentar el diámetro para evitar golpes de ariete y ruido excesivo.
+            </div>
         </div>
     </div>
 
     <div class="ad-placeholder">
-        [Espacio para Banner AdSense - 728x90]
+        [Banner AdSense - 728x90]
     </div>
 
     <section class="seo-content">
-        <h2>¿Qué es la pérdida de carga por fricción?</h2>
-        <p>Cuando un fluido (como el agua) se desplaza por el interior de una tubería, experimenta una resistencia debido a la fricción contra las paredes interiores del tubo y a la fricción interna entre las propias partículas del fluido. Esta resistencia provoca una disipación de energía, que se traduce directamente en una <strong>caída de la presión</strong> a lo largo de la línea.</p>
-        <p>En ingeniería hidráulica, calcular con precisión esta pérdida es vital para dimensionar correctamente la <strong>potencia de la bomba (BHP)</strong>. Si la bomba no tiene la fuerza suficiente para vencer esta fricción, el agua no llegará a su destino con el caudal o la presión requeridos.</p>
-        
-        <h2>La Ecuación de Hazen-Williams</h2>
-        <p>Aunque la ecuación de Darcy-Weisbach es más rigurosa, la fórmula empírica de <strong>Hazen-Williams</strong> es el estándar industrial más utilizado para el flujo de agua a temperatura ambiente, debido a su simplicidad al no requerir el cálculo del Número de Reynolds o factores de fricción iterativos.</p>
-        
-        <div class="formula-box">
-            H<sub>f</sub> = 10.67 × L × (Q / C)<sup>1.852</sup> / D<sup>4.87</sup>
+        <h2>El problema de la Fricción en Fluidos</h2>
+        <p>En el diseño de sistemas de bombeo, redes de riego o circuitos de climatización, el fluido (normalmente agua) se enfrenta a una resistencia física mientras viaja por el interior de la tubería. Esta resistencia o fricción depende directamente del material de la tubería y de la velocidad a la que el fluido se desplaza.</p>
+        <p>A medida que el agua roza contra las paredes interiores, pierde energía. Esta energía perdida se traduce matemáticamente en una <strong>caída de presión</strong>, también conocida en el argot de ingeniería como <em>Pérdida de Carga</em>.</p>
+
+        <div class="internal-link-box">
+            <i class="fas fa-pump-soap"></i>
+            <div>
+                <span style="display:block; color: var(--text-main); font-size: 0.9rem;">¿Ya conoces la pérdida de carga total?</span>
+                <a href="calculadora-bombeo.html">Dimensiona ahora el motor con la Calculadora de Potencia de Bombeo.</a>
+            </div>
         </div>
 
-        <p>Donde:</p>
+        <h2>La Ecuación Empírica de Hazen-Williams</h2>
+        <p>Existen varios métodos para calcular la fricción de un fluido (como la compleja ecuación de Darcy-Weisbach), pero para el flujo de agua a temperaturas ordinarias en conductos cerrados, la industria ha adoptado universalmente la <strong>fórmula empírica de Hazen-Williams</strong> por su extrema fiabilidad y sencillez paramétrica.</p>
+        
+        <div class="formula-box">
+            h<sub>f</sub> = 10.67 × L × ( Q / C )<sup>1.852</sup> / D<sup>4.87</sup>
+        </div>
+        
+        <p>Donde los componentes de la fórmula en el Sistema Métrico son:</p>
         <ul>
-            <li><strong>H<sub>f</sub></strong> = Pérdida de carga por fricción (Metros de Columna de Agua, m.c.a.)</li>
-            <li><strong>L</strong> = Longitud equivalente de la tubería (metros)</li>
-            <li><strong>Q</strong> = Caudal volumétrico (m³/s)</li>
-            <li><strong>C</strong> = Coeficiente de rugosidad de Hazen-Williams (adimensional)</li>
-            <li><strong>D</strong> = Diámetro interior de la tubería (metros)</li>
+            <li><strong>h<sub>f</sub></strong> = Pérdida de carga obtenida en metros de columna de agua (m.c.a.)</li>
+            <li><strong>L</strong> = Longitud real de la tubería recta en metros (m)</li>
+            <li><strong>Q</strong> = Caudal volumétrico circulante en metros cúbicos por segundo (m³/s)</li>
+            <li><strong>D</strong> = Diámetro <strong>interior</strong> de la tubería en metros (m)</li>
+            <li><strong>C</strong> = Coeficiente de rugosidad de Hazen-Williams (adimensional). Es inverso a la rugosidad; cuanto más liso es el tubo, mayor es el valor de C (ej: El PVC liso tiene C=150, mientras que el acero oxidado puede tener C=90).</li>
         </ul>
 
-        <h2>El Coeficiente "C" y la Velocidad del Fluido</h2>
-        <p>El coeficiente <strong>C</strong> determina lo "liso" que es el interior del tubo. Materiales plásticos como el PVC (C=150) o el Polietileno ofrecen mucha menos resistencia que una tubería de acero envejecida o de hierro fundido (C=100).</p>
-        <p>Además, esta calculadora verifica la <strong>velocidad del fluido</strong> (V = Q / A). En instalaciones industriales estándar, se recomienda mantener la velocidad del agua <strong>entre 1.0 m/s y 2.5 m/s</strong>. Velocidades superiores aumentan drásticamente la pérdida de carga, el ruido de la instalación y el riesgo de sufrir un destructivo "Golpe de Ariete" al cerrar válvulas bruscamente.</p>
+        <h2>El Control de la Velocidad del Fluido</h2>
+        <p>Un ingeniero no solo debe fijarse en la caída de presión, sino vigilar de cerca la velocidad lineal del agua dentro del tubo. Nuestra calculadora incluye este parámetro crítico en color azul. La ecuación de continuidad dictamina que:</p>
+        <div class="formula-box">
+            Velocidad (V) = Caudal (Q) / Área Transversal (A)
+        </div>
+        <p><strong>Reglas de diseño normativas:</strong> Se recomienda que la velocidad del agua se mantenga entre <strong>1.0 m/s y 2.5 m/s</strong>. Velocidades más bajas provocan la sedimentación de partículas pesadas (ensuciando la tubería), mientras que velocidades superiores a 2.5 m/s generan un ruido excesivo por turbulencia, aumentan drásticamente la caída de presión y provocan el peligroso fenómeno del <em>Golpe de Ariete</em> al cerrar válvulas repentinamente.</p>
     </section>
-
-    <div class="ad-placeholder">
-        [Espacio para Banner AdSense - Adaptable]
-    </div>
 
 </main>
 
@@ -184,7 +210,6 @@
 
 <script>
     if (localStorage.getItem('industrialcalc-theme') === 'dark') document.body.classList.add('dark-mode');
-    
     document.getElementById('theme-toggle').addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
         localStorage.setItem('industrialcalc-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
@@ -193,48 +218,51 @@
     function calcularPerdidaCarga() {
         const caudalInput = parseFloat(document.getElementById('caudal').value);
         const unidadCaudal = document.getElementById('unidadCaudal').value;
-        const diametroInput = parseFloat(document.getElementById('diametro').value);
-        const unidadDiametro = document.getElementById('unidadDiametro').value;
         const longitud = parseFloat(document.getElementById('longitud').value);
-        const coeficienteC = parseFloat(document.getElementById('material').value);
+        const diametro_mm = parseFloat(document.getElementById('diametro').value);
+        const coef_C = parseFloat(document.getElementById('material').value);
 
-        if (!caudalInput || !diametroInput || !longitud || caudalInput <= 0 || diametroInput <= 0 || longitud <= 0) {
-            alert("Por favor, introduce valores numéricos mayores que cero.");
+        if (!caudalInput || !longitud || !diametro_mm || caudalInput <= 0 || longitud <= 0 || diametro_mm <= 0) {
+            alert("Introduce valores numéricos mayores que cero.");
             return;
         }
 
-        // Convertir todo a unidades SI (metros y m3/s) para la fórmula
+        // 1. Convertir Caudal a m3/s para Hazen-Williams
         let caudal_m3s = caudalInput;
         if (unidadCaudal === 'm3h') {
             caudal_m3s = caudalInput / 3600;
         } else if (unidadCaudal === 'lpm') {
             caudal_m3s = caudalInput / 60000;
+        } else if (unidadCaudal === 'lps') {
+            caudal_m3s = caudalInput / 1000;
         }
 
-        let diametro_m = diametroInput;
-        if (unidadDiametro === 'mm') {
-            diametro_m = diametroInput / 1000;
-        } else if (unidadDiametro === 'inch') {
-            diametro_m = diametroInput * 0.0254;
-        }
+        // 2. Convertir Diámetro a metros
+        const diametro_m = diametro_mm / 1000;
 
-        // Ecuación de Hazen-Williams
-        const hf_mca = 10.67 * longitud * Math.pow((caudal_m3s / coeficienteC), 1.852) / Math.pow(diametro_m, 4.87);
-        
-        // Conversión a Bar (1 m.c.a. ≈ 0.0980665 Bar)
-        const hf_bar = hf_mca * 0.0980665;
+        // 3. Ecuación de Hazen-Williams para hf (m.c.a)
+        // hf = 10.67 * L * (Q/C)^1.852 / D^4.87
+        const numerador = 10.67 * longitud * Math.pow((caudal_m3s / coef_C), 1.852);
+        const denominador = Math.pow(diametro_m, 4.87);
+        const perdida_mca = numerador / denominador;
 
-        // Comprobación de la velocidad del fluido (V = Q / Area)
-        const area_m2 = Math.PI * Math.pow((diametro_m / 2), 2);
+        // 4. Convertir m.c.a a Bares (10.197 mca = 1 bar aprox)
+        const perdida_bar = perdida_mca / 10.197;
+
+        // 5. Calcular Velocidad lineal del fluido
+        // V = Q / Area. Area = PI * r^2
+        const radio_m = diametro_m / 2;
+        const area_m2 = Math.PI * Math.pow(radio_m, 2);
         const velocidad_ms = caudal_m3s / area_m2;
 
-        document.getElementById('res-bar').innerText = hf_bar.toFixed(3) + " Bar";
-        document.getElementById('res-mca').innerText = hf_mca.toFixed(2) + " m.c.a.";
-        
+        // Mostrar resultados
+        document.getElementById('res-mca').innerText = perdida_mca.toFixed(2);
+        document.getElementById('res-bar').innerText = perdida_bar.toFixed(3);
+        document.getElementById('res-vel').innerText = velocidad_ms.toFixed(2);
+
+        // Aviso si la velocidad es muy alta (golpe de ariete)
         const warning = document.getElementById('warning-msg');
-        // Límite de velocidad recomendado (2.5 m/s)
         if (velocidad_ms > 2.5) {
-            warning.innerHTML = `<i class="fas fa-exclamation-triangle"></i> <strong>Aviso:</strong> La velocidad del fluido es muy alta (${velocidad_ms.toFixed(1)} m/s). Riesgo elevado de golpe de ariete, ruido y erosión. Se recomienda aumentar el diámetro de la tubería.`;
             warning.style.display = "block";
         } else {
             warning.style.display = "none";
@@ -244,7 +272,5 @@
     }
 </script>
 
-</body>
-</html>
 </body>
 </html>
