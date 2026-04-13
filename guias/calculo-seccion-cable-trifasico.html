@@ -1,252 +1,156 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E88WRKF9NQ"></script>
-    <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-E88WRKF9NQ');</script>
+    <link rel="canonical" href="https://industrialcalc.es/guias/calculo-seccion-cable-trifasico.html" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cálculo de Sección de Cable Trifásico: Guía Definitiva 2026 | IndustrialCalc</title>
-    <meta name="description" content="Aprende a calcular la sección de cables eléctricos trifásicos por caída de tensión y calentamiento según el REBT. Fórmulas, tablas y ejemplos paso a paso.">
+    <title>Tratado Completo sobre Cálculo de Secciones Eléctricas | IndustrialCalc Pro</title>
+    <meta name="description" content="La guía definitiva de 2026 sobre dimensionamiento de conductores eléctricos. Normativa REBT, caída de tensión, intensidad admisible y fórmulas avanzadas.">
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --bg-body: #f1f5f9; --surface: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --primary: #2563eb; --header-bg: #0f172a; --border: #e2e8f0; }
-        body.dark-mode { --bg-body: #0f172a; --surface: #1e293b; --text-main: #f8fafc; --text-muted: #94a3b8; --border: #334155; --header-bg: #020617; }
+        :root { --bg: #f8fafc; --surface: #ffffff; --text: #0f172a; --primary: #2563eb; --border: #e2e8f0; }
+        body.dark-mode { --bg: #020617; --surface: #0f172a; --text: #f8fafc; --border: #1e293b; }
         
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; display: flex; flex-direction: column; min-height: 100vh; transition: 0.3s; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; margin: 0; }
+        header { background: #0f172a; color: white; padding: 1rem 2rem; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: 800; text-decoration: none; color: white; font-size: 1.2rem; }
         
-        header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; position: sticky; top: 0; z-index: 100; }
-        .header-content { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.5rem; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; }
-        .logo span { color: #3b82f6; }
-        .nav-links { display: flex; gap: 15px; align-items: center; }
-        .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: 0.2s; }
-        .btn-guias { background: rgba(255,255,255,0.2); padding: 0.5rem 1.2rem; border-radius: 8px; font-weight: 700; border: 1px solid white; }
-        .theme-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; padding: 0.5rem; }
-
-        main { flex: 1; padding: 3rem 1rem; max-width: 900px; margin: 0 auto; width: 100%; box-sizing: border-box; }
-        .back-link { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 2rem; color: var(--text-muted); text-decoration: none; font-weight: 600; }
-        .back-link:hover { color: var(--primary); }
-        
-        .article-header { text-align: center; margin-bottom: 3rem; }
-        .badge { background: #dbeafe; color: #1e40af; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; margin-bottom: 1rem; display: inline-block; }
-        body.dark-mode .badge { background: #1e3a8a; color: #bfdbfe; }
-        .article-header h1 { font-size: 3rem; color: var(--text-main); margin-bottom: 1rem; line-height: 1.2; letter-spacing: -1px; }
-        .article-meta { color: var(--text-muted); display: flex; justify-content: center; gap: 20px; font-size: 0.95rem; }
-
-        .content-box { background: var(--surface); padding: 3rem 4rem; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); font-size: 1.15rem; line-height: 1.8; color: var(--text-main); transition: 0.3s; }
-        
-        h2 { color: var(--primary); font-size: 2rem; margin-top: 3.5rem; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; scroll-margin-top: 100px; }
-        h3 { color: var(--text-main); font-size: 1.4rem; margin-top: 2rem; }
-        p { margin-bottom: 1.5rem; }
-        ul, ol { margin-bottom: 1.5rem; padding-left: 1.5rem; }
-        li { margin-bottom: 0.8rem; }
-        
-        .toc { background: var(--bg-body); border-left: 4px solid var(--primary); padding: 1.5rem 2rem; border-radius: 0 12px 12px 0; margin: 2rem 0 3rem 0; }
-        .toc h3 { margin-top: 0; font-size: 1.2rem; }
+        main { max-width: 900px; margin: 4rem auto; padding: 0 1.5rem; }
+        .toc { background: var(--surface); border: 1px solid var(--border); padding: 2rem; border-radius: 12px; margin-bottom: 3rem; }
+        .toc h2 { margin-top: 0; font-size: 1.2rem; }
+        .toc ul { list-style: none; padding-left: 0; }
+        .toc li { margin-bottom: 0.5rem; }
         .toc a { color: var(--primary); text-decoration: none; font-weight: 500; }
-        .toc a:hover { text-decoration: underline; }
 
-        /* Cajas de texto enriquecido */
-        .info-panel { background: #f8fafc; border: 1px solid #cbd5e1; padding: 1.5rem; border-radius: 8px; margin: 2rem 0; }
-        body.dark-mode .info-panel { background: #0f172a; border-color: #334155; }
-        .info-panel h4 { margin-top: 0; color: #334155; font-size: 1.1rem; }
-        body.dark-mode .info-panel h4 { color: #cbd5e1; }
-        .formula { font-family: monospace; background: #e2e8f0; padding: 0.5rem 1rem; border-radius: 6px; font-size: 1.2rem; display: block; text-align: center; margin: 1rem 0; color: #0f172a; font-weight: bold;}
-        body.dark-mode .formula { background: #1e293b; color: #f8fafc; }
-
-        .alert-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 1.5rem; margin: 2rem 0; border-radius: 0 8px 8px 0; }
-        body.dark-mode .alert-box { background: #1e3a8a; border-color: #60a5fa; }
-        .alert-box strong { color: #1e40af; }
-        body.dark-mode .alert-box strong { color: #93c5fd; }
-
-        .warning-box { background: #fef2f2; border-left: 4px solid #ef4444; padding: 1.5rem; margin: 2rem 0; border-radius: 0 8px 8px 0; }
-        body.dark-mode .warning-box { background: #7f1d1d; border-color: #f87171; }
-        .warning-box strong { color: #b91c1c; }
-        body.dark-mode .warning-box strong { color: #fca5a5; }
-
-        /* CTAs */
-        .cta-calc { display: flex; align-items: center; justify-content: space-between; background: linear-gradient(135deg, #2563eb, #1e40af); padding: 2rem; border-radius: 12px; margin: 3rem 0; color: white; box-shadow: 0 10px 15px -3px rgba(37,99,235,0.3); flex-wrap: wrap; gap: 20px;}
-        .cta-calc.green { background: linear-gradient(135deg, #10b981, #047857); box-shadow: 0 10px 15px -3px rgba(16,185,129,0.3); }
-        .cta-calc.purple { background: linear-gradient(135deg, #8b5cf6, #6d28d9); box-shadow: 0 10px 15px -3px rgba(139,92,246,0.3); }
+        h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 2rem; letter-spacing: -2px; }
+        h2 { font-size: 2.2rem; margin-top: 4rem; border-bottom: 4px solid var(--primary); display: inline-block; }
+        h3 { font-size: 1.6rem; margin-top: 2.5rem; color: var(--primary); }
         
-        .cta-calc-text h3 { color: white; margin: 0 0 0.5rem 0; font-size: 1.5rem; }
-        .cta-calc-text p { margin: 0; font-size: 1rem; opacity: 0.9; }
-        .cta-btn { background: white; color: #0f172a; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 800; transition: 0.2s; white-space: nowrap; }
-        .cta-btn:hover { transform: scale(1.05); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        p { margin-bottom: 1.5rem; font-size: 1.15rem; opacity: 0.9; }
+        .mega-table { width: 100%; border-collapse: collapse; margin: 2rem 0; background: var(--surface); }
+        .mega-table th, .mega-table td { border: 1px solid var(--border); padding: 12px; text-align: left; }
+        .mega-table th { background: var(--bg); }
 
-        footer { text-align: center; padding: 3rem 1rem; background-color: var(--surface); border-top: 1px solid var(--border); margin-top: auto; }
-        footer a { color: var(--text-muted); text-decoration: none; margin: 0 10px; font-weight: 500; }
+        .formula-card { background: #0f172a; color: #3b82f6; padding: 2.5rem; border-radius: 16px; font-family: 'Courier New', monospace; font-size: 1.5rem; text-align: center; margin: 3rem 0; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2); }
         
-        @media (max-width: 768px) {
-            .content-box { padding: 2rem 1.5rem; }
-            .article-header h1 { font-size: 2.2rem; }
-            .cta-calc { flex-direction: column; text-align: center; }
-            .cta-btn { width: 100%; box-sizing: border-box; text-align: center; }
-        }
+        .ad-spot { background: var(--bg); border: 2px dashed var(--border); height: 250px; display: flex; align-items: center; justify-content: center; margin: 4rem 0; color: var(--text-muted); }
+        
+        footer { background: var(--surface); padding: 4rem 2rem; border-top: 1px solid var(--border); text-align: center; }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <a href="../index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span></a>
-            <nav class="nav-links">
-                <a href="../guias.html" class="btn-guias"><i class="fas fa-book-open"></i> Guías</a>
-                <button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button>
-            </nav>
-        </div>
-    </header>
 
-    <main>
-        <a href="../guias.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver a todas las Guías</a>
+<header>
+    <a href="../index.html" class="logo">IndustrialCalc Pro</a>
+    <button id="theme-toggle" style="background:none; border:1px solid #334155; color:white; padding:5px 10px; border-radius:5px; cursor:pointer;">Modo Oscuro</button>
+</header>
+
+<main>
+    <article>
+        <h1>Tratado Integral sobre el Dimensionamiento de Conductores en Sistemas Trifásicos</h1>
         
-        <article>
-            <div class="article-header">
-                <div class="badge">Instalaciones Eléctricas</div>
-                <h1>Cálculo de Sección de Cable Trifásico: Guía Definitiva 2026</h1>
-                <div class="article-meta">
-                    <span><i class="far fa-clock"></i> 11 min de lectura</span>
-                    <span><i class="fas fa-user-engineer"></i> Nivel: Ingeniería Eléctrica</span>
-                </div>
-            </div>
-
-            <div class="content-box">
-                <p>El dimensionamiento correcto de las líneas eléctricas es la columna vertebral de cualquier instalación industrial segura y eficiente. Un cable mal calculado no solo provoca que la maquinaria pierda rendimiento o se detenga inesperadamente, sino que representa un <strong>grave riesgo de incendio por sobrecalentamiento (efecto Joule)</strong>.</p>
-                
-                <p>A diferencia de la corriente monofásica, los sistemas trifásicos de 400V requieren fórmulas específicas que integren la tensión de línea, la raíz de 3 (√3) y el factor de potencia (cos φ). En esta guía abordaremos los tres criterios obligatorios que marca el Reglamento Electrotécnico de Baja Tensión (REBT) para validar una sección transversal.</p>
-
-                <div class="toc">
-                    <h3>Tabla de Contenidos</h3>
-                    <ul>
-                        <li><a href="#criterio1">1. Criterio 1: Intensidad Máxima Admisible (Calentamiento)</a></li>
-                        <li><a href="#criterio2">2. Criterio 2: Caída de Tensión Máxima</a></li>
-                        <li><a href="#criterio3">3. Criterio 3: Corriente de Cortocircuito</a></li>
-                        <li><a href="#factores">4. El impacto del aislamiento: PVC vs XLPE</a></li>
-                        <li><a href="#factor-potencia">5. La influencia del Factor de Potencia (Cos φ)</a></li>
-                    </ul>
-                </div>
-
-                <h2 id="criterio1">1. Criterio 1: Intensidad Máxima Admisible (Calentamiento)</h2>
-                <p>El primer paso es averiguar cuántos amperios van a circular por cada fase. La fórmula fundamental de potencia en un sistema trifásico es:</p>
-
-                <div class="info-panel">
-                    <h4>Cálculo de la Corriente Nominal (I)</h4>
-                    <span class="formula">I = P / (√3 · V · cos φ)</span>
-                    <p>Donde:</p>
-                    <ul>
-                        <li><strong>P:</strong> Potencia activa del receptor en Vatios (W).</li>
-                        <li><strong>V:</strong> Tensión de línea (habitualmente 400V en Europa).</li>
-                        <li><strong>cos φ:</strong> Factor de potencia de la carga.</li>
-                    </ul>
-                </div>
-
-                <p>Una vez obtenida la corriente de diseño, se debe consultar la normativa (ej. norma UNE-HD 60364-5-52) para buscar la <strong>capacidad de conducción de corriente</strong>. Esta capacidad depende drásticamente de cómo vayas a instalar el cable: enterrado, en bandeja perforada, al aire libre o empotrado en pared.</p>
-
-                <div class="warning-box">
-                    <strong>Peligro de Agrupamiento:</strong> Si pasas varios circuitos trifásicos por la misma bandeja o tubo, el calor no se disipa igual. Debes aplicar un <strong>Factor de Agrupamiento</strong> que penalizará (reducirá) los amperios que soporta el cable, obligándote a subir la sección.
-                </div>
-
-                <h2 id="criterio2">2. Criterio 2: Caída de Tensión Máxima</h2>
-                <p>Imagina que tienes un motor de 50 kW al fondo de una nave a 150 metros del cuadro eléctrico. Aunque un cable de 16 mm² soporte los amperios por calentamiento, al llegar al final de la línea la tensión podría haber caído de 400V a 370V. Si la caída es excesiva, los contactores "tabletean" y los motores se queman.</p>
-
-                <div class="info-panel">
-                    <h4>Fórmula de Caída de Tensión (Línea Trifásica)</h4>
-                    <span class="formula">S = (√3 · L · I · cos φ) / (γ · e)</span>
-                    <p>Donde:</p>
-                    <ul>
-                        <li><strong>S:</strong> Sección del cable en mm².</li>
-                        <li><strong>L:</strong> Longitud de la línea en metros.</li>
-                        <li><strong>I:</strong> Corriente nominal en Amperios.</li>
-                        <li><strong>γ:</strong> Conductividad del material (56 para Cobre y 35 para Aluminio).</li>
-                        <li><strong>e:</strong> Caída de tensión máxima permitida en Voltios.</li>
-                    </ul>
-                </div>
-
-                <p>El REBT es muy claro en sus límites: <strong>5%</strong> máximo para líneas de fuerza o usos generales, y <strong>3%</strong> máximo para alumbrado. Debes calcular la sección por Calentamiento (Criterio 1) y por Caída de Tensión (Criterio 2), y <strong>quedarte siempre con el cable más grueso</strong> que te den los dos resultados.</p>
-
-                <div class="cta-calc">
-                    <div class="cta-calc-text">
-                        <h3>Automatiza el cálculo trifásico</h3>
-                        <p>Evita fallos críticos. Introduce tu potencia, metros y material, y el algoritmo validará simultáneamente la caída de tensión y el calentamiento.</p>
-                    </div>
-                    <a href="../calculadora-seccion-tri.html" class="cta-btn" style="color: #2563eb;"><i class="fas fa-bolt"></i> Calculadora de Sección de Cable</a>
-                </div>
-
-                <h2 id="criterio3">3. Criterio 3: Corriente de Cortocircuito</h2>
-                <p>Aunque a menudo se ignora en instalaciones pequeñas, las ingenierías deben comprobar que la sección elegida aguantará la "sacudida" térmica de un cortocircuito durante los milisegundos que tarde en saltar el interruptor magnetotérmico.</p>
-                <p>El aislamiento del cable tiene un límite térmico (por ejemplo, el PVC se funde a 160ºC en régimen de cortocircuito). Si la sección es muy fina, el pico brutal de amperios derretirá el cable antes de que la protección salte.</p>
-
-                <h2 id="factores">4. El impacto del aislamiento: PVC vs XLPE / EPR</h2>
-                <p>Un error clásico es pensar que "un cable de cobre de 35 mm² siempre aguanta lo mismo". La realidad es que el límite lo pone la funda exterior (el aislamiento), no el cobre interior.</p>
-
-                <ul>
-                    <li><strong>Aislamiento Termoplástico (PVC):</strong> Es el estándar (ej. H07V-K). Soporta una temperatura máxima de servicio de <strong>70ºC</strong>. Es más barato, pero disipa peor el calor, por lo que aguanta menos amperios.</li>
-                    <li><strong>Aislamiento Termoestable (XLPE o EPR):</strong> Son cables reticulados (ej. RZ1-K o RV-K). Soportan hasta <strong>90ºC</strong> en servicio permanente. Aunque son un poco más caros, a menudo permiten "bajar un escalón" en la sección del cable, lo que en tiradas largas ahorra muchísimo dinero.</li>
-                </ul>
-
-                <div class="cta-calc green">
-                    <div class="cta-calc-text">
-                        <h3>Cálculos Básicos e Iluminación</h3>
-                        <p>Si tu proyecto incluye líneas secundarias de alumbrado o cálculos de potencia monofásicos, utiliza nuestra suite básica para oficinas y locales.</p>
-                    </div>
-                    <a href="../herramientas-basicas.html" class="cta-btn" style="color: #047857;"><i class="fas fa-lightbulb"></i> Ir a Cálculos Básicos</a>
-                </div>
-
-                <h2 id="factor-potencia">5. La influencia del Factor de Potencia (Cos φ)</h2>
-                <p>En el Criterio 1 vimos que la intensidad es inversamente proporcional al <em>cos φ</em>. En el sector industrial, la presencia masiva de motores de inducción y transformadores genera <strong>energía reactiva</strong>. Esto hace que el factor de potencia caiga (por ejemplo a 0.75).</p>
-
-                <p>Tener un factor de potencia bajo significa que la red tiene que bombear muchos más amperios por el cable para entregar la misma energía útil (Vatios). Y más amperios significa que necesitarás un cable mucho más grueso y caro.</p>
-
-                <div class="alert-box">
-                    <strong>El ahorro de compensar la reactiva:</strong> Instalar una batería de condensadores en cabecera eleva el cos φ a cerca de 1. Esto reduce instantáneamente los amperios que circulan por tu acometida, lo que te permite usar secciones de cable menores y evitar penalizaciones en la factura eléctrica.
-                </div>
-
-                <div class="cta-calc purple">
-                    <div class="cta-calc-text">
-                        <h3>Corrige la energía reactiva</h3>
-                        <p>Averigua cuántos kVAR necesitas en tu batería de condensadores para optimizar la red eléctrica de tu fábrica y aliviar los cables.</p>
-                    </div>
-                    <a href="../calculadora-factor-potencia.html" class="cta-btn" style="color: #6d28d9;"><i class="fas fa-charging-station"></i> Calculadora de Factor de Potencia</a>
-                </div>
-
-                <hr style="border: 0; height: 1px; background: var(--border); margin: 3rem 0;">
-                <p style="font-size: 0.9rem; color: var(--text-muted); text-align: center;"><em>Aviso legal: Los métodos expuestos son para fines formativos y de pre-dimensionamiento. El diseño final de la instalación debe regirse por el Reglamento Electrotécnico de Baja Tensión (REBT) vigente y estar visado por un técnico competente.</em></p>
-            </div>
-        </article>
-    </main>
-
-    <footer>
-        <div class="links">
-            <a href="../index.html">Inicio</a>
-            <a href="../guias.html">Guías y Tutoriales</a>
-            <a href="../glosario.html">Glosario Técnico</a>
-            <a href="../contacto.html">Contacto</a>
-            <a href="../legales.html">Aviso Legal</a>
+        <div class="toc">
+            <h2>Índice de la Guía Maestra</h2>
+            <ul>
+                <li><a href="#intro">1. Introducción a la Termodinámica de Conductores</a></li>
+                <li><a href="#rebt">2. Marco Normativo: El REBT y Normas Internacionales</a></li>
+                <li><a href="#criterio1">3. Criterio de Intensidad Admisible (Calentamiento)</a></li>
+                <li><a href="#criterio2">4. Criterio de Caída de Tensión (C.D.T.)</a></li>
+                <li><a href="#criterio3">5. Criterio de Corriente de Cortocircuito</a></li>
+                <li><a href="#factores">6. Factores de Corrección por Temperatura y Agrupamiento</a></li>
+                <li><a href="#materiales">7. Cobre vs Aluminio: Análisis Metalúrgico y Eléctrico</a></li>
+                <li><a href="#ejemplos">8. Ejemplos Prácticos de Cálculo Paso a Paso</a></li>
+                <li><a href="#faq">9. Preguntas Frecuentes de Instaladores</a></li>
+            </ul>
         </div>
-        <p>&copy; 2026 IndustrialCalc Pro - Suite Profesional de Herramientas Técnicas.</p>
-    </footer>
 
-    <script>
-        const themeBtn = document.getElementById('theme-toggle');
-        const themeIcon = themeBtn.querySelector('i');
-        const currentTheme = localStorage.getItem('industrialcalc-theme');
+        <section id="intro">
+            <h2>1. Introducción a la Termodinámica de Conductores</h2>
+            <p>El transporte de energía eléctrica no es un proceso ideal. Cada electrón que fluye a través de una red cristalina de cobre o aluminio genera fricción a nivel atómico, lo que conocemos como resistencia eléctrica. Esta resistencia disipa energía en forma de calor (Efecto Joule), elevando la temperatura del conductor.</p>
+            <p>Dimensionar una sección no es solo elegir un cable que "aguante", es equilibrar la eficiencia energética, la seguridad contra incendios y la longevidad de los aislamientos poliméricos como el PVC o el XLPE (Polietileno Reticulado).</p>
+            <p>En un sistema trifásico, la complejidad aumenta debido al desfase de 120 grados entre las ondas senoidales de tensión, lo que nos obliga a considerar factores como la raíz de tres (1.732) y el equilibrio de cargas entre fases.</p>
+        </section>
 
-        if (currentTheme === 'dark') {
-            document.body.classList.add('dark-mode');
-            themeIcon.classList.replace('fa-moon', 'fa-sun');
-        }
+        <div class="ad-spot">[ANUNCIO ADSENSE - IN ARTICLE]</div>
 
-        themeBtn.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            if (document.body.classList.contains('dark-mode')) {
-                localStorage.setItem('industrialcalc-theme', 'dark');
-                themeIcon.classList.replace('fa-moon', 'fa-sun');
-            } else {
-                localStorage.setItem('industrialcalc-theme', 'light');
-                themeIcon.classList.replace('fa-sun', 'fa-moon');
-            }
-        });
-    </script>
+        <section id="rebt">
+            <h2>2. Marco Normativo: El REBT y Normas Internacionales</h2>
+            <p>En España, el Reglamento Electrotécnico para Baja Tensión (REBT), aprobado por el Real Decreto 842/2002, es la biblia legal. Especialmente las Instrucciones Técnicas Complementarias ITC-BT-19 e ITC-BT-07 definen cómo deben calcularse las líneas.</p>
+            <p>A nivel internacional, nos regimos por la IEC 60364. Todas estas normas coinciden en que un cable mal dimensionado es la causa número uno de incendios industriales de origen eléctrico.</p>
+        </section>
+
+        <section id="criterio1">
+            <h2>3. Criterio de Intensidad Admisible</h2>
+            <p>Este criterio busca que el cable no se funda. La corriente que circula (Ib) debe ser siempre menor o igual a la corriente máxima que el cable puede disipar (Iz).</p>
+            <div class="formula-card">
+                I<sub>b</sub> ≤ I<sub>n</sub> ≤ I<sub>z</sub>
+            </div>
+            <h3>Métodos de Instalación</h3>
+            <p>No es lo mismo un cable al aire libre que uno enterrado o bajo tubo empotrado en una pared de hormigón. La capacidad de disipar calor cambia drásticamente.</p>
+            <table class="mega-table">
+                <tr><th>Tipo de Instalación</th><th>Ventilación</th><th>Capacidad Relativa</th></tr>
+                <tr><td>Al aire (bandeja perforada)</td><td>Máxima</td><td>100%</td></tr>
+                <tr><td>Bajo tubo en superficie</td><td>Media</td><td>80%</td></tr>
+                <tr><td>Enterrado directamente</td><td>Alta (disipación por suelo)</td><td>110%</td></tr>
+                <tr><td>Bajo tubo empotrado</td><td>Mínima</td><td>60%</td></tr>
+            </table>
+        </section>
+
+        <section id="criterio2">
+            <h2>4. Criterio de Caída de Tensión (C.D.T.)</h2>
+            <p>Incluso si el cable no se calienta, si es muy largo, el voltaje al final de la línea será muy bajo. Los motores trifásicos son especialmente sensibles: una caída de tensión superior al 5% puede provocar que el motor no arranque o que se queme por sobreintensidad.</p>
+            <div class="formula-card">
+                S = (√3 · L · P) / (γ · e · V)
+            </div>
+            <p>Donde:</p>
+            <ul>
+                <li><strong>L:</strong> Longitud en metros.</li>
+                <li><strong>P:</strong> Potencia en vatios.</li>
+                <li><strong>γ:</strong> Conductividad (56 para cobre).</li>
+                <li><strong>e:</strong> Caída de tensión admitida en voltios.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Análisis Profundo de los Aislamientos Poliméricos</h2>
+            <p>El comportamiento de los conductores bajo carga está intrínsecamente ligado a la química de sus polímeros. El PVC (Policloruro de Vinilo) es un termoplástico que soporta hasta 70°C en régimen permanente. Superar esta temperatura significa iniciar un proceso de desgasificación y endurecimiento que termina en cortocircuito.</p>
+            <p>Por otro lado, el XLPE o el EPR son termoestables, permitiendo operar a 90°C y soportar picos de cortocircuito de hasta 250°C. Esto permite que, a igual sección de cobre, un cable de XLPE pueda transportar más amperios que uno de PVC.</p>
+            <h3>La importancia del Factor de Potencia en el dimensionado</h3>
+            <p>Si una industria tiene muchas máquinas con motores, su factor de potencia (cos φ) será bajo. Esto significa que circulará más corriente de la necesaria para realizar el mismo trabajo útil. Si no se compensa con baterías de condensadores, nos veremos obligados a instalar cables mucho más gruesos y caros.</p>
+        </section>
+
+        <div class="ad-spot">[ANUNCIO ADSENSE - IN FEED]</div>
+
+        <section id="faq">
+            <h2>9. Preguntas Frecuentes (FAQ)</h2>
+            <h3>¿Puedo usar un cable de 1.5mm² para un motor de 5kW?</h3>
+            <p>Absolutamente no. Para un motor de 5kW en trifásica a 400V, la intensidad ronda los 10A. Aunque el cable de 1.5mm² soporte 10A en ciertas condiciones, el pico de arranque del motor (que puede ser 7 veces la nominal) dañaría el aislamiento con el tiempo.</p>
+            <h3>¿Por qué el aluminio es cada vez más común?</h3>
+            <p>Principalmente por peso y coste. El aluminio tiene un 60% de la conductividad del cobre, lo que obliga a usar secciones más grandes, pero su ligereza lo hace ideal para líneas aéreas de alta tensión y grandes acometidas industriales donde el precio del cobre sería prohibitivo.</p>
+        </section>
+
+    </article>
+</main>
+
+<footer>
+    <p>&copy; 2026 IndustrialCalc Pro - El mayor portal de ingeniería online.</p>
+    <div style="margin-top:20px;">
+        <a href="../index.html" style="color:var(--primary);">Volver al Inicio</a> | 
+        <a href="../calculadora-seccion-tri.html" style="color:var(--primary);">Ir a la Calculadora</a>
+    </div>
+</footer>
+
+<script>
+    const btn = document.getElementById('theme-toggle');
+    if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark-mode');
+    btn.onclick = () => {
+        document.body.classList.toggle('dark-mode');
+        localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    };
+</script>
+
 </body>
 </html>
