@@ -4,8 +4,8 @@
     <link rel="canonical" href="https://industrialcalc.es/calculadora-tension.html" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Caída de Tensión Eléctrica (% y Voltios) | IndustrialCalc</title>
-    <meta name="description" content="Calcula online la caída de tensión en cables eléctricos de cobre y aluminio. Válido para instalaciones monofásicas y trifásicas según el REBT.">
+    <title>Calculadora de Caída de Tensión (C.D.T.) en Cables | IndustrialCalc</title>
+    <meta name="description" content="Calculadora online para determinar la caída de tensión en voltios (V) y porcentaje (%) para cables monofásicos y trifásicos. Genera informe en PDF.">
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-E88WRKF9NQ"></script>
     <script>
@@ -17,21 +17,24 @@
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2230094544889798" crossorigin="anonymous"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --bg-body: #f1f5f9; --surface: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --primary: #eab308; --primary-dark: #ca8a04; --header-bg: #0f172a; --border: #e2e8f0; }
+        :root { --bg-body: #f1f5f9; --surface: #ffffff; --text-main: #0f172a; --text-muted: #64748b; --primary: #ca8a04; --primary-dark: #a16207; --header-bg: #0f172a; --border: #e2e8f0; }
         body.dark-mode { --bg-body: #0f172a; --surface: #1e293b; --text-main: #f8fafc; --text-muted: #94a3b8; --border: #334155; --header-bg: #020617; }
         
-        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; transition: 0.3s; line-height: 1.6; }
-        
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-body); color: var(--text-main); margin: 0; transition: 0.3s; line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
         header { background-color: var(--header-bg); padding: 1rem 2rem; color: white; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
         .logo { font-size: 1.3rem; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 8px; }
         .logo span { color: #3b82f6; }
         .nav-link { color: #60a5fa; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
 
-        main { max-width: 900px; margin: 3rem auto; padding: 0 1.5rem; }
+        .theme-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; opacity: 0.8; transition: 0.2s; padding: 0.5rem; }
+
+        main { max-width: 900px; margin: 3rem auto; padding: 0 1.5rem; flex: 1; width: 100%; box-sizing: border-box; }
         
-        .calculator-card { background: var(--surface); padding: 2.5rem; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); border-top: 5px solid var(--primary); margin-bottom: 2rem; }
+        .calculator-card { background: var(--surface); padding: 2.5rem; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); border-top: 5px solid var(--primary); margin-bottom: 2rem; position: relative; }
         h1 { margin-top: 0; font-size: 2.2rem; letter-spacing: -1px; text-align: center; color: var(--text-main); }
         .subtitle { color: var(--text-muted); text-align: center; margin-bottom: 2rem; }
 
@@ -41,65 +44,71 @@
         input, select { padding: 1rem; border: 2px solid var(--border); border-radius: 10px; font-size: 1rem; background: var(--bg-body); color: var(--text-main); outline: none; transition: 0.2s; }
         input:focus, select:focus { border-color: var(--primary); }
         
-        button { background-color: var(--primary); color: #fff; border: none; padding: 1rem; width: 100%; border-radius: 10px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.2s; margin-top: 10px; text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
-        button:hover { background-color: var(--primary-dark); }
+        button { background-color: var(--primary); color: #fff; border: none; padding: 1.2rem; width: 100%; border-radius: 10px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.2s; margin-top: 10px; }
+        button:hover { background-color: var(--primary-dark); transform: translateY(-2px); }
 
-        .result-box { background: rgba(234, 179, 8, 0.1); border: 2px solid var(--primary); padding: 1.5rem; border-radius: 10px; text-align: center; margin-top: 20px; display: none; }
-        .result-box h3 { margin: 0 0 10px 0; color: var(--primary-dark); font-size: 1.2rem; }
-        .result-value { font-size: 2.5rem; font-weight: 900; color: var(--text-main); margin-bottom: 5px;}
-        .result-desc { color: var(--text-muted); font-size: 1rem; font-weight: bold;}
-        .warning { color: #ef4444; font-size: 0.9rem; margin-top: 10px; font-weight: 600; display: none; }
+        .action-buttons { display: flex; gap: 10px; margin-top: 15px; }
+        .btn-pdf { background-color: #ef4444; width: auto; flex: 1; display: none; align-items: center; justify-content: center; gap: 10px;}
+        .btn-pdf:hover { background-color: #dc2828; }
 
-        .seo-content { background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); margin-top: 2rem; margin-bottom: 2rem; }
-        .seo-content h2 { font-size: 1.5rem; color: var(--text-main); border-bottom: 3px solid var(--primary); display: inline-block; margin-top: 0; margin-bottom: 1rem; }
-        .seo-content p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 1rem; }
+        /* Contenedor del resultado a imprimir */
+        #informe-resultado { display: none; background: rgba(202, 138, 4, 0.05); border: 2px solid var(--primary); padding: 2rem; border-radius: 10px; margin-top: 20px; position: relative;}
+        
+        /* Cabecera del informe que solo se ve en el PDF */
+        .pdf-header { display: none; text-align: left; border-bottom: 2px solid var(--border); padding-bottom: 15px; margin-bottom: 20px; }
+        .pdf-header h2 { margin: 0; color: #0f172a; font-size: 1.5rem; display: flex; align-items: center; gap: 10px;}
+        .pdf-header p { margin: 5px 0 0 0; color: #64748b; font-size: 0.9rem; }
+
+        .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; text-align: center;}
+        .result-item { background: var(--surface); padding: 15px; border-radius: 8px; border: 1px solid var(--border);}
+        .result-value { font-size: 2.2rem; font-weight: 900; color: var(--text-main); margin-bottom: 5px;}
+        .result-desc { color: var(--text-muted); font-size: 0.95rem; font-weight: bold;}
+        .warning { color: #ef4444; font-size: 0.95rem; margin-top: 15px; font-weight: 600; display: none; background: rgba(239, 68, 68, 0.1); padding: 10px; border-radius: 8px; grid-column: 1 / -1;}
 
         .ad-placeholder { margin: 2rem auto; text-align: center; min-height: 100px; display: flex; align-items: center; justify-content: center; background: var(--bg-body); border: 2px dashed var(--border); border-radius: 8px; color: var(--text-muted); font-size: 0.9rem; width: 100%; max-width: 728px; }
 
-        footer { text-align: center; padding: 3rem 1rem; color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 2rem; }
+        footer { text-align: center; padding: 2rem 1rem; color: var(--text-muted); border-top: 1px solid var(--border); background: var(--surface); width: 100%; box-sizing: border-box; margin-top: 4rem;}
+        footer a { color: var(--text-muted); text-decoration: none; }
+        footer a:hover { color: var(--primary); }
     </style>
 </head>
 <body>
 
 <header>
     <a href="index.html" class="logo"><i class="fas fa-industry"></i> Industrial<span>Calc</span> Pro</a>
-    <a href="index.html" class="nav-link"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+    <div style="display: flex; gap: 15px; align-items: center;">
+        <button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button>
+        <a href="index.html" class="nav-link"><i class="fas fa-arrow-left"></i> Inicio</a>
+    </div>
 </header>
 
 <main>
     <div class="calculator-card">
-        <h1><i class="fas fa-bolt" style="color: var(--primary);"></i> Caída de Tensión Eléctrica</h1>
-        <p class="subtitle">Calcula la pérdida de voltaje en cables según longitud, sección y material.</p>
+        <h1><i class="fas fa-bolt" style="color: var(--primary);"></i> Caída de Tensión</h1>
+        <p class="subtitle">Calcula la pérdida de voltaje en una línea eléctrica en base a su longitud, material y corriente. Genera un informe técnico.</p>
 
         <div class="input-grid">
             <div class="input-group">
                 <label>Sistema Eléctrico</label>
                 <select id="sistema">
-                    <option value="monofasico">Monofásico (Ej: 230V)</option>
-                    <option value="trifasico">Trifásico (Ej: 400V)</option>
+                    <option value="2">Monofásico (2 hilos)</option>
+                    <option value="1.732">Trifásico (3 o 4 hilos)</option>
                 </select>
             </div>
             <div class="input-group">
-                <label>Tensión Origen (V)</label>
-                <input type="number" id="voltaje" value="230" min="1">
+                <label>Tensión Nominal (V)</label>
+                <input type="number" id="tension" value="230" min="12" step="1">
             </div>
             <div class="input-group">
-                <label>Intensidad / Consumo (Amperios)</label>
-                <input type="number" id="corriente" placeholder="Ej: 16" min="0.1" step="0.1">
+                <label>Intensidad de Corriente (A)</label>
+                <input type="number" id="corriente" placeholder="ej: 32" min="0.1" step="0.1">
             </div>
             <div class="input-group">
-                <label>Longitud de la línea (Metros)</label>
-                <input type="number" id="longitud" placeholder="Ej: 50" min="1">
+                <label>Longitud de Línea (m)</label>
+                <input type="number" id="longitud" placeholder="ej: 150" min="1" step="1">
             </div>
             <div class="input-group">
-                <label>Material del Conductor</label>
-                <select id="material">
-                    <option value="0.0172">Cobre (Cu)</option>
-                    <option value="0.0282">Aluminio (Al)</option>
-                </select>
-            </div>
-            <div class="input-group">
-                <label>Sección del cable (mm²)</label>
+                <label>Sección del Conductor (mm²)</label>
                 <select id="seccion">
                     <option value="1.5">1.5 mm²</option>
                     <option value="2.5">2.5 mm²</option>
@@ -115,86 +124,141 @@
                     <option value="120">120 mm²</option>
                 </select>
             </div>
+            <div class="input-group">
+                <label>Material Conductor</label>
+                <select id="material">
+                    <option value="56">Cobre (56 m/Ω·mm²)</option>
+                    <option value="35">Aluminio (35 m/Ω·mm²)</option>
+                </select>
+            </div>
         </div>
 
-        <button onclick="calcularCaidaTension()">Calcular Caída de Tensión</button>
+        <div class="action-buttons">
+            <button onclick="calcularCaida()" style="flex: 2;">Calcular C.D.T.</button>
+            <button id="btnPdf" class="btn-pdf" onclick="generarPDF()"><i class="fas fa-file-pdf"></i> Exportar a PDF</button>
+        </div>
 
-        <div class="result-box" id="result-box">
-            <h3>Resultados del Cálculo</h3>
-            <div class="result-value" id="res-voltios">0.00 V</div>
-            <div class="result-desc" id="res-porcentaje">Caída del 0.00%</div>
-            <div class="warning" id="warning-msg"><i class="fas fa-exclamation-triangle"></i> Advertencia: La caída supera el 5% recomendado. Deberías aumentar la sección del cable.</div>
+        <div id="informe-resultado">
+            <div class="pdf-header" id="pdfHeader">
+                <h2><i class="fas fa-industry" style="color: #3b82f6;"></i> IndustrialCalc Pro</h2>
+                <p><strong>Informe de Cálculo:</strong> Caída de Tensión (C.D.T)</p>
+                <p id="fechaInforme"></p>
+                <div style="margin-top: 10px; font-size: 0.85rem; color: #475569; background: #f1f5f9; padding: 10px; border-radius: 6px;">
+                    <strong>Parámetros de entrada:</strong> Línea de <span id="out-longitud">0</span> m, con conductor de <span id="out-seccion">0</span> mm², transportando <span id="out-corriente">0</span> Amperios a <span id="out-tension">0</span>V.
+                </div>
+            </div>
+
+            <div class="result-grid">
+                <div class="result-item">
+                    <div class="result-value" id="res-v">0.00 V</div>
+                    <div class="result-desc">Caída Absoluta (Voltios)</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-value" id="res-porc">0.00 %</div>
+                    <div class="result-desc">Caída Relativa (%)</div>
+                </div>
+                <div class="warning" id="warning-msg"><i class="fas fa-exclamation-triangle"></i> <strong>Aviso Normativo:</strong> La caída de tensión supera el límite máximo recomendado por el REBT (normalmente 3% iluminación, 5% fuerza). Se recomienda aumentar la sección del cable a la medida superior.</div>
+            </div>
         </div>
     </div>
 
     <div class="ad-placeholder">
-        [Espacio reservado para banner de AdSense - Adaptable]
+        [Espacio para Banner AdSense - 728x90]
     </div>
-
-    <section class="seo-content">
-        <h2>¿Qué es la Caída de Tensión?</h2>
-        <p>Los cables eléctricos no son conductores perfectos; oponen una resistencia natural al paso de la corriente. Cuando transportamos energía a través de distancias largas, esta resistencia provoca que una parte del voltaje se pierda en forma de calor antes de llegar a su destino. A este fenómeno se le conoce como <strong>caída de tensión</strong>.</p>
-        <p>Si la caída de voltaje es muy alta, los motores perderán fuerza, la iluminación parpadeará y los equipos electrónicos pueden sufrir reinicios inesperados o averías por bajo voltaje (undervoltage).</p>
-        
-        <h2>Límites máximos permitidos por normativa</h2>
-        <p>Aunque varía según la legislación de cada país (como el REBT en España o el NEC en América), las reglas generales de diseño eléctrico establecen los siguientes límites máximos de pérdida:</p>
-        <ul>
-            <li><strong>Circuitos de iluminación:</strong> Máximo 3%.</li>
-            <li><strong>Circuitos de fuerza (motores, enchufes):</strong> Máximo 5%.</li>
-            <li><strong>Líneas de paneles solares fotovoltaicos:</strong> Se recomienda no superar el 1.5% para optimizar el rendimiento de la planta.</li>
-        </ul>
-
-        <h2>¿Cómo se soluciona una alta caída de tensión?</h2>
-        <p>La solución técnica más directa y económica es <strong>aumentar la sección (grosor) del cable</strong>. Al hacer el cable más grueso (pasar de 4 mm² a 6 mm², por ejemplo), disminuimos su resistencia óhmica, permitiendo que la corriente fluya con mucha menos pérdida. Otra alternativa en largas distancias es transmitir la energía a mayor voltaje y usar transformadores en el punto de destino.</p>
-    </section>
 
 </main>
 
 <footer>
-    <a href="legales.html" style="color: var(--text-muted); text-decoration: none;">Aviso Legal, Privacidad y Política de Cookies</a>
+    <a href="legales.html">Aviso Legal y Privacidad</a>
 </footer>
 
 <script>
     if (localStorage.getItem('industrialcalc-theme') === 'dark') document.body.classList.add('dark-mode');
+    
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        localStorage.setItem('industrialcalc-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    });
 
-    function calcularCaidaTension() {
-        const sistema = document.getElementById('sistema').value;
-        const voltaje = parseFloat(document.getElementById('voltaje').value);
-        const corriente = parseFloat(document.getElementById('corriente').value);
-        const longitud = parseFloat(document.getElementById('longitud').value);
-        const resistividad = parseFloat(document.getElementById('material').value);
-        const seccion = parseFloat(document.getElementById('seccion').value);
+    function calcularCaida() {
+        const k = parseFloat(document.getElementById('sistema').value);
+        const V = parseFloat(document.getElementById('tension').value);
+        const I = parseFloat(document.getElementById('corriente').value);
+        const L = parseFloat(document.getElementById('longitud').value);
+        const S = parseFloat(document.getElementById('seccion').value);
+        const c = parseFloat(document.getElementById('material').value);
 
-        if (!voltaje || !corriente || !longitud || voltaje <= 0 || corriente <= 0 || longitud <= 0) {
-            alert("Por favor, introduce valores numéricos mayores a cero.");
+        if (!V || !I || !L || I <= 0 || L <= 0 || V <= 0) {
+            alert("Por favor, introduce valores numéricos válidos en Tensión, Corriente y Longitud.");
             return;
         }
 
-        let caidaVoltios = 0;
+        // Fórmula: CDT = (k * I * L) / (c * S)
+        const cdt_voltios = (k * I * L) / (c * S);
+        const cdt_porcentaje = (cdt_voltios / V) * 100;
 
-        // Fórmulas estándar de ingeniería eléctrica
-        // Monofásico: V = (2 * L * I * p) / S
-        // Trifásico: V = (√3 * L * I * p) / S
+        // Mostrar resultados en pantalla
+        document.getElementById('res-v').innerText = cdt_voltios.toFixed(2) + " V";
+        document.getElementById('res-porc').innerText = cdt_porcentaje.toFixed(2) + " %";
         
-        if (sistema === 'monofasico') {
-            caidaVoltios = (2 * longitud * corriente * resistividad) / seccion;
-        } else {
-            caidaVoltios = (Math.sqrt(3) * longitud * corriente * resistividad) / seccion;
-        }
+        // Preparar datos para el PDF
+        document.getElementById('out-longitud').innerText = L;
+        document.getElementById('out-seccion').innerText = S;
+        document.getElementById('out-corriente').innerText = I;
+        document.getElementById('out-tension').innerText = V;
 
-        const porcentajeCaida = (caidaVoltios / voltaje) * 100;
-
-        document.getElementById('res-voltios').innerText = caidaVoltios.toFixed(2) + " V";
-        document.getElementById('res-porcentaje').innerText = "Caída del " + porcentajeCaida.toFixed(2) + " %";
-        
         const warning = document.getElementById('warning-msg');
-        if (porcentajeCaida > 5) {
+        if (cdt_porcentaje > 5.0) {
             warning.style.display = "block";
         } else {
             warning.style.display = "none";
         }
 
-        document.getElementById('result-box').style.display = "block";
+        // Mostrar panel de resultados y botón de PDF
+        document.getElementById('informe-resultado').style.display = "block";
+        document.getElementById('btnPdf').style.display = "flex";
+    }
+
+    function generarPDF() {
+        // 1. Configurar fecha actual para el informe
+        const fecha = new Date();
+        document.getElementById('fechaInforme').innerText = "Fecha de generación: " + fecha.toLocaleDateString() + " " + fecha.toLocaleTimeString();
+
+        // 2. Mostrar la cabecera oculta (solo para el PDF)
+        const elemento = document.getElementById('informe-resultado');
+        document.getElementById('pdfHeader').style.display = "block";
+        
+        // Fuerza fondo blanco y texto oscuro temporalmente si está en Dark Mode
+        const eraDark = document.body.classList.contains('dark-mode');
+        if(eraDark) {
+            elemento.style.backgroundColor = "#ffffff";
+            elemento.style.color = "#0f172a";
+            document.querySelectorAll('.result-item').forEach(el => el.style.backgroundColor = "#f1f5f9");
+            document.querySelectorAll('.result-value').forEach(el => el.style.color = "#0f172a");
+        }
+
+        // 3. Opciones de html2pdf
+        const opt = {
+            margin:       10,
+            filename:     'informe_caida_tension.pdf',
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 2 },
+            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+
+        // 4. Generar y restaurar el estilo
+        html2pdf().set(opt).from(elemento).save().then(() => {
+            // Ocultar la cabecera de nuevo tras generar el PDF
+            document.getElementById('pdfHeader').style.display = "none";
+            
+            // Restaurar estilos del dark mode si estaba activado
+            if(eraDark) {
+                elemento.style.backgroundColor = "";
+                elemento.style.color = "";
+                document.querySelectorAll('.result-item').forEach(el => el.style.backgroundColor = "");
+                document.querySelectorAll('.result-value').forEach(el => el.style.color = "");
+            }
+        });
     }
 </script>
 
